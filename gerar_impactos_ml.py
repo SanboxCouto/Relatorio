@@ -28,16 +28,6 @@ def extrair_marca(nome_produto):
         return partes[1].capitalize()
     return "Outras"
 
-def encontrar_cabecalho(df):
-    # Procura a linha que contém os nomes reais das colunas da Amazon
-    for idx in range(min(5, len(df))):
-        linha_vals = [remover_acentos(str(v)) for v in df.iloc[idx].values]
-        if any('ID DO PEDIDO' in v for v in linha_vals) or any('TEMPO DE IMPACTO' in v for v in linha_vals):
-            df_novo = df.iloc[idx+1:].copy()
-            df_novo.columns = [str(v).strip() for v in df.iloc[idx].values]
-            return df_novo.reset_index(drop=True)
-    return df
-
 def buscar_coluna(df, nomes_possiveis, indice_fallback=0):
     for col in df.columns:
         col_norm = remover_acentos(str(col))
@@ -88,41 +78,43 @@ def processar_ml():
     return registros
 
 def processar_amazon():
-    # Carrega sem skiprows e detecta a linha correta de cabeçalho
-    df_raw = pd.read_csv(URL_CSV_AMAZON, header=None)
-    df = encontrar_cabecalho(df_raw)
+    # Pula a linha 1 (data de atualização) e lê a linha 2 como cabeçalho
+    df = pd.read_csv(URL_CSV_AMAZON, skiprows=1)
+    df.columns = [str(col).strip() for col in df.columns]
 
+    # Mapeamento estrito baseado na ordem da imagem 69163f.png:
+    # 0: Data do pedido, 1: Data da Reivindicação, 2: Tempo de Impacto, 3: ID do pedido, 
+    # 4: Motivo, 5: Comentário, 6: Impacto, 7: Valor, 8: Reembolso, 9: Transportadora, 10: UF, 11: SKU
     col_data_pedido  = buscar_coluna(df, ['data do pedido'], 0)
     col_data_reiv    = buscar_coluna(df, ['data da reivindicacao', 'data da reivindicação'], 1)
     col_tempo_imp    = buscar_coluna(df, ['tempo de impacto'], 2)
     col_id_pedido    = buscar_coluna(df, ['id do pedido'], 3)
-    col_valor        = buscar_coluna(df, ['valor'], 4)
-    col_impacto      = buscar_coluna(df, ['impacto'], 5)
-    col_motivo       = buscar_coluna(df, ['motivo'], 6)
-    col_reembolso    = buscar_coluna(df, ['reembolso'], 7)
-    col_produto      = buscar_coluna(df, ['produto'], 8)
-    col_sku          = buscar_coluna(df, ['sku'], 9)
-    col_transp       = buscar_coluna(df, ['transportadora'], 10)
-    col_comentario   = buscar_coluna(df, ['comentario', 'comentário', 'obs'], 11)
+    col_motivo       = buscar_coluna(df, ['motivo'], 4)
+    col_comentario   = buscar_coluna(df, ['comentario', 'comentário'], 5)
+    col_impacto      = buscar_coluna(df, ['impacto'], 6)
+    col_valor        = buscar_coluna(df, ['valor'], 7)
+    col_reembolso    = buscar_coluna(df, ['reembolso'], 8)
+    col_transp       = buscar_coluna(df, ['transportadora'], 9)
+    col_sku          = buscar_coluna(df, ['sku'], 11)
 
     registros = []
     for idx, row in df.iterrows():
         id_ped = str(row[col_id_pedido]).strip()
         
-        # Ignora linhas sem ID de pedido válido
+        # Filtra linhas vazias ou de cabeçalho
         if not id_ped or id_ped.lower() == 'nan' or 'id do pedido' in id_ped.lower():
             continue
 
         tempo_clean = remover_acentos(row[col_tempo_imp])
         impacto_clean = remover_acentos(row[col_impacto])
 
-        # Validação: "VÁLIDO"
+        # Tempo de Impacto: VÁLIDO vs EXPIRADO
         is_valido = 'VALIDO' in tempo_clean
         
-        # Pedidos Afetando a Reputação: VÁLIDO + (MANTIDO, CHAMADO PREMIUM ou ANALISE)
+        # Pedidos Afetando Reputação: VÁLIDO + (MANTIDO OU CHAMADO PREMIUM OU ANALISE)
         is_afetando = is_valido and any(st in impacto_clean for st in ['MANTIDO', 'CHAMADO PREMIUM', 'ANALISE'])
 
-        prod_nome = str(row[col_produto]) if pd.notna(row[col_produto]) else ''
+        sku_val = str(row[col_sku]).strip() if pd.notna(row[col_sku]) else 'N/A'
         coment = str(row[col_comentario]).strip() if pd.notna(row[col_comentario]) else ''
         if coment.lower() == 'nan': coment = ''
 
@@ -134,11 +126,11 @@ def processar_amazon():
             "reembolso": str(row[col_reembolso]).strip(),
             "impacto": str(row[col_impacto]).strip(),
             "motivo": str(row[col_motivo]).strip(),
-            "produto": prod_nome,
-            "sku": str(row[col_sku]).strip(),
+            "produto": f"Produto SKU {sku_val}",
+            "sku": sku_val,
             "transportadora": str(row[col_transp]).strip(),
             "tempo_impacto": str(row[col_tempo_imp]).strip(),
-            "marca": extrair_marca(prod_nome),
+            "marca": extrair_marca(sku_val),
             "comentario": coment,
             "is_valido": is_valido,
             "is_afetando": is_afetando
