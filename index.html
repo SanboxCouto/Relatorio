@@ -21,10 +21,16 @@
     }
 
     body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-color); margin: 0; padding: 24px; color: var(--text-main); }
-    .header { margin-bottom: 24px; }
-    .header h1 { font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0 0 6px 0; }
     
-    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+    .header-bar h1 { font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0; }
+    
+    /* Alternador de Escopo (Filtro Global) */
+    .filter-switch { display: flex; background: #e2e8f0; padding: 4px; border-radius: 8px; gap: 4px; }
+    .filter-btn { border: none; background: none; padding: 8px 16px; font-weight: 600; font-size: 13px; color: var(--text-muted); cursor: pointer; border-radius: 6px; transition: all 0.2s; }
+    .filter-btn.active { background: #ffffff; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px; }
     .metric-card { background: var(--card-bg); border-radius: 12px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
     .metric-card h3 { margin: 0 0 8px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
     .metric-card .val { font-size: 32px; font-weight: 800; }
@@ -43,18 +49,28 @@
 
     .chart-box { background: var(--card-bg); border-radius: 12px; padding: 24px; border: 1px solid var(--border-color); margin-bottom: 24px; }
     
-    table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
+    /* Ajustes na Tabela para eliminar espaço vago */
+    table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); table-layout: fixed; }
     th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: top; }
     th { background: #f1f5f9; font-weight: 600; color: #334155; }
     
-    /* Tags de Rankings */
+    /* Larguras Fixas das Colunas */
+    .col-entity { width: 22%; }
+    .col-qtd { width: 8%; }
+    .col-ranking { width: 35%; }
+    .col-comments { width: 35%; }
+
+    /* Tags Clicáveis de Ranking */
     .ranking-container { display: flex; flex-wrap: wrap; gap: 6px; }
-    .ranking-pill { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px; font-size: 12px; color: #334155; display: inline-flex; align-items: center; gap: 6px; }
+    .ranking-pill { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px; font-size: 12px; color: #334155; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s; user-select: none; }
+    .ranking-pill:hover { background: #e2e8f0; border-color: var(--primary); }
+    .ranking-pill.selected { background: var(--primary); color: #ffffff; border-color: var(--primary); }
+    .ranking-pill.selected strong { color: #ffffff; }
     .ranking-pill strong { color: var(--primary); font-weight: 700; }
 
-    /* Balões de Comentários */
-    .comments-container { display: flex; flex-direction: column; gap: 6px; }
-    .comment-bubble { background: #f8fafc; border-left: 3px solid var(--primary); border-radius: 4px; padding: 6px 10px; font-size: 12px; color: #475569; }
+    /* Contêiner de Comentários Otimizado com Scroll Interno */
+    .comments-scroll-box { max-height: 180px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px; }
+    .comment-bubble { background: #f8fafc; border-left: 3px solid var(--primary); border-radius: 4px; padding: 6px 10px; font-size: 12px; color: #475569; word-break: break-word; }
     
     .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
     .no-comments { color: #94a3b8; font-size: 12px; font-style: italic; }
@@ -62,8 +78,14 @@
 </head>
 <body>
 
-  <div class="header">
+  <div class="header-bar">
     <h1>Impactos ML - Painel de Controle</h1>
+
+    <!-- Botão de Seleção de Escopo dos Dados -->
+    <div class="filter-switch">
+      <button id="btn-afetando" class="filter-btn active" onclick="setEscopo('afetando')">Apenas Afetando Reputação</button>
+      <button id="btn-todos" class="filter-btn" onclick="setEscopo('todos')">Todos os Pedidos Válidos</button>
+    </div>
   </div>
 
   <div class="metrics-grid">
@@ -94,10 +116,10 @@
   <!-- ABA 1: PRODUTOS / SKUS -->
   <div id="tab-skus" class="tab-content active">
     <div class="chart-box">
-      <div style="height: 480px;"><canvas id="chartSkus"></canvas></div>
+      <div style="height: 440px;"><canvas id="chartSkus"></canvas></div>
     </div>
     <table id="tabela-skus">
-      <thead><tr><th>SKU</th><th>Produto</th><th>Qtd</th><th>Comentários & Ocorrências</th></tr></thead>
+      <thead><tr><th class="col-entity">SKU</th><th class="col-entity">Produto</th><th class="col-qtd">Qtd</th><th style="width:35%">Comentários & Ocorrências</th></tr></thead>
       <tbody></tbody>
     </table>
   </div>
@@ -108,7 +130,7 @@
       <div style="height: 350px;"><canvas id="chartTransportadoras"></canvas></div>
     </div>
     <table id="tabela-transportadoras">
-      <thead><tr><th>Transportadora</th><th>Qtd</th><th>Ranking dos Motivos</th><th>Comentários & Ocorrências</th></tr></thead>
+      <thead><tr><th class="col-entity">Transportadora</th><th class="col-qtd">Qtd</th><th class="col-ranking">Ranking dos Motivos</th><th class="col-comments">Comentários & Ocorrências</th></tr></thead>
       <tbody></tbody>
     </table>
   </div>
@@ -119,13 +141,18 @@
       <div style="height: 360px; display: flex; justify-content: center;"><canvas id="chartMotivos"></canvas></div>
     </div>
     <table id="tabela-motivos">
-      <thead><tr><th>Motivo</th><th>Qtd</th><th>Ranking das Transportadoras</th><th>Comentários & Ocorrências</th></tr></thead>
+      <thead><tr><th class="col-entity">Motivo</th><th class="col-qtd">Qtd</th><th class="col-ranking">Ranking das Transportadoras</th><th class="col-comments">Comentários & Ocorrências</th></tr></thead>
       <tbody></tbody>
     </table>
   </div>
 
   <script>
     Chart.register(ChartDataLabels);
+
+    let rawRegistros = [];
+    let escopoAtual = 'afetando'; // 'afetando' ou 'todos'
+    let chartSkusObj = null, chartTranspObj = null, chartMotivosObj = null;
+    let filtroAtivoGlobal = {};
 
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -134,98 +161,190 @@
       event.currentTarget.classList.add('active');
     }
 
-    function renderRanking(dictData) {
-      if (!dictData || Object.keys(dictData).length === 0) return '-';
-      return '<div class="ranking-container">' + 
-        Object.entries(dictData).map(([k, v]) => `<span class="ranking-pill">${k}: <strong>${v}</strong></span>`).join('') + 
-        '</div>';
+    function setEscopo(modo) {
+      escopoAtual = modo;
+      document.getElementById('btn-afetando').classList.toggle('active', modo === 'afetando');
+      document.getElementById('btn-todos').classList.toggle('active', modo === 'todos');
+      filtroAtivoGlobal = {};
+      renderDashboard();
     }
 
-    function renderComentarios(comentarios) {
-      if (!comentarios || comentarios.length === 0) return '<span class="no-comments">Sem observações</span>';
-      return '<div class="comments-container">' + comentarios.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('') + '</div>';
+    function toggleFiltroSubItem(tipo, chavePrincipal, itemFiltro, elemPill) {
+      const globalKey = `${tipo}_${chavePrincipal}`;
+      if (filtroAtivoGlobal[globalKey] === itemFiltro) {
+        delete filtroAtivoGlobal[globalKey];
+      } else {
+        filtroAtivoGlobal[globalKey] = itemFiltro;
+      }
+      renderDashboard();
     }
 
     fetch('impactos_ml.json?v=' + new Date().getTime())
       .then(res => res.json())
       .then(data => {
-        const ind = data.indicadores_topo || {};
-        document.getElementById('total-afetando').innerText = ind.total_pedidos_afetando ?? 0;
-        document.getElementById('total-mediacao').innerText = ind.total_em_mediacao ?? 0;
-        document.getElementById('total-recusada').innerText = ind.total_revisao_recusada ?? 0;
-        document.getElementById('total-removido').innerText = ind.total_impacto_removido ?? 0;
-
-        // 1. SKUs
-        const skusList = data.skus_produtos_impactados || [];
-        const skusLabels = skusList.slice(0, 15).map(i => `${i.sku} - ${i.produto}`.substring(0, 40) + '...');
-        const skusValues = skusList.slice(0, 15).map(i => i.quantidade);
-
-        new Chart(document.getElementById('chartSkus'), {
-          type: 'bar',
-          data: { labels: skusLabels, datasets: [{ data: skusValues, backgroundColor: '#3b82f6', borderRadius: 4 }] },
-          options: {
-            indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'right', color: '#1d4ed8', font: { weight: 'bold' } } },
-            scales: { x: { beginAtZero: true }, y: { ticks: { font: { size: 11 } } } }
-          }
-        });
-
-        const tbodySkus = document.querySelector('#tabela-skus tbody');
-        skusList.forEach(item => {
-          tbodySkus.innerHTML += `<tr>
-            <td><strong>${item.sku}</strong></td>
-            <td>${item.produto}</td>
-            <td><span class="badge-count">${item.quantidade}</span></td>
-            <td>${renderComentarios(item.comentarios)}</td>
-          </tr>`;
-        });
-
-        // 2. TRANSPORTADORAS
-        const transpList = data.transportadoras_detalhadas || [];
-        new Chart(document.getElementById('chartTransportadoras'), {
-          type: 'bar',
-          data: { labels: transpList.map(t => t.transportadora), datasets: [{ data: transpList.map(t => t.quantidade), backgroundColor: '#0284c7', borderRadius: 4 }] },
-          options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', font: { weight: 'bold' } } },
-            scales: { y: { beginAtZero: true } }
-          }
-        });
-
-        const tbodyTransp = document.querySelector('#tabela-transportadoras tbody');
-        transpList.forEach(item => {
-          tbodyTransp.innerHTML += `<tr>
-            <td><strong>${item.transportadora}</strong></td>
-            <td><span class="badge-count">${item.quantidade}</span></td>
-            <td>${renderRanking(item.ranking_motivos)}</td>
-            <td>${renderComentarios(item.comentarios)}</td>
-          </tr>`;
-        });
-
-        // 3. MOTIVOS
-        const motivosList = data.motivos_detalhados || [];
-        new Chart(document.getElementById('chartMotivos'), {
-          type: 'doughnut',
-          data: {
-            labels: motivosList.map(m => m.motivo),
-            datasets: [{ data: motivosList.map(m => m.quantidade), backgroundColor: ['#ef4444', '#3b82f6', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#14b8a6'] }]
-          },
-          options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { position: 'right' }, datalabels: { color: '#fff', font: { weight: 'bold' } } }
-          }
-        });
-
-        const tbodyMotivos = document.querySelector('#tabela-motivos tbody');
-        motivosList.forEach(item => {
-          tbodyMotivos.innerHTML += `<tr>
-            <td><strong>${item.motivo}</strong></td>
-            <td><span class="badge-count">${item.quantidade}</span></td>
-            <td>${renderRanking(item.ranking_transportadoras)}</td>
-            <td>${renderComentarios(item.comentarios)}</td>
-          </tr>`;
-        });
+        rawRegistros = data.registros || [];
+        renderDashboard();
       });
+
+    function renderDashboard() {
+      // 1. Aplica o Filtro de Escopo dos Dados
+      const dataset = escopoAtual === 'afetando' 
+        ? rawRegistros.filter(r => r.is_afetando)
+        : rawRegistros;
+
+      // 2. Atualiza Cards Superiores
+      const totalAfetando = rawRegistros.filter(r => r.is_afetando).length;
+      const totalMediacao = dataset.filter(r => ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
+      const totalRecusada = dataset.filter(r => ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
+      const totalRemovido = dataset.filter(r => ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+
+      document.getElementById('total-afetando').innerText = totalAfetando;
+      document.getElementById('total-mediacao').innerText = totalMediacao;
+      document.getElementById('total-recusada').innerText = totalRecusada;
+      document.getElementById('total-removido').innerText = totalRemovido;
+
+      // 3. Renderiza Abas
+      renderTabSkus(dataset);
+      renderTabTransportadoras(dataset);
+      renderTabMotivos(dataset);
+    }
+
+    // --- ABA SKUS ---
+    function renderTabSkus(dataset) {
+      const mapSkus = {};
+      dataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}`;
+        if (!mapSkus[key]) mapSkus[key] = { sku: r.sku, produto: r.produto, qtd: 0, comentarios: [] };
+        mapSkus[key].qtd++;
+        if (r.comentario) mapSkus[key].comentarios.push(r.comentario);
+      });
+
+      const list = Object.values(mapSkus).sort((a,b) => b.qtd - a.qtd);
+
+      // Gráfico
+      const labels = list.slice(0, 15).map(i => `${i.sku} - ${i.produto}`.substring(0, 35) + '...');
+      const values = list.slice(0, 15).map(i => i.qtd);
+      if (chartSkusObj) chartSkusObj.destroy();
+      chartSkusObj = new Chart(document.getElementById('chartSkus'), {
+        type: 'bar',
+        data: { labels, datasets: [{ data: values, backgroundColor: '#3b82f6', borderRadius: 4 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'right', color: '#1d4ed8', font: { weight: 'bold' } } } }
+      });
+
+      // Tabela
+      const tbody = document.querySelector('#tabela-skus tbody');
+      tbody.innerHTML = '';
+      list.forEach(item => {
+        const comHtml = item.comentarios.length ? `<div class="comments-scroll-box">${item.comentarios.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+        tbody.innerHTML += `<tr><td><strong>${item.sku}</strong></td><td>${item.produto}</td><td><span class="badge-count">${item.qtd}</span></td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    // --- ABA TRANSPORTADORAS ---
+    function renderTabTransportadoras(dataset) {
+      const mapTransp = {};
+      dataset.forEach(r => {
+        const t = r.transportadora;
+        if (!mapTransp[t]) mapTransp[t] = { transportadora: t, qtd: 0, rankingMotivos: {}, registros: [] };
+        mapTransp[t].qtd++;
+        mapTransp[t].rankingMotivos[r.motivo] = (mapTransp[t].rankingMotivos[r.motivo] || 0) + 1;
+        mapTransp[t].registros.push(r);
+      });
+
+      const list = Object.values(mapTransp).sort((a,b) => b.qtd - a.qtd);
+
+      // Gráfico
+      if (chartTranspObj) chartTranspObj.destroy();
+      chartTranspObj = new Chart(document.getElementById('chartTransportadoras'), {
+        type: 'bar',
+        data: { labels: list.map(i => i.transportadora), datasets: [{ data: list.map(i => i.qtd), backgroundColor: '#0284c7', borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', font: { weight: 'bold' } } } }
+      });
+
+      // Tabela
+      const tbody = document.querySelector('#tabela-transportadoras tbody');
+      tbody.innerHTML = '';
+      list.forEach(item => {
+        const globalKey = `transp_${item.transportadora}`;
+        const filtroAtivo = filtroAtivoGlobal[globalKey];
+
+        // Rótulo dos motivos clicáveis
+        const rankingHtml = '<div class="ranking-container">' + 
+          Object.entries(item.rankingMotivos).map(([mot, count]) => {
+            const isSelected = filtroAtivo === mot ? 'selected' : '';
+            return `<span class="ranking-pill ${isSelected}" onclick="toggleFiltroSubItem('transp', '${item.transportadora}', '${mot}', this)">${mot}: <strong>${count}</strong></span>`;
+          }).join('') + '</div>';
+
+        // Comentários filtrados
+        let comsFiltered = item.registros;
+        if (filtroAtivo) {
+          comsFiltered = comsFiltered.filter(r => r.motivo === filtroAtivo);
+        }
+        const listaComs = comsFiltered.map(r => r.comentario).filter(Boolean);
+
+        const comHtml = listaComs.length ? `<div class="comments-scroll-box">${listaComs.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações para este filtro</span>';
+
+        tbody.innerHTML += `<tr>
+          <td><strong>${item.transportadora}</strong></td>
+          <td><span class="badge-count">${item.qtd}</span></td>
+          <td>${rankingHtml}</td>
+          <td>${comHtml}</td>
+        </tr>`;
+      });
+    }
+
+    // --- ABA MOTIVOS ---
+    function renderTabMotivos(dataset) {
+      const mapMotivos = {};
+      dataset.forEach(r => {
+        const m = r.motivo;
+        if (!mapMotivos[m]) mapMotivos[m] = { motivo: m, qtd: 0, rankingTransp: {}, registros: [] };
+        mapMotivos[m].qtd++;
+        mapMotivos[m].rankingTransp[r.transportadora] = (mapMotivos[m].rankingTransp[r.transportadora] || 0) + 1;
+        mapMotivos[m].registros.push(r);
+      });
+
+      const list = Object.values(mapMotivos).sort((a,b) => b.qtd - a.qtd);
+
+      // Gráfico
+      if (chartMotivosObj) chartMotivosObj.destroy();
+      chartMotivosObj = new Chart(document.getElementById('chartMotivos'), {
+        type: 'doughnut',
+        data: { labels: list.map(i => i.motivo), datasets: [{ data: list.map(i => i.qtd), backgroundColor: ['#ef4444', '#3b82f6', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#14b8a6'] }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' }, datalabels: { color: '#fff', font: { weight: 'bold' } } } }
+      });
+
+      // Tabela
+      const tbody = document.querySelector('#tabela-motivos tbody');
+      tbody.innerHTML = '';
+      list.forEach(item => {
+        const globalKey = `motivo_${item.motivo}`;
+        const filtroAtivo = filtroAtivoGlobal[globalKey];
+
+        // Rótulo das transportadoras clicáveis
+        const rankingHtml = '<div class="ranking-container">' + 
+          Object.entries(item.rankingTransp).map(([transp, count]) => {
+            const isSelected = filtroAtivo === transp ? 'selected' : '';
+            return `<span class="ranking-pill ${isSelected}" onclick="toggleFiltroSubItem('motivo', '${item.motivo}', '${transp}', this)">${transp}: <strong>${count}</strong></span>`;
+          }).join('') + '</div>';
+
+        // Comentários filtrados
+        let comsFiltered = item.registros;
+        if (filtroAtivo) {
+          comsFiltered = comsFiltered.filter(r => r.transportadora === filtroAtivo);
+        }
+        const listaComs = comsFiltered.map(r => r.comentario).filter(Boolean);
+
+        const comHtml = listaComs.length ? `<div class="comments-scroll-box">${listaComs.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações para este filtro</span>';
+
+        tbody.innerHTML += `<tr>
+          <td><strong>${item.motivo}</strong></td>
+          <td><span class="badge-count">${item.qtd}</span></td>
+          <td>${rankingHtml}</td>
+          <td>${comHtml}</td>
+        </tr>`;
+      });
+    }
   </script>
 </body>
 </html>
