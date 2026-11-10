@@ -28,6 +28,16 @@ def extrair_marca(nome_produto):
         return partes[1].capitalize()
     return "Outras"
 
+def encontrar_cabecalho(df):
+    # Procura a linha que contém os nomes reais das colunas da Amazon
+    for idx in range(min(5, len(df))):
+        linha_vals = [remover_acentos(str(v)) for v in df.iloc[idx].values]
+        if any('ID DO PEDIDO' in v for v in linha_vals) or any('TEMPO DE IMPACTO' in v for v in linha_vals):
+            df_novo = df.iloc[idx+1:].copy()
+            df_novo.columns = [str(v).strip() for v in df.iloc[idx].values]
+            return df_novo.reset_index(drop=True)
+    return df
+
 def buscar_coluna(df, nomes_possiveis, indice_fallback=0):
     for col in df.columns:
         col_norm = remover_acentos(str(col))
@@ -78,17 +88,10 @@ def processar_ml():
     return registros
 
 def processar_amazon():
-    # Carrega sem skiprows primeiro para pegar com precisão os dados da aba Amazon
-    df = pd.read_csv(URL_CSV_AMAZON)
-    
-    # Se a primeira linha for cabeçalho duplicado ou data/título, faz o ajuste
-    if 'Data do pedido' in df.iloc[0].values or 'Tempo de Impacto' in df.iloc[0].values:
-        df.columns = df.iloc[0]
-        df = df[1:].reset_index(drop=True)
-        
-    df.columns = [str(col).strip() for col in df.columns]
+    # Carrega sem skiprows e detecta a linha correta de cabeçalho
+    df_raw = pd.read_csv(URL_CSV_AMAZON, header=None)
+    df = encontrar_cabecalho(df_raw)
 
-    # Mapeamento por Nomes de Coluna / Busca robusta
     col_data_pedido  = buscar_coluna(df, ['data do pedido'], 0)
     col_data_reiv    = buscar_coluna(df, ['data da reivindicacao', 'data da reivindicação'], 1)
     col_tempo_imp    = buscar_coluna(df, ['tempo de impacto'], 2)
@@ -106,19 +109,18 @@ def processar_amazon():
     for idx, row in df.iterrows():
         id_ped = str(row[col_id_pedido]).strip()
         
-        # Ignora linhas de cabeçalho residual ou vazias
-        if not id_ped or id_ped.lower() == 'nan' or id_ped.lower() == 'id do pedido':
+        # Ignora linhas sem ID de pedido válido
+        if not id_ped or id_ped.lower() == 'nan' or 'id do pedido' in id_ped.lower():
             continue
 
         tempo_clean = remover_acentos(row[col_tempo_imp])
         impacto_clean = remover_acentos(row[col_impacto])
 
-        # Validação: Deve constar "VÁLIDO" na Col. Tempo de Impacto
-        is_valido = bool(re.search(r'VALIDO', tempo_clean))
+        # Validação: "VÁLIDO"
+        is_valido = 'VALIDO' in tempo_clean
         
-        # Pedidos Afetando a Reputação: Válido + (Mantido OU Em Chamado Premium OU Em Análise)
-        status_afetam_amz = ['MANTIDO', 'EM CHAMADO PREMIUM', 'EM ANALISE']
-        is_afetando = is_valido and (impacto_clean in status_afetam_amz)
+        # Pedidos Afetando a Reputação: VÁLIDO + (MANTIDO, CHAMADO PREMIUM ou ANALISE)
+        is_afetando = is_valido and any(st in impacto_clean for st in ['MANTIDO', 'CHAMADO PREMIUM', 'ANALISE'])
 
         prod_nome = str(row[col_produto]) if pd.notna(row[col_produto]) else ''
         coment = str(row[col_comentario]).strip() if pd.notna(row[col_comentario]) else ''
