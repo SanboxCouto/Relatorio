@@ -1,43 +1,415 @@
 {
-    "resumo_validacao": {
+    "indicadores_topo": {
         "total_pedidos_afetando": 88,
-        "total_pedidos_validos": 138,
-        "total_registros": 165
+        "total_revisao_recusada": 29,
+        "total_impacto_removido": 46
     },
-    "status_coluna_g": {
-        "Impacto Removido": 56,
-        "Não Solicitada": 35,
-        "Revisão Recusada": 32,
-        "Em Mediação": 31,
-        "Expirado": 9,
-        "Atualizando": 2
-    },
-    "motivos_reclamacao": {
-        "Produto Avariado": 87,
-        "Defeito no Produto": 46,
-        "Item Faltante": 9,
-        "Descumpre as características do anúncio": 4,
-        "Não é da cor, tamanho ou modelo que escolhi": 4,
-        "A data de entrega combinada não foi cumprida": 3,
-        "Não posso esperar a entrega": 2,
-        "O vendedor não me respondeu": 2,
-        "Outro motivo": 2,
-        "A embalagem estava danificada\n E Produto Não Funciona": 1,
-        "Insatisfação": 1,
-        "Ocorrência de Entrega": 1,
-        "Recebi outro tipo de produto": 1,
-        "Não posso receber a compra no endereço informado": 1,
-        "Não Recebi o Produto": 1
-    },
-    "transportadoras": {
-        "Mercado Envios": 145,
-        "Trilog Express": 5,
-        "Brasil Web": 5,
-        "Alfa Transportes": 4,
-        "Tecmar Transportadora": 3,
-        "MMA Cargas": 2,
-        "Rio Express": 1
-    },
+    "motivos_detalhados": [
+        {
+            "motivo": "Produto Avariado",
+            "quantidade": 70,
+            "comentarios": [
+                "Parte Frontal Inferior Quebrada",
+                "Amassado e Riscos em Partes Externas",
+                "Arranhado na Lateral Direita",
+                "Amassado na Lateral Direita do Fogão",
+                "Parafuso e Tempinho Soltos",
+                "Riscos, Arranhões e Amassados no Fogão",
+                "Amassado na Parte Superior do Forno",
+                "Quina Superior Esquerda do Fogão Amassada",
+                "Barra Amassada",
+                "Amassado na Lateral Esquerda",
+                "Amassado na Parte Superior do Fogão",
+                "Pequenas Avarias na Mesa do Fogão",
+                "Vidro do Cooktop Quebrada",
+                "Amassado",
+                "Amassado na Lateral Superior Esquerda",
+                "Puxador Quebrado",
+                "Arranhados na Quina",
+                "Amassado na Lateral Tampado com Papel",
+                "Cesto da Máquina Danificado",
+                "Diversos Amassados",
+                "Mesa de Vidro Quebrada",
+                "Amassado no Puxador",
+                "Botão Quebrado",
+                "Vedação da Porta com Problema",
+                "Diversos Amassados",
+                "Mesa do Fogão Amassado",
+                "Mesa do Fogão Amassada e Estalo na Porta do Forno",
+                "Vidro Espelhado Quebrado e Tampa Empenada",
+                "Diversos Amassados na Parte Inferior",
+                "Lascas nas Trempes",
+                "Amassado na Tampa e Risco Profundo",
+                "Amassado na Quina Direita Superior",
+                "Diversos Arranhados e Um Amassado",
+                "Amassado na Parte Traseira",
+                "Caixa Danificada e Arranhado no Vidro",
+                "Grade Quebrada",
+                "Porta do Forno com Problema",
+                "Amassado na Mesa Superior do Fogão",
+                "Amassado na Parte Frontal Superior",
+                "Amassado na Parte Superior",
+                "Pés e Vidro do Produto Avariado",
+                "Pés do Produto Avariado",
+                "Amassado na parte Superior",
+                "Mesa do Fogão Arranhada",
+                "Amassado em diversos lados do Fogão",
+                "Mesa do Fogão Amassada \n Produto foi Entregue de Cabeça pra Baixo",
+                "Pinos da Ventilação Amassados",
+                "Produto Aparentemente de Outlet",
+                "Trincado na Parte Traseira do Tanquinho",
+                "Amassados na Lateral Direita",
+                "Porta do Fogão com Várias Avarias",
+                "Mesa do Fogão Amassada",
+                "Amassado parte Traseira | Entregue s/Caixa",
+                "Peça da Mesa e Puxador Quebrada",
+                "Vidro Frontal do Fogão TODO Quebrado",
+                "Sinais de Uso",
+                "Amassado na Lateral Direita do Fogão",
+                "Pés Quebrado | Será Enviado Novamente",
+                "Amassado na Lateral Esquerda",
+                "Amassado na Lateral",
+                "Vidro da Área Inferior Quebrado",
+                "Controles da Máquina Quebraram",
+                "Vidro Frontal do Fogão TODO Quebrado",
+                "Pés de Apoio Tortos",
+                "Lateral Amassada",
+                "Amassado na Lateral",
+                "Vidro da Porta Completamente Quebrado",
+                "Puxador Amassado",
+                "Vidro do Forno Completamente Quebrado",
+                "Trinca na Porta"
+            ]
+        },
+        {
+            "motivo": "Defeito no Produto",
+            "quantidade": 39,
+            "comentarios": [
+                "Fogão está dando Choques ao utilizar",
+                "Botão de Acendimento Automático Ñ Funciona",
+                "Botão de Acendimento Automático Ñ Funciona",
+                "Problema no LED",
+                "Vazamento de Óleo",
+                "Máquina não Enche de Água",
+                "Barulho nas Válvulas ao Ligar",
+                "Vazamento de Óleo, Barulho no Motor e Defeito no Time",
+                "Vazamento de Óleo",
+                "Refrigerador Não está Gelando e Contém Algumas Avarias",
+                "Produto Instalado e Cheiro de Queimado no Primeiro Uso",
+                "Rangido mesmo com o Produto Vazio",
+                "Não Funciona e Apresenta Erro",
+                "Mal Funcionamento da Vibração e Secagem",
+                "Timer Não Funciona",
+                "Produto com Vários Defeitos de Fábrica",
+                "Tweeter da Caixa com Defeito",
+                "A Mesa do Fogão está Torta",
+                "Máquina Liga mas Não Funciona",
+                "Vazamento de Óleo",
+                "Uma das Bocas Não Funcionam",
+                "Vazamento de Água na parte Inferior\n Aparentemente parou",
+                "Está com Defeito (???)",
+                "Faz Zumbido no Motor e Não Funciona",
+                "Led Ruim e Mancha na Lateral Direita",
+                "Vazamento de Óleo",
+                "Vazamento de Óleo",
+                "Motor Barulhento e Vazamento de Óleo",
+                "Bateria Não Carrega Totalmente e Descarrega",
+                "Termostato não muda e mostra apenas 11°",
+                "Vazamento de Óleo",
+                "Forno Não Funciona",
+                "Vazamento de Óleo",
+                "Vazamento de Óleo",
+                "Vazamento de Óleo",
+                "Produto Não Joga a Água Fora",
+                "Vazamento de Água na parte Inferior",
+                "Peça Solta e Barulho Exacerbado",
+                "Vazamento de Óleo\n Entregaram a Máquina de Cabeça Pra Baixo"
+            ]
+        },
+        {
+            "motivo": "Item Faltante",
+            "quantidade": 8,
+            "comentarios": [
+                "Item Faltante: 1 Trempe Central",
+                "Item Faltante: 2 Microfones",
+                "Item Faltante: Boca Central",
+                "Espalha Chama (Trempe) Central",
+                "Item Faltante: 1 dos Pés de Apoio",
+                "Item Faltante: 2 Microfones",
+                "Item Faltante: Trempe Trempe Central",
+                "Item Faltante: 1 Pé de Apoio"
+            ]
+        },
+        {
+            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
+            "quantidade": 4,
+            "comentarios": [
+                "Produto Enviado de Cor Errada",
+                "Cliente Alegou ter Comprado Errado",
+                "O Produto Estava Correto",
+                "Produto Enviado de Modelo Diferente"
+            ]
+        },
+        {
+            "motivo": "A data de entrega combinada não foi cumprida",
+            "quantidade": 3,
+            "comentarios": [
+                "Entrega Atrasada",
+                "Atraso na Entrega",
+                "Atraso na Entrega | Falta de Contato"
+            ]
+        },
+        {
+            "motivo": "Descumpre as características do anúncio",
+            "quantidade": 3,
+            "comentarios": [
+                "-",
+                "Pés de Apoio Não se Encaixam",
+                "Não Há Descrição"
+            ]
+        },
+        {
+            "motivo": "Não posso esperar a entrega",
+            "quantidade": 2,
+            "comentarios": [
+                "Envio Atrasado | Pedido Cancelado",
+                "Cliente deseja Cancelar o Pedido"
+            ]
+        },
+        {
+            "motivo": "O vendedor não me respondeu",
+            "quantidade": 2,
+            "comentarios": [
+                "Comprador Não deu Tempo para Resposta",
+                "Cliente enviou Mensagem após horário"
+            ]
+        },
+        {
+            "motivo": "Outro motivo",
+            "quantidade": 2,
+            "comentarios": [
+                "Atraso na Entrega",
+                "Preço Errado"
+            ]
+        },
+        {
+            "motivo": "A embalagem estava danificada\n E Produto Não Funciona",
+            "quantidade": 1,
+            "comentarios": [
+                "Forno Não Funciona"
+            ]
+        },
+        {
+            "motivo": "Insatisfação",
+            "quantidade": 1,
+            "comentarios": [
+                "Comprador Insatisfeito"
+            ]
+        },
+        {
+            "motivo": "Não Recebi o Produto",
+            "quantidade": 1,
+            "comentarios": [
+                "Cliente queria Cancelar Pedido"
+            ]
+        },
+        {
+            "motivo": "Não posso receber a compra no endereço informado",
+            "quantidade": 1,
+            "comentarios": [
+                "Cliente Não Pode receber no Endereço"
+            ]
+        },
+        {
+            "motivo": "Ocorrência de Entrega",
+            "quantidade": 1,
+            "comentarios": [
+                "Comprador reclamou da demora para Entrega"
+            ]
+        }
+    ],
+    "transportadoras_detalhadas": [
+        {
+            "transportadora": "Mercado Envios",
+            "quantidade": 118,
+            "comentarios": [
+                "Parte Frontal Inferior Quebrada",
+                "Amassado e Riscos em Partes Externas",
+                "Fogão está dando Choques ao utilizar",
+                "Arranhado na Lateral Direita",
+                "Amassado na Lateral Direita do Fogão",
+                "Parafuso e Tempinho Soltos",
+                "Riscos, Arranhões e Amassados no Fogão",
+                "Amassado na Parte Superior do Forno",
+                "Quina Superior Esquerda do Fogão Amassada",
+                "Barra Amassada",
+                "Item Faltante: 1 Trempe Central",
+                "Amassado na Lateral Esquerda",
+                "Amassado na Parte Superior do Fogão",
+                "Botão de Acendimento Automático Ñ Funciona",
+                "Pequenas Avarias na Mesa do Fogão",
+                "Vidro do Cooktop Quebrada",
+                "Botão de Acendimento Automático Ñ Funciona",
+                "Amassado",
+                "Problema no LED",
+                "Amassado na Lateral Superior Esquerda",
+                "Puxador Quebrado",
+                "Vazamento de Óleo",
+                "Arranhados na Quina",
+                "Amassado na Lateral Tampado com Papel",
+                "Item Faltante: 2 Microfones",
+                "Cesto da Máquina Danificado",
+                "Item Faltante: Boca Central",
+                "Mesa de Vidro Quebrada",
+                "Amassado no Puxador",
+                "Botão Quebrado",
+                "Máquina não Enche de Água",
+                "Vedação da Porta com Problema",
+                "Diversos Amassados",
+                "Mesa do Fogão Amassado",
+                "Vazamento de Óleo, Barulho no Motor e Defeito no Time",
+                "Mesa do Fogão Amassada e Estalo na Porta do Forno",
+                "Vidro Espelhado Quebrado e Tampa Empenada",
+                "Vazamento de Óleo",
+                "Diversos Amassados na Parte Inferior",
+                "Comprador Não deu Tempo para Resposta",
+                "Lascas nas Trempes",
+                "Produto Enviado de Cor Errada",
+                "Refrigerador Não está Gelando e Contém Algumas Avarias",
+                "Produto Instalado e Cheiro de Queimado no Primeiro Uso",
+                "Comprador Insatisfeito",
+                "-",
+                "Rangido mesmo com o Produto Vazio",
+                "Amassado na Parte Traseira",
+                "Caixa Danificada e Arranhado no Vidro",
+                "Não Funciona e Apresenta Erro",
+                "Porta do Forno com Problema",
+                "Espalha Chama (Trempe) Central",
+                "Amassado na Mesa Superior do Fogão",
+                "Item Faltante: 1 dos Pés de Apoio",
+                "Mal Funcionamento da Vibração e Secagem",
+                "Timer Não Funciona",
+                "Amassado na Parte Frontal Superior",
+                "Produto com Vários Defeitos de Fábrica",
+                "Pés de Apoio Não se Encaixam",
+                "Amassado na Parte Superior",
+                "Pés e Vidro do Produto Avariado",
+                "Pés do Produto Avariado",
+                "Amassado na parte Superior",
+                "Tweeter da Caixa com Defeito",
+                "Mesa do Fogão Arranhada",
+                "A Mesa do Fogão está Torta",
+                "Amassado em diversos lados do Fogão",
+                "Máquina Liga mas Não Funciona",
+                "Vazamento de Óleo",
+                "Item Faltante: 2 Microfones",
+                "Mesa do Fogão Amassada \n Produto foi Entregue de Cabeça pra Baixo",
+                "Pinos da Ventilação Amassados",
+                "Uma das Bocas Não Funcionam",
+                "Vazamento de Água na parte Inferior\n Aparentemente parou",
+                "Produto Aparentemente de Outlet",
+                "Trincado na Parte Traseira do Tanquinho",
+                "Está com Defeito (???)",
+                "Faz Zumbido no Motor e Não Funciona",
+                "Led Ruim e Mancha na Lateral Direita",
+                "Vazamento de Óleo",
+                "Amassados na Lateral Direita",
+                "Mesa do Fogão Amassada",
+                "Vazamento de Óleo",
+                "Motor Barulhento e Vazamento de Óleo",
+                "Cliente enviou Mensagem após horário",
+                "Amassado parte Traseira | Entregue s/Caixa",
+                "Cliente Alegou ter Comprado Errado",
+                "Bateria Não Carrega Totalmente e Descarrega",
+                "Peça da Mesa e Puxador Quebrada",
+                "Vidro Frontal do Fogão TODO Quebrado",
+                "O Produto Estava Correto",
+                "Termostato não muda e mostra apenas 11°",
+                "Vazamento de Óleo",
+                "Não Há Descrição",
+                "Item Faltante: Trempe Trempe Central",
+                "Sinais de Uso",
+                "Amassado na Lateral Direita do Fogão",
+                "Pés Quebrado | Será Enviado Novamente",
+                "Amassado na Lateral Esquerda",
+                "Amassado na Lateral",
+                "Vidro da Área Inferior Quebrado",
+                "Controles da Máquina Quebraram",
+                "Vidro Frontal do Fogão TODO Quebrado",
+                "Pés de Apoio Tortos",
+                "Lateral Amassada",
+                "Amassado na Lateral",
+                "Vidro da Porta Completamente Quebrado",
+                "Vazamento de Óleo",
+                "Vazamento de Óleo",
+                "Vazamento de Óleo",
+                "Produto Não Joga a Água Fora",
+                "Item Faltante: 1 Pé de Apoio",
+                "Vazamento de Água na parte Inferior",
+                "Puxador Amassado",
+                "Vidro do Forno Completamente Quebrado",
+                "Peça Solta e Barulho Exacerbado",
+                "Trinca na Porta",
+                "Vazamento de Óleo\n Entregaram a Máquina de Cabeça Pra Baixo"
+            ]
+        },
+        {
+            "transportadora": "Brasil Web",
+            "quantidade": 5,
+            "comentarios": [
+                "Diversos Amassados",
+                "Porta do Fogão com Várias Avarias",
+                "Cliente deseja Cancelar o Pedido",
+                "Preço Errado",
+                "Forno Não Funciona"
+            ]
+        },
+        {
+            "transportadora": "Trilog Express",
+            "quantidade": 5,
+            "comentarios": [
+                "Entrega Atrasada",
+                "Atraso na Entrega",
+                "Atraso na Entrega | Falta de Contato",
+                "Cliente Não Pode receber no Endereço",
+                "Produto Enviado de Modelo Diferente"
+            ]
+        },
+        {
+            "transportadora": "Alfa Transportes",
+            "quantidade": 4,
+            "comentarios": [
+                "Barulho nas Válvulas ao Ligar",
+                "Amassado na Tampa e Risco Profundo",
+                "Diversos Arranhados e Um Amassado",
+                "Grade Quebrada"
+            ]
+        },
+        {
+            "transportadora": "Tecmar Transportadora",
+            "quantidade": 3,
+            "comentarios": [
+                "Envio Atrasado | Pedido Cancelado",
+                "Atraso na Entrega",
+                "Amassado na Quina Direita Superior"
+            ]
+        },
+        {
+            "transportadora": "MMA Cargas",
+            "quantidade": 2,
+            "comentarios": [
+                "Forno Não Funciona",
+                "Comprador reclamou da demora para Entrega"
+            ]
+        },
+        {
+            "transportadora": "Rio Express",
+            "quantidade": 1,
+            "comentarios": [
+                "Cliente queria Cancelar Pedido"
+            ]
+        }
+    ],
     "skus_produtos_impactados": [
         {
             "SKU": "TI1602",
@@ -47,11 +419,6 @@
         {
             "SKU": "TI1514",
             "Produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
-            "quantidade": 9
-        },
-        {
-            "SKU": "TI1571",
-            "Produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
             "quantidade": 8
         },
         {
@@ -62,12 +429,17 @@
         {
             "SKU": "TI1562",
             "Produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
-            "quantidade": 6
+            "quantidade": 5
         },
         {
-            "SKU": "TI1633",
-            "Produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
-            "quantidade": 5
+            "SKU": "TI1667",
+            "Produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+            "quantidade": 4
+        },
+        {
+            "SKU": "TI1571",
+            "Produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+            "quantidade": 4
         },
         {
             "SKU": "TI1603",
@@ -75,8 +447,8 @@
             "quantidade": 4
         },
         {
-            "SKU": "TI1667",
-            "Produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+            "SKU": "TI1633",
+            "Produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
             "quantidade": 4
         },
         {
@@ -85,18 +457,8 @@
             "quantidade": 3
         },
         {
-            "SKU": "TI1090",
-            "Produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Prateado 127v",
-            "quantidade": 3
-        },
-        {
-            "SKU": "TI1455",
-            "Produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
-            "quantidade": 3
-        },
-        {
-            "SKU": "TI1454",
-            "Produto": "Cervejeira Vertical Imbera 569l Full Black Porta Vidro Preto 220v",
+            "SKU": "TI1562",
+            "Produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
             "quantidade": 3
         },
         {
@@ -105,18 +467,8 @@
             "quantidade": 3
         },
         {
-            "SKU": "TI1668",
-            "Produto": "Fogão Mueller 5 Bocas Branco Com Tripla Chama Mfv5bf 127/220v",
-            "quantidade": 3
-        },
-        {
-            "SKU": "TI1581",
-            "Produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
-            "quantidade": 3
-        },
-        {
-            "SKU": "TI1562",
-            "Produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
+            "SKU": "TI1876",
+            "Produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
             "quantidade": 3
         },
         {
@@ -125,19 +477,299 @@
             "quantidade": 3
         },
         {
-            "SKU": "TI1876",
-            "Produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
-            "quantidade": 3
+            "SKU": "TI1455",
+            "Produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1456",
+            "Produto": "Refrigerador Vertical Imbera Vr08 244l Full Black Com Iluminação Led 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1090",
+            "Produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Preto E Cinza 127v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1609",
+            "Produto": "Fogão 4 Bocas Itatiaia Vidro Temperado Electra Glass Plus Preto 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1581",
+            "Produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1837-1",
+            "Produto": "Máquina De Lavar Semi-automática Wanke Até 5kg Marrom-claro 127v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1768",
+            "Produto": "Lava E Seca Electrolux 12kg Cinza Ônix Inverter (lsc12 Cinza 127v Inox",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1454",
+            "Produto": "Cervejeira Vertical Imbera 569l Full Black Porta Vidro Preto 220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1527",
+            "Produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Preto 220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1567",
+            "Produto": "Fogão 4 Bocas A Gás Mueller Mfv4bf Mesa Vidro Preto 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1668",
+            "Produto": "Fogão Mueller 5 Bocas Branco Com Tripla Chama Mfv5bf 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1759",
+            "Produto": "Freezer Vertical Imbera Evz21 Max 597l Preto 220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1766",
+            "Produto": "Microondas Electrolux De Embutir Painel Digital Função Tira Odor Preto 34l 127v Me3ep",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1525",
+            "Produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 220v Branco",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1850",
+            "Produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
+            "quantidade": 2
         },
         {
             "SKU": "TI1763",
             "Produto": "Fogão 5 Bocas Electrolux Cinza Mesa Inox Perfectcook Fe5ig Prateado 127/220v",
-            "quantidade": 3
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1756",
+            "Produto": "Fogão 4 Bocas Itatiaia Itamaster 58 Litro De Forno - Bivolt Preto 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1525",
+            "Produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1121\n TI287",
+            "Produto": "Caixa De Som Torre Pulse Double Sp508 2300w 12 Led - 1 Mic Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1276\n TI287-3",
+            "Produto": "Caixa De Som Pulse Sp512 Flamebox Dj Bluetooth 5000w - 2 Mic Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1090",
+            "Produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Prateado 127v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1112",
+            "Produto": "Torradeira Duo Ce141 Vermelho 700w Multilaser 127v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1562",
+            "Produto": "Fogão Mueller 5b Decorato Vetro Inox Com Mesa Vidro- Bivolt Inox 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1486",
+            "Produto": "Geladeira Vertical Imbera Vrs16 485l Full Black - Bivolt Full Black 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1486",
+            "Produto": "Geladeira Expositora Vertical Imbera 485l Preto Modelo Vrs16 Full Black 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1469",
+            "Produto": "Caixa De Som Torre Double Pulse Sp515 15 Pol 3500w - 2 Mic Cor Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1529",
+            "Produto": "Máquina De Lavar Mueller Energy Automática 8kg Branco-127v 127v Branco",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1656",
+            "Produto": "Ar Condicionado Split Philco Hi Wall Inverter 12.000 Btu/h Frio Monofásico Branco Pac12fc 220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1666",
+            "Produto": "Fogão Mueller 4 Bocas Titânio Com Mesa De Vidro Mfv4bf 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1607",
+            "Produto": "Fogão Dako A Gás Supreme Glass 5 Bocas Timer Digital-bivolt Titânio 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1638",
+            "Produto": "Fogão Mueller 4 Bocas Decorato Vetro Inox Com Mesa De Vidro Cinza 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1580",
+            "Produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa De Vidro E Forno 60 L A Gás Branco Bivolt 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1568",
+            "Produto": "Fogão Mueller 5 Bocas Preto Vidro Temperado Tripla Chama Preto Fosco 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1601",
+            "Produto": "Cervejeira Imbera 244l Preto Ccv144 Com Controle De Temperatura E Iluminação Led 220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1604",
+            "Produto": "Fogão Dako A Gás Supreme Titanium Mesa Inox 4 Bocas - Bivolt Titânio 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1469",
+            "Produto": "Caixa De Som Torre Double 15pol 3500w Pulse Sp515 Pulsesound Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1739",
+            "Produto": "Caixa De Som Bluetooth Pulse X Boombox 220w Rms - Sp626 Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1690",
+            "Produto": "Máquina De Lavar Midea Wave Agitator 13kg Branca - 127v 127v Branco",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1699",
+            "Produto": "Tanquinho De Lavar Mueller 10kg Branco Superesfregador-127v 127v Branco",
+            "quantidade": 1
         },
         {
             "SKU": "TI1690",
             "Produto": "Lavadora De Roupas Midea Wave Agitator 13kg Branca 127v Branco",
-            "quantidade": 3
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1675",
+            "Produto": "Cooktop 5 Bocas Mueller Mcg5bm Mesa De Vidro Tripla Chama Super Automático Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1688",
+            "Produto": "Cervejeira Imbera Ccv-144 Pv 244 L Preta Com Porta De Vidro E Multi Temperatura Tudo Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1684",
+            "Produto": "Forno Elétrico Mueller Mfb50f Sonetto Easy Clean Com Timer 220v Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1759",
+            "Produto": "Freezer Vertical Imbera Full Black Evz21 Max 597l - 220v Preto 220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1760",
+            "Produto": "Fogão 4 Bocas Atlas Coliseum Plus Com Mesa De Inox E Forno De 48 Litros A Gás Acendimento Manual Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1758",
+            "Produto": "Caixa De Som Amplificada Torre Philco Pcx39000 15 Pol Efeito Fumaça 3900w- 2 Microfone Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1758",
+            "Produto": "Caixa de som philco led festa 3900w bluetooth 5.3 pcx39000 Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1756",
+            "Produto": "Fogão Itatiaia Itamaster 4 Bocas Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1792",
+            "Produto": "Frigobar Midea Mrc12b1 124l Porta Reversível Termostato Cor Branco 127v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1813",
+            "Produto": "Fogão 4 Bocas Atlas Agile Glass Automático Mesa De Vidro Branco 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1789",
+            "Produto": "Cooktop De Indução Portátil 1 Boca Midea Cyad12 Preto 220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1846",
+            "Produto": "Tanquinho De Lavar Roupa Mueller 10kg Aquatec Não Transborda Branco 127v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1835-2",
+            "Produto": "Tanquinho Wanker 201kg Semiautomática Premium -127v 127v Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1853",
+            "Produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Preto 220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1852",
+            "Produto": "Tanquinho De Lavar Roupa Mueller 20kg Não Transborda Preto 127v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1870",
+            "Produto": "Fogão A Gás Mesa Inox E Forno 50l Limpa Fácil Esmaltec Ideal Pop F4isp Cor Preto 4 Bocas 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1874",
+            "Produto": "Fogão Ideal Top Glass Mesa De Vidro T4vap 4 Bocas Preto Esmaltec Bivolt 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1877",
+            "Produto": "Fogão Esmaltec Ideal Pop 5 Bocas Manual Mesa Aço Inox Cor Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1881",
+            "Produto": "Maquina De Lavar Midea Wave Impeller 14kg Função Turbo-127v 127v Branco",
+            "quantidade": 1
         }
     ]
 }
