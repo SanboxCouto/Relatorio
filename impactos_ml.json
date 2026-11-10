@@ -1,0 +1,442 @@
+{
+    "resumo_validacao": {
+        "total_pedidos_validos": 0,
+        "total_registros": 165
+    },
+    "status_coluna_g": {
+        "Impacto Removido": 56,
+        "Não Solicitada": 35,
+        "Revisão Recusada": 32,
+        "Em Mediação": 31,
+        "Expirado": 9,
+        "Atualizando": 2
+    },
+    "motivos_reclamacao": {
+        "Produto Avariado": 87,
+        "Defeito no Produto": 46,
+        "Item Faltante": 9,
+        "Descumpre as características do anúncio": 4,
+        "Não é da cor, tamanho ou modelo que escolhi": 4,
+        "A data de entrega combinada não foi cumprida": 3,
+        "Não posso esperar a entrega": 2,
+        "O vendedor não me respondeu": 2,
+        "Outro motivo": 2,
+        "A embalagem estava danificada\n E Produto Não Funciona": 1,
+        "Insatisfação": 1,
+        "Ocorrência de Entrega": 1,
+        "Recebi outro tipo de produto": 1,
+        "Não posso receber a compra no endereço informado": 1,
+        "Não Recebi o Produto": 1
+    },
+    "transportadoras": {
+        "Mercado Envios": 145,
+        "Trilog Express": 5,
+        "Brasil Web": 5,
+        "Alfa Transportes": 4,
+        "Tecmar Transportadora": 3,
+        "MMA Cargas": 2,
+        "Rio Express": 1
+    },
+    "skus_produtos_impactados": [
+        {
+            "SKU": "TI1602",
+            "Produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "quantidade": 10
+        },
+        {
+            "SKU": "TI1514",
+            "Produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "quantidade": 9
+        },
+        {
+            "SKU": "TI1571",
+            "Produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+            "quantidade": 8
+        },
+        {
+            "SKU": "TI1524",
+            "Produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
+            "quantidade": 7
+        },
+        {
+            "SKU": "TI1562",
+            "Produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
+            "quantidade": 6
+        },
+        {
+            "SKU": "TI1633",
+            "Produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
+            "quantidade": 5
+        },
+        {
+            "SKU": "TI1603",
+            "Produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
+            "quantidade": 4
+        },
+        {
+            "SKU": "TI1667",
+            "Produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+            "quantidade": 4
+        },
+        {
+            "SKU": "TI1529",
+            "Produto": "Mueller Lavadora De Roupas Energy 8kg Lavadora De Roupas Branca 127v Branco",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1090",
+            "Produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Prateado 127v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1455",
+            "Produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1454",
+            "Produto": "Cervejeira Vertical Imbera 569l Full Black Porta Vidro Preto 220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1524",
+            "Produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 127v Branco",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1668",
+            "Produto": "Fogão Mueller 5 Bocas Branco Com Tripla Chama Mfv5bf 127/220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1581",
+            "Produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1562",
+            "Produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1816",
+            "Produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1876",
+            "Produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1763",
+            "Produto": "Fogão 5 Bocas Electrolux Cinza Mesa Inox Perfectcook Fe5ig Prateado 127/220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1690",
+            "Produto": "Lavadora De Roupas Midea Wave Agitator 13kg Branca 127v Branco",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1609",
+            "Produto": "Fogão 4 Bocas Itatiaia Vidro Temperado Electra Glass Plus Preto 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1759",
+            "Produto": "Freezer Vertical Imbera Evz21 Max 597l Preto 220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1766",
+            "Produto": "Microondas Electrolux De Embutir Painel Digital Função Tira Odor Preto 34l 127v Me3ep",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1469",
+            "Produto": "Caixa De Som Torre Double Pulse Sp515 15 Pol 3500w - 2 Mic Cor Preto 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1486",
+            "Produto": "Geladeira Expositora Vertical Imbera 485l Preto Modelo Vrs16 Full Black 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1090",
+            "Produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Preto E Cinza 127v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1456",
+            "Produto": "Refrigerador Vertical Imbera Vr08 244l Full Black Com Iluminação Led 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1768",
+            "Produto": "Lava E Seca Electrolux 12kg Cinza Ônix Inverter (lsc12 Cinza 127v Inox",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1525",
+            "Produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1567",
+            "Produto": "Fogão 4 Bocas A Gás Mueller Mfv4bf Mesa Vidro Preto 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1850",
+            "Produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1656",
+            "Produto": "Ar Condicionado Split Philco Hi Wall Inverter 12.000 Btu/h Frio Monofásico Branco Pac12fc 220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1756",
+            "Produto": "Fogão 4 Bocas Itatiaia Itamaster 58 Litro De Forno - Bivolt Preto 127/220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1525",
+            "Produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 220v Branco",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1527",
+            "Produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Preto 220v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1837-1",
+            "Produto": "Máquina De Lavar Semi-automática Wanke Até 5kg Marrom-claro 127v",
+            "quantidade": 2
+        },
+        {
+            "SKU": "TI1112",
+            "Produto": "Torradeira Duo Ce141 Vermelho 700w Multilaser 127v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1121\n TI287",
+            "Produto": "Caixa De Som Torre Pulse Double Sp508 2300w 12 Led - 1 Mic Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1391",
+            "Produto": "Cooktop Braslar Pop Gás 4 Bocas Mesa Vidro - Cor Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "SS001",
+            "Produto": "Mini System Ss-001 Ssound 200w Bluetooth Rádio - Bivolt Preto 127/220v 200 W",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1486",
+            "Produto": "Geladeira Vertical Imbera Vrs16 485l Full Black - Bivolt Full Black 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1469",
+            "Produto": "Caixa De Som Torre Double 15pol 3500w Pulse Sp515 Pulsesound Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1276\n TI287-3",
+            "Produto": "Caixa De Som Pulse Sp512 Flamebox Dj Bluetooth 5000w - 2 Mic Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1580",
+            "Produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa De Vidro E Forno 60 L A Gás Branco Bivolt 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1529",
+            "Produto": "Máquina De Lavar Mueller Energy Automática 8kg Branco-127v 127v Branco",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1560",
+            "Produto": "Fogão Mueller Preto Fosco 4 Bocas Mesa Esmaltada Mfi4bc 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1601",
+            "Produto": "Cervejeira Imbera 244l Preto Ccv144 Com Controle De Temperatura E Iluminação Led 220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1568",
+            "Produto": "Fogão Mueller 5 Bocas Preto Vidro Temperado Tripla Chama Preto Fosco 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1688",
+            "Produto": "Cervejeira Imbera Ccv-144 Pv 244 L Preta Com Porta De Vidro E Multi Temperatura Tudo Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1686",
+            "Produto": "Fogão Mueller 5 Bocas Decorato Vetro Preto Fosco Com Mesa De Vidro E Timer Digital 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1684",
+            "Produto": "Forno Elétrico Mueller Mfb50f Sonetto Easy Clean Com Timer 220v Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1675",
+            "Produto": "Cooktop 5 Bocas Mueller Mcg5bm Mesa De Vidro Tripla Chama Super Automático Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1666",
+            "Produto": "Fogão Mueller 4 Bocas Titânio Com Mesa De Vidro Mfv4bf 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1604",
+            "Produto": "Fogão Dako A Gás Supreme Titanium Mesa Inox 4 Bocas - Bivolt Titânio 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1607",
+            "Produto": "Fogão Dako A Gás Supreme Glass 5 Bocas Timer Digital-bivolt Titânio 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1638",
+            "Produto": "Fogão Mueller 4 Bocas Decorato Vetro Inox Com Mesa De Vidro Cinza 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1607",
+            "Produto": "Fogão 5 Bocas Dako Supreme Glass Mesa De Vidro Com Timer Touch Titanium Bivolt Titânio 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1562",
+            "Produto": "Fogão Mueller 5b Decorato Vetro Inox Com Mesa Vidro- Bivolt Inox 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1739",
+            "Produto": "Caixa De Som Bluetooth Pulse X Boombox 220w Rms - Sp626 Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1699",
+            "Produto": "Tanquinho De Lavar Mueller 10kg Branco Superesfregador-127v 127v Branco",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1756",
+            "Produto": "Fogão Itatiaia Itamaster 4 Bocas Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1740",
+            "Produto": "Máquina De Lavar Mueller 8kg Automática Energy Com Ciclo Rápido E Filtro Fiapos 220v Branco",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1694",
+            "Produto": "Fogão Itatiaia Star New Piso 6 Bocas Preto Mesa Inox 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1690",
+            "Produto": "Máquina De Lavar Midea Wave Agitator 13kg Branca - 127v 127v Branco",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1760",
+            "Produto": "Fogão 4 Bocas Atlas Coliseum Plus Com Mesa De Inox E Forno De 48 Litros A Gás Acendimento Manual Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1758",
+            "Produto": "Caixa De Som Amplificada Torre Philco Pcx39000 15 Pol Efeito Fumaça 3900w- 2 Microfone Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1758",
+            "Produto": "Caixa de som philco led festa 3900w bluetooth 5.3 pcx39000 Preto 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1759",
+            "Produto": "Freezer Vertical Imbera Full Black Evz21 Max 597l - 220v Preto 220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1813",
+            "Produto": "Fogão 4 Bocas Atlas Agile Glass Automático Mesa De Vidro Branco 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1792",
+            "Produto": "Frigobar Midea Mrc12b1 124l Porta Reversível Termostato Cor Branco 127v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1835-2",
+            "Produto": "Tanquinho Wanker 201kg Semiautomática Premium -127v 127v Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1789",
+            "Produto": "Cooktop De Indução Portátil 1 Boca Midea Cyad12 Preto 220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1846",
+            "Produto": "Tanquinho De Lavar Roupa Mueller 10kg Aquatec Não Transborda Branco 127v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1852",
+            "Produto": "Tanquinho De Lavar Roupa Mueller 20kg Não Transborda Preto 127v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1870",
+            "Produto": "Fogão A Gás Mesa Inox E Forno 50l Limpa Fácil Esmaltec Ideal Pop F4isp Cor Preto 4 Bocas 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1853",
+            "Produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Preto 220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1874",
+            "Produto": "Fogão Ideal Top Glass Mesa De Vidro T4vap 4 Bocas Preto Esmaltec Bivolt 127/220v",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1877",
+            "Produto": "Fogão Esmaltec Ideal Pop 5 Bocas Manual Mesa Aço Inox Cor Preto",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI1881",
+            "Produto": "Maquina De Lavar Midea Wave Impeller 14kg Função Turbo-127v 127v Branco",
+            "quantidade": 1
+        },
+        {
+            "SKU": "TI857",
+            "Produto": "Caixa De Som Amplificada 2500w Philcoex Bass Pcx30000-bivolt Preto 127/220v",
+            "quantidade": 1
+        }
+    ]
+}
