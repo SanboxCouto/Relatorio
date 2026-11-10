@@ -1988,7 +1988,7 @@
             "data_reivindicacao": "02/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.460,00",
-            "impacto": "Expirado",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Lavadora Automática Energy 8kg 127V",
             "sku": "TI1529",
@@ -2005,7 +2005,7 @@
             "data_reivindicacao": "25/08/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.265,40",
-            "impacto": "Expirado",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "FISCHER FORNO ELÉTRICO EMBUTIR FIT LINE 48L INOX 127V",
             "sku": "TI1722",
@@ -2022,7 +2022,7 @@
             "data_reivindicacao": "03/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 809,91",
-            "impacto": "Expirado",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Fogão Mueller 5 Bocas com Mesa Esmaltada Preto Fosco MFI5BC - Bivolt",
             "sku": "TI1571",
@@ -2039,7 +2039,7 @@
             "data_reivindicacao": "16/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.550,90",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Bivolt com Mesa de Vidro",
             "sku": "TI1562",
@@ -2048,7 +2048,7 @@
             "marca": "Mueller",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "702-0400129-2356245",
@@ -2056,7 +2056,7 @@
             "data_reivindicacao": "15/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 930,89",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "Produto Danificado ou Defeituoso",
             "produto": "Fogão Mueller 5 Bocas com Mesa Esmaltada Preto Fosco MFI5BC - Bivolt",
             "sku": "TI1571",
@@ -2065,7 +2065,7 @@
             "marca": "Mueller",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-8012996-4492229",
@@ -2073,7 +2073,7 @@
             "data_reivindicacao": "04/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 592,87",
-            "impacto": "Expirado",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Centrífuga de Roupas Mueller Fit 15Kg de roupa molhada Preta 127V",
             "sku": "TI1523",
@@ -2090,7 +2090,7 @@
             "data_reivindicacao": "19/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.741,91",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "FRIGOBAR MIDEA 67L 220V",
             "sku": "TI1797",
@@ -2099,7 +2099,7 @@
             "marca": "Midea",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "702-4476052-4493803",
@@ -2107,7 +2107,7 @@
             "data_reivindicacao": "18/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 441,30",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "Produto Danificado ou Defeituoso",
             "produto": "Cooktop 5 Bocas Mueller Bivolt G5",
             "sku": "TI1565",
@@ -2116,7 +2116,7 @@
             "marca": "Mueller",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-0948382-5157842",
@@ -2124,7 +2124,7 @@
             "data_reivindicacao": "21/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 839,89",
-            "impacto": "Válido",
+            "impacto": "Impacto Removido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Tanquinho Plus 4,5 Kg - Branco - 110 V",
             "sku": "TI1524",
@@ -2141,7 +2141,7 @@
             "data_reivindicacao": "22/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.644,05",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Lavadora de Roupas 13kg Branca Midea Wave Agitator 127V",
             "sku": "TI1690",
@@ -2150,7 +2150,7 @@
             "marca": "Midea",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-5214419-5153864",
@@ -2158,7 +2158,7 @@
             "data_reivindicacao": "26/09/2026",
             "valor": "Reembolsado pela Sanbox",
             "reembolso": "R$ 5.086,49",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Expositora Refrigerada Imbera 569 Litros Vrs19s Full Black - Inverter bivolt",
             "sku": "TI1805",
@@ -2167,7 +2167,7 @@
             "marca": "Imbera",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-8789151-9868226",
@@ -2175,7 +2175,7 @@
             "data_reivindicacao": "27/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.644,90",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Lavadora de Roupas 13kg Branca Midea Wave Agitator 127V",
             "sku": "TI1690",
@@ -2184,7 +2184,7 @@
             "marca": "Midea",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-6940440-1225861",
@@ -2192,7 +2192,7 @@
             "data_reivindicacao": "23/09/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 525,34",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "Produto Danificado ou Defeituoso",
             "produto": "Vitrola Retro Toca disco Bluetooth USB Pulse Morrison - SP613",
             "sku": "TI1738",
@@ -2201,7 +2201,7 @@
             "marca": "Pulse",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "702-6130310-7500220",
@@ -2209,7 +2209,7 @@
             "data_reivindicacao": "01/10/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.749,90",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Lavadora de Roupas 13kg Branca Midea Wave Agitator 127V",
             "sku": "TI1690",
@@ -2218,7 +2218,7 @@
             "marca": "Midea",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-3465905-3233801",
@@ -2226,7 +2226,7 @@
             "data_reivindicacao": "17/06/2026",
             "valor": "Repasse Liberado à Sanbox",
             "reembolso": "R$ 1.689,90",
-            "impacto": "Expirado",
+            "impacto": "Impacto Removido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Bivolt com Mesa de Vidro",
             "sku": "TI1562",
@@ -2243,7 +2243,7 @@
             "data_reivindicacao": "02/10/2026",
             "valor": "Repasse Liberado à Sanbox",
             "reembolso": "R$ 873,37",
-            "impacto": "Válido",
+            "impacto": "Impacto Removido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Caixa de Som Bluetooth Pulse X Boombox 220W RMS, Resistente a Água e com Iluminação LED - SP626",
             "sku": "TI1739",
@@ -2260,7 +2260,7 @@
             "data_reivindicacao": "07/10/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.799,87",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Fogão Mueller 5 bocas Decorato Vetro Inox com timer",
             "sku": "TI1514",
@@ -2269,7 +2269,7 @@
             "marca": "Mueller",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-1915604-4405856",
@@ -2277,7 +2277,7 @@
             "data_reivindicacao": "11/10/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.749,90",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Lavadora de Roupas 13kg Branca Midea Wave Agitator 127V",
             "sku": "TI1690",
@@ -2286,7 +2286,7 @@
             "marca": "Midea",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-0529695-8614600",
@@ -2294,7 +2294,7 @@
             "data_reivindicacao": "07/10/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 5.605,44",
-            "impacto": "Válido",
+            "impacto": "Impacto Removido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Cervejeira Imbera 569 Litros Porta De Vidro Full Black CCV355-220V",
             "sku": "TI1454",
@@ -2311,7 +2311,7 @@
             "data_reivindicacao": "22/10/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 441,29",
-            "impacto": "Válido",
+            "impacto": "Em Chamado Premium",
             "motivo": "Produto Danificado ou Defeituoso",
             "produto": "Cooktop 5 Bocas Mueller Bivolt G5",
             "sku": "TI1565",
@@ -2320,7 +2320,7 @@
             "marca": "Mueller",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-5279073-0762609",
@@ -2328,7 +2328,7 @@
             "data_reivindicacao": "29/08/2026",
             "valor": "Repasse Liberado à Sanbox",
             "reembolso": "R$ 1.748,99",
-            "impacto": "Expirado",
+            "impacto": "Impacto Removido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Lavadora de Roupas 13kg Branca Midea Wave Agitator 127V",
             "sku": "TI1690",
@@ -2345,7 +2345,7 @@
             "data_reivindicacao": "31/10/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.759,00",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Lavadora de Roupas Midea 15kg Wave Agitador Branca 127V (MA512W150A/WK04)",
             "sku": "TI1773-1",
@@ -2354,7 +2354,7 @@
             "marca": "Midea",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "702-9472558-5516266",
@@ -2362,7 +2362,7 @@
             "data_reivindicacao": "05/11/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 319,33",
-            "impacto": "Válido",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Par de Microfones Pulse Pro 2 Sem Fio + Receiver - SP801",
             "sku": "TI668",
@@ -2371,7 +2371,7 @@
             "marca": "Pulse",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-8518615-7668209",
@@ -2379,7 +2379,7 @@
             "data_reivindicacao": "09/11/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 822,90",
-            "impacto": "Válido",
+            "impacto": "Em Análise",
             "motivo": "O Pacote Não Chegou",
             "produto": "Tanquinho Plus 4,5 Kg - Branco - 110 V",
             "sku": "TI1524",
@@ -2388,7 +2388,7 @@
             "marca": "Plus",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "702-1241332-2169855",
@@ -2396,7 +2396,7 @@
             "data_reivindicacao": "07/11/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.661,53",
-            "impacto": "Válido",
+            "impacto": "Em Análise",
             "motivo": "O Pacote Não Chegou",
             "produto": "Lavadora de Roupas 13kg Branca Midea Wave Agitator 127V",
             "sku": "TI1690",
@@ -2405,7 +2405,7 @@
             "marca": "Midea",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         },
         {
             "id_pedido": "701-0216369-6338641",
@@ -2413,7 +2413,7 @@
             "data_reivindicacao": "08/11/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 803,60",
-            "impacto": "Válido",
+            "impacto": "Em Análise",
             "motivo": "O Pacote Não Chegou",
             "produto": "Fogão Mueller titânio 5 Bocas com mesa esmaltada e acendimento Mfi5bc",
             "sku": "TI1667",
@@ -2422,7 +2422,7 @@
             "marca": "Mueller",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": false
+            "is_afetando": true
         }
     ]
 }
