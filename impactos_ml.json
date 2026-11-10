@@ -1,1144 +1,1246 @@
 {
-    "indicadores_topo": {
-        "total_pedidos_afetando": 88,
-        "total_em_mediacao": 31,
-        "total_revisao_recusada": 29,
-        "total_impacto_removido": 46
-    },
-    "motivos_detalhados": [
-        {
-            "motivo": "Produto Avariado",
-            "quantidade": 70,
-            "ranking_transportadoras": {
-                "Mercado Envios": 64,
-                "Alfa Transportes": 3,
-                "Brasil Web": 2,
-                "Tecmar Transportadora": 1
-            },
-            "comentarios": [
-                "Parte Frontal Inferior Quebrada",
-                "Amassado e Riscos em Partes Externas",
-                "Arranhado na Lateral Direita",
-                "Amassado na Lateral Direita do Fogão",
-                "Parafuso e Tempinho Soltos",
-                "Riscos, Arranhões e Amassados no Fogão",
-                "Amassado na Parte Superior do Forno",
-                "Quina Superior Esquerda do Fogão Amassada",
-                "Barra Amassada",
-                "Amassado na Lateral Esquerda",
-                "Amassado na Parte Superior do Fogão",
-                "Pequenas Avarias na Mesa do Fogão",
-                "Vidro do Cooktop Quebrada",
-                "Amassado",
-                "Amassado na Lateral Superior Esquerda",
-                "Puxador Quebrado",
-                "Arranhados na Quina",
-                "Amassado na Lateral Tampado com Papel",
-                "Cesto da Máquina Danificado",
-                "Diversos Amassados",
-                "Mesa de Vidro Quebrada",
-                "Amassado no Puxador",
-                "Botão Quebrado",
-                "Vedação da Porta com Problema",
-                "Diversos Amassados",
-                "Mesa do Fogão Amassado",
-                "Mesa do Fogão Amassada e Estalo na Porta do Forno",
-                "Vidro Espelhado Quebrado e Tampa Empenada",
-                "Diversos Amassados na Parte Inferior",
-                "Lascas nas Trempes",
-                "Amassado na Tampa e Risco Profundo",
-                "Amassado na Quina Direita Superior",
-                "Diversos Arranhados e Um Amassado",
-                "Amassado na Parte Traseira",
-                "Caixa Danificada e Arranhado no Vidro",
-                "Grade Quebrada",
-                "Porta do Forno com Problema",
-                "Amassado na Mesa Superior do Fogão",
-                "Amassado na Parte Frontal Superior",
-                "Amassado na Parte Superior",
-                "Pés e Vidro do Produto Avariado",
-                "Pés do Produto Avariado",
-                "Amassado na parte Superior",
-                "Mesa do Fogão Arranhada",
-                "Amassado em diversos lados do Fogão",
-                "Mesa do Fogão Amassada \n Produto foi Entregue de Cabeça pra Baixo",
-                "Pinos da Ventilação Amassados",
-                "Produto Aparentemente de Outlet",
-                "Trincado na Parte Traseira do Tanquinho",
-                "Amassados na Lateral Direita",
-                "Porta do Fogão com Várias Avarias",
-                "Mesa do Fogão Amassada",
-                "Amassado parte Traseira | Entregue s/Caixa",
-                "Peça da Mesa e Puxador Quebrada",
-                "Vidro Frontal do Fogão TODO Quebrado",
-                "Sinais de Uso",
-                "Amassado na Lateral Direita do Fogão",
-                "Pés Quebrado | Será Enviado Novamente",
-                "Amassado na Lateral Esquerda",
-                "Amassado na Lateral",
-                "Vidro da Área Inferior Quebrado",
-                "Controles da Máquina Quebraram",
-                "Vidro Frontal do Fogão TODO Quebrado",
-                "Pés de Apoio Tortos",
-                "Lateral Amassada",
-                "Amassado na Lateral",
-                "Vidro da Porta Completamente Quebrado",
-                "Puxador Amassado",
-                "Vidro do Forno Completamente Quebrado",
-                "Trinca na Porta"
-            ]
-        },
-        {
-            "motivo": "Defeito no Produto",
-            "quantidade": 39,
-            "ranking_transportadoras": {
-                "Mercado Envios": 37,
-                "Alfa Transportes": 1,
-                "Brasil Web": 1
-            },
-            "comentarios": [
-                "Fogão está dando Choques ao utilizar",
-                "Botão de Acendimento Automático Ñ Funciona",
-                "Botão de Acendimento Automático Ñ Funciona",
-                "Problema no LED",
-                "Vazamento de Óleo",
-                "Máquina não Enche de Água",
-                "Barulho nas Válvulas ao Ligar",
-                "Vazamento de Óleo, Barulho no Motor e Defeito no Time",
-                "Vazamento de Óleo",
-                "Refrigerador Não está Gelando e Contém Algumas Avarias",
-                "Produto Instalado e Cheiro de Queimado no Primeiro Uso",
-                "Rangido mesmo com o Produto Vazio",
-                "Não Funciona e Apresenta Erro",
-                "Mal Funcionamento da Vibração e Secagem",
-                "Timer Não Funciona",
-                "Produto com Vários Defeitos de Fábrica",
-                "Tweeter da Caixa com Defeito",
-                "A Mesa do Fogão está Torta",
-                "Máquina Liga mas Não Funciona",
-                "Vazamento de Óleo",
-                "Uma das Bocas Não Funcionam",
-                "Vazamento de Água na parte Inferior\n Aparentemente parou",
-                "Está com Defeito (???)",
-                "Faz Zumbido no Motor e Não Funciona",
-                "Led Ruim e Mancha na Lateral Direita",
-                "Vazamento de Óleo",
-                "Vazamento de Óleo",
-                "Motor Barulhento e Vazamento de Óleo",
-                "Bateria Não Carrega Totalmente e Descarrega",
-                "Termostato não muda e mostra apenas 11°",
-                "Vazamento de Óleo",
-                "Forno Não Funciona",
-                "Vazamento de Óleo",
-                "Vazamento de Óleo",
-                "Vazamento de Óleo",
-                "Produto Não Joga a Água Fora",
-                "Vazamento de Água na parte Inferior",
-                "Peça Solta e Barulho Exacerbado",
-                "Vazamento de Óleo\n Entregaram a Máquina de Cabeça Pra Baixo"
-            ]
-        },
-        {
-            "motivo": "Item Faltante",
-            "quantidade": 8,
-            "ranking_transportadoras": {
-                "Mercado Envios": 8
-            },
-            "comentarios": [
-                "Item Faltante: 1 Trempe Central",
-                "Item Faltante: 2 Microfones",
-                "Item Faltante: Boca Central",
-                "Espalha Chama (Trempe) Central",
-                "Item Faltante: 1 dos Pés de Apoio",
-                "Item Faltante: 2 Microfones",
-                "Item Faltante: Trempe Trempe Central",
-                "Item Faltante: 1 Pé de Apoio"
-            ]
-        },
-        {
-            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
-            "quantidade": 4,
-            "ranking_transportadoras": {
-                "Mercado Envios": 3,
-                "Trilog Express": 1
-            },
-            "comentarios": [
-                "Produto Enviado de Cor Errada",
-                "Cliente Alegou ter Comprado Errado",
-                "O Produto Estava Correto",
-                "Produto Enviado de Modelo Diferente"
-            ]
-        },
-        {
-            "motivo": "A data de entrega combinada não foi cumprida",
-            "quantidade": 3,
-            "ranking_transportadoras": {
-                "Trilog Express": 3
-            },
-            "comentarios": [
-                "Entrega Atrasada",
-                "Atraso na Entrega",
-                "Atraso na Entrega | Falta de Contato"
-            ]
-        },
-        {
-            "motivo": "Descumpre as características do anúncio",
-            "quantidade": 3,
-            "ranking_transportadoras": {
-                "Mercado Envios": 3
-            },
-            "comentarios": [
-                "-",
-                "Pés de Apoio Não se Encaixam",
-                "Não Há Descrição"
-            ]
-        },
-        {
-            "motivo": "Não posso esperar a entrega",
-            "quantidade": 2,
-            "ranking_transportadoras": {
-                "Tecmar Transportadora": 1,
-                "Brasil Web": 1
-            },
-            "comentarios": [
-                "Envio Atrasado | Pedido Cancelado",
-                "Cliente deseja Cancelar o Pedido"
-            ]
-        },
-        {
-            "motivo": "O vendedor não me respondeu",
-            "quantidade": 2,
-            "ranking_transportadoras": {
-                "Mercado Envios": 2
-            },
-            "comentarios": [
-                "Comprador Não deu Tempo para Resposta",
-                "Cliente enviou Mensagem após horário"
-            ]
-        },
-        {
-            "motivo": "Outro motivo",
-            "quantidade": 2,
-            "ranking_transportadoras": {
-                "Tecmar Transportadora": 1,
-                "Brasil Web": 1
-            },
-            "comentarios": [
-                "Atraso na Entrega",
-                "Preço Errado"
-            ]
-        },
-        {
-            "motivo": "A embalagem estava danificada\n E Produto Não Funciona",
-            "quantidade": 1,
-            "ranking_transportadoras": {
-                "MMA Cargas": 1
-            },
-            "comentarios": [
-                "Forno Não Funciona"
-            ]
-        },
-        {
-            "motivo": "Insatisfação",
-            "quantidade": 1,
-            "ranking_transportadoras": {
-                "Mercado Envios": 1
-            },
-            "comentarios": [
-                "Comprador Insatisfeito"
-            ]
-        },
-        {
-            "motivo": "Não Recebi o Produto",
-            "quantidade": 1,
-            "ranking_transportadoras": {
-                "Rio Express": 1
-            },
-            "comentarios": [
-                "Cliente queria Cancelar Pedido"
-            ]
-        },
-        {
-            "motivo": "Não posso receber a compra no endereço informado",
-            "quantidade": 1,
-            "ranking_transportadoras": {
-                "Trilog Express": 1
-            },
-            "comentarios": [
-                "Cliente Não Pode receber no Endereço"
-            ]
-        },
-        {
-            "motivo": "Ocorrência de Entrega",
-            "quantidade": 1,
-            "ranking_transportadoras": {
-                "MMA Cargas": 1
-            },
-            "comentarios": [
-                "Comprador reclamou da demora para Entrega"
-            ]
-        }
-    ],
-    "transportadoras_detalhadas": [
-        {
-            "transportadora": "Mercado Envios",
-            "quantidade": 118,
-            "ranking_motivos": {
-                "Produto Avariado": 64,
-                "Defeito no Produto": 37,
-                "Item Faltante": 8,
-                "Não é da cor, tamanho ou modelo que escolhi": 3,
-                "Descumpre as características do anúncio": 3,
-                "O vendedor não me respondeu": 2,
-                "Insatisfação": 1
-            },
-            "comentarios": [
-                "Parte Frontal Inferior Quebrada",
-                "Amassado e Riscos em Partes Externas",
-                "Fogão está dando Choques ao utilizar",
-                "Arranhado na Lateral Direita",
-                "Amassado na Lateral Direita do Fogão",
-                "Parafuso e Tempinho Soltos",
-                "Riscos, Arranhões e Amassados no Fogão",
-                "Amassado na Parte Superior do Forno",
-                "Quina Superior Esquerda do Fogão Amassada",
-                "Barra Amassada",
-                "Item Faltante: 1 Trempe Central",
-                "Amassado na Lateral Esquerda",
-                "Amassado na Parte Superior do Fogão",
-                "Botão de Acendimento Automático Ñ Funciona",
-                "Pequenas Avarias na Mesa do Fogão",
-                "Vidro do Cooktop Quebrada",
-                "Botão de Acendimento Automático Ñ Funciona",
-                "Amassado",
-                "Problema no LED",
-                "Amassado na Lateral Superior Esquerda",
-                "Puxador Quebrado",
-                "Vazamento de Óleo",
-                "Arranhados na Quina",
-                "Amassado na Lateral Tampado com Papel",
-                "Item Faltante: 2 Microfones",
-                "Cesto da Máquina Danificado",
-                "Item Faltante: Boca Central",
-                "Mesa de Vidro Quebrada",
-                "Amassado no Puxador",
-                "Botão Quebrado",
-                "Máquina não Enche de Água",
-                "Vedação da Porta com Problema",
-                "Diversos Amassados",
-                "Mesa do Fogão Amassado",
-                "Vazamento de Óleo, Barulho no Motor e Defeito no Time",
-                "Mesa do Fogão Amassada e Estalo na Porta do Forno",
-                "Vidro Espelhado Quebrado e Tampa Empenada",
-                "Vazamento de Óleo",
-                "Diversos Amassados na Parte Inferior",
-                "Comprador Não deu Tempo para Resposta",
-                "Lascas nas Trempes",
-                "Produto Enviado de Cor Errada",
-                "Refrigerador Não está Gelando e Contém Algumas Avarias",
-                "Produto Instalado e Cheiro de Queimado no Primeiro Uso",
-                "Comprador Insatisfeito",
-                "-",
-                "Rangido mesmo com o Produto Vazio",
-                "Amassado na Parte Traseira",
-                "Caixa Danificada e Arranhado no Vidro",
-                "Não Funciona e Apresenta Erro",
-                "Porta do Forno com Problema",
-                "Espalha Chama (Trempe) Central",
-                "Amassado na Mesa Superior do Fogão",
-                "Item Faltante: 1 dos Pés de Apoio",
-                "Mal Funcionamento da Vibração e Secagem",
-                "Timer Não Funciona",
-                "Amassado na Parte Frontal Superior",
-                "Produto com Vários Defeitos de Fábrica",
-                "Pés de Apoio Não se Encaixam",
-                "Amassado na Parte Superior",
-                "Pés e Vidro do Produto Avariado",
-                "Pés do Produto Avariado",
-                "Amassado na parte Superior",
-                "Tweeter da Caixa com Defeito",
-                "Mesa do Fogão Arranhada",
-                "A Mesa do Fogão está Torta",
-                "Amassado em diversos lados do Fogão",
-                "Máquina Liga mas Não Funciona",
-                "Vazamento de Óleo",
-                "Item Faltante: 2 Microfones",
-                "Mesa do Fogão Amassada \n Produto foi Entregue de Cabeça pra Baixo",
-                "Pinos da Ventilação Amassados",
-                "Uma das Bocas Não Funcionam",
-                "Vazamento de Água na parte Inferior\n Aparentemente parou",
-                "Produto Aparentemente de Outlet",
-                "Trincado na Parte Traseira do Tanquinho",
-                "Está com Defeito (???)",
-                "Faz Zumbido no Motor e Não Funciona",
-                "Led Ruim e Mancha na Lateral Direita",
-                "Vazamento de Óleo",
-                "Amassados na Lateral Direita",
-                "Mesa do Fogão Amassada",
-                "Vazamento de Óleo",
-                "Motor Barulhento e Vazamento de Óleo",
-                "Cliente enviou Mensagem após horário",
-                "Amassado parte Traseira | Entregue s/Caixa",
-                "Cliente Alegou ter Comprado Errado",
-                "Bateria Não Carrega Totalmente e Descarrega",
-                "Peça da Mesa e Puxador Quebrada",
-                "Vidro Frontal do Fogão TODO Quebrado",
-                "O Produto Estava Correto",
-                "Termostato não muda e mostra apenas 11°",
-                "Vazamento de Óleo",
-                "Não Há Descrição",
-                "Item Faltante: Trempe Trempe Central",
-                "Sinais de Uso",
-                "Amassado na Lateral Direita do Fogão",
-                "Pés Quebrado | Será Enviado Novamente",
-                "Amassado na Lateral Esquerda",
-                "Amassado na Lateral",
-                "Vidro da Área Inferior Quebrado",
-                "Controles da Máquina Quebraram",
-                "Vidro Frontal do Fogão TODO Quebrado",
-                "Pés de Apoio Tortos",
-                "Lateral Amassada",
-                "Amassado na Lateral",
-                "Vidro da Porta Completamente Quebrado",
-                "Vazamento de Óleo",
-                "Vazamento de Óleo",
-                "Vazamento de Óleo",
-                "Produto Não Joga a Água Fora",
-                "Item Faltante: 1 Pé de Apoio",
-                "Vazamento de Água na parte Inferior",
-                "Puxador Amassado",
-                "Vidro do Forno Completamente Quebrado",
-                "Peça Solta e Barulho Exacerbado",
-                "Trinca na Porta",
-                "Vazamento de Óleo\n Entregaram a Máquina de Cabeça Pra Baixo"
-            ]
-        },
-        {
-            "transportadora": "Brasil Web",
-            "quantidade": 5,
-            "ranking_motivos": {
-                "Produto Avariado": 2,
-                "Não posso esperar a entrega": 1,
-                "Outro motivo": 1,
-                "Defeito no Produto": 1
-            },
-            "comentarios": [
-                "Diversos Amassados",
-                "Porta do Fogão com Várias Avarias",
-                "Cliente deseja Cancelar o Pedido",
-                "Preço Errado",
-                "Forno Não Funciona"
-            ]
-        },
-        {
-            "transportadora": "Trilog Express",
-            "quantidade": 5,
-            "ranking_motivos": {
-                "A data de entrega combinada não foi cumprida": 3,
-                "Não posso receber a compra no endereço informado": 1,
-                "Não é da cor, tamanho ou modelo que escolhi": 1
-            },
-            "comentarios": [
-                "Entrega Atrasada",
-                "Atraso na Entrega",
-                "Atraso na Entrega | Falta de Contato",
-                "Cliente Não Pode receber no Endereço",
-                "Produto Enviado de Modelo Diferente"
-            ]
-        },
-        {
-            "transportadora": "Alfa Transportes",
-            "quantidade": 4,
-            "ranking_motivos": {
-                "Produto Avariado": 3,
-                "Defeito no Produto": 1
-            },
-            "comentarios": [
-                "Barulho nas Válvulas ao Ligar",
-                "Amassado na Tampa e Risco Profundo",
-                "Diversos Arranhados e Um Amassado",
-                "Grade Quebrada"
-            ]
-        },
-        {
-            "transportadora": "Tecmar Transportadora",
-            "quantidade": 3,
-            "ranking_motivos": {
-                "Não posso esperar a entrega": 1,
-                "Outro motivo": 1,
-                "Produto Avariado": 1
-            },
-            "comentarios": [
-                "Envio Atrasado | Pedido Cancelado",
-                "Atraso na Entrega",
-                "Amassado na Quina Direita Superior"
-            ]
-        },
-        {
-            "transportadora": "MMA Cargas",
-            "quantidade": 2,
-            "ranking_motivos": {
-                "A embalagem estava danificada\n E Produto Não Funciona": 1,
-                "Ocorrência de Entrega": 1
-            },
-            "comentarios": [
-                "Forno Não Funciona",
-                "Comprador reclamou da demora para Entrega"
-            ]
-        },
-        {
-            "transportadora": "Rio Express",
-            "quantidade": 1,
-            "ranking_motivos": {
-                "Não Recebi o Produto": 1
-            },
-            "comentarios": [
-                "Cliente queria Cancelar Pedido"
-            ]
-        }
-    ],
-    "skus_produtos_impactados": [
-        {
-            "sku": "TI1602",
-            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
-            "quantidade": 10,
-            "comentarios": [
-                "Amassado na Lateral Superior Esquerda",
-                "Puxador Quebrado",
-                "Pés e Vidro do Produto Avariado",
-                "Amassados na Lateral Direita",
-                "Amassado na Lateral Esquerda",
-                "Amassado na Lateral",
-                "Vidro da Área Inferior Quebrado",
-                "Lateral Amassada",
-                "Puxador Amassado",
-                "Vidro do Forno Completamente Quebrado"
-            ]
-        },
-        {
-            "sku": "TI1514",
-            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
-            "quantidade": 8,
-            "comentarios": [
-                "Botão de Acendimento Automático Ñ Funciona",
-                "Item Faltante: Boca Central",
-                "Diversos Amassados",
-                "Espalha Chama (Trempe) Central",
-                "Timer Não Funciona",
-                "Produto com Vários Defeitos de Fábrica",
-                "A Mesa do Fogão está Torta",
-                "Item Faltante: Trempe Trempe Central"
-            ]
-        },
-        {
-            "sku": "TI1524",
-            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
-            "quantidade": 7,
-            "comentarios": [
-                "Parafuso e Tempinho Soltos",
-                "Vazamento de Óleo",
-                "Vazamento de Óleo, Barulho no Motor e Defeito no Time",
-                "Vazamento de Óleo",
-                "Vazamento de Água na parte Inferior\n Aparentemente parou",
-                "Motor Barulhento e Vazamento de Óleo",
-                "Vazamento de Óleo"
-            ]
-        },
-        {
-            "sku": "TI1562",
-            "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
-            "quantidade": 5,
-            "comentarios": [
-                "Barra Amassada",
-                "Mesa de Vidro Quebrada",
-                "Amassado no Puxador",
-                "Caixa Danificada e Arranhado no Vidro",
-                "Peça da Mesa e Puxador Quebrada"
-            ]
-        },
-        {
-            "sku": "TI1571",
-            "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
-            "quantidade": 4,
-            "comentarios": [
-                "Pés do Produto Avariado",
-                "Amassado na parte Superior",
-                "Mesa do Fogão Amassada",
-                "Preço Errado"
-            ]
-        },
-        {
-            "sku": "TI1603",
-            "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
-            "quantidade": 4,
-            "comentarios": [
-                "Mesa do Fogão Amassada e Estalo na Porta do Forno",
-                "Lascas nas Trempes",
-                "Cliente Alegou ter Comprado Errado",
-                "Pés de Apoio Tortos"
-            ]
-        },
-        {
-            "sku": "TI1633",
-            "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
-            "quantidade": 4,
-            "comentarios": [
-                "Fogão está dando Choques ao utilizar",
-                "Quina Superior Esquerda do Fogão Amassada",
-                "Vidro Espelhado Quebrado e Tampa Empenada",
-                "Mesa do Fogão Amassada \n Produto foi Entregue de Cabeça pra Baixo"
-            ]
-        },
-        {
-            "sku": "TI1667",
-            "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
-            "quantidade": 4,
-            "comentarios": [
-                "Mesa do Fogão Amassado",
-                "Amassado na Mesa Superior do Fogão",
-                "Amassado na Parte Frontal Superior",
-                "Pés Quebrado | Será Enviado Novamente"
-            ]
-        },
-        {
-            "sku": "TI1524",
-            "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 127v Branco",
-            "quantidade": 3,
-            "comentarios": [
-                "Vazamento de Óleo",
-                "Vazamento de Óleo",
-                "Vazamento de Óleo"
-            ]
-        },
-        {
-            "sku": "TI1529",
-            "produto": "Mueller Lavadora De Roupas Energy 8kg Lavadora De Roupas Branca 127v Branco",
-            "quantidade": 3,
-            "comentarios": [
-                "Máquina não Enche de Água",
-                "Sinais de Uso",
-                "Produto Não Joga a Água Fora"
-            ]
-        },
-        {
-            "sku": "TI1562",
-            "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
-            "quantidade": 3,
-            "comentarios": [
-                "Item Faltante: 1 Trempe Central",
-                "Botão de Acendimento Automático Ñ Funciona",
-                "Comprador reclamou da demora para Entrega"
-            ]
-        },
-        {
-            "sku": "TI1816",
-            "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
-            "quantidade": 3,
-            "comentarios": [
-                "Está com Defeito (???)",
-                "Termostato não muda e mostra apenas 11°",
-                "Item Faltante: 1 Pé de Apoio"
-            ]
-        },
-        {
-            "sku": "TI1876",
-            "produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
-            "quantidade": 3,
-            "comentarios": [
-                "Envio Atrasado | Pedido Cancelado",
-                "Atraso na Entrega",
-                "Amassado na Quina Direita Superior"
-            ]
-        },
-        {
-            "sku": "TI1090",
-            "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Preto E Cinza 127v",
-            "quantidade": 2,
-            "comentarios": [
-                "Porta do Forno com Problema",
-                "Amassado na Parte Superior"
-            ]
-        },
+    "registros": [
         {
             "sku": "TI1454",
             "produto": "Cervejeira Vertical Imbera 569l Full Black Porta Vidro Preto 220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Parte Frontal Inferior Quebrada",
-                "Diversos Arranhados e Um Amassado"
-            ]
-        },
-        {
-            "sku": "TI1455",
-            "produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Arranhados na Quina",
-                "Diversos Amassados na Parte Inferior"
-            ]
-        },
-        {
-            "sku": "TI1456",
-            "produto": "Refrigerador Vertical Imbera Vr08 244l Full Black Com Iluminação Led 127/220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Refrigerador Não está Gelando e Contém Algumas Avarias",
-                "Item Faltante: 1 dos Pés de Apoio"
-            ]
-        },
-        {
-            "sku": "TI1525",
-            "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 220v Branco",
-            "quantidade": 2,
-            "comentarios": [
-                "Vazamento de Óleo",
-                "Peça Solta e Barulho Exacerbado"
-            ]
-        },
-        {
-            "sku": "TI1525",
-            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Vazamento de Óleo",
-                "Vazamento de Óleo"
-            ]
-        },
-        {
-            "sku": "TI1527",
-            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Preto 220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Rangido mesmo com o Produto Vazio",
-                "Vazamento de Óleo\n Entregaram a Máquina de Cabeça Pra Baixo"
-            ]
-        },
-        {
-            "sku": "TI1567",
-            "produto": "Fogão 4 Bocas A Gás Mueller Mfv4bf Mesa Vidro Preto 127/220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Amassado na Lateral Direita do Fogão",
-                "Amassado em diversos lados do Fogão"
-            ]
-        },
-        {
-            "sku": "TI1581",
-            "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Riscos, Arranhões e Amassados no Fogão",
-                "Amassado parte Traseira | Entregue s/Caixa"
-            ]
-        },
-        {
-            "sku": "TI1609",
-            "produto": "Fogão 4 Bocas Itatiaia Vidro Temperado Electra Glass Plus Preto 127/220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Diversos Amassados",
-                "Atraso na Entrega | Falta de Contato"
-            ]
-        },
-        {
-            "sku": "TI1668",
-            "produto": "Fogão Mueller 5 Bocas Branco Com Tripla Chama Mfv5bf 127/220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Amassado na Lateral Esquerda",
-                "Amassado na Parte Traseira"
-            ]
-        },
-        {
-            "sku": "TI1756",
-            "produto": "Fogão 4 Bocas Itatiaia Itamaster 58 Litro De Forno - Bivolt Preto 127/220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Uma das Bocas Não Funcionam",
-                "Cliente queria Cancelar Pedido"
-            ]
-        },
-        {
-            "sku": "TI1759",
-            "produto": "Freezer Vertical Imbera Evz21 Max 597l Preto 220v",
-            "quantidade": 2,
-            "comentarios": [
-                "-",
-                "Vidro da Porta Completamente Quebrado"
-            ]
-        },
-        {
-            "sku": "TI1763",
-            "produto": "Fogão 5 Bocas Electrolux Cinza Mesa Inox Perfectcook Fe5ig Prateado 127/220v",
-            "quantidade": 2,
-            "comentarios": [
-                "Amassado na Parte Superior do Fogão",
-                "Mesa do Fogão Arranhada"
-            ]
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Parte Frontal Inferior Quebrada",
+            "is_afetando": true
         },
         {
             "sku": "TI1766",
             "produto": "Microondas Electrolux De Embutir Painel Digital Função Tira Odor Preto 34l 127v Me3ep",
-            "quantidade": 2,
-            "comentarios": [
-                "Amassado e Riscos em Partes Externas",
-                "Produto Instalado e Cheiro de Queimado no Primeiro Uso"
-            ]
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Amassado e Riscos em Partes Externas",
+            "is_afetando": true
         },
         {
-            "sku": "TI1768",
-            "produto": "Lava E Seca Electrolux 12kg Cinza Ônix Inverter (lsc12 Cinza 127v Inox",
-            "quantidade": 2,
-            "comentarios": [
-                "Não Funciona e Apresenta Erro",
-                "Mal Funcionamento da Vibração e Secagem"
-            ]
-        },
-        {
-            "sku": "TI1837-1",
-            "produto": "Máquina De Lavar Semi-automática Wanke Até 5kg Marrom-claro 127v",
-            "quantidade": 2,
-            "comentarios": [
-                "Faz Zumbido no Motor e Não Funciona",
-                "Vazamento de Água na parte Inferior"
-            ]
-        },
-        {
-            "sku": "TI1850",
-            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
-            "quantidade": 2,
-            "comentarios": [
-                "Pés de Apoio Não se Encaixam",
-                "Produto Aparentemente de Outlet"
-            ]
-        },
-        {
-            "sku": "TI1090",
-            "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Prateado 127v",
-            "quantidade": 1,
-            "comentarios": [
-                "Produto Enviado de Cor Errada"
-            ]
-        },
-        {
-            "sku": "TI1112",
-            "produto": "Torradeira Duo Ce141 Vermelho 700w Multilaser 127v",
-            "quantidade": 1,
-            "comentarios": [
-                "O Produto Estava Correto"
-            ]
-        },
-        {
-            "sku": "TI1121\n TI287",
-            "produto": "Caixa De Som Torre Pulse Double Sp508 2300w 12 Led - 1 Mic Preto",
-            "quantidade": 1,
-            "comentarios": [
-                "Botão Quebrado"
-            ]
-        },
-        {
-            "sku": "TI1276\n TI287-3",
-            "produto": "Caixa De Som Pulse Sp512 Flamebox Dj Bluetooth 5000w - 2 Mic Preto",
-            "quantidade": 1,
-            "comentarios": [
-                "Item Faltante: 2 Microfones"
-            ]
-        },
-        {
-            "sku": "TI1469",
-            "produto": "Caixa De Som Torre Double 15pol 3500w Pulse Sp515 Pulsesound Preto 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Amassado"
-            ]
-        },
-        {
-            "sku": "TI1469",
-            "produto": "Caixa De Som Torre Double Pulse Sp515 15 Pol 3500w - 2 Mic Cor Preto 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Item Faltante: 2 Microfones"
-            ]
-        },
-        {
-            "sku": "TI1486",
-            "produto": "Geladeira Expositora Vertical Imbera 485l Preto Modelo Vrs16 Full Black 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Cliente Não Pode receber no Endereço"
-            ]
-        },
-        {
-            "sku": "TI1486",
-            "produto": "Geladeira Vertical Imbera Vrs16 485l Full Black - Bivolt Full Black 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Trinca na Porta"
-            ]
-        },
-        {
-            "sku": "TI1529",
-            "produto": "Máquina De Lavar Mueller Energy Automática 8kg Branco-127v 127v Branco",
-            "quantidade": 1,
-            "comentarios": [
-                "Cesto da Máquina Danificado"
-            ]
-        },
-        {
-            "sku": "TI1562",
-            "produto": "Fogão Mueller 5b Decorato Vetro Inox Com Mesa Vidro- Bivolt Inox 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Entrega Atrasada"
-            ]
-        },
-        {
-            "sku": "TI1568",
-            "produto": "Fogão Mueller 5 Bocas Preto Vidro Temperado Tripla Chama Preto Fosco 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Vidro Frontal do Fogão TODO Quebrado"
-            ]
-        },
-        {
-            "sku": "TI1580",
-            "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa De Vidro E Forno 60 L A Gás Branco Bivolt 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Amassado na Lateral Tampado com Papel"
-            ]
-        },
-        {
-            "sku": "TI1601",
-            "produto": "Cervejeira Imbera 244l Preto Ccv144 Com Controle De Temperatura E Iluminação Led 220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Amassado na Lateral"
-            ]
-        },
-        {
-            "sku": "TI1604",
-            "produto": "Fogão Dako A Gás Supreme Titanium Mesa Inox 4 Bocas - Bivolt Titânio 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Forno Não Funciona"
-            ]
-        },
-        {
-            "sku": "TI1607",
-            "produto": "Fogão Dako A Gás Supreme Glass 5 Bocas Timer Digital-bivolt Titânio 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Amassado na Tampa e Risco Profundo"
-            ]
-        },
-        {
-            "sku": "TI1638",
-            "produto": "Fogão Mueller 4 Bocas Decorato Vetro Inox Com Mesa De Vidro Cinza 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Porta do Fogão com Várias Avarias"
-            ]
-        },
-        {
-            "sku": "TI1656",
-            "produto": "Ar Condicionado Split Philco Hi Wall Inverter 12.000 Btu/h Frio Monofásico Branco Pac12fc 220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Pinos da Ventilação Amassados"
-            ]
-        },
-        {
-            "sku": "TI1666",
-            "produto": "Fogão Mueller 4 Bocas Titânio Com Mesa De Vidro Mfv4bf 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Vidro Frontal do Fogão TODO Quebrado"
-            ]
-        },
-        {
-            "sku": "TI1675",
-            "produto": "Cooktop 5 Bocas Mueller Mcg5bm Mesa De Vidro Tripla Chama Super Automático Preto 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Pequenas Avarias na Mesa do Fogão"
-            ]
-        },
-        {
-            "sku": "TI1684",
-            "produto": "Forno Elétrico Mueller Mfb50f Sonetto Easy Clean Com Timer 220v Preto",
-            "quantidade": 1,
-            "comentarios": [
-                "Amassado na Parte Superior do Forno"
-            ]
-        },
-        {
-            "sku": "TI1688",
-            "produto": "Cervejeira Imbera Ccv-144 Pv 244 L Preta Com Porta De Vidro E Multi Temperatura Tudo Preto 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Problema no LED"
-            ]
-        },
-        {
-            "sku": "TI1690",
-            "produto": "Lavadora De Roupas Midea Wave Agitator 13kg Branca 127v Branco",
-            "quantidade": 1,
-            "comentarios": [
-                "Cliente enviou Mensagem após horário"
-            ]
-        },
-        {
-            "sku": "TI1690",
-            "produto": "Máquina De Lavar Midea Wave Agitator 13kg Branca - 127v 127v Branco",
-            "quantidade": 1,
-            "comentarios": [
-                "Máquina Liga mas Não Funciona"
-            ]
-        },
-        {
-            "sku": "TI1699",
-            "produto": "Tanquinho De Lavar Mueller 10kg Branco Superesfregador-127v 127v Branco",
-            "quantidade": 1,
-            "comentarios": [
-                "Atraso na Entrega"
-            ]
-        },
-        {
-            "sku": "TI1739",
-            "produto": "Caixa De Som Bluetooth Pulse X Boombox 220w Rms - Sp626 Preto 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Bateria Não Carrega Totalmente e Descarrega"
-            ]
-        },
-        {
-            "sku": "TI1756",
-            "produto": "Fogão Itatiaia Itamaster 4 Bocas Preto 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Não Há Descrição"
-            ]
-        },
-        {
-            "sku": "TI1758",
-            "produto": "Caixa De Som Amplificada Torre Philco Pcx39000 15 Pol Efeito Fumaça 3900w- 2 Microfone Preto 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Led Ruim e Mancha na Lateral Direita"
-            ]
-        },
-        {
-            "sku": "TI1758",
-            "produto": "Caixa de som philco led festa 3900w bluetooth 5.3 pcx39000 Preto 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Tweeter da Caixa com Defeito"
-            ]
-        },
-        {
-            "sku": "TI1759",
-            "produto": "Freezer Vertical Imbera Full Black Evz21 Max 597l - 220v Preto 220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Vedação da Porta com Problema"
-            ]
-        },
-        {
-            "sku": "TI1760",
-            "produto": "Fogão 4 Bocas Atlas Coliseum Plus Com Mesa De Inox E Forno De 48 Litros A Gás Acendimento Manual Preto",
-            "quantidade": 1,
-            "comentarios": [
-                "Amassado na Lateral Direita do Fogão"
-            ]
-        },
-        {
-            "sku": "TI1789",
-            "produto": "Cooktop De Indução Portátil 1 Boca Midea Cyad12 Preto 220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Vidro do Cooktop Quebrada"
-            ]
+            "sku": "TI1633",
+            "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Fogão está dando Choques ao utilizar",
+            "is_afetando": false
         },
         {
             "sku": "TI1792",
             "produto": "Frigobar Midea Mrc12b1 124l Porta Reversível Termostato Cor Branco 127v",
-            "quantidade": 1,
-            "comentarios": [
-                "Arranhado na Lateral Direita"
-            ]
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Arranhado na Lateral Direita",
+            "is_afetando": true
         },
         {
-            "sku": "TI1813",
-            "produto": "Fogão 4 Bocas Atlas Agile Glass Automático Mesa De Vidro Branco 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Cliente deseja Cancelar o Pedido"
-            ]
+            "sku": "TI1567",
+            "produto": "Fogão 4 Bocas A Gás Mueller Mfv4bf Mesa Vidro Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Amassado na Lateral Direita do Fogão",
+            "is_afetando": true
         },
         {
-            "sku": "TI1835-2",
-            "produto": "Tanquinho Wanker 201kg Semiautomática Premium -127v 127v Preto",
-            "quantidade": 1,
-            "comentarios": [
-                "Comprador Não deu Tempo para Resposta"
-            ]
+            "sku": "TI1524",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Parafuso e Tempinho Soltos",
+            "is_afetando": true
         },
         {
-            "sku": "TI1846",
-            "produto": "Tanquinho De Lavar Roupa Mueller 10kg Aquatec Não Transborda Branco 127v",
-            "quantidade": 1,
-            "comentarios": [
-                "Comprador Insatisfeito"
-            ]
+            "sku": "TI1581",
+            "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Riscos, Arranhões e Amassados no Fogão",
+            "is_afetando": true
         },
         {
-            "sku": "TI1852",
-            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Não Transborda Preto 127v",
-            "quantidade": 1,
-            "comentarios": [
-                "Controles da Máquina Quebraram"
-            ]
+            "sku": "TI1684",
+            "produto": "Forno Elétrico Mueller Mfb50f Sonetto Easy Clean Com Timer 220v Preto",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Amassado na Parte Superior do Forno",
+            "is_afetando": true
         },
         {
-            "sku": "TI1853",
-            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Preto 220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Trincado na Parte Traseira do Tanquinho"
-            ]
+            "sku": "TI1633",
+            "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Quina Superior Esquerda do Fogão Amassada",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Barra Amassada",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
+            "motivo": "Item Faltante",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Item Faltante: 1 Trempe Central",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1668",
+            "produto": "Fogão Mueller 5 Bocas Branco Com Tripla Chama Mfv5bf 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Amassado na Lateral Esquerda",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1763",
+            "produto": "Fogão 5 Bocas Electrolux Cinza Mesa Inox Perfectcook Fe5ig Prateado 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado na Parte Superior do Fogão",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Botão de Acendimento Automático Ñ Funciona",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1675",
+            "produto": "Cooktop 5 Bocas Mueller Mcg5bm Mesa De Vidro Tripla Chama Super Automático Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Pequenas Avarias na Mesa do Fogão",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão Mueller 5b Decorato Vetro Inox Com Mesa Vidro- Bivolt Inox 127/220v",
+            "motivo": "A data de entrega combinada não foi cumprida",
+            "transportadora": "Trilog Express",
+            "status": "Revisão Recusada",
+            "comentario": "Entrega Atrasada",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1789",
+            "produto": "Cooktop De Indução Portátil 1 Boca Midea Cyad12 Preto 220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Vidro do Cooktop Quebrada",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Botão de Acendimento Automático Ñ Funciona",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1469",
+            "produto": "Caixa De Som Torre Double 15pol 3500w Pulse Sp515 Pulsesound Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Amassado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1688",
+            "produto": "Cervejeira Imbera Ccv-144 Pv 244 L Preta Com Porta De Vidro E Multi Temperatura Tudo Preto 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Problema no LED",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado na Lateral Superior Esquerda",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Puxador Quebrado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1524",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Vazamento de Óleo",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1455",
+            "produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Arranhados na Quina",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1580",
+            "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa De Vidro E Forno 60 L A Gás Branco Bivolt 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado na Lateral Tampado com Papel",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1276\n TI287-3",
+            "produto": "Caixa De Som Pulse Sp512 Flamebox Dj Bluetooth 5000w - 2 Mic Preto",
+            "motivo": "Item Faltante",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Item Faltante: 2 Microfones",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1529",
+            "produto": "Máquina De Lavar Mueller Energy Automática 8kg Branco-127v 127v Branco",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Cesto da Máquina Danificado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1609",
+            "produto": "Fogão 4 Bocas Itatiaia Vidro Temperado Electra Glass Plus Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Brasil Web",
+            "status": "Impacto Removido",
+            "comentario": "Diversos Amassados",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "motivo": "Item Faltante",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Item Faltante: Boca Central",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Mesa de Vidro Quebrada",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado no Puxador",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1121\n TI287",
+            "produto": "Caixa De Som Torre Pulse Double Sp508 2300w 12 Led - 1 Mic Preto",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Botão Quebrado",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1876",
+            "produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
+            "motivo": "Não posso esperar a entrega",
+            "transportadora": "Tecmar Transportadora",
+            "status": "Não Solicitada",
+            "comentario": "Envio Atrasado | Pedido Cancelado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1529",
+            "produto": "Mueller Lavadora De Roupas Energy 8kg Lavadora De Roupas Branca 127v Branco",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Máquina não Enche de Água",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1759",
+            "produto": "Freezer Vertical Imbera Full Black Evz21 Max 597l - 220v Preto 220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Vedação da Porta com Problema",
+            "is_afetando": false
         },
         {
             "sku": "TI1870",
             "produto": "Fogão A Gás Mesa Inox E Forno 50l Limpa Fácil Esmaltec Ideal Pop F4isp Cor Preto 4 Bocas 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Barulho nas Válvulas ao Ligar"
-            ]
+            "motivo": "Defeito no Produto",
+            "transportadora": "Alfa Transportes",
+            "status": "Atualizando",
+            "comentario": "Barulho nas Válvulas ao Ligar",
+            "is_afetando": false
         },
         {
-            "sku": "TI1874",
-            "produto": "Fogão Ideal Top Glass Mesa De Vidro T4vap 4 Bocas Preto Esmaltec Bivolt 127/220v",
-            "quantidade": 1,
-            "comentarios": [
-                "Grade Quebrada"
-            ]
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Diversos Amassados",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1667",
+            "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Mesa do Fogão Amassado",
+            "is_afetando": false
         },
         {
             "sku": "TI1877",
             "produto": "Fogão Esmaltec Ideal Pop 5 Bocas Manual Mesa Aço Inox Cor Preto",
-            "quantidade": 1,
-            "comentarios": [
-                "Forno Não Funciona"
-            ]
+            "motivo": "A embalagem estava danificada\n E Produto Não Funciona",
+            "transportadora": "MMA Cargas",
+            "status": "Em Mediação",
+            "comentario": "Forno Não Funciona",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1524",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Vazamento de Óleo, Barulho no Motor e Defeito no Time",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1603",
+            "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Mesa do Fogão Amassada e Estalo na Porta do Forno",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1633",
+            "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Vidro Espelhado Quebrado e Tampa Empenada",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1699",
+            "produto": "Tanquinho De Lavar Mueller 10kg Branco Superesfregador-127v 127v Branco",
+            "motivo": "Outro motivo",
+            "transportadora": "Tecmar Transportadora",
+            "status": "Não Solicitada",
+            "comentario": "Atraso na Entrega",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1876",
+            "produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
+            "motivo": "A data de entrega combinada não foi cumprida",
+            "transportadora": "Trilog Express",
+            "status": "Não Solicitada",
+            "comentario": "Atraso na Entrega",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1524",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Vazamento de Óleo",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1455",
+            "produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Diversos Amassados na Parte Inferior",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1835-2",
+            "produto": "Tanquinho Wanker 201kg Semiautomática Premium -127v 127v Preto",
+            "motivo": "O vendedor não me respondeu",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Comprador Não deu Tempo para Resposta",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1603",
+            "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Lascas nas Trempes",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1090",
+            "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Prateado 127v",
+            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Produto Enviado de Cor Errada",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1456",
+            "produto": "Refrigerador Vertical Imbera Vr08 244l Full Black Com Iluminação Led 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Refrigerador Não está Gelando e Contém Algumas Avarias",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1607",
+            "produto": "Fogão Dako A Gás Supreme Glass 5 Bocas Timer Digital-bivolt Titânio 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Alfa Transportes",
+            "status": "Revisão Recusada",
+            "comentario": "Amassado na Tampa e Risco Profundo",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1876",
+            "produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
+            "motivo": "Produto Avariado",
+            "transportadora": "Tecmar Transportadora",
+            "status": "Revisão Recusada",
+            "comentario": "Amassado na Quina Direita Superior",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1766",
+            "produto": "Microondas Electrolux De Embutir Painel Digital Função Tira Odor Preto 34l 127v Me3ep",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Produto Instalado e Cheiro de Queimado no Primeiro Uso",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1454",
+            "produto": "Cervejeira Vertical Imbera 569l Full Black Porta Vidro Preto 220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Alfa Transportes",
+            "status": "Revisão Recusada",
+            "comentario": "Diversos Arranhados e Um Amassado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1846",
+            "produto": "Tanquinho De Lavar Roupa Mueller 10kg Aquatec Não Transborda Branco 127v",
+            "motivo": "Insatisfação",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Comprador Insatisfeito",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1759",
+            "produto": "Freezer Vertical Imbera Evz21 Max 597l Preto 220v",
+            "motivo": "Descumpre as características do anúncio",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "-",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1527",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Preto 220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Rangido mesmo com o Produto Vazio",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1668",
+            "produto": "Fogão Mueller 5 Bocas Branco Com Tripla Chama Mfv5bf 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado na Parte Traseira",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Caixa Danificada e Arranhado no Vidro",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1768",
+            "produto": "Lava E Seca Electrolux 12kg Cinza Ônix Inverter (lsc12 Cinza 127v Inox",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Não Funciona e Apresenta Erro",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1874",
+            "produto": "Fogão Ideal Top Glass Mesa De Vidro T4vap 4 Bocas Preto Esmaltec Bivolt 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Alfa Transportes",
+            "status": "Não Solicitada",
+            "comentario": "Grade Quebrada",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1090",
+            "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Preto E Cinza 127v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Porta do Forno com Problema",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "motivo": "Item Faltante",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Espalha Chama (Trempe) Central",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1667",
+            "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado na Mesa Superior do Fogão",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
+            "motivo": "Ocorrência de Entrega",
+            "transportadora": "MMA Cargas",
+            "status": "Não Solicitada",
+            "comentario": "Comprador reclamou da demora para Entrega",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1456",
+            "produto": "Refrigerador Vertical Imbera Vr08 244l Full Black Com Iluminação Led 127/220v",
+            "motivo": "Item Faltante",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Item Faltante: 1 dos Pés de Apoio",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1768",
+            "produto": "Lava E Seca Electrolux 12kg Cinza Ônix Inverter (lsc12 Cinza 127v Inox",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Mal Funcionamento da Vibração e Secagem",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Timer Não Funciona",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1667",
+            "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Amassado na Parte Frontal Superior",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Produto com Vários Defeitos de Fábrica",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1850",
+            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
+            "motivo": "Descumpre as características do anúncio",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Pés de Apoio Não se Encaixam",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1090",
+            "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Preto E Cinza 127v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado na Parte Superior",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Pés e Vidro do Produto Avariado",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1571",
+            "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Pés do Produto Avariado",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1571",
+            "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Expirado",
+            "comentario": "Amassado na parte Superior",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1758",
+            "produto": "Caixa de som philco led festa 3900w bluetooth 5.3 pcx39000 Preto 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Tweeter da Caixa com Defeito",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1763",
+            "produto": "Fogão 5 Bocas Electrolux Cinza Mesa Inox Perfectcook Fe5ig Prateado 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Mesa do Fogão Arranhada",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "A Mesa do Fogão está Torta",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1567",
+            "produto": "Fogão 4 Bocas A Gás Mueller Mfv4bf Mesa Vidro Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado em diversos lados do Fogão",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1690",
+            "produto": "Máquina De Lavar Midea Wave Agitator 13kg Branca - 127v 127v Branco",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Máquina Liga mas Não Funciona",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1525",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Vazamento de Óleo",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1469",
+            "produto": "Caixa De Som Torre Double Pulse Sp515 15 Pol 3500w - 2 Mic Cor Preto 127/220v",
+            "motivo": "Item Faltante",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Item Faltante: 2 Microfones",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1633",
+            "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Mesa do Fogão Amassada \n Produto foi Entregue de Cabeça pra Baixo",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1656",
+            "produto": "Ar Condicionado Split Philco Hi Wall Inverter 12.000 Btu/h Frio Monofásico Branco Pac12fc 220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Pinos da Ventilação Amassados",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1756",
+            "produto": "Fogão 4 Bocas Itatiaia Itamaster 58 Litro De Forno - Bivolt Preto 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Uma das Bocas Não Funcionam",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1524",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Vazamento de Água na parte Inferior\n Aparentemente parou",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1850",
+            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Produto Aparentemente de Outlet",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1853",
+            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Preto 220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Trincado na Parte Traseira do Tanquinho",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1816",
+            "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Está com Defeito (???)",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1837-1",
+            "produto": "Máquina De Lavar Semi-automática Wanke Até 5kg Marrom-claro 127v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Faz Zumbido no Motor e Não Funciona",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1758",
+            "produto": "Caixa De Som Amplificada Torre Philco Pcx39000 15 Pol Efeito Fumaça 3900w- 2 Microfone Preto 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Led Ruim e Mancha na Lateral Direita",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1525",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Vazamento de Óleo",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1609",
+            "produto": "Fogão 4 Bocas Itatiaia Vidro Temperado Electra Glass Plus Preto 127/220v",
+            "motivo": "A data de entrega combinada não foi cumprida",
+            "transportadora": "Trilog Express",
+            "status": "Revisão Recusada",
+            "comentario": "Atraso na Entrega | Falta de Contato",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassados na Lateral Direita",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1486",
+            "produto": "Geladeira Expositora Vertical Imbera 485l Preto Modelo Vrs16 Full Black 127/220v",
+            "motivo": "Não posso receber a compra no endereço informado",
+            "transportadora": "Trilog Express",
+            "status": "Impacto Removido",
+            "comentario": "Cliente Não Pode receber no Endereço",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1638",
+            "produto": "Fogão Mueller 4 Bocas Decorato Vetro Inox Com Mesa De Vidro Cinza 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Brasil Web",
+            "status": "Não Solicitada",
+            "comentario": "Porta do Fogão com Várias Avarias",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1813",
+            "produto": "Fogão 4 Bocas Atlas Agile Glass Automático Mesa De Vidro Branco 127/220v",
+            "motivo": "Não posso esperar a entrega",
+            "transportadora": "Brasil Web",
+            "status": "Impacto Removido",
+            "comentario": "Cliente deseja Cancelar o Pedido",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1571",
+            "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Mesa do Fogão Amassada",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1524",
+            "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 127v Branco",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Vazamento de Óleo",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1524",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Motor Barulhento e Vazamento de Óleo",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1690",
+            "produto": "Lavadora De Roupas Midea Wave Agitator 13kg Branca 127v Branco",
+            "motivo": "O vendedor não me respondeu",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Cliente enviou Mensagem após horário",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1756",
+            "produto": "Fogão 4 Bocas Itatiaia Itamaster 58 Litro De Forno - Bivolt Preto 127/220v",
+            "motivo": "Não Recebi o Produto",
+            "transportadora": "Rio Express",
+            "status": "Impacto Removido",
+            "comentario": "Cliente queria Cancelar Pedido",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1581",
+            "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado parte Traseira | Entregue s/Caixa",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1603",
+            "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
+            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
+            "transportadora": "Mercado Envios",
+            "status": "Atualizando",
+            "comentario": "Cliente Alegou ter Comprado Errado",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1739",
+            "produto": "Caixa De Som Bluetooth Pulse X Boombox 220w Rms - Sp626 Preto 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Bateria Não Carrega Totalmente e Descarrega",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1571",
+            "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+            "motivo": "Outro motivo",
+            "transportadora": "Brasil Web",
+            "status": "Não Solicitada",
+            "comentario": "Preço Errado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Peça da Mesa e Puxador Quebrada",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1568",
+            "produto": "Fogão Mueller 5 Bocas Preto Vidro Temperado Tripla Chama Preto Fosco 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Vidro Frontal do Fogão TODO Quebrado",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1112",
+            "produto": "Torradeira Duo Ce141 Vermelho 700w Multilaser 127v",
+            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
+            "transportadora": "Mercado Envios",
+            "status": "Expirado",
+            "comentario": "O Produto Estava Correto",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1816",
+            "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Termostato não muda e mostra apenas 11°",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1524",
+            "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 127v Branco",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Vazamento de Óleo",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1756",
+            "produto": "Fogão Itatiaia Itamaster 4 Bocas Preto 127/220v",
+            "motivo": "Descumpre as características do anúncio",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Não Há Descrição",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "motivo": "Item Faltante",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Item Faltante: Trempe Trempe Central",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1529",
+            "produto": "Mueller Lavadora De Roupas Energy 8kg Lavadora De Roupas Branca 127v Branco",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Sinais de Uso",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1760",
+            "produto": "Fogão 4 Bocas Atlas Coliseum Plus Com Mesa De Inox E Forno De 48 Litros A Gás Acendimento Manual Preto",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Impacto Removido",
+            "comentario": "Amassado na Lateral Direita do Fogão",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1667",
+            "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Pés Quebrado | Será Enviado Novamente",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Amassado na Lateral Esquerda",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Amassado na Lateral",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Vidro da Área Inferior Quebrado",
+            "is_afetando": true
         },
         {
             "sku": "TI1881",
             "produto": "Maquina De Lavar Midea Wave Impeller 14kg Função Turbo-127v 127v Branco",
-            "quantidade": 1,
-            "comentarios": [
-                "Produto Enviado de Modelo Diferente"
-            ]
+            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
+            "transportadora": "Trilog Express",
+            "status": "Em Mediação",
+            "comentario": "Produto Enviado de Modelo Diferente",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1852",
+            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Não Transborda Preto 127v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Controles da Máquina Quebraram",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1666",
+            "produto": "Fogão Mueller 4 Bocas Titânio Com Mesa De Vidro Mfv4bf 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "comentario": "Vidro Frontal do Fogão TODO Quebrado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1603",
+            "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Pés de Apoio Tortos",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Lateral Amassada",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1601",
+            "produto": "Cervejeira Imbera 244l Preto Ccv144 Com Controle De Temperatura E Iluminação Led 220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Amassado na Lateral",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1604",
+            "produto": "Fogão Dako A Gás Supreme Titanium Mesa Inox 4 Bocas - Bivolt Titânio 127/220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Brasil Web",
+            "status": "Impacto Removido",
+            "comentario": "Forno Não Funciona",
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1759",
+            "produto": "Freezer Vertical Imbera Evz21 Max 597l Preto 220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Vidro da Porta Completamente Quebrado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1524",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Vazamento de Óleo",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1524",
+            "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 127v Branco",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Vazamento de Óleo",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1525",
+            "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 220v Branco",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Vazamento de Óleo",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1529",
+            "produto": "Mueller Lavadora De Roupas Energy 8kg Lavadora De Roupas Branca 127v Branco",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Produto Não Joga a Água Fora",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1816",
+            "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
+            "motivo": "Item Faltante",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Item Faltante: 1 Pé de Apoio",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1837-1",
+            "produto": "Máquina De Lavar Semi-automática Wanke Até 5kg Marrom-claro 127v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Vazamento de Água na parte Inferior",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Puxador Amassado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Vidro do Forno Completamente Quebrado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1525",
+            "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 220v Branco",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Peça Solta e Barulho Exacerbado",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1486",
+            "produto": "Geladeira Vertical Imbera Vrs16 485l Full Black - Bivolt Full Black 127/220v",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Não Solicitada",
+            "comentario": "Trinca na Porta",
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1527",
+            "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Preto 220v",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "comentario": "Vazamento de Óleo\n Entregaram a Máquina de Cabeça Pra Baixo",
+            "is_afetando": true
         }
     ]
 }
