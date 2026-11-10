@@ -245,7 +245,7 @@
         const filtroAtivo = filtroAtivoGlobal[globalKey];
 
         const rankingHtml = '<div class="ranking-container">' + 
-          Object.entries(item.topSkus).slice(0, 5).map(([sku, count]) => {
+          Object.entries(item.topSkus).slice(0, 10).map(([sku, count]) => {
             const isSelected = filtroAtivo === sku ? 'selected' : '';
             return `<span class="ranking-pill ${isSelected}" onclick="toggleFiltroSubItem('marca', '${item.marca}', '${sku}', this)">${sku}: <strong>${count}</strong></span>`;
           }).join('') + '</div>';
