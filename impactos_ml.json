@@ -113,6 +113,31 @@
             "SKU": "TI1581",
             "Produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
             "quantidade": 3
+        },
+        {
+            "SKU": "TI1562",
+            "Produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1816",
+            "Produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1876",
+            "Produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1763",
+            "Produto": "Fogão 5 Bocas Electrolux Cinza Mesa Inox Perfectcook Fe5ig Prateado 127/220v",
+            "quantidade": 3
+        },
+        {
+            "SKU": "TI1690",
+            "Produto": "Lavadora De Roupas Midea Wave Agitator 13kg Branca 127v Branco",
+            "quantidade": 3
         }
     ]
 }
