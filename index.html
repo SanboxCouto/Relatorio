@@ -76,7 +76,6 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* Barra de busca e filtros das tabelas */
     .table-toolbar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
     .search-box-wrapper { position: relative; min-width: 280px; flex: 1; }
     .search-input { width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; background: #fff; transition: border-color 0.2s; }
@@ -433,7 +432,6 @@
       renderTabSkusAMZ(dataset);
     }
 
-    // ABA 1: CHAMADOS PREMIUM (com lupa + ordenação cronológica decrescente)
     function renderTabPremiumAMZ() {
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
@@ -442,14 +440,12 @@
 
       let premiumList = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
 
-      // Ordenar cronologicamente (da data mais recente para a mais antiga)
       premiumList.sort((a, b) => {
         const tA = parseDate(a.data_solicitacao) || parseDate(a.data_reivindicacao);
         const tB = parseDate(b.data_solicitacao) || parseDate(b.data_reivindicacao);
         return tB - tA;
       });
 
-      // Aplicar Busca (ID do pedido ou Valor)
       if (query) {
         premiumList = premiumList.filter(r => 
           normalizeText(r.id_pedido).includes(query) || 
@@ -481,7 +477,6 @@
       });
     }
 
-    // ABA 2: REPASSES (Exibe TODOS os pedidos + Lupa + Filtro por Resultado/Valor)
     function renderTabRepassesAMZ() {
       const tbody = document.querySelector('#tabela-repasses-amz tbody');
       tbody.innerHTML = '';
@@ -489,16 +484,13 @@
       const query = normalizeText(document.getElementById('search-repasses-input')?.value || '');
       const filterRes = document.getElementById('filter-resultado-repasses')?.value || 'TODOS';
 
-      // Sempre considera TODOS os pedidos cadastrados na Amazon
       let repassesList = [...rawDataAMZ];
 
-      // Filtro por Resultado (Valor)
       if (filterRes !== 'TODOS') {
         const filterNorm = normalizeText(filterRes);
         repassesList = repassesList.filter(r => normalizeText(r.valor).includes(filterNorm));
       }
 
-      // Lupa de busca (ID do Pedido ou Valor)
       if (query) {
         repassesList = repassesList.filter(r => 
           normalizeText(r.id_pedido).includes(query) || 
@@ -590,7 +582,9 @@
       document.getElementById('total-afetando-ml').innerText = rawDataML.filter(r => r.is_afetando).length;
       document.getElementById('total-mediacao-ml').innerText = dataset.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
       document.getElementById('total-recusada-ml').innerText = dataset.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
-      document.getElementById('total-removido-ml').innerText = dataset.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+      
+      // FIX: O indicador de Impacto Removido agora avalia rawDataML diretamente (independente de estar no escopo 'afetando' ou 'todas')
+      document.getElementById('total-removido-ml').innerText = rawDataML.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
 
       renderTabSkusML(dataset);
       renderTabTranspML(dataset);
