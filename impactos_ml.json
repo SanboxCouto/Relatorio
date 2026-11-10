@@ -9,6 +9,12 @@
         {
             "motivo": "Produto Avariado",
             "quantidade": 70,
+            "ranking_transportadoras": {
+                "Mercado Envios": 64,
+                "Alfa Transportes": 3,
+                "Brasil Web": 2,
+                "Tecmar Transportadora": 1
+            },
             "comentarios": [
                 "Parte Frontal Inferior Quebrada",
                 "Amassado e Riscos em Partes Externas",
@@ -85,6 +91,11 @@
         {
             "motivo": "Defeito no Produto",
             "quantidade": 39,
+            "ranking_transportadoras": {
+                "Mercado Envios": 37,
+                "Alfa Transportes": 1,
+                "Brasil Web": 1
+            },
             "comentarios": [
                 "Fogão está dando Choques ao utilizar",
                 "Botão de Acendimento Automático Ñ Funciona",
@@ -130,6 +141,9 @@
         {
             "motivo": "Item Faltante",
             "quantidade": 8,
+            "ranking_transportadoras": {
+                "Mercado Envios": 8
+            },
             "comentarios": [
                 "Item Faltante: 1 Trempe Central",
                 "Item Faltante: 2 Microfones",
@@ -144,6 +158,10 @@
         {
             "motivo": "Não é da cor, tamanho ou modelo que escolhi",
             "quantidade": 4,
+            "ranking_transportadoras": {
+                "Mercado Envios": 3,
+                "Trilog Express": 1
+            },
             "comentarios": [
                 "Produto Enviado de Cor Errada",
                 "Cliente Alegou ter Comprado Errado",
@@ -154,6 +172,9 @@
         {
             "motivo": "A data de entrega combinada não foi cumprida",
             "quantidade": 3,
+            "ranking_transportadoras": {
+                "Trilog Express": 3
+            },
             "comentarios": [
                 "Entrega Atrasada",
                 "Atraso na Entrega",
@@ -163,6 +184,9 @@
         {
             "motivo": "Descumpre as características do anúncio",
             "quantidade": 3,
+            "ranking_transportadoras": {
+                "Mercado Envios": 3
+            },
             "comentarios": [
                 "-",
                 "Pés de Apoio Não se Encaixam",
@@ -172,6 +196,10 @@
         {
             "motivo": "Não posso esperar a entrega",
             "quantidade": 2,
+            "ranking_transportadoras": {
+                "Tecmar Transportadora": 1,
+                "Brasil Web": 1
+            },
             "comentarios": [
                 "Envio Atrasado | Pedido Cancelado",
                 "Cliente deseja Cancelar o Pedido"
@@ -180,6 +208,9 @@
         {
             "motivo": "O vendedor não me respondeu",
             "quantidade": 2,
+            "ranking_transportadoras": {
+                "Mercado Envios": 2
+            },
             "comentarios": [
                 "Comprador Não deu Tempo para Resposta",
                 "Cliente enviou Mensagem após horário"
@@ -188,6 +219,10 @@
         {
             "motivo": "Outro motivo",
             "quantidade": 2,
+            "ranking_transportadoras": {
+                "Tecmar Transportadora": 1,
+                "Brasil Web": 1
+            },
             "comentarios": [
                 "Atraso na Entrega",
                 "Preço Errado"
@@ -196,6 +231,9 @@
         {
             "motivo": "A embalagem estava danificada\n E Produto Não Funciona",
             "quantidade": 1,
+            "ranking_transportadoras": {
+                "MMA Cargas": 1
+            },
             "comentarios": [
                 "Forno Não Funciona"
             ]
@@ -203,6 +241,9 @@
         {
             "motivo": "Insatisfação",
             "quantidade": 1,
+            "ranking_transportadoras": {
+                "Mercado Envios": 1
+            },
             "comentarios": [
                 "Comprador Insatisfeito"
             ]
@@ -210,6 +251,9 @@
         {
             "motivo": "Não Recebi o Produto",
             "quantidade": 1,
+            "ranking_transportadoras": {
+                "Rio Express": 1
+            },
             "comentarios": [
                 "Cliente queria Cancelar Pedido"
             ]
@@ -217,6 +261,9 @@
         {
             "motivo": "Não posso receber a compra no endereço informado",
             "quantidade": 1,
+            "ranking_transportadoras": {
+                "Trilog Express": 1
+            },
             "comentarios": [
                 "Cliente Não Pode receber no Endereço"
             ]
@@ -224,6 +271,9 @@
         {
             "motivo": "Ocorrência de Entrega",
             "quantidade": 1,
+            "ranking_transportadoras": {
+                "MMA Cargas": 1
+            },
             "comentarios": [
                 "Comprador reclamou da demora para Entrega"
             ]
@@ -233,6 +283,15 @@
         {
             "transportadora": "Mercado Envios",
             "quantidade": 118,
+            "ranking_motivos": {
+                "Produto Avariado": 64,
+                "Defeito no Produto": 37,
+                "Item Faltante": 8,
+                "Não é da cor, tamanho ou modelo que escolhi": 3,
+                "Descumpre as características do anúncio": 3,
+                "O vendedor não me respondeu": 2,
+                "Insatisfação": 1
+            },
             "comentarios": [
                 "Parte Frontal Inferior Quebrada",
                 "Amassado e Riscos em Partes Externas",
@@ -357,6 +416,12 @@
         {
             "transportadora": "Brasil Web",
             "quantidade": 5,
+            "ranking_motivos": {
+                "Produto Avariado": 2,
+                "Não posso esperar a entrega": 1,
+                "Outro motivo": 1,
+                "Defeito no Produto": 1
+            },
             "comentarios": [
                 "Diversos Amassados",
                 "Porta do Fogão com Várias Avarias",
@@ -368,6 +433,11 @@
         {
             "transportadora": "Trilog Express",
             "quantidade": 5,
+            "ranking_motivos": {
+                "A data de entrega combinada não foi cumprida": 3,
+                "Não posso receber a compra no endereço informado": 1,
+                "Não é da cor, tamanho ou modelo que escolhi": 1
+            },
             "comentarios": [
                 "Entrega Atrasada",
                 "Atraso na Entrega",
@@ -379,6 +449,10 @@
         {
             "transportadora": "Alfa Transportes",
             "quantidade": 4,
+            "ranking_motivos": {
+                "Produto Avariado": 3,
+                "Defeito no Produto": 1
+            },
             "comentarios": [
                 "Barulho nas Válvulas ao Ligar",
                 "Amassado na Tampa e Risco Profundo",
@@ -389,6 +463,11 @@
         {
             "transportadora": "Tecmar Transportadora",
             "quantidade": 3,
+            "ranking_motivos": {
+                "Não posso esperar a entrega": 1,
+                "Outro motivo": 1,
+                "Produto Avariado": 1
+            },
             "comentarios": [
                 "Envio Atrasado | Pedido Cancelado",
                 "Atraso na Entrega",
@@ -398,6 +477,10 @@
         {
             "transportadora": "MMA Cargas",
             "quantidade": 2,
+            "ranking_motivos": {
+                "A embalagem estava danificada\n E Produto Não Funciona": 1,
+                "Ocorrência de Entrega": 1
+            },
             "comentarios": [
                 "Forno Não Funciona",
                 "Comprador reclamou da demora para Entrega"
@@ -406,6 +489,9 @@
         {
             "transportadora": "Rio Express",
             "quantidade": 1,
+            "ranking_motivos": {
+                "Não Recebi o Produto": 1
+            },
             "comentarios": [
                 "Cliente queria Cancelar Pedido"
             ]
