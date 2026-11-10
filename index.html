@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Impactos ML</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding: 20px; color: #333; }
+    h1 { color: #2c3e50; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 25px; }
+    .card { background: #fff; border-radius: 8px; padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .card h3 { margin-top: 0; font-size: 14px; color: #7f8c8d; }
+    .card .value { font-size: 24px; font-weight: bold; color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
+    th { background-color: #34495e; color: #fff; }
+    .section-title { margin-top: 30px; font-size: 18px; color: #34495e; }
+  </style>
+</head>
+<body>
+
+  <h1>Aba - Impactos ML</h1>
+
+  <!-- Cards de Resumo -->
+  <div class="grid">
+    <div class="card">
+      <h3>Pedidos Válidos (Col D)</h3>
+      <div class="value" id="total-validos">-</div>
+    </div>
+    <div class="card">
+      <h3>Total de Registos</h3>
+      <div class="value" id="total-registos">-</div>
+    </div>
+  </div>
+
+  <!-- Motivos da Reclamação -->
+  <h2 class="section-title">Motivos da Reclamação (Col F)</h2>
+  <table id="tabela-motivos">
+    <thead>
+      <tr><th>Motivo</th><th>Quantidade</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- Transportadoras -->
+  <h2 class="section-title">Transportadoras (Col N)</h2>
+  <table id="tabela-transportadoras">
+    <thead>
+      <tr><th>Transportadora</th><th>Quantidade</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- Top SKUs e Produtos -->
+  <h2 class="section-title">Top Produtos & SKUs Impactados (Col M e E)</h2>
+  <table id="tabela-skus">
+    <thead>
+      <tr><th>SKU</th><th>Produto</th><th>Quantidade</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    // Carrega o ficheiro JSON compilado pelo GitHub Actions
+    fetch('impactos_ml.json')
+      .then(res => res.json())
+      .then(data => {
+        // Indicadores
+        document.getElementById('total-validos').innerText = data.resumo_validacao.total_pedidos_validos;
+        document.getElementById('total-registos').innerText = data.resumo_validacao.total_registros;
+
+        // Tabela Motivos
+        const tbodyMotivos = document.querySelector('#tabela-motivos tbody');
+        Object.entries(data.motivos_reclamacao).forEach(([motivo, qtd]) => {
+          tbodyMotivos.innerHTML += `<tr><td>${motivo}</td><td>${qtd}</td></tr>`;
+        });
+
+        // Tabela Transportadoras
+        const tbodyTransp = document.querySelector('#tabela-transportadoras tbody');
+        Object.entries(data.transportadoras).forEach(([transp, qtd]) => {
+          tbodyTransp.innerHTML += `<tr><td>${transp}</td><td>${qtd}</td></tr>`;
+        });
+
+        // Tabela SKUs / Produtos
+        const tbodySkus = document.querySelector('#tabela-skus tbody');
+        data.skus_produtos_impactados.forEach(item => {
+          const sku = Object.values(item)[0];
+          const produto = Object.values(item)[1];
+          const quantidade = item.quantidade;
+          tbodySkus.innerHTML += `<tr><td>${sku}</td><td>${produto}</td><td>${quantidade}</td></tr>`;
+        });
+      })
+      .catch(err => console.error('Erro ao carregar dados:', err));
+  </script>
+
+</body>
+</html>
