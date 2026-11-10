@@ -243,7 +243,7 @@
         </table>
       </div>
 
-      <!-- ABA 2: REPASSES (Colunas removidas conforme solicitado) -->
+      <!-- ABA 2: REPASSES -->
       <div id="tab-repasses-amz" class="tab-content">
         <table id="tabela-repasses-amz">
           <thead>
@@ -303,6 +303,11 @@
     Chart.register(ChartDataLabels);
 
     const AMAZON_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg';
+
+    function normalizeText(str) {
+      if (!str) return '';
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
+    }
 
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
@@ -371,11 +376,11 @@
         ? rawDataAMZ.filter(r => r.is_afetando)
         : rawDataAMZ;
 
-      // Indicadores de Topo Amazon
+      // Cards Superiores Amazon
       const totalAfetando = rawDataAMZ.filter(r => r.is_afetando).length;
       const totalValidos = rawDataAMZ.filter(r => r.is_valido).length;
-      const totalPremium = rawDataAMZ.filter(r => r.impacto.toUpperCase().includes('CHAMADO PREMIUM')).length;
-      const totalAnalise = rawDataAMZ.filter(r => r.is_valido && r.impacto.toUpperCase().includes('ANÁLISE')).length;
+      const totalPremium = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
+      const totalAnalise = rawDataAMZ.filter(r => r.is_valido && normalizeText(r.impacto).includes('ANALISE')).length;
 
       document.getElementById('total-afetando-amz').innerText = totalAfetando;
       document.getElementById('total-validos-amz').innerText = totalValidos;
@@ -387,12 +392,12 @@
       renderTabSkusAMZ(dataset);
     }
 
-    // ABA 1 AMAZON: CHAMADOS PREMIUM
+    // ABA 1 AMAZON: CHAMADOS PREMIUM (Exibe todos os chamados premium da base)
     function renderTabPremiumAMZ() {
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
       
-      const premiumList = rawDataAMZ.filter(r => r.impacto.toUpperCase().includes('CHAMADO PREMIUM'));
+      const premiumList = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
       
       if (!premiumList.length) {
         tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum chamado premium registrado.</td></tr>';
@@ -416,7 +421,7 @@
       });
     }
 
-    // ABA 2 AMAZON: REPASSES (Sem Status Impacto e Validação)
+    // ABA 2 AMAZON: REPASSES
     function renderTabRepassesAMZ(dataset) {
       const tbody = document.querySelector('#tabela-repasses-amz tbody');
       tbody.innerHTML = '';
