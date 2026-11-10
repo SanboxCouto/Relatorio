@@ -3,29 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Impactos ML</title>
+  <title>Painel ERP - Gestão de Marketplaces</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <style>
     :root {
+      --sidebar-expanded-width: 260px;
+      --sidebar-collapsed-width: 70px;
       --bg-color: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #64748b;
       --border-color: #e2e8f0;
       --primary: #2563eb;
+      --primary-light: #eff6ff;
       --danger: #dc2626;
       --warning: #d97706;
       --info: #0284c7;
       --success: #16a34a;
+      --sidebar-dark: #091e42;
     }
 
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-color); margin: 0; padding: 24px; color: var(--text-main); }
-    
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: var(--text-main); display: flex; min-height: 100vh; }
+
+    /* LAYOUT DA BARRA LATERAL (SIDEBAR COLLAPSIBLE) */
+    .sidebar {
+      width: var(--sidebar-expanded-width);
+      background-color: #ffffff;
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      z-index: 100;
+      overflow-x: hidden;
+    }
+
+    .sidebar.collapsed {
+      width: var(--sidebar-collapsed-width);
+    }
+
+    /* Logo & Header da Sidebar */
+    .sidebar-header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      min-height: 70px;
+    }
+    .sidebar-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .sidebar-logo-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+    .sidebar.collapsed .sidebar-logo-text { opacity: 0; pointer-events: none; }
+
+    /* Navegação do Menu */
+    .sidebar-menu {
+      padding: 16px 10px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .menu-category {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      padding: 8px 12px 4px 12px;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+    .sidebar.collapsed .menu-category { display: none; }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      color: #475569;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .menu-item:hover { background-color: #f1f5f9; color: var(--primary); }
+    .menu-item.active { background-color: var(--primary-light); color: var(--primary); }
+    .menu-icon { font-size: 18px; flex-shrink: 0; width: 20px; text-align: center; }
+    .menu-text { opacity: 1; transition: opacity 0.2s; }
+    .sidebar.collapsed .menu-text { opacity: 0; pointer-events: none; }
+
+    /* Rodapé da Sidebar (Botão de Minimização / Fixar Menu) */
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 60px;
+    }
+    .toggle-btn {
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 13px;
+      width: 100%;
+      padding: 0;
+    }
+    .toggle-btn:hover { color: var(--primary); }
+    .toggle-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* ÁREA DE CONTEÚDO PRINCIPAL */
+    .main-wrapper {
+      flex: 1;
+      padding: 28px 36px;
+      overflow-y: auto;
+    }
+
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
+    /* ESTILOS DA PÁGINA IMPACTOS ML */
     .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
     .header-bar h1 { font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0; }
     
-    /* Botões de Seleção de Escopo */
     .filter-switch { display: flex; background: #e2e8f0; padding: 4px; border-radius: 8px; gap: 4px; }
     .filter-btn { border: none; background: none; padding: 8px 16px; font-weight: 600; font-size: 13px; color: var(--text-muted); cursor: pointer; border-radius: 6px; transition: all 0.2s; }
     .filter-btn.active { background: #ffffff; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
@@ -71,93 +202,188 @@
     
     .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
     .no-comments { color: #94a3b8; font-size: 12px; font-style: italic; }
+
+    /* Placeholder para novas páginas */
+    .placeholder-card { background: var(--card-bg); border-radius: 12px; padding: 48px; border: 1px solid var(--border-color); text-align: center; }
   </style>
 </head>
 <body>
 
-  <div class="header-bar">
-    <h1>Impactos ML - Painel de Controle</h1>
+  <!-- BARRA LATERAL (MENU ESQUERDO) -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">E</div>
+      <span class="sidebar-logo-text">Painel ERP</span>
+    </div>
 
-    <!-- Botões Atualizados de Seleção de Escopo -->
-    <div class="filter-switch">
-      <button id="btn-afetando" class="filter-btn active" onclick="setEscopo('afetando')">Apenas Afetando Reputação</button>
-      <button id="btn-todas" class="filter-btn" onclick="setEscopo('todas')">Todas</button>
-    </div>
-  </div>
+    <div class="sidebar-menu">
+      <div class="menu-category">Marketplaces</div>
+      <a class="menu-item active" onclick="navigatePage('page-impactos-ml', this)">
+        <span class="menu-icon">🛍️</span>
+        <span class="menu-text">Impactos ML</span>
+      </a>
+      <a class="menu-item" onclick="navigatePage('page-shopee', this)">
+        <span class="menu-icon">🟧</span>
+        <span class="menu-text">Shopee</span>
+      </a>
+      <a class="menu-item" onclick="navigatePage('page-amazon', this)">
+        <span class="menu-icon">📦</span>
+        <span class="menu-text">Amazon</span>
+      </a>
 
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <h3>Pedidos Afetando Reputação</h3>
-      <div class="val val-danger" id="total-afetando">-</div>
+      <div class="menu-category">Geral</div>
+      <a class="menu-item" onclick="navigatePage('page-config', this)">
+        <span class="menu-icon">⚙️</span>
+        <span class="menu-text">Configurações</span>
+      </a>
     </div>
-    <div class="metric-card">
-      <h3>Em Mediação (Válidos)</h3>
-      <div class="val val-info" id="total-mediacao">-</div>
-    </div>
-    <div class="metric-card">
-      <h3>Revisão Recusada (Válidos)</h3>
-      <div class="val val-warning" id="total-recusada">-</div>
-    </div>
-    <div class="metric-card">
-      <h3>Impacto Removido (Válidos)</h3>
-      <div class="val val-success" id="total-removido">-</div>
-    </div>
-  </div>
 
-  <div class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('tab-skus')">Produtos / SKUs</button>
-    <button class="tab-btn" onclick="switchTab('tab-transportadoras')">Transportadoras</button>
-    <button class="tab-btn" onclick="switchTab('tab-motivos')">Motivos da Reclamação</button>
-  </div>
-
-  <!-- ABA 1: PRODUTOS / SKUS -->
-  <div id="tab-skus" class="tab-content active">
-    
-    <!-- Novo Seção: Ranking por Marcas -->
-    <div class="chart-box">
-      <h2 class="section-subtitle">Ranking por Marca dos Produtos</h2>
-      <div style="height: 300px;"><canvas id="chartMarcas"></canvas></div>
+    <div class="sidebar-footer">
+      <button class="toggle-btn" onclick="toggleSidebar()">
+        <span class="toggle-icon" id="toggle-icon">◀</span>
+        <span class="menu-text">Minimizar Menu</span>
+      </button>
     </div>
-    <table id="tabela-marcas">
-      <thead><tr><th class="col-entity">Marca</th><th class="col-qtd">Qtd</th><th class="col-ranking">Top SKUs / Produtos</th><th class="col-comments">Comentários & Ocorrências</th></tr></thead>
-      <tbody></tbody>
-    </table>
+  </aside>
 
-    <div class="chart-box">
-      <h2 class="section-subtitle">Top SKUs & Produtos</h2>
-      <div style="height: 440px;"><canvas id="chartSkus"></canvas></div>
-    </div>
-    <table id="tabela-skus">
-      <thead><tr><th class="col-entity">SKU</th><th class="col-entity">Produto</th><th class="col-qtd">Qtd</th><th style="width:35%">Comentários & Ocorrências</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
+  <!-- ÁREA PRINCIPAL -->
+  <main class="main-wrapper">
 
-  <!-- ABA 2: TRANSPORTADORAS -->
-  <div id="tab-transportadoras" class="tab-content">
-    <div class="chart-box">
-      <div style="height: 350px;"><canvas id="chartTransportadoras"></canvas></div>
-    </div>
-    <table id="tabela-transportadoras">
-      <thead><tr><th class="col-entity">Transportadora</th><th class="col-qtd">Qtd</th><th class="col-ranking">Ranking dos Motivos</th><th class="col-comments">Comentários & Ocorrências</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
+    <!-- PÁGINA 1: IMPACTOS ML (REPOSITÓRIO ATUAL) -->
+    <section id="page-impactos-ml" class="page-section active">
+      <div class="header-bar">
+        <h1>Impactos ML</h1>
 
-  <!-- ABA 3: MOTIVOS DA RECLAMAÇÃO -->
-  <div id="tab-motivos" class="tab-content">
-    <div class="chart-box">
-      <div style="height: 360px; display: flex; justify-content: center;"><canvas id="chartMotivos"></canvas></div>
-    </div>
-    <table id="tabela-motivos">
-      <thead><tr><th class="col-entity">Motivo</th><th class="col-qtd">Qtd</th><th class="col-ranking">Ranking das Transportadoras</th><th class="col-comments">Comentários & Ocorrências</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
+        <div class="filter-switch">
+          <button id="btn-afetando" class="filter-btn active" onclick="setEscopo('afetando')">Apenas Afetando Reputação</button>
+          <button id="btn-todas" class="filter-btn" onclick="setEscopo('todas')">Todas</button>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Pedidos Afetando Reputação</h3>
+          <div class="val val-danger" id="total-afetando">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Em Mediação (Válidos)</h3>
+          <div class="val val-info" id="total-mediacao">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Revisão Recusada (Válidos)</h3>
+          <div class="val val-warning" id="total-recusada">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Impacto Removido (Válidos)</h3>
+          <div class="val val-success" id="total-removido">-</div>
+        </div>
+      </div>
+
+      <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('tab-skus')">Produtos / SKUs</button>
+        <button class="tab-btn" onclick="switchTab('tab-transportadoras')">Transportadoras</button>
+        <button class="tab-btn" onclick="switchTab('tab-motivos')">Motivos da Reclamação</button>
+      </div>
+
+      <!-- ABA PRODUTOS / SKUS -->
+      <div id="tab-skus" class="tab-content active">
+        <div class="chart-box">
+          <h2 class="section-subtitle">Ranking por Marca dos Produtos</h2>
+          <div style="height: 300px;"><canvas id="chartMarcas"></canvas></div>
+        </div>
+        <table id="tabela-marcas">
+          <thead><tr><th class="col-entity">Marca</th><th class="col-qtd">Qtd</th><th class="col-ranking">Top SKUs / Produtos</th><th class="col-comments">Comentários & Ocorrências</th></tr></thead>
+          <tbody></tbody>
+        </table>
+
+        <div class="chart-box">
+          <h2 class="section-subtitle">Top SKUs & Produtos</h2>
+          <div style="height: 440px;"><canvas id="chartSkus"></canvas></div>
+        </div>
+        <table id="tabela-skus">
+          <thead><tr><th class="col-entity">SKU</th><th class="col-entity">Produto</th><th class="col-qtd">Qtd</th><th style="width:35%">Comentários & Ocorrências</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- ABA TRANSPORTADORAS -->
+      <div id="tab-transportadoras" class="tab-content">
+        <div class="chart-box">
+          <div style="height: 350px;"><canvas id="chartTransportadoras"></canvas></div>
+        </div>
+        <table id="tabela-transportadoras">
+          <thead><tr><th class="col-entity">Transportadora</th><th class="col-qtd">Qtd</th><th class="col-ranking">Ranking dos Motivos</th><th class="col-comments">Comentários & Ocorrências</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- ABA MOTIVOS DA RECLAMAÇÃO -->
+      <div id="tab-motivos" class="tab-content">
+        <div class="chart-box">
+          <div style="height: 360px; display: flex; justify-content: center;"><canvas id="chartMotivos"></canvas></div>
+        </div>
+        <table id="tabela-motivos">
+          <thead><tr><th class="col-entity">Motivo</th><th class="col-qtd">Qtd</th><th class="col-ranking">Ranking das Transportadoras</th><th class="col-comments">Comentários & Ocorrências</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PÁGINA 2: SHOPEE (PLACEHOLDER FUTURO) -->
+    <section id="page-shopee" class="page-section">
+      <h1>Relatório Shopee</h1>
+      <div class="placeholder-card">
+        <h3>Módulo Shopee em Desenvolvimento</h3>
+        <p style="color: var(--text-muted);">Aqui estarão os dados de reputação e ocorrências do marketplace Shopee.</p>
+      </div>
+    </section>
+
+    <!-- PÁGINA 3: AMAZON (PLACEHOLDER FUTURO) -->
+    <section id="page-amazon" class="page-section">
+      <h1>Relatório Amazon</h1>
+      <div class="placeholder-card">
+        <h3>Módulo Amazon em Desenvolvimento</h3>
+        <p style="color: var(--text-muted);">Aqui estarão os dados de reputação e ocorrências do marketplace Amazon.</p>
+      </div>
+    </section>
+
+    <!-- PÁGINA 4: CONFIGURAÇÕES -->
+    <section id="page-config" class="page-section">
+      <h1>Configurações do Sistema</h1>
+      <div class="placeholder-card">
+        <h3>Configurações Gerais</h3>
+        <p style="color: var(--text-muted);">Ajustes de sincronização das planilhas do Google Sheets.</p>
+      </div>
+    </section>
+
+  </main>
 
   <script>
     Chart.register(ChartDataLabels);
 
+    // CONTROLE DA BARRA LATERAL (MINIMIZAR / EXPANDIR)
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const toggleIcon = document.getElementById('toggle-icon');
+      sidebar.classList.toggle('collapsed');
+      
+      if (sidebar.classList.contains('collapsed')) {
+        toggleIcon.innerText = '▶';
+      } else {
+        toggleIcon.innerText = '◀';
+      }
+    }
+
+    // NAVEGAÇÃO ENTRE PÁGINAS DO MENU
+    function navigatePage(pageId, linkElem) {
+      document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+      
+      document.getElementById(pageId).classList.add('active');
+      linkElem.classList.add('active');
+    }
+
+    // LÓGICA DO DASHBOARD "IMPACTOS ML"
     let rawRegistros = [];
     let escopoAtual = 'afetando';
     let chartMarcasObj = null, chartSkusObj = null, chartTranspObj = null, chartMotivosObj = null;
@@ -196,12 +422,10 @@
       });
 
     function renderDashboard() {
-      // Filtro de Escopo: 'afetando' vs 'todas'
       const dataset = escopoAtual === 'afetando' 
         ? rawRegistros.filter(r => r.is_afetando)
         : rawRegistros;
 
-      // Cards
       const totalAfetando = rawRegistros.filter(r => r.is_afetando).length;
       const totalMediacao = dataset.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
       const totalRecusada = dataset.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
@@ -217,9 +441,8 @@
       renderTabMotivos(dataset);
     }
 
-    // --- ABA PRODUTOS / SKUS + MARCAS ---
     function renderTabSkus(dataset) {
-      // 1. Ranking por Marcas
+      // 1. Ranking por Marcas (Sem limite de slice para mostrar todos os SKUs da marca)
       const mapMarcas = {};
       dataset.forEach(r => {
         const m = r.marca;
@@ -245,7 +468,7 @@
         const filtroAtivo = filtroAtivoGlobal[globalKey];
 
         const rankingHtml = '<div class="ranking-container">' + 
-          Object.entries(item.topSkus).slice(0, 10).map(([sku, count]) => {
+          Object.entries(item.topSkus).map(([sku, count]) => {
             const isSelected = filtroAtivo === sku ? 'selected' : '';
             return `<span class="ranking-pill ${isSelected}" onclick="toggleFiltroSubItem('marca', '${item.marca}', '${sku}', this)">${sku}: <strong>${count}</strong></span>`;
           }).join('') + '</div>';
@@ -292,7 +515,6 @@
       });
     }
 
-    // --- ABA TRANSPORTADORAS ---
     function renderTabTransportadoras(dataset) {
       const mapTransp = {};
       dataset.forEach(r => {
@@ -339,7 +561,6 @@
       });
     }
 
-    // --- ABA MOTIVOS ---
     function renderTabMotivos(dataset) {
       const mapMotivos = {};
       dataset.forEach(r => {
