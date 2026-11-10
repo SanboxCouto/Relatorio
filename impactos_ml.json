@@ -1995,7 +1995,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Expirado",
             "marca": "Automática",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": false,
             "is_afetando": false
         },
@@ -2012,7 +2012,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Expirado",
             "marca": "Forno",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": false,
             "is_afetando": false
         },
@@ -2029,7 +2029,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Expirado",
             "marca": "Mueller",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": false,
             "is_afetando": false
         },
@@ -2046,7 +2046,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Mueller",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2063,7 +2063,7 @@
             "transportadora": "Brasil Web",
             "tempo_impacto": "Válido",
             "marca": "Mueller",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2080,7 +2080,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Expirado",
             "marca": "Mueller",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": false,
             "is_afetando": false
         },
@@ -2097,7 +2097,7 @@
             "transportadora": "Alfa Transportes",
             "tempo_impacto": "Válido",
             "marca": "Midea",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2114,7 +2114,7 @@
             "transportadora": "Total Frenet",
             "tempo_impacto": "Válido",
             "marca": "Mueller",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2131,7 +2131,7 @@
             "transportadora": "Brasil Web",
             "tempo_impacto": "Válido",
             "marca": "Plus",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2148,7 +2148,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Midea",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2165,7 +2165,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Imbera",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2182,7 +2182,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Midea",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2199,7 +2199,7 @@
             "transportadora": "Total Frenet",
             "tempo_impacto": "Válido",
             "marca": "Pulse",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2216,7 +2216,7 @@
             "transportadora": "Total Frenet",
             "tempo_impacto": "Válido",
             "marca": "Midea",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2233,7 +2233,7 @@
             "transportadora": "Brasil Web",
             "tempo_impacto": "Expirado",
             "marca": "Mueller",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": false,
             "is_afetando": false
         },
@@ -2250,7 +2250,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Pulse",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2267,7 +2267,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Mueller",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2284,7 +2284,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Midea",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2301,7 +2301,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Imbera",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2318,7 +2318,7 @@
             "transportadora": "Total Frenet",
             "tempo_impacto": "Válido",
             "marca": "Mueller",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2335,7 +2335,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Expirado",
             "marca": "Midea",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": false,
             "is_afetando": false
         },
@@ -2352,7 +2352,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Midea",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2369,7 +2369,7 @@
             "transportadora": "Total Frenet",
             "tempo_impacto": "Válido",
             "marca": "Pulse",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2386,7 +2386,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Plus",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2403,7 +2403,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Midea",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2420,7 +2420,7 @@
             "transportadora": "Trilog Express",
             "tempo_impacto": "Válido",
             "marca": "Mueller",
-            "comentario": "",
+            "comentario": "Sem Comentário",
             "is_valido": true,
             "is_afetando": false
         }
