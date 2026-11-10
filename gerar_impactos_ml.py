@@ -24,8 +24,9 @@ def extrair_marca(nome_produto):
 
 def buscar_coluna(df, nomes_possiveis, indice_fallback=0):
     for col in df.columns:
+        col_str = str(col).lower().strip()
         for nome in nomes_possiveis:
-            if nome.lower() in str(col).lower():
+            if nome.lower() in col_str:
                 return col
     if len(df.columns) > indice_fallback:
         return df.columns[indice_fallback]
@@ -74,17 +75,18 @@ def processar_amazon():
     df = pd.read_csv(URL_CSV_AMAZON, skiprows=1)
     df.columns = [str(col).strip() for col in df.columns]
 
-    col_id_pedido    = buscar_coluna(df, ['id do pedido', 'pedido', 'id pedido'])
-    col_data         = buscar_coluna(df, ['data da reivindicação', 'data da reivindicacao', 'data'])
-    col_valor        = buscar_coluna(df, ['valor'], 2)
-    col_reembolso    = buscar_coluna(df, ['reembolso'], 3)
-    col_impacto      = buscar_coluna(df, ['impacto'], 4)
-    col_motivo       = buscar_coluna(df, ['motivo'], 5)
-    col_produto      = buscar_coluna(df, ['produto da reivindicação', 'produto da reivindicacao', 'produto'])
-    col_tempo_imp    = buscar_coluna(df, ['tempo de impacto', 'validação', 'validacao'])
-    col_sku          = buscar_coluna(df, ['sku'])
-    col_transp       = buscar_coluna(df, ['transportadora', 'transp'])
-    col_comentario   = buscar_coluna(df, ['comentário', 'comentario', 'obs'])
+    # Busca específica do ID do Pedido (Evita pegar Data do Pedido na Coluna A)
+    col_id_pedido    = buscar_coluna(df, ['id do pedido', 'id_pedido'], 3)
+    col_data         = buscar_coluna(df, ['data da reivindicação', 'data da reivindicacao'], 1)
+    col_valor        = buscar_coluna(df, ['valor'], 8)
+    col_reembolso    = buscar_coluna(df, ['reembolso'], 7)
+    col_impacto      = buscar_coluna(df, ['impacto'], 5)
+    col_motivo       = buscar_coluna(df, ['motivo'], 6)
+    col_produto      = buscar_coluna(df, ['produto da reivindicação', 'produto da reivindicacao', 'produto'], 9)
+    col_tempo_imp    = buscar_coluna(df, ['tempo de impacto', 'validação', 'validacao'], 2)
+    col_sku          = buscar_coluna(df, ['sku'], 10)
+    col_transp       = buscar_coluna(df, ['transportadora', 'transp'], 11)
+    col_comentario   = buscar_coluna(df, ['comentário', 'comentario', 'obs', 'observação'], 12)
 
     registros = []
     for idx, row in df.iterrows():
