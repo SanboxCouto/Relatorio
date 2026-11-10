@@ -19,8 +19,9 @@ def processar_impactos_ml():
     col_sku           = df.columns[12]  # Coluna M (SKU)
     col_transportadora= df.columns[13]  # Coluna N (Transportadora)
 
-    # 1. Indicador de Pedidos Válidos (Quantidade na Coluna D)
-    total_validos = int((df[col_status_valido].astype(str).str.strip().str.upper() == 'VALIDO').sum())
+    # 1. Indicador de Pedidos Válidos (Verifica com e sem acento: "VÁLIDO" ou "VALIDO")
+    valido_clean = df[col_status_valido].astype(str).str.strip().str.upper()
+    total_validos = int((valido_clean.isin(['VÁLIDO', 'VALIDO'])).sum())
     total_registros = len(df)
 
     # 2. Indicadores de Status (Coluna G)
