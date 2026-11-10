@@ -162,21 +162,21 @@
       <div class="header-bar">
         <h1>Impactos ML</h1>
         <div class="filter-controls-group">
-          <!-- Filtro de Período Temporal -->
+          <!-- Filtro de Período por Dias Ativos -->
           <select id="filter-dias-ml" class="select-filter-hdr" onchange="renderML()">
             <option value="0">Todo o Período</option>
-            <option value="7">Últimos 7 Dias</option>
-            <option value="15">Últimos 15 Dias</option>
-            <option value="30">Últimos 30 Dias</option>
-            <option value="60">Últimos 60 Dias</option>
+            <option value="7">Últimos 7 Dias Ativos</option>
+            <option value="15">Últimos 15 Dias Ativos</option>
+            <option value="30">Últimos 30 Dias Ativos</option>
+            <option value="60">Últimos 60 Dias Ativos</option>
           </select>
 
-          <!-- Comparativo -->
+          <!-- Comparativo por Dias Ativos -->
           <select id="filter-comparativo-ml" class="select-filter-hdr" onchange="renderML()">
             <option value="NONE">Sem Comparativo</option>
-            <option value="7">vs 7 Dias Anteriores</option>
-            <option value="15">vs 15 Dias Anteriores</option>
-            <option value="30">vs 30 Dias Anteriores</option>
+            <option value="7">vs 7 Dias Ativos Anteriores</option>
+            <option value="15">vs 15 Dias Ativos Anteriores</option>
+            <option value="30">vs 30 Dias Ativos Anteriores</option>
           </select>
 
           <div class="filter-switch">
@@ -253,21 +253,21 @@
       <div class="header-bar">
         <h1>Reivindicações A-Z Amazon</h1>
         <div class="filter-controls-group">
-          <!-- Filtro de Período Temporal Amazon -->
+          <!-- Filtro de Período por Dias Ativos Amazon -->
           <select id="filter-dias-amz" class="select-filter-hdr" onchange="renderAMZ()">
             <option value="0">Todo o Período</option>
-            <option value="7">Últimos 7 Dias</option>
-            <option value="15">Últimos 15 Dias</option>
-            <option value="30">Últimos 30 Dias</option>
-            <option value="60">Últimos 60 Dias</option>
+            <option value="7">Últimos 7 Dias Ativos</option>
+            <option value="15">Últimos 15 Dias Ativos</option>
+            <option value="30">Últimos 30 Dias Ativos</option>
+            <option value="60">Últimos 60 Dias Ativos</option>
           </select>
 
-          <!-- Comparativo Amazon -->
+          <!-- Comparativo por Dias Ativos Amazon -->
           <select id="filter-comparativo-amz" class="select-filter-hdr" onchange="renderAMZ()">
             <option value="NONE">Sem Comparativo</option>
-            <option value="7">vs 7 Dias Anteriores</option>
-            <option value="15">vs 15 Dias Anteriores</option>
-            <option value="30">vs 30 Dias Anteriores</option>
+            <option value="7">vs 7 Dias Ativos Anteriores</option>
+            <option value="15">vs 15 Dias Ativos Anteriores</option>
+            <option value="30">vs 30 Dias Ativos Anteriores</option>
           </select>
 
           <div class="filter-switch">
@@ -411,13 +411,13 @@
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
     }
 
-    function parseDate(dateStr) {
-      if (!dateStr) return 0;
-      const parts = dateStr.split('/');
+    function parseDateStr(dateStr) {
+      if (!dateStr) return null;
+      const parts = dateStr.trim().split('/');
       if (parts.length === 3) {
-        return new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+        return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
       }
-      return 0;
+      return null;
     }
 
     function toggleSidebar() {
@@ -499,18 +499,32 @@
       });
     }
 
-    function filterByDateRange(list, daysLimit, offsetDays = 0) {
-      if (daysLimit <= 0 && offsetDays === 0) return list;
+    // EXTRAI DATAS ÚNICAS REAIS ORDENADAS (MAIS RECENTES PRIMEIRO)
+    function getSortedUniqueDates(list) {
+      const datesSet = new Set();
+      list.forEach(r => {
+        const dStr = parseDateStr(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
+        if (dStr) datesSet.add(dStr);
+      });
+      return Array.from(datesSet).sort().reverse(); // Ex: ['2026-11-10', '2026-11-09', ...]
+    }
+
+    // FILTRA REGISTROS COM BASE NAS DATAS ATIVAS REAIS DA PLANILHA
+    function filterByActiveDays(list, activeDaysLimit, offsetActiveDays = 0) {
+      if (activeDaysLimit <= 0 && offsetActiveDays === 0) return list;
+
+      const uniqueDates = getSortedUniqueDates(list);
+      if (!uniqueDates.length) return list;
+
+      const startIndex = offsetActiveDays;
+      const endIndex = activeDaysLimit > 0 ? startIndex + activeDaysLimit : uniqueDates.length;
       
-      const now = new Date().getTime();
-      const msPerDay = 86400000;
-      const minTime = daysLimit > 0 ? now - (daysLimit + offsetDays) * msPerDay : 0;
-      const maxTime = now - offsetDays * msPerDay;
+      const targetDates = new Set(uniqueDates.slice(startIndex, endIndex));
 
       return list.filter(r => {
-        const itemTime = parseDate(r.data_pedido) || parseDate(r.data_solicitacao) || parseDate(r.data_reivindicacao);
-        if(!itemTime) return true; // se sem data, mantém
-        return itemTime >= minTime && itemTime <= maxTime;
+        const dStr = parseDateStr(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
+        if (!dStr) return true; // Se sem data, mantém
+        return targetDates.has(dStr);
       });
     }
 
@@ -528,7 +542,7 @@
       else if(diff < 0) { badgeClass = 'comp-down'; }
 
       const pct = previousVal > 0 ? ((diff / previousVal) * 100).toFixed(0) : 0;
-      el.innerHTML = `<span class="comp-badge ${badgeClass}">${sign}${diff} (${sign}${pct}%) vs ${label}d</span>`;
+      el.innerHTML = `<span class="comp-badge ${badgeClass}">${sign}${diff} (${sign}${pct}%) vs ${label}d atv</span>`;
     }
 
     function isComentarioValido(c) {
@@ -539,11 +553,11 @@
 
     // ================= RENDERIZADOR AMAZON =================
     function renderAMZ() {
-      const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
-      const compDays = document.getElementById('filter-comparativo-amz')?.value || 'NONE';
+      const activeDays = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
+      const compActiveDays = document.getElementById('filter-comparativo-amz')?.value || 'NONE';
 
-      let dataset = filterByDateRange(rawDataAMZ, days);
-      let baseTotalList = filterByDateRange(rawDataAMZ, days);
+      let dataset = filterByActiveDays(rawDataAMZ, activeDays);
+      let baseTotalList = filterByActiveDays(rawDataAMZ, activeDays);
 
       if (escopoAMZ === 'afetando') {
         dataset = dataset.filter(r => r.is_afetando);
@@ -560,10 +574,10 @@
       document.getElementById('total-premium-amz').innerText = totalPremium;
       document.getElementById('total-analise-amz').innerText = totalAnalise;
 
-      // Comparativo Amazon
-      if(compDays !== 'NONE') {
-        const cDays = parseInt(compDays);
-        const prevList = filterByDateRange(rawDataAMZ, cDays, cDays);
+      // Comparativo Amazon (Por Dias Ativos)
+      if(compActiveDays !== 'NONE') {
+        const cDays = parseInt(compActiveDays);
+        const prevList = filterByActiveDays(rawDataAMZ, cDays, cDays);
         const prevAfetando = prevList.filter(r => r.is_afetando).length;
         const prevRemovidos = prevList.filter(r => normalizeText(r.impacto).includes('REMOVIDO')).length;
         const prevPremium = prevList.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
@@ -588,15 +602,15 @@
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
       
-      const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
+      const activeDays = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
       const query = normalizeText(document.getElementById('search-premium-input')?.value || '');
 
-      let premiumList = filterByDateRange(rawDataAMZ, days).filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
+      let premiumList = filterByActiveDays(rawDataAMZ, activeDays).filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
 
       premiumList.sort((a, b) => {
-        const tA = parseDate(a.data_solicitacao) || parseDate(a.data_reivindicacao);
-        const tB = parseDate(b.data_solicitacao) || parseDate(b.data_reivindicacao);
-        return tB - tA;
+        const tA = parseDateStr(a.data_solicitacao || a.data_reivindicacao) || '';
+        const tB = parseDateStr(b.data_solicitacao || b.data_reivindicacao) || '';
+        return tB.localeCompare(tA);
       });
 
       if (query) {
@@ -634,11 +648,11 @@
       const tbody = document.querySelector('#tabela-repasses-amz tbody');
       tbody.innerHTML = '';
 
-      const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
+      const activeDays = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
       const query = normalizeText(document.getElementById('search-repasses-input')?.value || '');
       const filterRes = document.getElementById('filter-resultado-repasses')?.value || 'TODOS';
 
-      let repassesList = filterByDateRange(rawDataAMZ, days);
+      let repassesList = filterByActiveDays(rawDataAMZ, activeDays);
 
       if (filterRes !== 'TODOS') {
         const filterNorm = normalizeText(filterRes);
@@ -710,11 +724,11 @@
 
     // ================= RENDERIZADOR MERCADO LIVRE =================
     function renderML() {
-      const days = parseInt(document.getElementById('filter-dias-ml')?.value || '0');
-      const compDays = document.getElementById('filter-comparativo-ml')?.value || 'NONE';
+      const activeDays = parseInt(document.getElementById('filter-dias-ml')?.value || '0');
+      const compActiveDays = document.getElementById('filter-comparativo-ml')?.value || 'NONE';
 
-      let baseTotalList = filterByDateRange(rawDataML, days);
-      let dataset = filterByDateRange(rawDataML, days);
+      let baseTotalList = filterByActiveDays(rawDataML, activeDays);
+      let dataset = filterByActiveDays(rawDataML, activeDays);
 
       if (escopoML === 'afetando') {
         dataset = dataset.filter(r => r.is_afetando);
@@ -731,10 +745,10 @@
       document.getElementById('total-recusada-ml').innerText = totalRecusada;
       document.getElementById('total-removido-ml').innerText = totalRemovido;
 
-      // Comparativo ML
-      if(compDays !== 'NONE') {
-        const cDays = parseInt(compDays);
-        const prevList = filterByDateRange(rawDataML, cDays, cDays);
+      // Comparativo ML (Por Dias Ativos)
+      if(compActiveDays !== 'NONE') {
+        const cDays = parseInt(compActiveDays);
+        const prevList = filterByActiveDays(rawDataML, cDays, cDays);
         const prevAfetando = prevList.filter(r => r.is_afetando).length;
         const prevMediacao = prevList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
         const prevRecusada = prevList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
