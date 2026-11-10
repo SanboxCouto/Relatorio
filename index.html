@@ -87,10 +87,6 @@
     .amazon-logo-img { width: 22px; height: 22px; object-fit: contain; cursor: pointer; transition: transform 0.15s; }
     .amazon-logo-img:hover { transform: scale(1.15); }
 
-    .badge-status { padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
-    .badge-recom { background: #dcfce7; color: #15803d; }
-    .badge-analysis { background: #fef3c7; color: #b45309; }
-
     .ranking-container { display: flex; flex-wrap: wrap; gap: 6px; }
     .ranking-pill { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px; font-size: 12px; color: #334155; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s; user-select: none; }
     .ranking-pill:hover { background: #e2e8f0; border-color: var(--primary); }
@@ -247,16 +243,14 @@
         </table>
       </div>
 
-      <!-- ABA 2: REPASSES -->
+      <!-- ABA 2: REPASSES (Colunas removidas conforme solicitado) -->
       <div id="tab-repasses-amz" class="tab-content">
         <table id="tabela-repasses-amz">
           <thead>
             <tr>
-              <th style="width:24%">ID do Pedido</th>
-              <th style="width:24%">Resultado (Valor)</th>
-              <th style="width:16%">Reembolso</th>
-              <th style="width:18%">Status Impacto</th>
-              <th style="width:18%">Validação</th>
+              <th style="width:35%">ID do Pedido</th>
+              <th style="width:40%">Resultado (Valor)</th>
+              <th style="width:25%">Reembolso</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -317,7 +311,6 @@
       toggleIcon.innerText = sidebar.classList.contains('collapsed') ? '▶' : '◀';
     }
 
-    // PERSISTÊNCIA DE PÁGINA AO RECARREGAR (localStorage)
     function navigatePage(pageId, linkElem) {
       document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
@@ -367,7 +360,6 @@
         renderML();
         renderAMZ();
         
-        // RESTAURAR PÁGINA SALVA
         const savedPage = localStorage.getItem('activePage') || 'page-impactos-ml';
         const targetLink = document.querySelector(`.menu-item[data-page="${savedPage}"]`);
         if (targetLink) navigatePage(savedPage, targetLink);
@@ -379,7 +371,7 @@
         ? rawDataAMZ.filter(r => r.is_afetando)
         : rawDataAMZ;
 
-      // Cards Superiores Amazon (Calculados sobre a base da planilha)
+      // Indicadores de Topo Amazon
       const totalAfetando = rawDataAMZ.filter(r => r.is_afetando).length;
       const totalValidos = rawDataAMZ.filter(r => r.is_valido).length;
       const totalPremium = rawDataAMZ.filter(r => r.impacto.toUpperCase().includes('CHAMADO PREMIUM')).length;
@@ -395,7 +387,7 @@
       renderTabSkusAMZ(dataset);
     }
 
-    // ABA 1 AMAZON: CHAMADOS PREMIUM (Exibe todos os pedidos em Chamado Premium independente do filtro de escopo)
+    // ABA 1 AMAZON: CHAMADOS PREMIUM
     function renderTabPremiumAMZ() {
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
@@ -424,7 +416,7 @@
       });
     }
 
-    // ABA 2 AMAZON: REPASSES (Exibe ID do Pedido correto)
+    // ABA 2 AMAZON: REPASSES (Sem Status Impacto e Validação)
     function renderTabRepassesAMZ(dataset) {
       const tbody = document.querySelector('#tabela-repasses-amz tbody');
       tbody.innerHTML = '';
@@ -440,13 +432,11 @@
           </td>
           <td><strong>${r.valor || '-'}</strong></td>
           <td>${r.reembolso || '-'}</td>
-          <td><span class="badge-status ${r.is_afetando ? 'badge-analysis' : 'badge-recom'}">${r.impacto || '-'}</span></td>
-          <td>${r.tempo_impacto || '-'}</td>
         </tr>`;
       });
     }
 
-    // ABA 3 AMAZON: SKUS / PRODUTOS (Comentários lidos da Coluna Comentário)
+    // ABA 3 AMAZON: SKUS / PRODUTOS
     function renderTabSkusAMZ(dataset) {
       const mapMarcas = {};
       dataset.forEach(r => {
