@@ -202,14 +202,15 @@
         </div>
       </div>
 
+      <!-- CARDS AMAZON (Substituído Total Pedidos Válidos por Impactos Removidos) -->
       <div class="metrics-grid">
         <div class="metric-card">
           <h3>Pedidos Afetando Reputação</h3>
           <div class="val val-danger" id="total-afetando-amz">-</div>
         </div>
         <div class="metric-card">
-          <h3>Total Pedidos Válidos</h3>
-          <div class="val val-info" id="total-validos-amz">-</div>
+          <h3>Impactos Removidos</h3>
+          <div class="val val-info" id="total-removidos-amz">-</div>
         </div>
         <div class="metric-card">
           <h3>Em Chamado Premium</h3>
@@ -376,14 +377,14 @@
         ? rawDataAMZ.filter(r => r.is_afetando)
         : rawDataAMZ;
 
-      // Cards Superiores Amazon
+      // Indicadores de Topo Amazon
       const totalAfetando = rawDataAMZ.filter(r => r.is_afetando).length;
-      const totalValidos = rawDataAMZ.filter(r => r.is_valido).length;
+      const totalRemovidos = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('REMOVIDO')).length;
       const totalPremium = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
       const totalAnalise = rawDataAMZ.filter(r => r.is_valido && normalizeText(r.impacto).includes('ANALISE')).length;
 
       document.getElementById('total-afetando-amz').innerText = totalAfetando;
-      document.getElementById('total-validos-amz').innerText = totalValidos;
+      document.getElementById('total-removidos-amz').innerText = totalRemovidos;
       document.getElementById('total-premium-amz').innerText = totalPremium;
       document.getElementById('total-analise-amz').innerText = totalAnalise;
 
@@ -392,7 +393,7 @@
       renderTabSkusAMZ(dataset);
     }
 
-    // ABA 1 AMAZON: CHAMADOS PREMIUM (Exibe todos os chamados premium da base)
+    // ABA 1 AMAZON: CHAMADOS PREMIUM
     function renderTabPremiumAMZ() {
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
