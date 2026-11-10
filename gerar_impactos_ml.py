@@ -5,7 +5,6 @@ import unicodedata
 import io
 import requests
 
-# URLs das Planilhas Publicadas no Google Sheets
 URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRH_71QAinoH_JzNzSswCNjswyM6EoMMSSFwbAlm-BPEeNXX5Xm1PKBbqaPQkVysQ/pub?gid=1773072804&single=true&output=csv"
 URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRH_71QAinoH_JzNzSswCNjswyM6EoMMSSFwbAlm-BPEeNXX5Xm1PKBbqaPQkVysQ/pub?gid=134048884&single=true&output=csv"
 
@@ -103,14 +102,12 @@ def processar_ml():
     return registros
 
 def processar_amazon():
-    # Localiza o cabeçalho pela presença do ID do Pedido ou Produto da Reivindicação
     df = parse_csv_dinamico(URL_CSV_AMAZON, ['ID DO PEDIDO', 'PRODUTO DA REIVINDICACAO', 'TEMPO DE IMPACTO'])
 
     def get_col(nome_exato):
         for col in df.columns:
             if remover_acentos(col) == remover_acentos(nome_exato):
                 return col
-        # Busca parcial de fallback
         for col in df.columns:
             if remover_acentos(nome_exato) in remover_acentos(col):
                 return col
@@ -122,6 +119,7 @@ def processar_amazon():
     col_id_pedido    = get_col('ID do pedido')
     col_motivo       = get_col('Motivo')
     col_comentario   = get_col('Comentário')
+    col_data_solic   = get_col('Data da Solicitação')
     col_impacto      = get_col('Impacto')
     col_valor        = get_col('Valor')
     col_reembolso    = get_col('Reembolso')
@@ -133,7 +131,6 @@ def processar_amazon():
     for idx, row in df.iterrows():
         id_ped = str(row[col_id_pedido]).strip() if col_id_pedido and pd.notna(row[col_id_pedido]) else ''
         
-        # Ignora linhas que não sejam dados válidos de pedido
         if not id_ped or id_ped.lower() == 'nan' or 'id do pedido' in id_ped.lower():
             continue
 
@@ -143,10 +140,7 @@ def processar_amazon():
         tempo_clean = remover_acentos(tempo_val)
         impacto_clean = remover_acentos(impacto_val)
 
-        # Tempo de Impacto: VÁLIDO vs EXPIRADO
         is_valido = 'VALIDO' in tempo_clean
-        
-        # Pedidos Afetando Reputação: VÁLIDO + (MANTIDO, CHAMADO PREMIUM ou ANALISE)
         is_afetando = is_valido and any(st in impacto_clean for st in ['MANTIDO', 'CHAMADO PREMIUM', 'ANALISE'])
 
         sku_val = str(row[col_sku]).strip() if col_sku and pd.notna(row[col_sku]) and str(row[col_sku]).strip().lower() != 'nan' else 'N/A'
@@ -158,11 +152,13 @@ def processar_amazon():
             prod_val = f"SKU {sku_val}"
 
         coment_val = str(row[col_comentario]) if col_comentario and pd.notna(row[col_comentario]) else ''
+        data_solic_val = str(row[col_data_solic]).strip() if col_data_solic and pd.notna(row[col_data_solic]) else ''
 
         registros.append({
             "id_pedido": id_ped,
             "data_pedido": str(row[col_data_pedido]).strip() if col_data_pedido and pd.notna(row[col_data_pedido]) else '',
             "data_reivindicacao": str(row[col_data_reiv]).strip() if col_data_reiv and pd.notna(row[col_data_reiv]) else '',
+            "data_solicitacao": data_solic_val,
             "valor": str(row[col_valor]).strip() if col_valor and pd.notna(row[col_valor]) else '',
             "reembolso": str(row[col_reembolso]).strip() if col_reembolso and pd.notna(row[col_reembolso]) else '',
             "impacto": impacto_val,
