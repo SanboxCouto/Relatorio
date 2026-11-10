@@ -23,51 +23,54 @@ def processar_impactos_ml():
     col_transportadora= buscar_coluna(df, ['transportadora', 'transp'], 13)
     col_comentario    = buscar_coluna(df, ['comentário', 'comentario', 'observação', 'obs'], 14)
 
-    # Tratamento dos textos
+    # Tratamento de textos
     valido_clean = df[col_status_valido].astype(str).str.strip().str.upper()
     status_g_clean = df[col_status_g].astype(str).str.strip().str.upper()
 
-    # Filtro base: apenas pedidos Válidos
+    # Filtro base: apenas Válidos
     is_valido = valido_clean.str.contains('VÁLIDO|VALIDO', regex=True, na=False)
 
     # 1. Pedidos Afetando Reputação
     status_afetam = ['EM MEDIAÇÃO', 'EM MEDIACAO', 'REVISÃO RECUSADA', 'REVISAO RECUSADA', 'NÃO SOLICITADA', 'NAO SOLICITADA']
     total_afetando = int((is_valido & status_g_clean.isin(status_afetam)).sum())
 
-    # 2. Total "Em Mediação" (Que estejam Válidos)
+    # 2. Em Mediação
     status_mediacao = ['EM MEDIAÇÃO', 'EM MEDIACAO']
     total_em_mediacao = int((is_valido & status_g_clean.isin(status_mediacao)).sum())
 
-    # 3. Total "Revisão Recusada" (Que estejam Válidos)
+    # 3. Revisão Recusada
     status_recusada = ['REVISÃO RECUSADA', 'REVISAO RECUSADA']
     total_revisao_recusada = int((is_valido & status_g_clean.isin(status_recusada)).sum())
 
-    # 4. Total "Impacto Removido" (Que estejam Válidos)
+    # 4. Impacto Removido
     status_removido = ['IMPACTO REMOVIDO', 'REMOVIDO']
     total_impacto_removido = int((is_valido & status_g_clean.isin(status_removido)).sum())
 
-    # Agrupamentos com tratamento de Comentários (Coluna O)
     df_valido = df[is_valido].copy()
     df_valido[col_comentario] = df_valido[col_comentario].fillna('').astype(str).str.strip()
 
-    # Comentários por Motivo
+    # Comentários + Ranking de Transportadoras por Motivo
     motivos_detalhados = []
     for motivo, group in df_valido.groupby(col_motivo):
         comentarios = [c for c in group[col_comentario].tolist() if c and c.lower() != 'nan']
+        ranking_transp = group[col_transportadora].value_counts().to_dict()
         motivos_detalhados.append({
             "motivo": str(motivo),
             "quantidade": len(group),
+            "ranking_transportadoras": ranking_transp,
             "comentarios": comentarios
         })
     motivos_detalhados.sort(key=lambda x: x['quantidade'], reverse=True)
 
-    # Comentários por Transportadora
+    # Comentários + Ranking de Motivos por Transportadora
     transportadoras_detalhadas = []
     for transp, group in df_valido.groupby(col_transportadora):
         comentarios = [c for c in group[col_comentario].tolist() if c and c.lower() != 'nan']
+        ranking_mot = group[col_motivo].value_counts().to_dict()
         transportadoras_detalhadas.append({
             "transportadora": str(transp),
             "quantidade": len(group),
+            "ranking_motivos": ranking_mot,
             "comentarios": comentarios
         })
     transportadoras_detalhadas.sort(key=lambda x: x['quantidade'], reverse=True)
@@ -99,7 +102,7 @@ def processar_impactos_ml():
     with open("impactos_ml.json", "w", encoding="utf-8") as f:
         json.dump(dados_impactos_ml, f, ensure_ascii=False, indent=4)
         
-    print(f"Processamento concluído! Afetando: {total_afetando} | Mediação: {total_em_mediacao}")
+    print("Processamento concluído com sucesso!")
 
 if __name__ == "__main__":
     processar_impactos_ml()
