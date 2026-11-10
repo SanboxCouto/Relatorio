@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 import re
+import unicodedata
 
 # URLs das Planilhas Publicadas
 URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRH_71QAinoH_JzNzSswCNjswyM6EoMMSSFwbAlm-BPEeNXX5Xm1PKBbqaPQkVysQ/pub?gid=1773072804&single=true&output=csv"
@@ -11,6 +12,11 @@ MARCAS_CONHECIDAS = [
     'ITATIAIA', 'ATLAS', 'WANKE', 'MIDEA', 'PULSE', 'CONSUL', 'BRASTEMP', 
     'SUGGAR', 'VENAX', 'MONDIAL', 'ARNO', 'BRITANIA', 'OSTER'
 ]
+
+def remover_acentos(texto):
+    if not isinstance(texto, str):
+        return ""
+    return ''.join(c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn').upper().strip()
 
 def extrair_marca(nome_produto):
     texto = str(nome_produto).upper()
@@ -24,9 +30,9 @@ def extrair_marca(nome_produto):
 
 def buscar_coluna(df, nomes_possiveis, indice_fallback=0):
     for col in df.columns:
-        col_str = str(col).lower().strip()
+        col_norm = remover_acentos(str(col))
         for nome in nomes_possiveis:
-            if nome.lower() in col_str:
+            if remover_acentos(nome) in col_norm:
                 return col
     if len(df.columns) > indice_fallback:
         return df.columns[indice_fallback]
@@ -46,11 +52,11 @@ def processar_ml():
 
     registros = []
     for idx, row in df.iterrows():
-        valido_clean = str(row[col_status_valido]).strip().upper()
-        status_g_clean = str(row[col_status_g]).strip().upper()
+        valido_clean = remover_acentos(row[col_status_valido])
+        status_g_clean = remover_acentos(row[col_status_g])
 
-        is_valido = bool(re.search(r'VÁLIDO|VALIDO', valido_clean))
-        status_afetam = ['EM MEDIAÇÃO', 'EM MEDIACAO', 'REVISÃO RECUSADA', 'REVISAO RECUSADA', 'NÃO SOLICITADA', 'NAO SOLICITADA']
+        is_valido = bool(re.search(r'VALIDO', valido_clean))
+        status_afetam = ['EM MEDIACAO', 'REVISAO RECUSADA', 'NAO SOLICITADA']
         is_afetando = is_valido and (status_g_clean in status_afetam)
 
         prod_nome = str(row[col_produto])
@@ -72,38 +78,56 @@ def processar_ml():
     return registros
 
 def processar_amazon():
-    df = pd.read_csv(URL_CSV_AMAZON, skiprows=1)
+    # Carrega sem skiprows primeiro para pegar com precisão os dados da aba Amazon
+    df = pd.read_csv(URL_CSV_AMAZON)
+    
+    # Se a primeira linha for cabeçalho duplicado ou data/título, faz o ajuste
+    if 'Data do pedido' in df.iloc[0].values or 'Tempo de Impacto' in df.iloc[0].values:
+        df.columns = df.iloc[0]
+        df = df[1:].reset_index(drop=True)
+        
     df.columns = [str(col).strip() for col in df.columns]
 
-    # Busca específica do ID do Pedido (Evita pegar Data do Pedido na Coluna A)
-    col_id_pedido    = buscar_coluna(df, ['id do pedido', 'id_pedido'], 3)
-    col_data         = buscar_coluna(df, ['data da reivindicação', 'data da reivindicacao'], 1)
-    col_valor        = buscar_coluna(df, ['valor'], 8)
-    col_reembolso    = buscar_coluna(df, ['reembolso'], 7)
+    # Mapeamento por Nomes de Coluna / Busca robusta
+    col_data_pedido  = buscar_coluna(df, ['data do pedido'], 0)
+    col_data_reiv    = buscar_coluna(df, ['data da reivindicacao', 'data da reivindicação'], 1)
+    col_tempo_imp    = buscar_coluna(df, ['tempo de impacto'], 2)
+    col_id_pedido    = buscar_coluna(df, ['id do pedido'], 3)
+    col_valor        = buscar_coluna(df, ['valor'], 4)
     col_impacto      = buscar_coluna(df, ['impacto'], 5)
     col_motivo       = buscar_coluna(df, ['motivo'], 6)
-    col_produto      = buscar_coluna(df, ['produto da reivindicação', 'produto da reivindicacao', 'produto'], 9)
-    col_tempo_imp    = buscar_coluna(df, ['tempo de impacto', 'validação', 'validacao'], 2)
-    col_sku          = buscar_coluna(df, ['sku'], 10)
-    col_transp       = buscar_coluna(df, ['transportadora', 'transp'], 11)
-    col_comentario   = buscar_coluna(df, ['comentário', 'comentario', 'obs', 'observação'], 12)
+    col_reembolso    = buscar_coluna(df, ['reembolso'], 7)
+    col_produto      = buscar_coluna(df, ['produto'], 8)
+    col_sku          = buscar_coluna(df, ['sku'], 9)
+    col_transp       = buscar_coluna(df, ['transportadora'], 10)
+    col_comentario   = buscar_coluna(df, ['comentario', 'comentário', 'obs'], 11)
 
     registros = []
     for idx, row in df.iterrows():
-        tempo_clean = str(row[col_tempo_imp]).strip().upper()
-        impacto_clean = str(row[col_impacto]).strip().upper()
+        id_ped = str(row[col_id_pedido]).strip()
+        
+        # Ignora linhas de cabeçalho residual ou vazias
+        if not id_ped or id_ped.lower() == 'nan' or id_ped.lower() == 'id do pedido':
+            continue
 
-        is_valido = bool(re.search(r'VÁLIDO|VALIDO', tempo_clean))
-        status_afetam_amz = ['MANTIDO', 'EM CHAMADO PREMIUM', 'EM ANÁLISE', 'EM ANALISE']
+        tempo_clean = remover_acentos(row[col_tempo_imp])
+        impacto_clean = remover_acentos(row[col_impacto])
+
+        # Validação: Deve constar "VÁLIDO" na Col. Tempo de Impacto
+        is_valido = bool(re.search(r'VALIDO', tempo_clean))
+        
+        # Pedidos Afetando a Reputação: Válido + (Mantido OU Em Chamado Premium OU Em Análise)
+        status_afetam_amz = ['MANTIDO', 'EM CHAMADO PREMIUM', 'EM ANALISE']
         is_afetando = is_valido and (impacto_clean in status_afetam_amz)
 
-        prod_nome = str(row[col_produto])
+        prod_nome = str(row[col_produto]) if pd.notna(row[col_produto]) else ''
         coment = str(row[col_comentario]).strip() if pd.notna(row[col_comentario]) else ''
         if coment.lower() == 'nan': coment = ''
 
         registros.append({
-            "id_pedido": str(row[col_id_pedido]).strip(),
-            "data_reivindicacao": str(row[col_data]).strip(),
+            "id_pedido": id_ped,
+            "data_pedido": str(row[col_data_pedido]).strip(),
+            "data_reivindicacao": str(row[col_data_reiv]).strip(),
             "valor": str(row[col_valor]).strip(),
             "reembolso": str(row[col_reembolso]).strip(),
             "impacto": str(row[col_impacto]).strip(),
@@ -131,7 +155,7 @@ def main():
     with open("impactos_ml.json", "w", encoding="utf-8") as f:
         json.dump(dados, f, ensure_ascii=False, indent=4)
         
-    print(f"Processamento concluído! ML: {len(registros_ml)} | Amazon: {len(registros_amazon)}")
+    print(f"Sucesso! ML: {len(registros_ml)} | Amazon: {len(registros_amazon)}")
 
 if __name__ == "__main__":
     main()
