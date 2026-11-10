@@ -90,8 +90,6 @@
     .ranking-container { display: flex; flex-wrap: wrap; gap: 6px; }
     .ranking-pill { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px; font-size: 12px; color: #334155; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s; user-select: none; }
     .ranking-pill:hover { background: #e2e8f0; border-color: var(--primary); }
-    .ranking-pill.selected { background: var(--primary); color: #ffffff; border-color: var(--primary); }
-    .ranking-pill.selected strong { color: #ffffff; }
     .ranking-pill strong { color: var(--primary); font-weight: 700; }
 
     .comments-scroll-box { max-height: 180px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px; }
@@ -367,6 +365,12 @@
         if (targetLink) navigatePage(savedPage, targetLink);
       });
 
+    function isComentarioValido(c) {
+      if (!c) return false;
+      const cNorm = normalizeText(c);
+      return !['SEM COMENTARIO', 'SEM COMENTARIOS', 'SEM OBSERVACAO', 'SEM OBSERVACOES', 'NAN', 'N/A', '-'].includes(cNorm);
+    }
+
     // ================= RENDERIZADOR AMAZON =================
     function renderAMZ() {
       const dataset = escopoAMZ === 'afetando' 
@@ -458,7 +462,7 @@
       listMarcas.forEach(item => {
         const rankingHtml = '<div class="ranking-container">' + 
           Object.entries(item.topSkus).map(([sku, count]) => `<span class="ranking-pill">${sku}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(Boolean);
+        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
         const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
 
         tbodyMarcas.innerHTML += `<tr><td><strong>${item.marca}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
@@ -469,7 +473,7 @@
         const key = `${r.sku}||${r.produto}`;
         if (!mapSkus[key]) mapSkus[key] = { sku: r.sku, produto: r.produto, qtd: 0, comentarios: [] };
         mapSkus[key].qtd++;
-        if (r.comentario) mapSkus[key].comentarios.push(r.comentario);
+        if (isComentarioValido(r.comentario)) mapSkus[key].comentarios.push(r.comentario);
       });
 
       const listSkus = Object.values(mapSkus).sort((a,b) => b.qtd - a.qtd);
@@ -527,7 +531,7 @@
       tbodyMarcas.innerHTML = '';
       listMarcas.forEach(item => {
         const rankingHtml = '<div class="ranking-container">' + Object.entries(item.topSkus).map(([sku, count]) => `<span class="ranking-pill">${sku}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(Boolean);
+        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
         const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
         tbodyMarcas.innerHTML += `<tr><td><strong>${item.marca}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
       });
@@ -537,7 +541,7 @@
         const key = `${r.sku}||${r.produto}`;
         if (!mapSkus[key]) mapSkus[key] = { sku: r.sku, produto: r.produto, qtd: 0, comentarios: [] };
         mapSkus[key].qtd++;
-        if (r.comentario) mapSkus[key].comentarios.push(r.comentario);
+        if (isComentarioValido(r.comentario)) mapSkus[key].comentarios.push(r.comentario);
       });
 
       const listSkus = Object.values(mapSkus).sort((a,b) => b.qtd - a.qtd);
@@ -581,7 +585,7 @@
       tbody.innerHTML = '';
       list.forEach(item => {
         const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => `<span class="ranking-pill">${mot}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(Boolean);
+        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
         const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
 
         tbody.innerHTML += `<tr><td><strong>${item.transportadora}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
@@ -610,7 +614,7 @@
       tbody.innerHTML = '';
       list.forEach(item => {
         const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => `<span class="ranking-pill">${transp}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(Boolean);
+        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
         const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
 
         tbody.innerHTML += `<tr><td><strong>${item.motivo}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
