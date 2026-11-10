@@ -16,6 +16,7 @@
       --primary: #2563eb;
       --danger: #dc2626;
       --warning: #d97706;
+      --info: #0284c7;
       --success: #16a34a;
     }
 
@@ -23,35 +24,49 @@
     .header { margin-bottom: 24px; }
     .header h1 { font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0 0 6px 0; }
     
-    /* Top Indicators Cards */
-    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    /* Grid dos 4 Cards de Indicadores */
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-bottom: 28px; }
     .metric-card { background: var(--card-bg); border-radius: 12px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-    .metric-card h3 { margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
-    .metric-card .val { font-size: 34px; font-weight: 800; }
+    .metric-card h3 { margin: 0 0 8px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+    .metric-card .val { font-size: 32px; font-weight: 800; }
     .val-danger { color: var(--danger); }
+    .val-info { color: var(--info); }
     .val-warning { color: var(--warning); }
     .val-success { color: var(--success); }
 
-    /* Tab Navigation */
+    /* Navegação por Abas */
     .nav-tabs { display: flex; gap: 8px; border-bottom: 2px solid var(--border-color); margin-bottom: 24px; }
     .tab-btn { background: none; border: none; padding: 12px 20px; font-size: 15px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
     .tab-btn:hover { color: var(--primary); }
     .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
 
-    /* Tab Contents */
+    /* Conteúdos das Abas */
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
     .chart-box { background: var(--card-bg); border-radius: 12px; padding: 24px; border: 1px solid var(--border-color); margin-bottom: 24px; }
     
-    /* Tables & Accordions */
+    /* Tabelas */
     table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
-    th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border-color); }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: top; }
     th { background: #f1f5f9; font-weight: 600; color: #334155; }
     
-    .comment-list { margin: 8px 0 0 0; padding-left: 20px; color: #475569; font-size: 13px; }
-    .comment-list li { margin-bottom: 4px; }
-    .badge-count { background: #e2e8f0; color: #334155; padding: 2px 8px; border-radius: 12px; font-weight: 700; font-size: 12px; }
+    /* Reformulação Visual dos Comentários (Cards Elegantes) */
+    .comments-container { display: flex; flex-direction: column; gap: 8px; }
+    .comment-bubble { 
+      background: #f1f5f9; 
+      border-left: 3px solid var(--primary); 
+      border-radius: 6px; 
+      padding: 8px 12px; 
+      font-size: 13px; 
+      color: #334155;
+      line-height: 1.4;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+    .comment-bubble::before { content: "💬 "; font-size: 11px; }
+
+    .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
+    .no-comments { color: #94a3b8; font-size: 13px; font-style: italic; }
   </style>
 </head>
 <body>
@@ -60,11 +75,15 @@
     <h1>Impactos ML - Painel de Controle</h1>
   </div>
 
-  <!-- Cards Indicadores Superiores -->
+  <!-- Cards Indicadores Superiores (4 Indicadores) -->
   <div class="metrics-grid">
     <div class="metric-card">
       <h3>Pedidos Afetando Reputação</h3>
       <div class="val val-danger" id="total-afetando">-</div>
+    </div>
+    <div class="metric-card">
+      <h3>Em Mediação (Válidos)</h3>
+      <div class="val val-info" id="total-mediacao">-</div>
     </div>
     <div class="metric-card">
       <h3>Revisão Recusada (Válidos)</h3>
@@ -89,7 +108,7 @@
       <div style="height: 480px;"><canvas id="chartSkus"></canvas></div>
     </div>
     <table id="tabela-skus">
-      <thead><tr><th>SKU</th><th>Produto</th><th>Quantidade</th></tr></thead>
+      <thead><tr><th>SKU</th><th>Produto</th><th>Qtd</th><th>Comentários & Ocorrências</th></tr></thead>
       <tbody></tbody>
     </table>
   </div>
@@ -126,21 +145,28 @@
       event.currentTarget.classList.add('active');
     }
 
+    function renderComentarios(comentarios) {
+      if (!comentarios || comentarios.length === 0) {
+        return '<span class="no-comments">Sem observações gravadas</span>';
+      }
+      return '<div class="comments-container">' + 
+        comentarios.map(c => `<div class="comment-bubble">${c}</div>`).join('') + 
+        '</div>';
+    }
+
     fetch('impactos_ml.json?v=' + new Date().getTime())
       .then(res => res.json())
       .then(data => {
-        // Indicadores dos Cards
+        // 4 Indicadores de Topo
         const ind = data.indicadores_topo || {};
         document.getElementById('total-afetando').innerText = ind.total_pedidos_afetando ?? 0;
+        document.getElementById('total-mediacao').innerText = ind.total_em_mediacao ?? 0;
         document.getElementById('total-recusada').innerText = ind.total_revisao_recusada ?? 0;
         document.getElementById('total-removido').innerText = ind.total_impacto_removido ?? 0;
 
         // 1. ABA SKUS / PRODUTOS
         const skusList = data.skus_produtos_impactados || [];
-        const skusLabels = skusList.slice(0, 15).map(i => {
-          const keys = Object.keys(i);
-          return `${i[keys[0]]} - ${i[keys[1]]}`.substring(0, 40) + '...';
-        });
+        const skusLabels = skusList.slice(0, 15).map(i => `${i.sku} - ${i.produto}`.substring(0, 40) + '...');
         const skusValues = skusList.slice(0, 15).map(i => i.quantidade);
 
         new Chart(document.getElementById('chartSkus'), {
@@ -155,8 +181,12 @@
 
         const tbodySkus = document.querySelector('#tabela-skus tbody');
         skusList.forEach(item => {
-          const keys = Object.keys(item);
-          tbodySkus.innerHTML += `<tr><td><strong>${item[keys[0]]}</strong></td><td>${item[keys[1]]}</td><td><span class="badge-count">${item.quantidade}</span></td></tr>`;
+          tbodySkus.innerHTML += `<tr>
+            <td><strong>${item.sku}</strong></td>
+            <td>${item.produto}</td>
+            <td><span class="badge-count">${item.quantidade}</span></td>
+            <td>${renderComentarios(item.comentarios)}</td>
+          </tr>`;
         });
 
         // 2. ABA TRANSPORTADORAS
@@ -173,8 +203,11 @@
 
         const tbodyTransp = document.querySelector('#tabela-transportadoras tbody');
         transpList.forEach(item => {
-          let comHtml = item.comentarios.length ? `<ul class="comment-list">${item.comentarios.map(c => `<li>${c}</li>`).join('')}</ul>` : '<em style="color:#94a3b8;">Sem observações gravadas</em>';
-          tbodyTransp.innerHTML += `<tr><td><strong>${item.transportadora}</strong></td><td><span class="badge-count">${item.quantidade}</span></td><td>${comHtml}</td></tr>`;
+          tbodyTransp.innerHTML += `<tr>
+            <td><strong>${item.transportadora}</strong></td>
+            <td><span class="badge-count">${item.quantidade}</span></td>
+            <td>${renderComentarios(item.comentarios)}</td>
+          </tr>`;
         });
 
         // 3. ABA MOTIVOS
@@ -196,8 +229,11 @@
 
         const tbodyMotivos = document.querySelector('#tabela-motivos tbody');
         motivosList.forEach(item => {
-          let comHtml = item.comentarios.length ? `<ul class="comment-list">${item.comentarios.map(c => `<li>${c}</li>`).join('')}</ul>` : '<em style="color:#94a3b8;">Sem observações gravadas</em>';
-          tbodyMotivos.innerHTML += `<tr><td><strong>${item.motivo}</strong></td><td><span class="badge-count">${item.quantidade}</span></td><td>${comHtml}</td></tr>`;
+          tbodyMotivos.innerHTML += `<tr>
+            <td><strong>${item.motivo}</strong></td>
+            <td><span class="badge-count">${item.quantidade}</span></td>
+            <td>${renderComentarios(item.comentarios)}</td>
+          </tr>`;
         });
       });
   </script>
