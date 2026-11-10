@@ -202,7 +202,6 @@
         </div>
       </div>
 
-      <!-- CARDS AMAZON (Substituído Total Pedidos Válidos por Impactos Removidos) -->
       <div class="metrics-grid">
         <div class="metric-card">
           <h3>Pedidos Afetando Reputação</h3>
@@ -228,7 +227,6 @@
         <button class="tab-btn" onclick="switchTabAMZ('tab-skus-amz')">SKUs / Produtos</button>
       </div>
 
-      <!-- ABA 1: CHAMADOS PREMIUM -->
       <div id="tab-premium-amz" class="tab-content active">
         <table id="tabela-premium-amz">
           <thead>
@@ -244,7 +242,6 @@
         </table>
       </div>
 
-      <!-- ABA 2: REPASSES -->
       <div id="tab-repasses-amz" class="tab-content">
         <table id="tabela-repasses-amz">
           <thead>
@@ -258,7 +255,6 @@
         </table>
       </div>
 
-      <!-- ABA 3: SKUS / PRODUTOS -->
       <div id="tab-skus-amz" class="tab-content">
         <div class="chart-box">
           <h2 class="section-subtitle">Ranking por Marca dos Produtos</h2>
@@ -377,7 +373,6 @@
         ? rawDataAMZ.filter(r => r.is_afetando)
         : rawDataAMZ;
 
-      // Indicadores de Topo Amazon
       const totalAfetando = rawDataAMZ.filter(r => r.is_afetando).length;
       const totalRemovidos = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('REMOVIDO')).length;
       const totalPremium = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
@@ -393,7 +388,6 @@
       renderTabSkusAMZ(dataset);
     }
 
-    // ABA 1 AMAZON: CHAMADOS PREMIUM
     function renderTabPremiumAMZ() {
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
@@ -422,7 +416,6 @@
       });
     }
 
-    // ABA 2 AMAZON: REPASSES
     function renderTabRepassesAMZ(dataset) {
       const tbody = document.querySelector('#tabela-repasses-amz tbody');
       tbody.innerHTML = '';
@@ -442,7 +435,6 @@
       });
     }
 
-    // ABA 3 AMAZON: SKUS / PRODUTOS
     function renderTabSkusAMZ(dataset) {
       const mapMarcas = {};
       dataset.forEach(r => {
