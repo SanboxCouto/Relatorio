@@ -5,6 +5,7 @@ import unicodedata
 import io
 import requests
 
+# URLs das Planilhas Publicadas no Google Sheets
 URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRH_71QAinoH_JzNzSswCNjswyM6EoMMSSFwbAlm-BPEeNXX5Xm1PKBbqaPQkVysQ/pub?gid=1773072804&single=true&output=csv"
 URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRH_71QAinoH_JzNzSswCNjswyM6EoMMSSFwbAlm-BPEeNXX5Xm1PKBbqaPQkVysQ/pub?gid=134048884&single=true&output=csv"
 
@@ -34,8 +35,6 @@ def limpar_comentario(texto):
         return ""
     coment = str(texto).strip()
     coment_norm = remover_acentos(coment)
-    
-    # Filtra textos vazios, 'nan' ou marcadores de 'sem comentário'
     if coment_norm in ['', 'NAN', 'SEM COMENTARIO', 'SEM COMENTARIOS', 'SEM OBSERVACOES', 'SEM OBSERVACAO', 'N/A', '-']:
         return ""
     return coment
@@ -104,60 +103,76 @@ def processar_ml():
     return registros
 
 def processar_amazon():
-    df = parse_csv_dinamico(URL_CSV_AMAZON, ['ID DO PEDIDO', 'TEMPO DE IMPACTO', 'PRODUTO DA REIVINDICACAO'])
+    # Localiza o cabeçalho pela presença do ID do Pedido ou Produto da Reivindicação
+    df = parse_csv_dinamico(URL_CSV_AMAZON, ['ID DO PEDIDO', 'PRODUTO DA REIVINDICACAO', 'TEMPO DE IMPACTO'])
 
-    def get_col(nomes, default_idx):
+    def get_col(nome_exato):
         for col in df.columns:
-            col_norm = remover_acentos(col)
-            if any(remover_acentos(n) in col_norm for n in nomes):
+            if remover_acentos(col) == remover_acentos(nome_exato):
                 return col
-        return df.columns[default_idx] if len(df.columns) > default_idx else df.columns[0]
+        # Busca parcial de fallback
+        for col in df.columns:
+            if remover_acentos(nome_exato) in remover_acentos(col):
+                return col
+        return None
 
-    col_data_pedido  = get_col(['DATA DO PEDIDO'], 0)
-    col_data_reiv    = get_col(['DATA DA REIVINDICACAO', 'DATA REIVINDICACAO'], 1)
-    col_tempo_imp    = get_col(['TEMPO DE IMPACTO'], 2)
-    col_id_pedido    = get_col(['ID DO PEDIDO'], 3)
-    col_motivo       = get_col(['MOTIVO'], 4)
-    col_comentario   = get_col(['COMENTARIO', 'OBS'], 5)
-    col_impacto      = get_col(['IMPACTO'], 6)
-    col_valor        = get_col(['VALOR'], 7)
-    col_reembolso    = get_col(['REEMBOLSO'], 8)
-    col_transp       = get_col(['TRANSPORTADORA'], 9)
-    col_produto      = get_col(['PRODUTO DA REIVINDICACAO', 'PRODUTO REIVINDICACAO', 'PRODUTO'], 10)
-    col_sku          = get_col(['SKU'], 11)
+    col_data_pedido  = get_col('Data do pedido')
+    col_data_reiv    = get_col('Data da Reivindicação')
+    col_tempo_imp    = get_col('Tempo de Impacto')
+    col_id_pedido    = get_col('ID do pedido')
+    col_motivo       = get_col('Motivo')
+    col_comentario   = get_col('Comentário')
+    col_impacto      = get_col('Impacto')
+    col_valor        = get_col('Valor')
+    col_reembolso    = get_col('Reembolso')
+    col_transp       = get_col('Transportadora')
+    col_sku          = get_col('SKU')
+    col_produto      = get_col('Produto da Reivindicação')
 
     registros = []
     for idx, row in df.iterrows():
-        id_ped = str(row[col_id_pedido]).strip()
+        id_ped = str(row[col_id_pedido]).strip() if col_id_pedido and pd.notna(row[col_id_pedido]) else ''
         
+        # Ignora linhas que não sejam dados válidos de pedido
         if not id_ped or id_ped.lower() == 'nan' or 'id do pedido' in id_ped.lower():
             continue
 
-        tempo_clean = remover_acentos(str(row[col_tempo_imp]))
-        impacto_clean = remover_acentos(str(row[col_impacto]))
+        tempo_val = str(row[col_tempo_imp]).strip() if col_tempo_imp and pd.notna(row[col_tempo_imp]) else ''
+        impacto_val = str(row[col_impacto]).strip() if col_impacto and pd.notna(row[col_impacto]) else ''
 
+        tempo_clean = remover_acentos(tempo_val)
+        impacto_clean = remover_acentos(impacto_val)
+
+        # Tempo de Impacto: VÁLIDO vs EXPIRADO
         is_valido = 'VALIDO' in tempo_clean
+        
+        # Pedidos Afetando Reputação: VÁLIDO + (MANTIDO, CHAMADO PREMIUM ou ANALISE)
         is_afetando = is_valido and any(st in impacto_clean for st in ['MANTIDO', 'CHAMADO PREMIUM', 'ANALISE'])
 
-        sku_val = str(row[col_sku]).strip() if pd.notna(row[col_sku]) and str(row[col_sku]).strip().lower() != 'nan' else 'N/A'
-        prod_val = str(row[col_produto]).strip() if pd.notna(row[col_produto]) and str(row[col_produto]).strip().lower() != 'nan' else f"SKU {sku_val}"
+        sku_val = str(row[col_sku]).strip() if col_sku and pd.notna(row[col_sku]) and str(row[col_sku]).strip().lower() != 'nan' else 'N/A'
         
-        coment = limpar_comentario(row[col_comentario])
+        prod_val = ''
+        if col_produto and pd.notna(row[col_produto]):
+            prod_val = str(row[col_produto]).strip()
+        if not prod_val or prod_val.lower() == 'nan':
+            prod_val = f"SKU {sku_val}"
+
+        coment_val = str(row[col_comentario]) if col_comentario and pd.notna(row[col_comentario]) else ''
 
         registros.append({
             "id_pedido": id_ped,
-            "data_pedido": str(row[col_data_pedido]).strip(),
-            "data_reivindicacao": str(row[col_data_reiv]).strip(),
-            "valor": str(row[col_valor]).strip(),
-            "reembolso": str(row[col_reembolso]).strip(),
-            "impacto": str(row[col_impacto]).strip(),
-            "motivo": str(row[col_motivo]).strip(),
+            "data_pedido": str(row[col_data_pedido]).strip() if col_data_pedido and pd.notna(row[col_data_pedido]) else '',
+            "data_reivindicacao": str(row[col_data_reiv]).strip() if col_data_reiv and pd.notna(row[col_data_reiv]) else '',
+            "valor": str(row[col_valor]).strip() if col_valor and pd.notna(row[col_valor]) else '',
+            "reembolso": str(row[col_reembolso]).strip() if col_reembolso and pd.notna(row[col_reembolso]) else '',
+            "impacto": impacto_val,
+            "motivo": str(row[col_motivo]).strip() if col_motivo and pd.notna(row[col_motivo]) else '',
             "produto": prod_val,
             "sku": sku_val,
-            "transportadora": str(row[col_transp]).strip(),
-            "tempo_impacto": str(row[col_tempo_imp]).strip(),
+            "transportadora": str(row[col_transp]).strip() if col_transp and pd.notna(row[col_transp]) else '',
+            "tempo_impacto": tempo_val,
             "marca": extrair_marca(prod_val if prod_val != f"SKU {sku_val}" else sku_val),
-            "comentario": coment,
+            "comentario": limpar_comentario(coment_val),
             "is_valido": is_valido,
             "is_afetando": is_afetando
         })
