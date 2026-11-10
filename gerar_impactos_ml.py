@@ -67,6 +67,7 @@ def processar_ml():
                 return col
         return df.columns[default_idx] if len(df.columns) > default_idx else df.columns[0]
 
+    col_data_pedido    = get_col(['DATA DO PEDIDO', 'DATA'], 0)
     col_status_valido = get_col(['TEMPO DE IMPACTO', 'VALIDACAO'], 3)
     col_produto       = get_col(['PRODUTO'], 4)
     col_motivo        = get_col(['MOTIVO DA RECLAMACAO', 'MOTIVO'], 5)
@@ -86,6 +87,7 @@ def processar_ml():
 
         prod_nome = str(row[col_produto]) if pd.notna(row[col_produto]) else ''
         coment = limpar_comentario(row[col_comentario])
+        data_ped = str(row[col_data_pedido]).strip() if col_data_pedido and pd.notna(row[col_data_pedido]) else ''
 
         registros.append({
             "sku": str(row[col_sku]).strip() if pd.notna(row[col_sku]) else 'N/A',
@@ -95,6 +97,7 @@ def processar_ml():
             "transportadora": str(row[col_transportadora]),
             "status": str(row[col_status_g]),
             "tempo_impacto": str(row[col_status_valido]),
+            "data_pedido": data_ped,
             "comentario": coment,
             "is_valido": is_valido,
             "is_afetando": is_afetando
