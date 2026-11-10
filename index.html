@@ -68,8 +68,8 @@
     .metric-card h3 { margin: 0 0 8px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
     .metric-card .val { font-size: 32px; font-weight: 800; }
     .metric-card .comp-badge { font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block; }
-    .comp-up { background: #fee2e2; color: #b91c1c; } /* Aumento de avarias = Alerta vermelho */
-    .comp-down { background: #dcfce7; color: #15803d; } /* Queda de avarias = Verde */
+    .comp-up { background: #fee2e2; color: #b91c1c; } 
+    .comp-down { background: #dcfce7; color: #15803d; }
     .comp-equal { background: #f1f5f9; color: #475569; }
 
     .val-danger { color: var(--danger); }
@@ -162,7 +162,7 @@
       <div class="header-bar">
         <h1>Impactos ML</h1>
         <div class="filter-controls-group">
-          <!-- Filtro de Período Temporal -->
+          <!-- Período Principal -->
           <select id="filter-dias-ml" class="select-filter-hdr" onchange="renderML()">
             <option value="0">Todo o Período</option>
             <option value="7">Últimos 7 Dias</option>
@@ -171,10 +171,12 @@
             <option value="60">Últimos 60 Dias</option>
           </select>
 
-          <!-- Comparativo Proporcional -->
+          <!-- Comparativo -->
           <select id="filter-comparativo-ml" class="select-filter-hdr" onchange="renderML()">
             <option value="NONE">Sem Comparativo</option>
-            <option value="PERIODO_ANTERIOR">vs Período Anterior Equivalente</option>
+            <option value="7">vs 7 Dias Anteriores</option>
+            <option value="15">vs 15 Dias Anteriores</option>
+            <option value="30">vs 30 Dias Anteriores</option>
           </select>
 
           <div class="filter-switch">
@@ -251,7 +253,7 @@
       <div class="header-bar">
         <h1>Reivindicações A-Z Amazon</h1>
         <div class="filter-controls-group">
-          <!-- Filtro de Período Temporal Amazon -->
+          <!-- Período Principal Amazon -->
           <select id="filter-dias-amz" class="select-filter-hdr" onchange="renderAMZ()">
             <option value="0">Todo o Período</option>
             <option value="7">Últimos 7 Dias</option>
@@ -260,10 +262,12 @@
             <option value="60">Últimos 60 Dias</option>
           </select>
 
-          <!-- Comparativo Proporcional Amazon -->
+          <!-- Comparativo Amazon -->
           <select id="filter-comparativo-amz" class="select-filter-hdr" onchange="renderAMZ()">
             <option value="NONE">Sem Comparativo</option>
-            <option value="PERIODO_ANTERIOR">vs Período Anterior Equivalente</option>
+            <option value="7">vs 7 Dias Anteriores</option>
+            <option value="15">vs 15 Dias Anteriores</option>
+            <option value="30">vs 30 Dias Anteriores</option>
           </select>
 
           <div class="filter-switch">
@@ -495,47 +499,33 @@
       });
     }
 
-    // EXTRAI O INTERVALO PROPORCIONAL CORRETO DA PLANILHA
-    function getDatasetByPeriod(list, daysLimit, offsetPeriods = 0) {
-      const validDatedItems = list.filter(r => parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao) !== null);
-      if (!validDatedItems.length) return list;
-
-      // Ordenar por data mais recente
-      validDatedItems.sort((a, b) => {
-        const tA = parseDateToTimestamp(a.data_pedido || a.data_solicitacao || a.data_reivindicacao);
-        const tB = parseDateToTimestamp(b.data_pedido || b.data_solicitacao || b.data_reivindicacao);
-        return tB - tA;
+    // EXTRAI A DATA MAIS RECENTE DA PLANILHA PARA SER A ÂNCORA DO TEMPO REAL
+    function getMaxTimestamp(list) {
+      let maxT = 0;
+      list.forEach(r => {
+        const t = parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
+        if (t && t > maxT) maxT = t;
       });
+      return maxT || new Date().getTime();
+    }
 
-      const maxTimestamp = parseDateToTimestamp(validDatedItems[0].data_pedido || validDatedItems[0].data_solicitacao || validDatedItems[0].data_reivindicacao);
+    // FILTRO DE PERÍODO PRINCIPAL E JANELA ANTERIOR EQUIVALENTE
+    function getDatasetByWindow(list, daysLimit, offsetPeriods = 0) {
+      if (daysLimit <= 0 && offsetPeriods === 0) return list;
+
+      const maxTimestamp = getMaxTimestamp(list);
       const msPerDay = 86400000;
 
-      if (daysLimit <= 0) {
-        // Se Todo o Período estiver selecionado, usa os últimos 30 dias como base de comparativo
-        const effDays = 30;
-        const currentEnd = maxTimestamp;
-        const currentStart = currentEnd - (effDays * msPerDay);
+      // Se "Todo o Período" estiver ativo (daysLimit = 0) mas selecionado comparativo (ex: 7d)
+      const effDays = daysLimit > 0 ? daysLimit : 30;
 
-        if (offsetPeriods === 0) {
-          return list; // Retorna tudo para o principal
-        } else {
-          // Período anterior equivalente (30 dias anteriores aos 30 dias mais recentes)
-          const prevEnd = currentStart - 1;
-          const prevStart = prevEnd - (effDays * msPerDay);
-          return list.filter(r => {
-            const t = parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
-            return t && t >= prevStart && t <= prevEnd;
-          });
-        }
-      }
-
-      // Se um número de dias específico foi selecionado (7, 15, 30, 60)
-      const currentEnd = maxTimestamp - (offsetPeriods * daysLimit * msPerDay);
-      const currentStart = currentEnd - (daysLimit * msPerDay);
+      const currentEnd = maxTimestamp - (offsetPeriods * effDays * msPerDay);
+      const currentStart = currentEnd - (effDays * msPerDay);
 
       return list.filter(r => {
         const t = parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
-        return t && t >= currentStart && t <= currentEnd;
+        if (!t) return offsetPeriods === 0; // se sem data, fica no principal
+        return t >= currentStart && t <= currentEnd;
       });
     }
 
@@ -553,7 +543,7 @@
       else if(diff < 0) { badgeClass = 'comp-down'; }
 
       const pct = previousVal > 0 ? ((diff / previousVal) * 100).toFixed(0) : (currentVal > 0 ? 100 : 0);
-      el.innerHTML = `<span class="comp-badge ${badgeClass}">${sign}${diff} (${sign}${pct}%) vs anterior</span>`;
+      el.innerHTML = `<span class="comp-badge ${badgeClass}">${sign}${diff} (${sign}${pct}%) vs ${label}d ant</span>`;
     }
 
     function isComentarioValido(c) {
@@ -565,10 +555,10 @@
     // ================= RENDERIZADOR AMAZON =================
     function renderAMZ() {
       const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
-      const showComp = document.getElementById('filter-comparativo-amz')?.value === 'PERIODO_ANTERIOR';
+      const compDaysVal = document.getElementById('filter-comparativo-amz')?.value || 'NONE';
 
-      let dataset = getDatasetByPeriod(rawDataAMZ, days, 0);
-      let baseTotalList = getDatasetByPeriod(rawDataAMZ, days, 0);
+      let dataset = getDatasetByWindow(rawDataAMZ, days, 0);
+      let baseTotalList = getDatasetByWindow(rawDataAMZ, days, 0);
 
       if (escopoAMZ === 'afetando') {
         dataset = dataset.filter(r => r.is_afetando);
@@ -585,18 +575,19 @@
       document.getElementById('total-premium-amz').innerText = totalPremium;
       document.getElementById('total-analise-amz').innerText = totalAnalise;
 
-      // Comparativo Amazon Proporcional
-      if(showComp) {
-        const prevList = getDatasetByPeriod(rawDataAMZ, days, 1);
+      // Comparativo Amazon
+      if(compDaysVal !== 'NONE') {
+        const compDays = parseInt(compDaysVal);
+        const prevList = getDatasetByWindow(rawDataAMZ, compDays, 1);
         const prevAfetando = prevList.filter(r => r.is_afetando).length;
         const prevRemovidos = prevList.filter(r => normalizeText(r.impacto).includes('REMOVIDO')).length;
         const prevPremium = prevList.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
         const prevAnalise = prevList.filter(r => r.is_valido && normalizeText(r.impacto).includes('ANALISE')).length;
 
-        generateComparisonBadge('comp-afetando-amz', totalAfetando, prevAfetando, 'ant');
-        generateComparisonBadge('comp-removidos-amz', totalRemovidos, prevRemovidos, 'ant');
-        generateComparisonBadge('comp-premium-amz', totalPremium, prevPremium, 'ant');
-        generateComparisonBadge('comp-analise-amz', totalAnalise, prevAnalise, 'ant');
+        generateComparisonBadge('comp-afetando-amz', totalAfetando, prevAfetando, compDays);
+        generateComparisonBadge('comp-removidos-amz', totalRemovidos, prevRemovidos, compDays);
+        generateComparisonBadge('comp-premium-amz', totalPremium, prevPremium, compDays);
+        generateComparisonBadge('comp-analise-amz', totalAnalise, prevAnalise, compDays);
       } else {
         ['comp-afetando-amz','comp-removidos-amz','comp-premium-amz','comp-analise-amz'].forEach(id => {
           document.getElementById(id).innerHTML = '';
@@ -615,7 +606,7 @@
       const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
       const query = normalizeText(document.getElementById('search-premium-input')?.value || '');
 
-      let premiumList = getDatasetByPeriod(rawDataAMZ, days, 0).filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
+      let premiumList = getDatasetByWindow(rawDataAMZ, days, 0).filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
 
       premiumList.sort((a, b) => {
         const tA = parseDateToTimestamp(a.data_solicitacao || a.data_reivindicacao) || 0;
@@ -662,7 +653,7 @@
       const query = normalizeText(document.getElementById('search-repasses-input')?.value || '');
       const filterRes = document.getElementById('filter-resultado-repasses')?.value || 'TODOS';
 
-      let repassesList = getDatasetByPeriod(rawDataAMZ, days, 0);
+      let repassesList = getDatasetByWindow(rawDataAMZ, days, 0);
 
       if (filterRes !== 'TODOS') {
         const filterNorm = normalizeText(filterRes);
@@ -735,10 +726,10 @@
     // ================= RENDERIZADOR MERCADO LIVRE =================
     function renderML() {
       const days = parseInt(document.getElementById('filter-dias-ml')?.value || '0');
-      const showComp = document.getElementById('filter-comparativo-ml')?.value === 'PERIODO_ANTERIOR';
+      const compDaysVal = document.getElementById('filter-comparativo-ml')?.value || 'NONE';
 
-      let baseTotalList = getDatasetByPeriod(rawDataML, days, 0);
-      let dataset = getDatasetByPeriod(rawDataML, days, 0);
+      let baseTotalList = getDatasetByWindow(rawDataML, days, 0);
+      let dataset = getDatasetByWindow(rawDataML, days, 0);
 
       if (escopoML === 'afetando') {
         dataset = dataset.filter(r => r.is_afetando);
@@ -755,18 +746,19 @@
       document.getElementById('total-recusada-ml').innerText = totalRecusada;
       document.getElementById('total-removido-ml').innerText = totalRemovido;
 
-      // Comparativo ML Proporcional
-      if(showComp) {
-        const prevList = getDatasetByPeriod(rawDataML, days, 1);
+      // Comparativo ML
+      if(compDaysVal !== 'NONE') {
+        const compDays = parseInt(compDaysVal);
+        const prevList = getDatasetByWindow(rawDataML, compDays, 1);
         const prevAfetando = prevList.filter(r => r.is_afetando).length;
         const prevMediacao = prevList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
         const prevRecusada = prevList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
         const prevRemovido = prevList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
 
-        generateComparisonBadge('comp-afetando-ml', totalAfetando, prevAfetando, 'ant');
-        generateComparisonBadge('comp-mediacao-ml', totalMediacao, prevMediacao, 'ant');
-        generateComparisonBadge('comp-recusada-ml', totalRecusada, prevRecusada, 'ant');
-        generateComparisonBadge('comp-removido-ml', totalRemovido, prevRemovido, 'ant');
+        generateComparisonBadge('comp-afetando-ml', totalAfetando, prevAfetando, compDays);
+        generateComparisonBadge('comp-mediacao-ml', totalMediacao, prevMediacao, compDays);
+        generateComparisonBadge('comp-recusada-ml', totalRecusada, prevRecusada, compDays);
+        generateComparisonBadge('comp-removido-ml', totalRemovido, prevRemovido, compDays);
       } else {
         ['comp-afetando-ml','comp-mediacao-ml','comp-recusada-ml','comp-removido-ml'].forEach(id => {
           document.getElementById(id).innerHTML = '';
