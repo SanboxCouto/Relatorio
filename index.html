@@ -76,11 +76,21 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
+    /* Barra de busca e filtros das tabelas */
+    .table-toolbar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+    .search-box-wrapper { position: relative; min-width: 280px; flex: 1; }
+    .search-input { width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; background: #fff; transition: border-color 0.2s; }
+    .search-input:focus { border-color: var(--primary); }
+    .search-icon-inside { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--text-muted); pointer-events: none; }
+    
+    .select-filter { padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; background: #fff; font-weight: 600; color: var(--text-main); outline: none; cursor: pointer; }
+    .select-filter:focus { border-color: var(--primary); }
+
     .chart-box { background: var(--card-bg); border-radius: 12px; padding: 24px; border: 1px solid var(--border-color); margin-bottom: 24px; }
     .section-subtitle { font-size: 16px; font-weight: 700; color: #1e293b; margin: 0 0 16px 0; }
 
     table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); table-layout: fixed; margin-bottom: 24px; }
-    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
     th { background: #f1f5f9; font-weight: 600; color: #334155; }
 
     .order-link-box { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #0f172a; text-decoration: none; }
@@ -225,22 +235,43 @@
         <button class="tab-btn" onclick="switchTabAMZ('tab-skus-amz')">SKUs / Produtos</button>
       </div>
 
+      <!-- ABA 1: CHAMADOS PREMIUM -->
       <div id="tab-premium-amz" class="tab-content active">
+        <div class="table-toolbar">
+          <div class="search-box-wrapper">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="search-premium-input" class="search-input" placeholder="Pesquisar por ID do Pedido ou Valor..." oninput="renderTabPremiumAMZ()">
+          </div>
+        </div>
         <table id="tabela-premium-amz">
           <thead>
             <tr>
-              <th style="width:24%">ID do Pedido</th>
+              <th style="width:22%">ID do Pedido</th>
+              <th style="width:14%">Data Solicitação</th>
               <th style="width:14%">Data Reivindicação</th>
               <th style="width:14%">Valor (Reembolso)</th>
-              <th style="width:24%">Motivo</th>
-              <th style="width:24%">Transportadora</th>
+              <th style="width:18%">Motivo</th>
+              <th style="width:18%">Transportadora</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
       </div>
 
+      <!-- ABA 2: REPASSES -->
       <div id="tab-repasses-amz" class="tab-content">
+        <div class="table-toolbar">
+          <div class="search-box-wrapper">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="search-repasses-input" class="search-input" placeholder="Pesquisar por ID do Pedido ou Valor..." oninput="renderTabRepassesAMZ()">
+          </div>
+          <select id="filter-resultado-repasses" class="select-filter" onchange="renderTabRepassesAMZ()">
+            <option value="TODOS">Todos os Resultados (Valor)</option>
+            <option value="Com o Comprador">Com o Comprador</option>
+            <option value="Reembolsado pela Sanbox">Reembolsado pela Sanbox</option>
+            <option value="Repasse Liberado à Sanbox">Repasse Liberado à Sanbox</option>
+          </select>
+        </div>
         <table id="tabela-repasses-amz">
           <thead>
             <tr>
@@ -253,6 +284,7 @@
         </table>
       </div>
 
+      <!-- ABA 3: SKUS / PRODUTOS -->
       <div id="tab-skus-amz" class="tab-content">
         <div class="chart-box">
           <h2 class="section-subtitle">Ranking por Marca dos Produtos</h2>
@@ -302,6 +334,15 @@
     function normalizeText(str) {
       if (!str) return '';
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
+    }
+
+    function parseDate(dateStr) {
+      if (!dateStr) return 0;
+      const parts = dateStr.split('/');
+      if (parts.length === 3) {
+        return new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+      }
+      return 0;
     }
 
     function toggleSidebar() {
@@ -388,18 +429,37 @@
       document.getElementById('total-analise-amz').innerText = totalAnalise;
 
       renderTabPremiumAMZ();
-      renderTabRepassesAMZ(dataset);
+      renderTabRepassesAMZ();
       renderTabSkusAMZ(dataset);
     }
 
+    // ABA 1: CHAMADOS PREMIUM (com lupa + ordenação cronológica decrescente)
     function renderTabPremiumAMZ() {
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
       
-      const premiumList = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
+      const query = normalizeText(document.getElementById('search-premium-input')?.value || '');
+
+      let premiumList = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
+
+      // Ordenar cronologicamente (da data mais recente para a mais antiga)
+      premiumList.sort((a, b) => {
+        const tA = parseDate(a.data_solicitacao) || parseDate(a.data_reivindicacao);
+        const tB = parseDate(b.data_solicitacao) || parseDate(b.data_reivindicacao);
+        return tB - tA;
+      });
+
+      // Aplicar Busca (ID do pedido ou Valor)
+      if (query) {
+        premiumList = premiumList.filter(r => 
+          normalizeText(r.id_pedido).includes(query) || 
+          normalizeText(r.reembolso).includes(query) ||
+          normalizeText(r.valor).includes(query)
+        );
+      }
       
       if (!premiumList.length) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum chamado premium registrado.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#94a3b8;">Nenhum chamado premium encontrado.</td></tr>';
         return;
       }
 
@@ -412,19 +472,47 @@
               <span>${r.id_pedido}</span>
             </a>
           </td>
+          <td><strong>${r.data_solicitacao || '-'}</strong></td>
           <td>${r.data_reivindicacao || '-'}</td>
-          <td><strong>${r.reembolso || '-'}</strong></td>
+          <td><strong>${r.reembolso || r.valor || '-'}</strong></td>
           <td>${r.motivo || '-'}</td>
           <td>${r.transportadora || '-'}</td>
         </tr>`;
       });
     }
 
-    function renderTabRepassesAMZ(dataset) {
+    // ABA 2: REPASSES (Exibe TODOS os pedidos + Lupa + Filtro por Resultado/Valor)
+    function renderTabRepassesAMZ() {
       const tbody = document.querySelector('#tabela-repasses-amz tbody');
       tbody.innerHTML = '';
 
-      dataset.forEach(r => {
+      const query = normalizeText(document.getElementById('search-repasses-input')?.value || '');
+      const filterRes = document.getElementById('filter-resultado-repasses')?.value || 'TODOS';
+
+      // Sempre considera TODOS os pedidos cadastrados na Amazon
+      let repassesList = [...rawDataAMZ];
+
+      // Filtro por Resultado (Valor)
+      if (filterRes !== 'TODOS') {
+        const filterNorm = normalizeText(filterRes);
+        repassesList = repassesList.filter(r => normalizeText(r.valor).includes(filterNorm));
+      }
+
+      // Lupa de busca (ID do Pedido ou Valor)
+      if (query) {
+        repassesList = repassesList.filter(r => 
+          normalizeText(r.id_pedido).includes(query) || 
+          normalizeText(r.valor).includes(query) ||
+          normalizeText(r.reembolso).includes(query)
+        );
+      }
+
+      if (!repassesList.length) {
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#94a3b8;">Nenhum registro de repasse encontrado.</td></tr>';
+        return;
+      }
+
+      repassesList.forEach(r => {
         const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${r.id_pedido}`;
         tbody.innerHTML += `<tr>
           <td>
