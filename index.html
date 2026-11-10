@@ -4,35 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Impactos ML</title>
+  <!-- Chart.js + Plugin de Data Labels -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; margin: 0; padding: 20px; color: #333; }
-    h1 { color: #2c3e50; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 25px; }
-    .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .card h3 { margin-top: 0; font-size: 14px; color: #7f8c8d; }
-    .card .value { font-size: 28px; font-weight: bold; color: #e74c3c; }
-    .card .value-sub { font-size: 24px; color: #2c3e50; }
+    body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 24px; color: #1c1e21; }
+    h1 { color: #1a252f; font-size: 24px; margin-bottom: 20px; border-bottom: 2px solid #cbd5e1; padding-bottom: 8px; }
     
-    .chart-container { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .chart-box { position: relative; height: 320px; width: 100%; }
-    .chart-box-pie { position: relative; height: 320px; width: 100%; display: flex; justify-content: center; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .card { background: #ffffff; border-radius: 10px; padding: 20px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .card h3 { margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
+    .card .value-danger { font-size: 32px; font-weight: 700; color: #dc2626; }
+    .card .value-sub { font-size: 28px; font-weight: 600; color: #0f172a; }
     
-    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-top: 15px; }
-    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
-    th { background-color: #34495e; color: #fff; }
-    .section-title { margin-top: 10px; font-size: 18px; color: #34495e; }
+    .chart-card { background: #ffffff; border-radius: 10px; padding: 24px; margin-bottom: 24px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .chart-title { font-size: 16px; font-weight: 600; color: #334155; margin-top: 0; margin-bottom: 20px; }
+    
+    .chart-box-doughnut { position: relative; height: 360px; width: 100%; }
+    .chart-box-bar { position: relative; height: 380px; width: 100%; }
+    .chart-box-horizontal { position: relative; min-height: 550px; width: 100%; }
+    
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    th { background-color: #f8fafc; color: #475569; font-weight: 600; }
   </style>
 </head>
 <body>
 
-  <h1>Aba - Impactos ML</h1>
+  <h1>Impactos ML - Painel Analítico</h1>
 
-  <!-- Indicadores de Topo -->
+  <!-- Cards Indicadores principais -->
   <div class="grid">
     <div class="card">
       <h3>Pedidos Afetando Reputação</h3>
-      <div class="value" id="total-afetando">-</div>
+      <div class="value-danger" id="total-afetando">-</div>
     </div>
     <div class="card">
       <h3>Total Pedidos Válidos</h3>
@@ -44,10 +49,10 @@
     </div>
   </div>
 
-  <!-- Motivos da Reclamação (Pizza) -->
-  <div class="chart-container">
-    <h2 class="section-title">Motivos da Reclamação</h2>
-    <div class="chart-box-pie">
+  <!-- Motivos da Reclamação -->
+  <div class="chart-card">
+    <h2 class="chart-title">Motivos da Reclamação</h2>
+    <div class="chart-box-doughnut">
       <canvas id="chartMotivos"></canvas>
     </div>
     <table id="tabela-motivos">
@@ -56,10 +61,10 @@
     </table>
   </div>
 
-  <!-- Transportadoras (Barras Verticais) -->
-  <div class="chart-container">
-    <h2 class="section-title">Transportadoras</h2>
-    <div class="chart-box">
+  <!-- Transportadoras -->
+  <div class="chart-card">
+    <h2 class="chart-title">Impactos por Transportadora</h2>
+    <div class="chart-box-bar">
       <canvas id="chartTransportadoras"></canvas>
     </div>
     <table id="tabela-transportadoras">
@@ -68,10 +73,10 @@
     </table>
   </div>
 
-  <!-- SKUs / Produtos (Barras Horizontais) -->
-  <div class="chart-container">
-    <h2 class="section-title">Top Produtos & SKUs Impactados</h2>
-    <div class="chart-box" style="height: 450px;">
+  <!-- Top Produtos / SKUs -->
+  <div class="chart-card">
+    <h2 class="chart-title">Top 20 Produtos & SKUs mais Afetados</h2>
+    <div class="chart-box-horizontal">
       <canvas id="chartSkus"></canvas>
     </div>
     <table id="tabela-skus">
@@ -81,90 +86,143 @@
   </div>
 
   <script>
-    fetch('impactos_ml.json')
+    Chart.register(ChartDataLabels);
+
+    fetch('impactos_ml.json?v=' + new Date().getTime())
       .then(res => res.json())
       .then(data => {
-        // Indicadores
-        document.getElementById('total-afetando').innerText = data.resumo_validacao.total_pedidos_afetando;
-        document.getElementById('total-validos').innerText = data.resumo_validacao.total_pedidos_validos;
-        document.getElementById('total-registos').innerText = data.resumo_validacao.total_registros;
+        // Garantia de dados nos cards (resolve undefined)
+        const resumo = data.resumo_validacao || {};
+        document.getElementById('total-afetando').innerText = resumo.total_pedidos_afetando !== undefined ? resumo.total_pedidos_afetando : 0;
+        document.getElementById('total-validos').innerText = resumo.total_pedidos_validos !== undefined ? resumo.total_pedidos_validos : 0;
+        document.getElementById('total-registos').innerText = resumo.total_registros !== undefined ? resumo.total_registros : 0;
 
-        // 1. Gráfico de Pizza - Motivos
-        const motivosLabels = Object.keys(data.motivos_reclamacao);
-        const motivosValues = Object.values(data.motivos_reclamacao);
+        // 1. Motivos da Reclamação (Doughnut / Rosca com Legenda Lateral Acessível)
+        const motivosLabels = Object.keys(data.motivos_reclamacao || {});
+        const motivosValues = Object.values(data.motivos_reclamacao || {});
         
         new Chart(document.getElementById('chartMotivos'), {
-          type: 'pie',
+          type: 'doughnut',
           data: {
             labels: motivosLabels,
             datasets: [{
               data: motivosValues,
-              backgroundColor: ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6', '#e67e22', '#1abc9c']
+              backgroundColor: ['#ef4444', '#3b82f6', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#14b8a6', '#64748b']
             }]
           },
-          options: { responsive: true, maintainAspectRatio: false }
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { position: 'right', labels: { boxWidth: 14, font: { size: 12 } } },
+              datalabels: {
+                color: '#fff',
+                font: { weight: 'bold', size: 11 },
+                formatter: (val, ctx) => {
+                  let sum = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                  let percentage = (val * 100 / sum).toFixed(1) + "%";
+                  return val > (sum * 0.04) ? percentage : '';
+                }
+              }
+            }
+          }
         });
 
         // Tabela Motivos
         const tbodyMotivos = document.querySelector('#tabela-motivos tbody');
-        Object.entries(data.motivos_reclamacao).forEach(([m, q]) => {
-          tbodyMotivos.innerHTML += `<tr><td>${m}</td><td>${q}</td></tr>`;
+        Object.entries(data.motivos_reclamacao || {}).forEach(([m, q]) => {
+          tbodyMotivos.innerHTML += `<tr><td>${m}</td><td><strong>${q}</strong></td></tr>`;
         });
 
-        // 2. Gráfico de Barras - Transportadoras
-        const transpLabels = Object.keys(data.transportadoras);
-        const transpValues = Object.values(data.transportadoras);
+        // 2. Transportadoras (Barras com Rótulos de Dados no topo)
+        const transpLabels = Object.keys(data.transportadoras || {});
+        const transpValues = Object.values(data.transportadoras || {});
 
         new Chart(document.getElementById('chartTransportadoras'), {
           type: 'bar',
           data: {
             labels: transpLabels,
             datasets: [{
-              label: 'Quantidade',
               data: transpValues,
-              backgroundColor: '#3498db'
+              backgroundColor: '#3b82f6',
+              borderRadius: 4
             }]
           },
-          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                color: '#1e293b',
+                font: { weight: 'bold', size: 12 }
+              }
+            },
+            scales: {
+              y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+              x: { grid: { display: false } }
+            }
+          }
         });
 
         // Tabela Transportadoras
         const tbodyTransp = document.querySelector('#tabela-transportadoras tbody');
-        Object.entries(data.transportadoras).forEach(([t, q]) => {
-          tbodyTransp.innerHTML += `<tr><td>${t}</td><td>${q}</td></tr>`;
+        Object.entries(data.transportadoras || {}).forEach(([t, q]) => {
+          tbodyTransp.innerHTML += `<tr><td>${t}</td><td><strong>${q}</strong></td></tr>`;
         });
 
-        // 3. Gráfico de Barras Horizontais - SKU / Produto
-        const skusLabels = data.skus_produtos_impactados.map(i => {
+        // 3. Top SKUs / Produtos (Barras Horizontais Espaçadas)
+        const skusList = data.skus_produtos_impactados || [];
+        const skusLabels = skusList.map(i => {
           const keys = Object.keys(i);
-          return `${i[keys[0]]} - ${i[keys[1]]}`.substring(0, 35) + '...';
+          const sku = i[keys[0]];
+          const prod = i[keys[1]];
+          return `${sku} - ${prod}`.length > 45 ? `${sku} - ${prod}`.substring(0, 45) + '...' : `${sku} - ${prod}`;
         });
-        const skusValues = data.skus_produtos_impactados.map(i => i.quantidade);
+        const skusValues = skusList.map(i => i.quantidade);
 
         new Chart(document.getElementById('chartSkus'), {
           type: 'bar',
           data: {
             labels: skusLabels,
             datasets: [{
-              label: 'Quantidade Impactada',
               data: skusValues,
-              backgroundColor: '#e74c3c'
+              backgroundColor: '#ef4444',
+              borderRadius: 4
             }]
           },
           options: {
             indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { display: false } }
+            plugins: {
+              legend: { display: false },
+              datalabels: {
+                anchor: 'end',
+                align: 'right',
+                color: '#991b1b',
+                font: { weight: 'bold', size: 11 }
+              }
+            },
+            scales: {
+              x: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+              y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+            }
           }
         });
 
         // Tabela SKUs
         const tbodySkus = document.querySelector('#tabela-skus tbody');
-        data.skus_produtos_impactados.forEach(item => {
+        skusList.forEach(item => {
           const keys = Object.keys(item);
-          tbodySkus.innerHTML += `<tr><td>${item[keys[0]]}</td><td>${item[keys[1]]}</td><td>${item.quantidade}</td></tr>`;
+          tbodySkus.innerHTML += `<tr><td><strong>${item[keys[0]]}</strong></td><td>${item[keys[1]]}</td><td><strong>${item.quantidade}</strong></td></tr>`;
         });
+      })
+      .catch(err => {
+        console.error("Erro ao carregar dados:", err);
+        document.getElementById('total-afetando').innerText = "0";
       });
   </script>
 </body>
