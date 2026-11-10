@@ -5,7 +5,6 @@ import unicodedata
 import io
 import requests
 
-# URLs das Planilhas Publicadas
 URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRH_71QAinoH_JzNzSswCNjswyM6EoMMSSFwbAlm-BPEeNXX5Xm1PKBbqaPQkVysQ/pub?gid=1773072804&single=true&output=csv"
 URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRH_71QAinoH_JzNzSswCNjswyM6EoMMSSFwbAlm-BPEeNXX5Xm1PKBbqaPQkVysQ/pub?gid=134048884&single=true&output=csv"
 
@@ -30,10 +29,39 @@ def extrair_marca(nome_produto):
         return partes[1].capitalize()
     return "Outras"
 
+def limpar_comentario(texto):
+    if pd.isna(texto):
+        return ""
+    coment = str(texto).strip()
+    coment_norm = remover_acentos(coment)
+    
+    # Filtra textos vazios, 'nan' ou marcadores de 'sem comentário'
+    if coment_norm in ['', 'NAN', 'SEM COMENTARIO', 'SEM COMENTARIOS', 'SEM OBSERVACOES', 'SEM OBSERVACAO', 'N/A', '-']:
+        return ""
+    return coment
+
+def parse_csv_dinamico(url, termos_busca):
+    res = requests.get(url)
+    res.encoding = 'utf-8'
+    lines = res.text.splitlines()
+    
+    header_idx = -1
+    for idx, line in enumerate(lines[:15]):
+        line_norm = remover_acentos(line)
+        if any(remover_acentos(t) in line_norm for t in termos_busca):
+            header_idx = idx
+            break
+            
+    if header_idx != -1:
+        df = pd.read_csv(io.StringIO("\n".join(lines[header_idx:])))
+    else:
+        df = pd.read_csv(io.StringIO(res.text))
+        
+    df.columns = [str(col).replace('"', '').replace("'", "").strip() for col in df.columns]
+    return df
+
 def processar_ml():
-    res = requests.get(URL_CSV_ML)
-    df = pd.read_csv(io.StringIO(res.text), header=1)
-    df.columns = [str(col).strip() for col in df.columns]
+    df = parse_csv_dinamico(URL_CSV_ML, ['TEMPO DE IMPACTO', 'MOTIVO DA RECLAMACAO', 'STATUS'])
 
     def get_col(nomes, default_idx):
         for col in df.columns:
@@ -59,8 +87,7 @@ def processar_ml():
         is_afetando = is_valido and (status_g_clean in status_afetam)
 
         prod_nome = str(row[col_produto]) if pd.notna(row[col_produto]) else ''
-        coment = str(row[col_comentario]).strip() if pd.notna(row[col_comentario]) else ''
-        if coment.lower() == 'nan': coment = ''
+        coment = limpar_comentario(row[col_comentario])
 
         registros.append({
             "sku": str(row[col_sku]).strip() if pd.notna(row[col_sku]) else 'N/A',
@@ -77,10 +104,7 @@ def processar_ml():
     return registros
 
 def processar_amazon():
-    res = requests.get(URL_CSV_AMAZON)
-    # Lê a partir da linha 2 (header=1 pula a data do topo)
-    df = pd.read_csv(io.StringIO(res.text), header=1)
-    df.columns = [str(col).strip() for col in df.columns]
+    df = parse_csv_dinamico(URL_CSV_AMAZON, ['ID DO PEDIDO', 'TEMPO DE IMPACTO', 'PRODUTO DA REIVINDICACAO'])
 
     def get_col(nomes, default_idx):
         for col in df.columns:
@@ -89,7 +113,6 @@ def processar_amazon():
                 return col
         return df.columns[default_idx] if len(df.columns) > default_idx else df.columns[0]
 
-    # Busca a coluna exata "Produto da Reivindicação"
     col_data_pedido  = get_col(['DATA DO PEDIDO'], 0)
     col_data_reiv    = get_col(['DATA DA REIVINDICACAO', 'DATA REIVINDICACAO'], 1)
     col_tempo_imp    = get_col(['TEMPO DE IMPACTO'], 2)
@@ -100,31 +123,26 @@ def processar_amazon():
     col_valor        = get_col(['VALOR'], 7)
     col_reembolso    = get_col(['REEMBOLSO'], 8)
     col_transp       = get_col(['TRANSPORTADORA'], 9)
-    col_produto      = get_col(['PRODUTO DA REIVINDICACAO', 'PRODUTO REIVINDICACAO'], 8)
+    col_produto      = get_col(['PRODUTO DA REIVINDICACAO', 'PRODUTO REIVINDICACAO', 'PRODUTO'], 10)
     col_sku          = get_col(['SKU'], 11)
 
     registros = []
     for idx, row in df.iterrows():
         id_ped = str(row[col_id_pedido]).strip()
         
-        # Pula cabeçalhos residuais ou linhas em branco
         if not id_ped or id_ped.lower() == 'nan' or 'id do pedido' in id_ped.lower():
             continue
 
         tempo_clean = remover_acentos(str(row[col_tempo_imp]))
         impacto_clean = remover_acentos(str(row[col_impacto]))
 
-        # VÁLIDO vs EXPIRADO
         is_valido = 'VALIDO' in tempo_clean
-        
-        # Afetando Reputação: VÁLIDO + (MANTIDO, CHAMADO PREMIUM ou ANALISE)
         is_afetando = is_valido and any(st in impacto_clean for st in ['MANTIDO', 'CHAMADO PREMIUM', 'ANALISE'])
 
         sku_val = str(row[col_sku]).strip() if pd.notna(row[col_sku]) and str(row[col_sku]).strip().lower() != 'nan' else 'N/A'
         prod_val = str(row[col_produto]).strip() if pd.notna(row[col_produto]) and str(row[col_produto]).strip().lower() != 'nan' else f"SKU {sku_val}"
         
-        coment = str(row[col_comentario]).strip() if pd.notna(row[col_comentario]) else ''
-        if coment.lower() == 'nan': coment = ''
+        coment = limpar_comentario(row[col_comentario])
 
         registros.append({
             "id_pedido": id_ped,
