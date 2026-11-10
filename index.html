@@ -83,7 +83,6 @@
     th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: top; }
     th { background: #f1f5f9; font-weight: 600; color: #334155; }
 
-    /* Estilo do ID do Pedido com Logo Amazon */
     .order-link-box { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #0f172a; text-decoration: none; }
     .amazon-logo-img { width: 22px; height: 22px; object-fit: contain; cursor: pointer; transition: transform 0.15s; }
     .amazon-logo-img:hover { transform: scale(1.15); }
@@ -108,7 +107,6 @@
 </head>
 <body>
 
-  <!-- BARRA LATERAL (MENU ESQUERDO) -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-logo-icon">E</div>
@@ -117,21 +115,21 @@
 
     <div class="sidebar-menu">
       <div class="menu-category">Marketplaces</div>
-      <a class="menu-item active" onclick="navigatePage('page-impactos-ml', this)">
+      <a class="menu-item active" data-page="page-impactos-ml" onclick="navigatePage('page-impactos-ml', this)">
         <span class="menu-icon">🛍️</span>
         <span class="menu-text">Impactos ML</span>
       </a>
-      <a class="menu-item" onclick="navigatePage('page-amazon', this)">
+      <a class="menu-item" data-page="page-amazon" onclick="navigatePage('page-amazon', this)">
         <span class="menu-icon">📦</span>
         <span class="menu-text">Reivindicações A-Z Amazon</span>
       </a>
-      <a class="menu-item" onclick="navigatePage('page-shopee', this)">
+      <a class="menu-item" data-page="page-shopee" onclick="navigatePage('page-shopee', this)">
         <span class="menu-icon">🟧</span>
         <span class="menu-text">Shopee</span>
       </a>
 
       <div class="menu-category">Geral</div>
-      <a class="menu-item" onclick="navigatePage('page-config', this)">
+      <a class="menu-item" data-page="page-config" onclick="navigatePage('page-config', this)">
         <span class="menu-icon">⚙️</span>
         <span class="menu-text">Configurações</span>
       </a>
@@ -145,7 +143,6 @@
     </div>
   </aside>
 
-  <!-- ÁREA PRINCIPAL -->
   <main class="main-wrapper">
 
     <!-- PÁGINA 1: IMPACTOS ML -->
@@ -209,7 +206,6 @@
         </div>
       </div>
 
-      <!-- Indicadores Superiores Amazon (Cards do estilo image_740042.png) -->
       <div class="metrics-grid">
         <div class="metric-card">
           <h3>Pedidos Afetando Reputação</h3>
@@ -229,7 +225,6 @@
         </div>
       </div>
 
-      <!-- Navegação por Abas Amazon -->
       <div class="nav-tabs">
         <button class="tab-btn active" onclick="switchTabAMZ('tab-premium-amz')">Chamados Premium</button>
         <button class="tab-btn" onclick="switchTabAMZ('tab-repasses-amz')">Repasses</button>
@@ -257,8 +252,8 @@
         <table id="tabela-repasses-amz">
           <thead>
             <tr>
-              <th style="width:20%">ID do Pedido</th>
-              <th style="width:28%">Resultado (Valor)</th>
+              <th style="width:24%">ID do Pedido</th>
+              <th style="width:24%">Resultado (Valor)</th>
               <th style="width:16%">Reembolso</th>
               <th style="width:18%">Status Impacto</th>
               <th style="width:18%">Validação</th>
@@ -268,7 +263,7 @@
         </table>
       </div>
 
-      <!-- ABA 3: SKUS / PRODUTOS (IGUAL ML) -->
+      <!-- ABA 3: SKUS / PRODUTOS -->
       <div id="tab-skus-amz" class="tab-content">
         <div class="chart-box">
           <h2 class="section-subtitle">Ranking por Marca dos Produtos</h2>
@@ -304,7 +299,7 @@
       <h1>Configurações do Sistema</h1>
       <div class="placeholder-card">
         <h3>Configurações Gerais</h3>
-        <p style="color: var(--text-muted);">Ajustes de sincronização com as planilhas do Google Sheets.</p>
+        <p style="color: var(--text-muted);">Ajustes de sincronização das planilhas do Google Sheets.</p>
       </div>
     </section>
 
@@ -313,7 +308,6 @@
   <script>
     Chart.register(ChartDataLabels);
 
-    // URL da Logo Nítida da Amazon
     const AMAZON_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg';
 
     function toggleSidebar() {
@@ -323,18 +317,19 @@
       toggleIcon.innerText = sidebar.classList.contains('collapsed') ? '▶' : '◀';
     }
 
+    // PERSISTÊNCIA DE PÁGINA AO RECARREGAR (localStorage)
     function navigatePage(pageId, linkElem) {
       document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-      linkElem.classList.add('active');
+      if(linkElem) linkElem.classList.add('active');
+      localStorage.setItem('activePage', pageId);
     }
 
     let rawDataML = [], rawDataAMZ = [];
     let escopoML = 'afetando', escopoAMZ = 'afetando';
     let chartMarcasMLObj = null, chartSkusMLObj = null, chartTranspMLObj = null, chartMotivosMLObj = null;
     let chartMarcasAMZObj = null, chartSkusAMZObj = null;
-    let filtroAtivoML = {}, filtroAtivoAMZ = {};
 
     function switchTabML(tabId) {
       document.querySelectorAll('#page-impactos-ml .tab-content').forEach(el => el.classList.remove('active'));
@@ -371,6 +366,11 @@
         rawDataAMZ = data.amazon || [];
         renderML();
         renderAMZ();
+        
+        // RESTAURAR PÁGINA SALVA
+        const savedPage = localStorage.getItem('activePage') || 'page-impactos-ml';
+        const targetLink = document.querySelector(`.menu-item[data-page="${savedPage}"]`);
+        if (targetLink) navigatePage(savedPage, targetLink);
       });
 
     // ================= RENDERIZADOR AMAZON =================
@@ -379,31 +379,31 @@
         ? rawDataAMZ.filter(r => r.is_afetando)
         : rawDataAMZ;
 
-      // Cards Superiores Amazon
+      // Cards Superiores Amazon (Calculados sobre a base da planilha)
       const totalAfetando = rawDataAMZ.filter(r => r.is_afetando).length;
-      const totalValidos = dataset.filter(r => r.is_valido).length;
-      const totalPremium = dataset.filter(r => r.is_valido && r.impacto.toUpperCase().includes('CHAMADO PREMIUM')).length;
-      const totalAnalise = dataset.filter(r => r.is_valido && r.impacto.toUpperCase().includes('ANÁLISE')).length;
+      const totalValidos = rawDataAMZ.filter(r => r.is_valido).length;
+      const totalPremium = rawDataAMZ.filter(r => r.impacto.toUpperCase().includes('CHAMADO PREMIUM')).length;
+      const totalAnalise = rawDataAMZ.filter(r => r.is_valido && r.impacto.toUpperCase().includes('ANÁLISE')).length;
 
       document.getElementById('total-afetando-amz').innerText = totalAfetando;
       document.getElementById('total-validos-amz').innerText = totalValidos;
       document.getElementById('total-premium-amz').innerText = totalPremium;
       document.getElementById('total-analise-amz').innerText = totalAnalise;
 
-      renderTabPremiumAMZ(dataset);
+      renderTabPremiumAMZ();
       renderTabRepassesAMZ(dataset);
       renderTabSkusAMZ(dataset);
     }
 
-    // ABA 1 AMAZON: CHAMADOS PREMIUM
-    function renderTabPremiumAMZ(dataset) {
+    // ABA 1 AMAZON: CHAMADOS PREMIUM (Exibe todos os pedidos em Chamado Premium independente do filtro de escopo)
+    function renderTabPremiumAMZ() {
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
       
-      const premiumList = dataset.filter(r => r.impacto.toUpperCase().includes('CHAMADO PREMIUM'));
+      const premiumList = rawDataAMZ.filter(r => r.impacto.toUpperCase().includes('CHAMADO PREMIUM'));
       
       if (!premiumList.length) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum chamado premium registrado para o filtro selecionado.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum chamado premium registrado.</td></tr>';
         return;
       }
 
@@ -412,7 +412,7 @@
         tbody.innerHTML += `<tr>
           <td>
             <a href="${linkOrder}" target="_blank" class="order-link-box">
-              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon Seller Central">
+              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
               <span>${r.id_pedido}</span>
             </a>
           </td>
@@ -424,7 +424,7 @@
       });
     }
 
-    // ABA 2 AMAZON: REPASSES
+    // ABA 2 AMAZON: REPASSES (Exibe ID do Pedido correto)
     function renderTabRepassesAMZ(dataset) {
       const tbody = document.querySelector('#tabela-repasses-amz tbody');
       tbody.innerHTML = '';
@@ -446,7 +446,7 @@
       });
     }
 
-    // ABA 3 AMAZON: SKUS / PRODUTOS
+    // ABA 3 AMAZON: SKUS / PRODUTOS (Comentários lidos da Coluna Comentário)
     function renderTabSkusAMZ(dataset) {
       const mapMarcas = {};
       dataset.forEach(r => {
