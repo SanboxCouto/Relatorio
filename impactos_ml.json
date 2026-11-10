@@ -55,10 +55,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
+            "tempo_impacto": "Expirado",
             "comentario": "Parte Frontal Inferior Quebrada",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1766",
@@ -115,10 +115,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
-            "tempo_impacto": "Válido",
+            "tempo_impacto": "Expirado",
             "comentario": "Parafuso e Tempinho Soltos",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1581",
@@ -714,7 +714,7 @@
             "marca": "Imbera",
             "motivo": "Descumpre as características do anúncio",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Não Solicitada",
             "tempo_impacto": "Válido",
             "comentario": "",
             "is_valido": true,
@@ -1183,9 +1183,9 @@
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "tempo_impacto": "Expirado",
             "comentario": "Vazamento de Óleo",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1722,11 +1722,11 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Impacto Removido",
             "tempo_impacto": "Válido",
             "comentario": "Amassado na Lateral Esquerda",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1602",
@@ -1746,11 +1746,11 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Impacto Removido",
             "tempo_impacto": "Válido",
             "comentario": "Vidro da Área Inferior Quebrado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1881",
@@ -1806,11 +1806,11 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Impacto Removido",
             "tempo_impacto": "Válido",
             "comentario": "Lateral Amassada",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1601",
@@ -1818,11 +1818,11 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Impacto Removido",
             "tempo_impacto": "Válido",
             "comentario": "Amassado na Lateral",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1604",
@@ -1902,11 +1902,11 @@
             "marca": "Imbera",
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Impacto Removido",
             "tempo_impacto": "Válido",
             "comentario": "Item Faltante: 1 Pé de Apoio",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1837-1",
@@ -1950,7 +1950,7 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Não Solicitada",
             "tempo_impacto": "Válido",
             "comentario": "Peça Solta e Barulho Exacerbado",
             "is_valido": true,
@@ -1962,7 +1962,7 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
             "comentario": "Trinca na Porta",
             "is_valido": true,
@@ -1974,9 +1974,45 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
             "comentario": "Vazamento de Óleo\n Entregaram a Máquina de Cabeça Pra Baixo",
+            "is_valido": true,
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1580",
+            "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa De Vidro E Forno 60 L A Gás Branco Bivolt 127/220v",
+            "marca": "Dako",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "tempo_impacto": "Válido",
+            "comentario": "Amassado na Lateral",
+            "is_valido": true,
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1686",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Preto Fosco Com Mesa De Vidro E Timer Digital 127/220v",
+            "marca": "Mueller",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Revisão Recusada",
+            "tempo_impacto": "Válido",
+            "comentario": "Amassado Frontal e na Lateral",
+            "is_valido": true,
+            "is_afetando": true
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
+            "marca": "Mueller",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "tempo_impacto": "Válido",
+            "comentario": "Há um Vão na Porta do Forno apenas de um Lado",
             "is_valido": true,
             "is_afetando": true
         }
