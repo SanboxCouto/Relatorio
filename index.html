@@ -55,14 +55,23 @@
     .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
     .header-bar h1 { font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0; }
     
+    .filter-controls-group { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
     .filter-switch { display: flex; background: #e2e8f0; padding: 4px; border-radius: 8px; gap: 4px; }
     .filter-btn { border: none; background: none; padding: 8px 16px; font-weight: 600; font-size: 13px; color: var(--text-muted); cursor: pointer; border-radius: 6px; transition: all 0.2s; }
     .filter-btn.active { background: #ffffff; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
+    .select-filter-hdr { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 13px; background: #fff; font-weight: 600; color: var(--text-main); outline: none; cursor: pointer; }
+    .select-filter-hdr:focus { border-color: var(--primary); }
+
     .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px; }
-    .metric-card { background: var(--card-bg); border-radius: 12px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .metric-card { background: var(--card-bg); border-radius: 12px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.04); position: relative; }
     .metric-card h3 { margin: 0 0 8px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
     .metric-card .val { font-size: 32px; font-weight: 800; }
+    .metric-card .comp-badge { font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block; }
+    .comp-up { background: #dcfce7; color: #15803d; }
+    .comp-down { background: #fee2e2; color: #b91c1c; }
+    .comp-equal { background: #f1f5f9; color: #475569; }
+
     .val-danger { color: var(--danger); }
     .val-info { color: var(--info); }
     .val-warning { color: var(--warning); }
@@ -152,9 +161,28 @@
     <section id="page-impactos-ml" class="page-section active">
       <div class="header-bar">
         <h1>Impactos ML</h1>
-        <div class="filter-switch">
-          <button id="btn-afetando-ml" class="filter-btn active" onclick="setEscopoML('afetando')">Apenas Afetando Reputação</button>
-          <button id="btn-todas-ml" class="filter-btn" onclick="setEscopoML('todas')">Todas</button>
+        <div class="filter-controls-group">
+          <!-- Filtro de Período Temporal -->
+          <select id="filter-dias-ml" class="select-filter-hdr" onchange="renderML()">
+            <option value="0">Todo o Período</option>
+            <option value="7">Últimos 7 Dias</option>
+            <option value="15">Últimos 15 Dias</option>
+            <option value="30">Últimos 30 Dias</option>
+            <option value="60">Últimos 60 Dias</option>
+          </select>
+
+          <!-- Comparativo -->
+          <select id="filter-comparativo-ml" class="select-filter-hdr" onchange="renderML()">
+            <option value="NONE">Sem Comparativo</option>
+            <option value="7">vs 7 Dias Anteriores</option>
+            <option value="15">vs 15 Dias Anteriores</option>
+            <option value="30">vs 30 Dias Anteriores</option>
+          </select>
+
+          <div class="filter-switch">
+            <button id="btn-afetando-ml" class="filter-btn active" onclick="setEscopoML('afetando')">Apenas Afetando Reputação</button>
+            <button id="btn-todas-ml" class="filter-btn" onclick="setEscopoML('todas')">Todas</button>
+          </div>
         </div>
       </div>
 
@@ -162,18 +190,22 @@
         <div class="metric-card">
           <h3>Pedidos Afetando Reputação</h3>
           <div class="val val-danger" id="total-afetando-ml">-</div>
+          <div id="comp-afetando-ml"></div>
         </div>
         <div class="metric-card">
           <h3>Em Mediação (Válidos)</h3>
           <div class="val val-info" id="total-mediacao-ml">-</div>
+          <div id="comp-mediacao-ml"></div>
         </div>
         <div class="metric-card">
           <h3>Revisão Recusada (Válidos)</h3>
           <div class="val val-warning" id="total-recusada-ml">-</div>
+          <div id="comp-recusada-ml"></div>
         </div>
         <div class="metric-card">
           <h3>Impacto Removido (Válidos)</h3>
           <div class="val val-success" id="total-removido-ml">-</div>
+          <div id="comp-removido-ml"></div>
         </div>
       </div>
 
@@ -184,15 +216,32 @@
       </div>
 
       <div id="tab-skus-ml" class="tab-content active">
-        <div class="chart-box"><h2 class="section-subtitle">Ranking por Marca dos Produtos</h2><div style="height: 300px;"><canvas id="chartMarcasML"></canvas></div></div>
-        <table id="tabela-marcas-ml"><thead><tr><th style="width:22%">Marca</th><th style="width:8%">Qtd</th><th style="width:35%">Top SKUs / Produtos</th><th style="width:35%">Comentários & Ocorrências</th></tr></thead><tbody></tbody></table>
+        <div class="table-toolbar">
+          <select id="filter-marca-skus-ml" class="select-filter" onchange="renderTabSkusML_Current()">
+            <option value="TODAS">Todas as Marcas</option>
+          </select>
+        </div>
+
         <div class="chart-box"><h2 class="section-subtitle">Top SKUs & Produtos</h2><div style="height: 440px;"><canvas id="chartSkusML"></canvas></div></div>
-        <table id="tabela-skus-ml"><thead><tr><th style="width:22%">SKU</th><th style="width:22%">Produto</th><th style="width:8%">Qtd</th><th style="width:48%">Comentários & Ocorrências</th></tr></thead><tbody></tbody></table>
+        <table id="tabela-skus-ml">
+          <thead>
+            <tr>
+              <th style="width:16%">SKU</th>
+              <th style="width:16%">Marca</th>
+              <th style="width:26%">Produto</th>
+              <th style="width:8%">Qtd</th>
+              <th style="width:34%">Comentários & Ocorrências</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
+
       <div id="tab-transp-ml" class="tab-content">
         <div class="chart-box"><div style="height: 350px;"><canvas id="chartTranspML"></canvas></div></div>
         <table id="tabela-transp-ml"><thead><tr><th style="width:22%">Transportadora</th><th style="width:8%">Qtd</th><th style="width:35%">Ranking dos Motivos</th><th style="width:35%">Comentários & Ocorrências</th></tr></thead><tbody></tbody></table>
       </div>
+
       <div id="tab-motivos-ml" class="tab-content">
         <div class="chart-box"><div style="height: 360px; display: flex; justify-content: center;"><canvas id="chartMotivosML"></canvas></div></div>
         <table id="tabela-motivos-ml"><thead><tr><th style="width:22%">Motivo</th><th style="width:8%">Qtd</th><th style="width:35%">Ranking das Transportadoras</th><th style="width:35%">Comentários & Ocorrências</th></tr></thead><tbody></tbody></table>
@@ -203,9 +252,28 @@
     <section id="page-amazon" class="page-section">
       <div class="header-bar">
         <h1>Reivindicações A-Z Amazon</h1>
-        <div class="filter-switch">
-          <button id="btn-afetando-amz" class="filter-btn active" onclick="setEscopoAMZ('afetando')">Apenas Afetando Reputação</button>
-          <button id="btn-todas-amz" class="filter-btn" onclick="setEscopoAMZ('todas')">Todas</button>
+        <div class="filter-controls-group">
+          <!-- Filtro de Período Temporal Amazon -->
+          <select id="filter-dias-amz" class="select-filter-hdr" onchange="renderAMZ()">
+            <option value="0">Todo o Período</option>
+            <option value="7">Últimos 7 Dias</option>
+            <option value="15">Últimos 15 Dias</option>
+            <option value="30">Últimos 30 Dias</option>
+            <option value="60">Últimos 60 Dias</option>
+          </select>
+
+          <!-- Comparativo Amazon -->
+          <select id="filter-comparativo-amz" class="select-filter-hdr" onchange="renderAMZ()">
+            <option value="NONE">Sem Comparativo</option>
+            <option value="7">vs 7 Dias Anteriores</option>
+            <option value="15">vs 15 Dias Anteriores</option>
+            <option value="30">vs 30 Dias Anteriores</option>
+          </select>
+
+          <div class="filter-switch">
+            <button id="btn-afetando-amz" class="filter-btn active" onclick="setEscopoAMZ('afetando')">Apenas Afetando Reputação</button>
+            <button id="btn-todas-amz" class="filter-btn" onclick="setEscopoAMZ('todas')">Todas</button>
+          </div>
         </div>
       </div>
 
@@ -213,18 +281,22 @@
         <div class="metric-card">
           <h3>Pedidos Afetando Reputação</h3>
           <div class="val val-danger" id="total-afetando-amz">-</div>
+          <div id="comp-afetando-amz"></div>
         </div>
         <div class="metric-card">
           <h3>Impactos Removidos</h3>
           <div class="val val-info" id="total-removidos-amz">-</div>
+          <div id="comp-removidos-amz"></div>
         </div>
         <div class="metric-card">
           <h3>Em Chamado Premium</h3>
           <div class="val val-warning" id="total-premium-amz">-</div>
+          <div id="comp-premium-amz"></div>
         </div>
         <div class="metric-card">
           <h3>Em Análise</h3>
           <div class="val val-success" id="total-analise-amz">-</div>
+          <div id="comp-analise-amz"></div>
         </div>
       </div>
 
@@ -285,21 +357,25 @@
 
       <!-- ABA 3: SKUS / PRODUTOS -->
       <div id="tab-skus-amz" class="tab-content">
-        <div class="chart-box">
-          <h2 class="section-subtitle">Ranking por Marca dos Produtos</h2>
-          <div style="height: 300px;"><canvas id="chartMarcasAMZ"></canvas></div>
+        <div class="table-toolbar">
+          <select id="filter-marca-skus-amz" class="select-filter" onchange="renderTabSkusAMZ_Current()">
+            <option value="TODAS">Todas as Marcas</option>
+          </select>
         </div>
-        <table id="tabela-marcas-amz">
-          <thead><tr><th style="width:22%">Marca</th><th style="width:8%">Qtd</th><th style="width:35%">Top SKUs / Produtos</th><th style="width:35%">Comentários & Ocorrências</th></tr></thead>
-          <tbody></tbody>
-        </table>
-
         <div class="chart-box">
           <h2 class="section-subtitle">Top SKUs & Produtos Impactados</h2>
           <div style="height: 440px;"><canvas id="chartSkusAMZ"></canvas></div>
         </div>
         <table id="tabela-skus-amz">
-          <thead><tr><th style="width:22%">SKU</th><th style="width:22%">Produto</th><th style="width:8%">Qtd</th><th style="width:48%">Comentários & Ocorrências</th></tr></thead>
+          <thead>
+            <tr>
+              <th style="width:16%">SKU</th>
+              <th style="width:16%">Marca</th>
+              <th style="width:26%">Produto</th>
+              <th style="width:8%">Qtd</th>
+              <th style="width:34%">Comentários & Ocorrências</th>
+            </tr>
+          </thead>
           <tbody></tbody>
         </table>
       </div>
@@ -361,8 +437,10 @@
 
     let rawDataML = [], rawDataAMZ = [];
     let escopoML = 'afetando', escopoAMZ = 'afetando';
-    let chartMarcasMLObj = null, chartSkusMLObj = null, chartTranspMLObj = null, chartMotivosMLObj = null;
-    let chartMarcasAMZObj = null, chartSkusAMZObj = null;
+    let currentFilteredML = [], currentFilteredAMZ = [];
+
+    let chartSkusMLObj = null, chartTranspMLObj = null, chartMotivosMLObj = null;
+    let chartSkusAMZObj = null;
 
     function switchTabML(tabId) {
       document.querySelectorAll('#page-impactos-ml .tab-content').forEach(el => el.classList.remove('active'));
@@ -397,6 +475,10 @@
       .then(data => {
         rawDataML = data.ml || [];
         rawDataAMZ = data.amazon || [];
+        
+        populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
+        populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
+
         renderML();
         renderAMZ();
         
@@ -404,6 +486,50 @@
         const targetLink = document.querySelector(`.menu-item[data-page="${savedPage}"]`);
         if (targetLink) navigatePage(savedPage, targetLink);
       });
+
+    function populateMarcaFilterOptions(selectId, dataList) {
+      const select = document.getElementById(selectId);
+      if(!select) return;
+      const marcasSet = new Set();
+      dataList.forEach(r => { if(r.marca) marcasSet.add(r.marca); });
+      const sortedMarcas = Array.from(marcasSet).sort();
+      select.innerHTML = '<option value="TODAS">Todas as Marcas</option>';
+      sortedMarcas.forEach(m => {
+        select.innerHTML += `<option value="${m}">${m}</option>`;
+      });
+    }
+
+    function filterByDateRange(list, daysLimit, offsetDays = 0) {
+      if (daysLimit <= 0 && offsetDays === 0) return list;
+      
+      const now = new Date().getTime();
+      const msPerDay = 86400000;
+      const minTime = daysLimit > 0 ? now - (daysLimit + offsetDays) * msPerDay : 0;
+      const maxTime = now - offsetDays * msPerDay;
+
+      return list.filter(r => {
+        const itemTime = parseDate(r.data_pedido) || parseDate(r.data_solicitacao) || parseDate(r.data_reivindicacao);
+        if(!itemTime) return true; // se sem data, mantém
+        return itemTime >= minTime && itemTime <= maxTime;
+      });
+    }
+
+    function generateComparisonBadge(elementId, currentVal, previousVal, label) {
+      const el = document.getElementById(elementId);
+      if(!el) return;
+      if(previousVal === null || previousVal === undefined) {
+        el.innerHTML = '';
+        return;
+      }
+      const diff = currentVal - previousVal;
+      let badgeClass = 'comp-equal';
+      let sign = '';
+      if(diff > 0) { badgeClass = 'comp-up'; sign = '+'; }
+      else if(diff < 0) { badgeClass = 'comp-down'; }
+
+      const pct = previousVal > 0 ? ((diff / previousVal) * 100).toFixed(0) : 0;
+      el.innerHTML = `<span class="comp-badge ${badgeClass}">${sign}${diff} (${sign}${pct}%) vs ${label}d</span>`;
+    }
 
     function isComentarioValido(c) {
       if (!c) return false;
@@ -413,32 +539,59 @@
 
     // ================= RENDERIZADOR AMAZON =================
     function renderAMZ() {
-      const dataset = escopoAMZ === 'afetando' 
-        ? rawDataAMZ.filter(r => r.is_afetando)
-        : rawDataAMZ;
+      const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
+      const compDays = document.getElementById('filter-comparativo-amz')?.value || 'NONE';
 
-      const totalAfetando = rawDataAMZ.filter(r => r.is_afetando).length;
-      const totalRemovidos = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('REMOVIDO')).length;
-      const totalPremium = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
-      const totalAnalise = rawDataAMZ.filter(r => r.is_valido && normalizeText(r.impacto).includes('ANALISE')).length;
+      let dataset = filterByDateRange(rawDataAMZ, days);
+      let baseTotalList = filterByDateRange(rawDataAMZ, days);
+
+      if (escopoAMZ === 'afetando') {
+        dataset = dataset.filter(r => r.is_afetando);
+      }
+      currentFilteredAMZ = dataset;
+
+      const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
+      const totalRemovidos = baseTotalList.filter(r => normalizeText(r.impacto).includes('REMOVIDO')).length;
+      const totalPremium = baseTotalList.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
+      const totalAnalise = baseTotalList.filter(r => r.is_valido && normalizeText(r.impacto).includes('ANALISE')).length;
 
       document.getElementById('total-afetando-amz').innerText = totalAfetando;
       document.getElementById('total-removidos-amz').innerText = totalRemovidos;
       document.getElementById('total-premium-amz').innerText = totalPremium;
       document.getElementById('total-analise-amz').innerText = totalAnalise;
 
+      // Comparativo Amazon
+      if(compDays !== 'NONE') {
+        const cDays = parseInt(compDays);
+        const prevList = filterByDateRange(rawDataAMZ, cDays, cDays);
+        const prevAfetando = prevList.filter(r => r.is_afetando).length;
+        const prevRemovidos = prevList.filter(r => normalizeText(r.impacto).includes('REMOVIDO')).length;
+        const prevPremium = prevList.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
+        const prevAnalise = prevList.filter(r => r.is_valido && normalizeText(r.impacto).includes('ANALISE')).length;
+
+        generateComparisonBadge('comp-afetando-amz', totalAfetando, prevAfetando, cDays);
+        generateComparisonBadge('comp-removidos-amz', totalRemovidos, prevRemovidos, cDays);
+        generateComparisonBadge('comp-premium-amz', totalPremium, prevPremium, cDays);
+        generateComparisonBadge('comp-analise-amz', totalAnalise, prevAnalise, cDays);
+      } else {
+        ['comp-afetando-amz','comp-removidos-amz','comp-premium-amz','comp-analise-amz'].forEach(id => {
+          document.getElementById(id).innerHTML = '';
+        });
+      }
+
       renderTabPremiumAMZ();
       renderTabRepassesAMZ();
-      renderTabSkusAMZ(dataset);
+      renderTabSkusAMZ_Current();
     }
 
     function renderTabPremiumAMZ() {
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
       
+      const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
       const query = normalizeText(document.getElementById('search-premium-input')?.value || '');
 
-      let premiumList = rawDataAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
+      let premiumList = filterByDateRange(rawDataAMZ, days).filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
 
       premiumList.sort((a, b) => {
         const tA = parseDate(a.data_solicitacao) || parseDate(a.data_reivindicacao);
@@ -481,10 +634,11 @@
       const tbody = document.querySelector('#tabela-repasses-amz tbody');
       tbody.innerHTML = '';
 
+      const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
       const query = normalizeText(document.getElementById('search-repasses-input')?.value || '');
       const filterRes = document.getElementById('filter-resultado-repasses')?.value || 'TODOS';
 
-      let repassesList = [...rawDataAMZ];
+      let repassesList = filterByDateRange(rawDataAMZ, days);
 
       if (filterRes !== 'TODOS') {
         const filterNorm = normalizeText(filterRes);
@@ -519,39 +673,18 @@
       });
     }
 
-    function renderTabSkusAMZ(dataset) {
-      const mapMarcas = {};
-      dataset.forEach(r => {
-        const m = r.marca;
-        if (!mapMarcas[m]) mapMarcas[m] = { marca: m, qtd: 0, topSkus: {}, registros: [] };
-        mapMarcas[m].qtd++;
-        mapMarcas[m].topSkus[r.sku] = (mapMarcas[m].topSkus[r.sku] || 0) + 1;
-        mapMarcas[m].registros.push(r);
-      });
-
-      const listMarcas = Object.values(mapMarcas).sort((a,b) => b.qtd - a.qtd);
-      if (chartMarcasAMZObj) chartMarcasAMZObj.destroy();
-      chartMarcasAMZObj = new Chart(document.getElementById('chartMarcasAMZ'), {
-        type: 'bar',
-        data: { labels: listMarcas.map(i => i.marca), datasets: [{ data: listMarcas.map(i => i.qtd), backgroundColor: '#ff9900', borderRadius: 4 }] },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', font: { weight: 'bold' } } } }
-      });
-
-      const tbodyMarcas = document.querySelector('#tabela-marcas-amz tbody');
-      tbodyMarcas.innerHTML = '';
-      listMarcas.forEach(item => {
-        const rankingHtml = '<div class="ranking-container">' + 
-          Object.entries(item.topSkus).map(([sku, count]) => `<span class="ranking-pill">${sku}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
-        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
-
-        tbodyMarcas.innerHTML += `<tr><td><strong>${item.marca}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
-      });
+    function renderTabSkusAMZ_Current() {
+      const marcaFilter = document.getElementById('filter-marca-skus-amz')?.value || 'TODAS';
+      let dataset = [...currentFilteredAMZ];
+      
+      if(marcaFilter !== 'TODAS') {
+        dataset = dataset.filter(r => r.marca === marcaFilter);
+      }
 
       const mapSkus = {};
       dataset.forEach(r => {
-        const key = `${r.sku}||${r.produto}`;
-        if (!mapSkus[key]) mapSkus[key] = { sku: r.sku, produto: r.produto, qtd: 0, comentarios: [] };
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        if (!mapSkus[key]) mapSkus[key] = { sku: r.sku, marca: r.marca, produto: r.produto, qtd: 0, comentarios: [] };
         mapSkus[key].qtd++;
         if (isComentarioValido(r.comentario)) mapSkus[key].comentarios.push(r.comentario);
       });
@@ -571,57 +704,69 @@
       tbodySkus.innerHTML = '';
       listSkus.forEach(item => {
         const comHtml = item.comentarios.length ? `<div class="comments-scroll-box">${item.comentarios.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
-        tbodySkus.innerHTML += `<tr><td><strong>${item.sku}</strong></td><td>${item.produto}</td><td><span class="badge-count">${item.qtd}</span></td><td>${comHtml}</td></tr>`;
+        tbodySkus.innerHTML += `<tr><td><strong>${item.sku}</strong></td><td><span class="badge-count">${item.marca}</span></td><td>${item.produto}</td><td><span class="badge-count">${item.qtd}</span></td><td>${comHtml}</td></tr>`;
       });
     }
 
     // ================= RENDERIZADOR MERCADO LIVRE =================
     function renderML() {
-      const dataset = escopoML === 'afetando' ? rawDataML.filter(r => r.is_afetando) : rawDataML;
+      const days = parseInt(document.getElementById('filter-dias-ml')?.value || '0');
+      const compDays = document.getElementById('filter-comparativo-ml')?.value || 'NONE';
 
-      document.getElementById('total-afetando-ml').innerText = rawDataML.filter(r => r.is_afetando).length;
-      document.getElementById('total-mediacao-ml').innerText = dataset.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
-      document.getElementById('total-recusada-ml').innerText = dataset.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
-      
-      // FIX: O indicador de Impacto Removido agora avalia rawDataML diretamente (independente de estar no escopo 'afetando' ou 'todas')
-      document.getElementById('total-removido-ml').innerText = rawDataML.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+      let baseTotalList = filterByDateRange(rawDataML, days);
+      let dataset = filterByDateRange(rawDataML, days);
 
-      renderTabSkusML(dataset);
+      if (escopoML === 'afetando') {
+        dataset = dataset.filter(r => r.is_afetando);
+      }
+      currentFilteredML = dataset;
+
+      const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
+      const totalMediacao = baseTotalList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
+      const totalRecusada = baseTotalList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
+      const totalRemovido = baseTotalList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+
+      document.getElementById('total-afetando-ml').innerText = totalAfetando;
+      document.getElementById('total-mediacao-ml').innerText = totalMediacao;
+      document.getElementById('total-recusada-ml').innerText = totalRecusada;
+      document.getElementById('total-removido-ml').innerText = totalRemovido;
+
+      // Comparativo ML
+      if(compDays !== 'NONE') {
+        const cDays = parseInt(compDays);
+        const prevList = filterByDateRange(rawDataML, cDays, cDays);
+        const prevAfetando = prevList.filter(r => r.is_afetando).length;
+        const prevMediacao = prevList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
+        const prevRecusada = prevList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
+        const prevRemovido = prevList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+
+        generateComparisonBadge('comp-afetando-ml', totalAfetando, prevAfetando, cDays);
+        generateComparisonBadge('comp-mediacao-ml', totalMediacao, prevMediacao, cDays);
+        generateComparisonBadge('comp-recusada-ml', totalRecusada, prevRecusada, cDays);
+        generateComparisonBadge('comp-removido-ml', totalRemovido, prevRemovido, cDays);
+      } else {
+        ['comp-afetando-ml','comp-mediacao-ml','comp-recusada-ml','comp-removido-ml'].forEach(id => {
+          document.getElementById(id).innerHTML = '';
+        });
+      }
+
+      renderTabSkusML_Current();
       renderTabTranspML(dataset);
       renderTabMotivosML(dataset);
     }
 
-    function renderTabSkusML(dataset) {
-      const mapMarcas = {};
-      dataset.forEach(r => {
-        const m = r.marca;
-        if (!mapMarcas[m]) mapMarcas[m] = { marca: m, qtd: 0, topSkus: {}, registros: [] };
-        mapMarcas[m].qtd++;
-        mapMarcas[m].topSkus[r.sku] = (mapMarcas[m].topSkus[r.sku] || 0) + 1;
-        mapMarcas[m].registros.push(r);
-      });
-
-      const listMarcas = Object.values(mapMarcas).sort((a,b) => b.qtd - a.qtd);
-      if (chartMarcasMLObj) chartMarcasMLObj.destroy();
-      chartMarcasMLObj = new Chart(document.getElementById('chartMarcasML'), {
-        type: 'bar',
-        data: { labels: listMarcas.map(i => i.marca), datasets: [{ data: listMarcas.map(i => i.qtd), backgroundColor: '#8b5cf6', borderRadius: 4 }] },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', font: { weight: 'bold' } } } }
-      });
-
-      const tbodyMarcas = document.querySelector('#tabela-marcas-ml tbody');
-      tbodyMarcas.innerHTML = '';
-      listMarcas.forEach(item => {
-        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.topSkus).map(([sku, count]) => `<span class="ranking-pill">${sku}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
-        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
-        tbodyMarcas.innerHTML += `<tr><td><strong>${item.marca}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
-      });
+    function renderTabSkusML_Current() {
+      const marcaFilter = document.getElementById('filter-marca-skus-ml')?.value || 'TODAS';
+      let dataset = [...currentFilteredML];
+      
+      if(marcaFilter !== 'TODAS') {
+        dataset = dataset.filter(r => r.marca === marcaFilter);
+      }
 
       const mapSkus = {};
       dataset.forEach(r => {
-        const key = `${r.sku}||${r.produto}`;
-        if (!mapSkus[key]) mapSkus[key] = { sku: r.sku, produto: r.produto, qtd: 0, comentarios: [] };
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        if (!mapSkus[key]) mapSkus[key] = { sku: r.sku, marca: r.marca, produto: r.produto, qtd: 0, comentarios: [] };
         mapSkus[key].qtd++;
         if (isComentarioValido(r.comentario)) mapSkus[key].comentarios.push(r.comentario);
       });
@@ -641,7 +786,7 @@
       tbodySkus.innerHTML = '';
       listSkus.forEach(item => {
         const comHtml = item.comentarios.length ? `<div class="comments-scroll-box">${item.comentarios.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
-        tbodySkus.innerHTML += `<tr><td><strong>${item.sku}</strong></td><td>${item.produto}</td><td><span class="badge-count">${item.qtd}</span></td><td>${comHtml}</td></tr>`;
+        tbodySkus.innerHTML += `<tr><td><strong>${item.sku}</strong></td><td><span class="badge-count">${item.marca}</span></td><td>${item.produto}</td><td><span class="badge-count">${item.qtd}</span></td><td>${comHtml}</td></tr>`;
       });
     }
 
