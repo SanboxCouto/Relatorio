@@ -176,10 +176,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "27/09/2026",
             "comentario": "Barra Amassada",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -189,10 +189,10 @@
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "28/09/2026",
             "comentario": "Item Faltante: 1 Trempe Central",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -254,10 +254,10 @@
             "motivo": "Não é da cor, tamanho ou modelo que escolhi",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "01/10/2026",
             "comentario": "Cliente Alegou ter Comprado Errado",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -267,10 +267,10 @@
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "02/10/2026",
             "comentario": "Bateria Não Carrega Totalmente e Descarrega",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -358,10 +358,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "26/09/2026",
             "comentario": "Amassado parte Traseira | Entregue s/Caixa",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -384,10 +384,10 @@
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "06/10/2026",
             "comentario": "Problema no LED",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -397,10 +397,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "01/10/2026",
             "comentario": "Amassado na Lateral Superior Esquerda",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -488,10 +488,10 @@
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "06/10/2026",
             "comentario": "Item Faltante: 2 Microfones",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -514,10 +514,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Brasil Web",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "10/10/2026",
             "comentario": "Diversos Amassados",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -527,10 +527,10 @@
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "10/10/2026",
             "comentario": "Item Faltante: Boca Central",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -553,10 +553,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "10/10/2026",
             "comentario": "Amassado no Puxador",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -566,10 +566,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "10/10/2026",
             "comentario": "Botão Quebrado",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -605,10 +605,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "12/10/2026",
             "comentario": "Vedação da Porta com Problema",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -618,10 +618,10 @@
             "motivo": "Defeito no Produto",
             "transportadora": "Alfa Transportes",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "12/10/2026",
             "comentario": "Barulho nas Válvulas ao Ligar",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -631,10 +631,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "12/10/2026",
             "comentario": "Diversos Amassados",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -644,10 +644,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "12/10/2026",
             "comentario": "Mesa do Fogão Amassado",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -696,10 +696,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "13/10/2026",
             "comentario": "Vidro Espelhado Quebrado e Tampa Empenada",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -761,10 +761,10 @@
             "motivo": "O vendedor não me respondeu",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "14/10/2026",
             "comentario": "Comprador Não deu Tempo para Resposta",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -865,10 +865,10 @@
             "motivo": "Insatisfação",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "17/10/2026",
             "comentario": "Comprador Insatisfeito",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -904,10 +904,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "20/10/2026",
             "comentario": "Amassado na Parte Traseira",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -917,10 +917,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "21/10/2026",
             "comentario": "Caixa Danificada e Arranhado no Vidro",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -982,10 +982,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "23/10/2026",
             "comentario": "Amassado na Mesa Superior do Fogão",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -995,10 +995,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "19/09/2026",
             "comentario": "Pés e Vidro do Produto Avariado",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1008,10 +1008,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "17/09/2026",
             "comentario": "Pés do Produto Avariado",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1567,10 +1567,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "24/09/2026",
             "comentario": "Amassados na Lateral Direita",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1580,10 +1580,10 @@
             "motivo": "Não posso receber a compra no endereço informado",
             "transportadora": "Trilog Express",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "24/09/2026",
             "comentario": "Cliente Não Pode receber no Endereço",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1632,10 +1632,10 @@
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "28/09/2026",
             "comentario": "Vazamento de Óleo",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1671,10 +1671,10 @@
             "motivo": "Não Recebi o Produto",
             "transportadora": "Rio Express",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "24/09/2026",
             "comentario": "Cliente queria Cancelar Pedido",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1736,10 +1736,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "30/09/2026",
             "comentario": "Peça da Mesa e Puxador Quebrada",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1762,10 +1762,10 @@
             "motivo": "Descumpre as características do anúncio",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "26/10/2026",
             "comentario": "Pés de Apoio Não se Encaixam",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1775,10 +1775,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "27/10/2026",
             "comentario": "Amassado na Parte Superior",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1788,10 +1788,10 @@
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "27/10/2026",
             "comentario": "Item Faltante: 1 Pé de Apoio",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1814,10 +1814,10 @@
             "motivo": "Descumpre as características do anúncio",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "28/10/2026",
             "comentario": "Não Há Descrição",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1879,10 +1879,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "30/10/2026",
             "comentario": "Amassado na Lateral Esquerda",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1918,10 +1918,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "31/10/2026",
             "comentario": "Vidro da Área Inferior Quebrado",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1970,10 +1970,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "03/11/2026",
             "comentario": "Lateral Amassada",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1983,10 +1983,10 @@
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "03/11/2026",
             "comentario": "Amassado na Lateral",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1996,10 +1996,10 @@
             "motivo": "Defeito no Produto",
             "transportadora": "Brasil Web",
             "status": "Impacto Removido",
-            "tempo_impacto": "Expirado",
+            "tempo_impacto": "Válido",
             "data_pedido": "04/11/2026",
             "comentario": "Forno Não Funciona",
-            "is_valido": false,
+            "is_valido": true,
             "is_afetando": false
         },
         {
