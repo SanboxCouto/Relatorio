@@ -67,7 +67,7 @@
     .metric-card { background: var(--card-bg); border-radius: 12px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.04); position: relative; }
     .metric-card h3 { margin: 0 0 8px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
     .metric-card .val { font-size: 32px; font-weight: 800; }
-    .metric-card .comp-badge { font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block; }
+    .metric-card .comp-badge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-top: 6px; display: inline-block; line-height: 1.3; }
     .comp-up { background: #fee2e2; color: #b91c1c; }
     .comp-down { background: #dcfce7; color: #15803d; }
     .comp-equal { background: #f1f5f9; color: #475569; }
@@ -509,7 +509,7 @@
       return maxT || new Date().getTime();
     }
 
-    // FILTRO DE PERÍODO PRINCIPAL DA TELA (RESPEITA SELEÇÃO DE DIAS OU MOSTRA TUDO)
+    // FILTRO DE PERÍODO PRINCIPAL DA TELA
     function getDatasetByPeriod(list, daysLimit) {
       if (daysLimit <= 0) return list;
       const maxTimestamp = getMaxTimestamp(list);
@@ -521,20 +521,18 @@
       });
     }
 
-    // OBTÉM AS DUAS JANELAS FIXAS PARA O COMPARATIVO (TOTALMENTE INDEPENDENTE DO FILTRO SUPERIOR)
+    // OBTÉM AS DUAS JANELAS FIXAS PARA O COMPARATIVO (INDEPENDENTE DO FILTRO SUPERIOR)
     function getComparisonWindowData(list, compDays, fetchPreviousWindow = false) {
       const maxTimestamp = getMaxTimestamp(list);
       const msPerDay = 86400000;
 
       if (!fetchPreviousWindow) {
-        // Janela Recente (Últimos N dias a contar da maior data)
         const currentStart = maxTimestamp - ((compDays - 1) * msPerDay);
         return list.filter(r => {
           const t = parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
           return t && t >= currentStart && t <= maxTimestamp;
         });
       } else {
-        // Janela Anterior (Bloco de N dias imediatamente anterior)
         const prevEnd = maxTimestamp - (compDays * msPerDay);
         const prevStart = maxTimestamp - ((2 * compDays - 1) * msPerDay);
         return list.filter(r => {
@@ -544,6 +542,7 @@
       }
     }
 
+    // BADGE DO COMPARATIVO EXIBINDO VALORES E VARIAÇÃO PERCENTUAL
     function generateComparisonBadge(elementId, currentVal, previousVal, label) {
       const el = document.getElementById(elementId);
       if(!el) return;
@@ -558,7 +557,7 @@
       else if(diff < 0) { badgeClass = 'comp-down'; }
 
       const pct = previousVal > 0 ? ((diff / previousVal) * 100).toFixed(0) : (currentVal > 0 ? 100 : 0);
-      el.innerHTML = `<span class="comp-badge ${badgeClass}">${sign}${diff} (${sign}${pct}%) vs ${label}d ant</span>`;
+      el.innerHTML = `<span class="comp-badge ${badgeClass}">${currentVal} vs ${previousVal} (${sign}${diff} / ${sign}${pct}%) vs ${label}d ant</span>`;
     }
 
     function isComentarioValido(c) {
@@ -580,7 +579,7 @@
       }
       currentFilteredAMZ = dataset;
 
-      // Cartões de Métricas calculados sobre a 'baseTotalList'
+      // Cartões de Métricas
       const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
       const totalRemovidos = baseTotalList.filter(r => normalizeText(r.impacto).includes('REMOVIDO')).length;
       const totalPremium = baseTotalList.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
@@ -591,7 +590,7 @@
       document.getElementById('total-premium-amz').innerText = totalPremium;
       document.getElementById('total-analise-amz').innerText = totalAnalise;
 
-      // Comparativo Amazon (Independente do Filtro de Período)
+      // Comparativo Amazon com exibição detalhada dos valores
       if(compDaysVal !== 'NONE') {
         const compDays = parseInt(compDaysVal);
 
@@ -620,6 +619,7 @@
         });
       }
 
+      // Atualiza todas as abas filhas aplicando o filtro de período atual
       renderTabPremiumAMZ();
       renderTabRepassesAMZ();
       renderTabSkusAMZ_Current();
@@ -629,10 +629,8 @@
       const tbody = document.querySelector('#tabela-premium-amz tbody');
       tbody.innerHTML = '';
       
-      const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
       const query = normalizeText(document.getElementById('search-premium-input')?.value || '');
-
-      let premiumList = getDatasetByPeriod(rawDataAMZ, days).filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
+      let premiumList = currentFilteredAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
 
       premiumList.sort((a, b) => {
         const tA = parseDateToTimestamp(a.data_solicitacao || a.data_reivindicacao) || 0;
@@ -649,7 +647,7 @@
       }
       
       if (!premiumList.length) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#94a3b8;">Nenhum chamado premium encontrado.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#94a3b8;">Nenhum chamado premium encontrado no período.</td></tr>';
         return;
       }
 
@@ -675,11 +673,10 @@
       const tbody = document.querySelector('#tabela-repasses-amz tbody');
       tbody.innerHTML = '';
 
-      const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
       const query = normalizeText(document.getElementById('search-repasses-input')?.value || '');
       const filterRes = document.getElementById('filter-resultado-repasses')?.value || 'TODOS';
 
-      let repassesList = getDatasetByPeriod(rawDataAMZ, days);
+      let repassesList = [...currentFilteredAMZ];
 
       if (filterRes !== 'TODOS') {
         const filterNorm = normalizeText(filterRes);
@@ -695,7 +692,7 @@
       }
 
       if (!repassesList.length) {
-        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#94a3b8;">Nenhum registro de repasse encontrado.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#94a3b8;">Nenhum registro de repasse encontrado no período.</td></tr>';
         return;
       }
 
@@ -766,8 +763,6 @@
       const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
       const totalMediacao = baseTotalList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
       const totalRecusada = baseTotalList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
-      
-      // Cartão Impacto Removido (Válidos) imutável quanto à seleção do botão de escopo
       const totalRemovido = baseTotalList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
 
       document.getElementById('total-afetando-ml').innerText = totalAfetando;
@@ -775,7 +770,7 @@
       document.getElementById('total-recusada-ml').innerText = totalRecusada;
       document.getElementById('total-removido-ml').innerText = totalRemovido;
 
-      // Comparativo ML (Independente do Filtro de Período)
+      // Comparativo ML com exibição detalhada dos valores
       if(compDaysVal !== 'NONE') {
         const compDays = parseInt(compDaysVal);
 
@@ -804,6 +799,7 @@
         });
       }
 
+      // Atualiza todas as abas filhas aplicando o filtro de período atual
       renderTabSkusML_Current();
       renderTabTranspML(dataset);
       renderTabMotivosML(dataset);
