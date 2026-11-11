@@ -102,8 +102,8 @@
     th { background: #f1f5f9; font-weight: 600; color: #334155; }
 
     .order-link-box { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #0f172a; text-decoration: none; }
-    .amazon-logo-img { width: 22px; height: 22px; object-fit: contain; cursor: pointer; transition: transform 0.15s; }
-    .amazon-logo-img:hover { transform: scale(1.15); }
+    .amazon-logo-img, .ml-logo-img { width: 22px; height: 22px; object-fit: contain; cursor: pointer; transition: transform 0.15s; }
+    .amazon-logo-img:hover, .ml-logo-img:hover { transform: scale(1.15); }
 
     .ranking-container { display: flex; flex-wrap: wrap; gap: 6px; }
     .ranking-pill { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px; font-size: 12px; color: #334155; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s; user-select: none; }
@@ -121,7 +121,6 @@
     .no-comments { color: #94a3b8; font-size: 12px; font-style: italic; }
     .placeholder-card { background: var(--card-bg); border-radius: 12px; padding: 48px; border: 1px solid var(--border-color); text-align: center; }
 
-    /* Estilo para caixa de Nota Editável */
     .note-textarea { width: 100%; height: 50px; padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; font-family: inherit; resize: vertical; outline: none; background: #fafafa; transition: border-color 0.2s, background 0.2s; }
     .note-textarea:focus { border-color: var(--primary); background: #ffffff; }
   </style>
@@ -283,7 +282,7 @@
         <div class="table-toolbar">
           <div class="search-box-wrapper">
             <span class="search-icon-inside">🔍</span>
-            <input type="text" id="search-consulta-ml" class="search-input" placeholder="Pesquisar por ID do Pedido..." oninput="renderTabConsultaML()">
+            <input type="text" id="search-consulta-ml" class="search-input" placeholder="Pesquisar por N° da Venda..." oninput="renderTabConsultaML()">
           </div>
           <select id="filter-transp-consulta-ml" class="select-filter" onchange="renderTabConsultaML()">
             <option value="TODAS">Todas as Transportadoras</option>
@@ -295,8 +294,8 @@
         <table id="tabela-consulta-ml">
           <thead>
             <tr>
-              <th style="width:16%">Nº do Pedido</th>
-              <th style="width:24%">Produto</th>
+              <th style="width:18%">N° Venda</th>
+              <th style="width:22%">Produto</th>
               <th style="width:18%">Motivo</th>
               <th style="width:16%">Transportadora</th>
               <th style="width:26%">Nota / Observação</th>
@@ -528,15 +527,30 @@
     Chart.register(ChartDataLabels);
 
     const AMAZON_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg';
+    const ML_LOGO_URL = 'https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__small@2x.png';
 
     function normalizeText(str) {
       if (!str) return '';
-      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
+      return String(str).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
+    }
+
+    function getOrderId(record) {
+      if (!record) return '-';
+      return record.n_venda || 
+             record.n_da_venda || 
+             record['N° Venda'] || 
+             record['Nº Venda'] || 
+             record['N° da Venda'] || 
+             record['Nº da Venda'] || 
+             record.venda || 
+             record.id_pedido || 
+             record.pedido || 
+             '-';
     }
 
     function parseDateToTimestamp(dateStr) {
       if (!dateStr) return null;
-      const parts = dateStr.trim().split('/');
+      const parts = String(dateStr).trim().split('/');
       if (parts.length === 3) {
         return new Date(parts[2], parts[1] - 1, parts[0]).getTime();
       }
@@ -735,12 +749,13 @@
       renderFunc();
     }
 
-    // PERSISTÊNCIA DAS NOTAS NO LOCALSTORAGE
     function saveOrderNote(orderId, noteText) {
+      if (!orderId || orderId === '-') return;
       localStorage.setItem(`order_note_${orderId}`, noteText);
     }
 
     function getOrderNote(orderId) {
+      if (!orderId || orderId === '-') return '';
       return localStorage.getItem(`order_note_${orderId}`) || '';
     }
 
@@ -822,11 +837,12 @@
       });
 
       if (query) {
-        premiumList = premiumList.filter(r => 
-          normalizeText(r.id_pedido).includes(query) || 
-          normalizeText(r.reembolso).includes(query) ||
-          normalizeText(r.valor).includes(query)
-        );
+        premiumList = premiumList.filter(r => {
+          const orderId = getOrderId(r);
+          return normalizeText(orderId).includes(query) || 
+                 normalizeText(r.reembolso).includes(query) ||
+                 normalizeText(r.valor).includes(query);
+        });
       }
       
       if (!premiumList.length) {
@@ -835,12 +851,13 @@
       }
 
       premiumList.forEach(r => {
-        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${r.id_pedido}`;
+        const orderId = getOrderId(r);
+        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
         tbody.innerHTML += `<tr>
           <td>
             <a href="${linkOrder}" target="_blank" class="order-link-box">
               <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
-              <span>${r.id_pedido}</span>
+              <span>${orderId}</span>
             </a>
           </td>
           <td><strong>${r.data_solicitacao || '-'}</strong></td>
@@ -867,11 +884,12 @@
       }
 
       if (query) {
-        repassesList = repassesList.filter(r => 
-          normalizeText(r.id_pedido).includes(query) || 
-          normalizeText(r.valor).includes(query) ||
-          normalizeText(r.reembolso).includes(query)
-        );
+        repassesList = repassesList.filter(r => {
+          const orderId = getOrderId(r);
+          return normalizeText(orderId).includes(query) || 
+                 normalizeText(r.valor).includes(query) ||
+                 normalizeText(r.reembolso).includes(query);
+        });
       }
 
       if (!repassesList.length) {
@@ -880,12 +898,13 @@
       }
 
       repassesList.forEach(r => {
-        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${r.id_pedido}`;
+        const orderId = getOrderId(r);
+        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
         tbody.innerHTML += `<tr>
           <td>
             <a href="${linkOrder}" target="_blank" class="order-link-box">
               <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
-              <span>${r.id_pedido}</span>
+              <span>${orderId}</span>
             </a>
           </td>
           <td><strong>${r.valor || '-'}</strong></td>
@@ -1094,7 +1113,10 @@
       let list = rawDataAMZ.filter(r => r.is_afetando);
 
       if (searchVal) {
-        list = list.filter(r => normalizeText(r.id_pedido).includes(searchVal));
+        list = list.filter(r => {
+          const orderId = getOrderId(r);
+          return normalizeText(orderId).includes(searchVal);
+        });
       }
       if (filterTransp !== 'TODAS') {
         list = list.filter(r => (r.transportadora || '') === filterTransp);
@@ -1109,21 +1131,22 @@
       }
 
       list.forEach(r => {
-        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${r.id_pedido}`;
-        const savedNote = getOrderNote(r.id_pedido);
+        const orderId = getOrderId(r);
+        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
+        const savedNote = getOrderNote(orderId);
 
         tbody.innerHTML += `<tr>
           <td>
             <a href="${linkOrder}" target="_blank" class="order-link-box">
               <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
-              <span>${r.id_pedido}</span>
+              <span>${orderId}</span>
             </a>
           </td>
           <td>${r.produto || '-'}</td>
           <td>${r.motivo || '-'}</td>
           <td>${r.transportadora || '-'}</td>
           <td>
-            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${r.id_pedido}', this.value)">${savedNote}</textarea>
+            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${orderId}', this.value)">${savedNote}</textarea>
           </td>
         </tr>`;
       });
@@ -1143,9 +1166,9 @@
       currentFilteredML = dataset;
 
       const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
-      const totalMediacao = baseTotalList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
-      const totalRecusada = baseTotalList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
-      const totalRemovido = baseTotalList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+      const totalMediacao = baseTotalList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status ? r.status.toUpperCase() : '')).length;
+      const totalRecusada = baseTotalList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status ? r.status.toUpperCase() : '')).length;
+      const totalRemovido = baseTotalList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status ? r.status.toUpperCase() : '')).length;
 
       document.getElementById('total-afetando-ml').innerText = totalAfetando;
       document.getElementById('total-mediacao-ml').innerText = totalMediacao;
@@ -1164,14 +1187,14 @@
         const cAfetando = currentCompList.filter(r => r.is_afetando).length;
         const pAfetando = prevCompList.filter(r => r.is_afetando).length;
 
-        const cMediacao = currentCompList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
-        const pMediacao = prevCompList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
+        const cMediacao = currentCompList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status ? r.status.toUpperCase() : '')).length;
+        const pMediacao = prevCompList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status ? r.status.toUpperCase() : '')).length;
 
-        const cRecusada = currentCompList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
-        const pRecusada = prevCompList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
+        const cRecusada = currentCompList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status ? r.status.toUpperCase() : '')).length;
+        const pRecusada = prevCompList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status ? r.status.toUpperCase() : '')).length;
 
-        const cRemovido = currentCompList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
-        const pRemovido = prevCompList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+        const cRemovido = currentCompList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status ? r.status.toUpperCase() : '')).length;
+        const pRemovido = prevCompList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status ? r.status.toUpperCase() : '')).length;
 
         generateComparisonBadge('comp-afetando-ml', cAfetando, pAfetando, compDays);
         generateComparisonBadge('comp-mediacao-ml', cMediacao, pMediacao, compDays);
@@ -1391,7 +1414,10 @@
       let list = rawDataML.filter(r => r.is_afetando);
 
       if (searchVal) {
-        list = list.filter(r => normalizeText(r.id_pedido).includes(searchVal));
+        list = list.filter(r => {
+          const orderId = getOrderId(r);
+          return normalizeText(orderId).includes(searchVal);
+        });
       }
       if (filterTransp !== 'TODAS') {
         list = list.filter(r => (r.transportadora || '') === filterTransp);
@@ -1406,15 +1432,22 @@
       }
 
       list.forEach(r => {
-        const savedNote = getOrderNote(r.id_pedido);
+        const orderId = getOrderId(r);
+        const linkOrder = `https://vendedores.mercadolivre.com.br/vendas/${orderId}/detalhe`;
+        const savedNote = getOrderNote(orderId);
 
         tbody.innerHTML += `<tr>
-          <td><strong>${r.id_pedido}</strong></td>
+          <td>
+            <a href="${linkOrder}" target="_blank" class="order-link-box">
+              <img src="${ML_LOGO_URL}" class="ml-logo-img" title="Abrir venda no Mercado Livre">
+              <span>${orderId}</span>
+            </a>
+          </td>
           <td>${r.produto || '-'}</td>
           <td>${r.motivo || '-'}</td>
           <td>${r.transportadora || '-'}</td>
           <td>
-            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${r.id_pedido}', this.value)">${savedNote}</textarea>
+            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${orderId}', this.value)">${savedNote}</textarea>
           </td>
         </tr>`;
       });
