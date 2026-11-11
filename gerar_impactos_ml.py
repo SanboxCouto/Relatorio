@@ -42,24 +42,25 @@ def parse_csv_dinamico(url, termos_busca):
     res = requests.get(url)
     res.encoding = 'utf-8'
     lines = res.text.splitlines()
-
+    
+    # Ignora a Linha 1 e busca o cabeçalho a partir da Linha 2
     header_idx = -1
-    for idx, line in enumerate(lines[:15]):
+    for idx, line in enumerate(lines[1:15], start=1):
         line_norm = remover_acentos(line)
         if any(remover_acentos(t) in line_norm for t in termos_busca):
             header_idx = idx
             break
-
+            
     if header_idx != -1:
         df = pd.read_csv(io.StringIO("\n".join(lines[header_idx:])))
     else:
-        df = pd.read_csv(io.StringIO(res.text))
-
+        df = pd.read_csv(io.StringIO("\n".join(lines[1:])))
+        
     df.columns = [str(col).replace('"', '').replace("'", "").strip() for col in df.columns]
     return df
 
 def processar_ml():
-    df = parse_csv_dinamico(URL_CSV_ML, ['TEMPO DE IMPACTO', 'MOTIVO DA RECLAMACAO', 'STATUS'])
+    df = parse_csv_dinamico(URL_CSV_ML, ['TEMPO DE IMPACTO', 'MOTIVO DA RECLAMACAO', 'STATUS', 'DATA DA RECLAMACAO', 'DATA DA VENDA'])
 
     def get_col(nomes, default_idx):
         for col in df.columns:
@@ -67,11 +68,24 @@ def processar_ml():
                 return col
         return df.columns[default_idx] if len(df.columns) > default_idx else df.columns[0]
 
-    col_data_pedido    = get_col(['DATA DO PEDIDO', 'DATA'], 0)
+    # Mapeamento atualizado considerando 'DATA DA RECLAMACAO' e 'DATA DA VENDA'
+    col_data_pedido    = get_col(['DATA DA RECLAMACAO', 'DATA DA VENDA', 'DATA DO PEDIDO', 'DATA'], 0)
     col_status_valido = get_col(['TEMPO DE IMPACTO', 'VALIDACAO'], 3)
     col_produto       = get_col(['PRODUTO'], 4)
     col_motivo        = get_col(['MOTIVO DA RECLAMACAO', 'MOTIVO'], 5)
-@@ -86,6 +87,7 @@
+    col_status_g      = get_col(['STATUS', 'ACAO TOMADA'], 6)
+    col_sku           = get_col(['SKU'], 12)
+    col_transportadora= get_col(['TRANSPORTADORA', 'TRANSP'], 13)
+    col_comentario    = get_col(['COMENTARIO', 'OBSERVACAO', 'OBS'], 14)
+
+    registros = []
+    for idx, row in df.iterrows():
+        valido_clean = remover_acentos(str(row[col_status_valido]))
+        status_g_clean = remover_acentos(str(row[col_status_g]))
+
+        is_valido = 'VALIDO' in valido_clean
+        status_afetam = ['EM MEDIACAO', 'REVISAO RECUSADA', 'NAO SOLICITADA']
+        is_afetando = is_valido and (status_g_clean in status_afetam)
 
         prod_nome = str(row[col_produto]) if pd.notna(row[col_produto]) else ''
         coment = limpar_comentario(row[col_comentario])
@@ -79,7 +93,9 @@ def processar_ml():
 
         registros.append({
             "sku": str(row[col_sku]).strip() if pd.notna(row[col_sku]) else 'N/A',
-@@ -95,98 +97,99 @@
+            "produto": prod_nome,
+            "marca": extrair_marca(prod_nome),
+            "motivo": str(row[col_motivo]),
             "transportadora": str(row[col_transportadora]),
             "status": str(row[col_status_g]),
             "tempo_impacto": str(row[col_status_valido]),
@@ -119,7 +135,7 @@ def processar_amazon():
     registros = []
     for idx, row in df.iterrows():
         id_ped = str(row[col_id_pedido]).strip() if col_id_pedido and pd.notna(row[col_id_pedido]) else ''
-
+        
         if not id_ped or id_ped.lower() == 'nan' or 'id do pedido' in id_ped.lower():
             continue
 
@@ -133,7 +149,7 @@ def processar_amazon():
         is_afetando = is_valido and any(st in impacto_clean for st in ['MANTIDO', 'CHAMADO PREMIUM', 'ANALISE'])
 
         sku_val = str(row[col_sku]).strip() if col_sku and pd.notna(row[col_sku]) and str(row[col_sku]).strip().lower() != 'nan' else 'N/A'
-
+        
         prod_val = ''
         if col_produto and pd.notna(row[col_produto]):
             prod_val = str(row[col_produto]).strip()
@@ -174,7 +190,7 @@ def main():
 
     with open("impactos_ml.json", "w", encoding="utf-8") as f:
         json.dump(dados, f, ensure_ascii=False, indent=4)
-
+        
     print(f"Sucesso! ML: {len(registros_ml)} | Amazon: {len(registros_amazon)}")
 
 if __name__ == "__main__":
