@@ -43,17 +43,15 @@ def parse_csv_dinamico(url, termos_busca):
     res.encoding = 'utf-8'
     lines = res.text.splitlines()
     
-    # Ignora a Linha 1 (índice 0) e busca o cabeçalho a partir da Linha 2 (índice 1 em diante)
     header_idx = -1
     lines_para_busca = lines[1:15] if len(lines) > 1 else lines
     
     for offset, line in enumerate(lines_para_busca):
         line_norm = remover_acentos(line)
         if any(remover_acentos(t) in line_norm for t in termos_busca):
-            header_idx = offset + 1  # Reajusta o índice referente a 'lines'
+            header_idx = offset + 1
             break
             
-    # Se encontrou a linha de cabeçalho pelos termos, lê a partir dela; caso contrário, força Linha 2 (índice 1)
     if header_idx != -1:
         df = pd.read_csv(io.StringIO("\n".join(lines[header_idx:])))
     else:
@@ -63,17 +61,14 @@ def parse_csv_dinamico(url, termos_busca):
     return df
 
 def encontrar_coluna(df, termos_possaveis):
-    """Localiza a coluna exata ou correspondente por busca insensível a acentos/caixa."""
     colunas_norm = {col: remover_acentos(col) for col in df.columns}
     
-    # 1. Correspondência exata de termo normalizado
     for termo in termos_possaveis:
         termo_norm = remover_acentos(termo)
         for col_original, col_norm in colunas_norm.items():
             if col_norm == termo_norm:
                 return col_original
                 
-    # 2. Correspondência parcial (contém o termo)
     for termo in termos_possaveis:
         termo_norm = remover_acentos(termo)
         for col_original, col_norm in colunas_norm.items():
@@ -83,16 +78,16 @@ def encontrar_coluna(df, termos_possaveis):
     return None
 
 def processar_ml():
-    df = parse_csv_dinamico(URL_CSV_ML, ['TEMPO DE IMPACTO', 'MOTIVO DA RECLAMACAO', 'STATUS'])
+    df = parse_csv_dinamico(URL_CSV_ML, ['TEMPO DE IMPACTO', 'MOTIVO DA RECLAMACAO', 'ACAO TOMADA', 'STATUS'])
 
     col_data_pedido    = encontrar_coluna(df, ['DATA DO PEDIDO', 'DATA PEDIDO', 'DATA'])
     col_status_valido = encontrar_coluna(df, ['TEMPO DE IMPACTO', 'VALIDACAO', 'AFETANDO REPUTACAO', 'AFETANDO REPUTAÇÃO'])
     col_produto       = encontrar_coluna(df, ['PRODUTO DA RECLAMACAO', 'PRODUTO', 'TITULO', 'NOME PRODUTO'])
     col_motivo        = encontrar_coluna(df, ['MOTIVO DA RECLAMACAO', 'MOTIVO RECLAMACAO', 'MOTIVO'])
-    col_status_g      = encontrar_coluna(df, ['STATUS', 'SITUACAO'])
+    col_status_g      = encontrar_coluna(df, ['ACAO TOMADA', 'AÇÃO TOMADA', 'STATUS', 'SITUACAO'])
     col_sku           = encontrar_coluna(df, ['SKU', 'CODIGO SKU'])
     col_transportadora= encontrar_coluna(df, ['TRANSPORTADORA', 'LOGISTICA', 'TRANSP'])
-    col_comentario    = encontrar_coluna(df, ['COMENTARIO', 'OBSERVACAO', 'COMENTARIOS', 'OBSERVACOES', 'OBS'])
+    col_comentario    = encontrar_coluna(df, ['COMENTARIO', 'COMENTÁRIO', 'OBSERVACAO', 'OBSERVAÇÃO', 'OBS'])
 
     registros = []
     for idx, row in df.iterrows():
@@ -112,7 +107,7 @@ def processar_ml():
             "produto": prod_nome,
             "marca": extrair_marca(prod_nome),
             "motivo": str(row[col_motivo]).strip() if col_motivo and pd.notna(row[col_motivo]) else '',
-            "transportadora": str(row[col_transportadora]).strip() if col_transportadora and pd.notna(row[col_transportadora]) else '',
+            "transportadora": str(row[col_transportadora]).strip() if col_transportadora and pd.notna(row[col_transportadora]) else 'Não Informada',
             "status": str(row[col_status_g]).strip() if col_status_g and pd.notna(row[col_status_g]) else '',
             "tempo_impacto": str(row[col_status_valido]).strip() if col_status_valido and pd.notna(row[col_status_valido]) else '',
             "data_pedido": data_ped,
@@ -177,7 +172,7 @@ def processar_amazon():
             "motivo": str(row[col_motivo]).strip() if col_motivo and pd.notna(row[col_motivo]) else '',
             "produto": prod_val,
             "sku": sku_val,
-            "transportadora": str(row[col_transp]).strip() if col_transp and pd.notna(row[col_transp]) else '',
+            "transportadora": str(row[col_transp]).strip() if col_transp and pd.notna(row[col_transp]) else 'Não Informada',
             "tempo_impacto": tempo_val,
             "marca": extrair_marca(prod_val if prod_val != f"SKU {sku_val}" else sku_val),
             "comentario": limpar_comentario(coment_val),
