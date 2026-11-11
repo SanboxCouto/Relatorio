@@ -6,9 +6,9 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Expirado",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
-            "data_pedido": "24/08/2026",
+            "data_pedido": "14/08/2026",
             "comentario": "Amassado na Lateral Esquerda",
             "is_valido": false,
             "is_afetando": false
@@ -19,9 +19,9 @@
             "marca": "Braslar",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Expirado",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
-            "data_pedido": "24/08/2026",
+            "data_pedido": "20/08/2026",
             "comentario": "Grade Descascando e com Lascas",
             "is_valido": false,
             "is_afetando": false
@@ -32,7 +32,7 @@
             "marca": "Electrolux",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "08/09/2026",
             "comentario": "Amassado na Parte Superior do Fogão",
@@ -45,7 +45,7 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "09/09/2026",
             "comentario": "Amassado na Lateral",
@@ -58,7 +58,7 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "10/09/2026",
             "comentario": "Parte Frontal Inferior Quebrada",
@@ -71,12 +71,12 @@
             "marca": "Electrolux",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "13/09/2026",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "09/09/2026",
             "comentario": "Amassado e Riscos em Partes Externas",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1633",
@@ -84,11 +84,11 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "15/09/2026",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "30/08/2026",
             "comentario": "Fogão está dando Choques ao utilizar",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -97,12 +97,12 @@
             "marca": "Midea",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "16/09/2026",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "14/08/2026",
             "comentario": "Arranhado na Lateral Direita",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1567",
@@ -110,12 +110,12 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "22/09/2026",
             "comentario": "Amassado na Lateral Direita do Fogão",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1524",
@@ -123,7 +123,7 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "10/09/2026",
             "comentario": "Parafuso e Tempinho Soltos",
@@ -136,12 +136,12 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "23/09/2026",
             "comentario": "Riscos, Arranhões e Amassados no Fogão",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1684",
@@ -149,12 +149,12 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "24/09/2026",
             "comentario": "Amassado na Parte Superior do Forno",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1633",
@@ -162,12 +162,12 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "26/09/2026",
             "comentario": "Quina Superior Esquerda do Fogão Amassada",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1562",
@@ -175,11 +175,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "27/09/2026",
             "comentario": "Barra Amassada",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -188,11 +188,11 @@
             "marca": "Mueller",
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Item Faltante",
+            "tempo_impacto": "Expirado",
             "data_pedido": "28/09/2026",
             "comentario": "Item Faltante: 1 Trempe Central",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -201,12 +201,12 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "28/09/2026",
             "comentario": "Amassado na Lateral Esquerda",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1763",
@@ -214,11 +214,11 @@
             "marca": "Electrolux",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "30/09/2026",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "03/09/2026",
             "comentario": "Amassado na Parte Superior do Fogão",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -227,12 +227,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "30/09/2026",
             "comentario": "Botão de Acendimento Automático Ñ Funciona",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1675",
@@ -240,12 +240,64 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "30/09/2026",
             "comentario": "Pequenas Avarias na Mesa do Fogão",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1603",
+            "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
+            "marca": "Dako",
+            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
+            "transportadora": "Mercado Envios",
+            "status": "Não é da cor, tamanho ou modelo que escolhi",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "01/10/2026",
+            "comentario": "Cliente Alegou ter Comprado Errado",
+            "is_valido": false,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1739",
+            "produto": "Caixa De Som Bluetooth Pulse X Boombox 220w Rms - Sp626 Preto 127/220v",
+            "marca": "Pulse",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "02/10/2026",
+            "comentario": "Bateria Não Carrega Totalmente e Descarrega",
+            "is_valido": false,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1571",
+            "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+            "marca": "Mueller",
+            "motivo": "Outro motivo",
+            "transportadora": "Brasil Web",
+            "status": "Outro motivo",
+            "tempo_impacto": "Válido",
+            "data_pedido": "02/10/2026",
+            "comentario": "Preço Errado",
+            "is_valido": true,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1568",
+            "produto": "Fogão Mueller 5 Bocas Preto Vidro Temperado Tripla Chama Preto Fosco 127/220v",
+            "marca": "Mueller",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Válido",
+            "data_pedido": "02/10/2026",
+            "comentario": "Vidro Frontal do Fogão TODO Quebrado",
+            "is_valido": true,
+            "is_afetando": false
         },
         {
             "sku": "TI1562",
@@ -253,12 +305,25 @@
             "marca": "Mueller",
             "motivo": "A data de entrega combinada não foi cumprida",
             "transportadora": "Trilog Express",
-            "status": "Revisão Recusada",
+            "status": "A data de entrega combinada não foi cumprida",
             "tempo_impacto": "Válido",
             "data_pedido": "04/10/2026",
             "comentario": "Entrega Atrasada",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1112",
+            "produto": "Torradeira Duo Ce141 Vermelho 700w Multilaser 127v",
+            "marca": "Duo",
+            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
+            "transportadora": "Mercado Envios",
+            "status": "Não é da cor, tamanho ou modelo que escolhi",
+            "tempo_impacto": "Válido",
+            "data_pedido": "04/10/2026",
+            "comentario": "O Produto Estava Correto",
+            "is_valido": true,
+            "is_afetando": false
         },
         {
             "sku": "TI1789",
@@ -266,12 +331,12 @@
             "marca": "Midea",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "05/10/2026",
             "comentario": "Vidro do Cooktop Quebrada",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1514",
@@ -279,11 +344,24 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "05/10/2026",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "07/09/2026",
             "comentario": "Botão de Acendimento Automático Ñ Funciona",
-            "is_valido": true,
+            "is_valido": false,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1581",
+            "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
+            "marca": "Dako",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "26/09/2026",
+            "comentario": "Amassado parte Traseira | Entregue s/Caixa",
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -292,12 +370,12 @@
             "marca": "Pulse",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "06/10/2026",
             "comentario": "Amassado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1688",
@@ -305,11 +383,11 @@
             "marca": "Imbera",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "06/10/2026",
             "comentario": "Problema no LED",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -318,11 +396,24 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "06/10/2026",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "01/10/2026",
             "comentario": "Amassado na Lateral Superior Esquerda",
-            "is_valido": true,
+            "is_valido": false,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1816",
+            "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
+            "marca": "Imbera",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "08/09/2026",
+            "comentario": "Termostato não muda e mostra apenas 11°",
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -331,12 +422,12 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/10/2026",
+            "data_pedido": "02/10/2026",
             "comentario": "Puxador Quebrado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1524",
@@ -344,12 +435,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "07/10/2026",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "01/09/2026",
             "comentario": "Vazamento de Óleo",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1455",
@@ -357,12 +448,12 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/10/2026",
+            "data_pedido": "15/09/2026",
             "comentario": "Arranhados na Quina",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1580",
@@ -370,10 +461,23 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/10/2026",
+            "data_pedido": "15/09/2026",
             "comentario": "Amassado na Lateral Tampado com Papel",
+            "is_valido": true,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1813",
+            "produto": "Fogão 4 Bocas Atlas Agile Glass Automático Mesa De Vidro Branco 127/220v",
+            "marca": "Atlas",
+            "motivo": "Não posso esperar a entrega",
+            "transportadora": "Brasil Web",
+            "status": "Não posso esperar a entrega",
+            "tempo_impacto": "Válido",
+            "data_pedido": "23/09/2026",
+            "comentario": "Cliente deseja Cancelar o Pedido",
             "is_valido": true,
             "is_afetando": false
         },
@@ -383,11 +487,11 @@
             "marca": "Pulse",
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "08/10/2026",
+            "status": "Item Faltante",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "06/10/2026",
             "comentario": "Item Faltante: 2 Microfones",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -396,12 +500,12 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
-            "data_pedido": "08/10/2026",
+            "data_pedido": "02/10/2026",
             "comentario": "Cesto da Máquina Danificado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1609",
@@ -409,11 +513,11 @@
             "marca": "Itatiaia",
             "motivo": "Produto Avariado",
             "transportadora": "Brasil Web",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "10/10/2026",
             "comentario": "Diversos Amassados",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -422,10 +526,23 @@
             "marca": "Mueller",
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Item Faltante",
+            "tempo_impacto": "Expirado",
             "data_pedido": "10/10/2026",
             "comentario": "Item Faltante: Boca Central",
+            "is_valido": false,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
+            "marca": "Mueller",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Válido",
+            "data_pedido": "10/10/2026",
+            "comentario": "Mesa de Vidro Quebrada",
             "is_valido": true,
             "is_afetando": false
         },
@@ -435,24 +552,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "10/10/2026",
-            "comentario": "Mesa de Vidro Quebrada",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1562",
-            "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
-            "marca": "Mueller",
-            "motivo": "Produto Avariado",
-            "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "10/10/2026",
             "comentario": "Amassado no Puxador",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -461,11 +565,11 @@
             "marca": "Pulse",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "10/10/2026",
             "comentario": "Botão Quebrado",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -474,12 +578,12 @@
             "marca": "Esmaltec",
             "motivo": "Não posso esperar a entrega",
             "transportadora": "Tecmar Transportadora",
-            "status": "Não Solicitada",
+            "status": "Não posso esperar a entrega",
             "tempo_impacto": "Válido",
             "data_pedido": "10/10/2026",
             "comentario": "Envio Atrasado | Pedido Cancelado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1529",
@@ -487,12 +591,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "12/10/2026",
             "comentario": "Máquina não Enche de Água",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1759",
@@ -500,11 +604,11 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "12/10/2026",
             "comentario": "Vedação da Porta com Problema",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -513,11 +617,11 @@
             "marca": "Esmaltec",
             "motivo": "Defeito no Produto",
             "transportadora": "Alfa Transportes",
-            "status": "Atualizando",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "12/10/2026",
             "comentario": "Barulho nas Válvulas ao Ligar",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -526,11 +630,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "12/10/2026",
             "comentario": "Diversos Amassados",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -539,11 +643,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "12/10/2026",
             "comentario": "Mesa do Fogão Amassado",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -552,12 +656,12 @@
             "marca": "Esmaltec",
             "motivo": "A embalagem estava danificada\n E Produto Não Funciona",
             "transportadora": "MMA Cargas",
-            "status": "Em Mediação",
+            "status": "A embalagem estava danificada\n E Produto Não Funciona",
             "tempo_impacto": "Válido",
             "data_pedido": "13/10/2026",
             "comentario": "Forno Não Funciona",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1524",
@@ -565,12 +669,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "13/10/2026",
             "comentario": "Vazamento de Óleo, Barulho no Motor e Defeito no Time",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1603",
@@ -578,12 +682,12 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "13/10/2026",
             "comentario": "Mesa do Fogão Amassada e Estalo na Porta do Forno",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1633",
@@ -591,11 +695,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "13/10/2026",
             "comentario": "Vidro Espelhado Quebrado e Tampa Empenada",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -604,12 +708,12 @@
             "marca": "Mueller",
             "motivo": "Outro motivo",
             "transportadora": "Tecmar Transportadora",
-            "status": "Não Solicitada",
+            "status": "Outro motivo",
             "tempo_impacto": "Válido",
             "data_pedido": "13/10/2026",
             "comentario": "Atraso na Entrega",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1876",
@@ -617,12 +721,12 @@
             "marca": "Esmaltec",
             "motivo": "A data de entrega combinada não foi cumprida",
             "transportadora": "Trilog Express",
-            "status": "Não Solicitada",
+            "status": "A data de entrega combinada não foi cumprida",
             "tempo_impacto": "Válido",
             "data_pedido": "13/10/2026",
             "comentario": "Atraso na Entrega",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1524",
@@ -630,12 +734,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "14/10/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1455",
@@ -643,12 +747,12 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "14/10/2026",
             "comentario": "Diversos Amassados na Parte Inferior",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1835-2",
@@ -656,11 +760,11 @@
             "marca": "Wanke",
             "motivo": "O vendedor não me respondeu",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "O vendedor não me respondeu",
+            "tempo_impacto": "Expirado",
             "data_pedido": "14/10/2026",
             "comentario": "Comprador Não deu Tempo para Resposta",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -669,12 +773,12 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "15/10/2026",
             "comentario": "Lascas nas Trempes",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1090",
@@ -682,12 +786,12 @@
             "marca": "Philco",
             "motivo": "Não é da cor, tamanho ou modelo que escolhi",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Não é da cor, tamanho ou modelo que escolhi",
             "tempo_impacto": "Válido",
             "data_pedido": "15/10/2026",
             "comentario": "Produto Enviado de Cor Errada",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1456",
@@ -695,12 +799,12 @@
             "marca": "Imbera",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "15/10/2026",
             "comentario": "Refrigerador Não está Gelando e Contém Algumas Avarias",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1607",
@@ -708,12 +812,12 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Alfa Transportes",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "15/10/2026",
             "comentario": "Amassado na Tampa e Risco Profundo",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1876",
@@ -721,12 +825,12 @@
             "marca": "Esmaltec",
             "motivo": "Produto Avariado",
             "transportadora": "Tecmar Transportadora",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "16/10/2026",
             "comentario": "Amassado na Quina Direita Superior",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1766",
@@ -734,12 +838,12 @@
             "marca": "Electrolux",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "16/10/2026",
             "comentario": "Produto Instalado e Cheiro de Queimado no Primeiro Uso",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1454",
@@ -747,12 +851,12 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Alfa Transportes",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "16/10/2026",
             "comentario": "Diversos Arranhados e Um Amassado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1846",
@@ -760,11 +864,11 @@
             "marca": "Mueller",
             "motivo": "Insatisfação",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Insatisfação",
+            "tempo_impacto": "Expirado",
             "data_pedido": "17/10/2026",
             "comentario": "Comprador Insatisfeito",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -773,12 +877,12 @@
             "marca": "Imbera",
             "motivo": "Descumpre as características do anúncio",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Descumpre as características do anúncio",
             "tempo_impacto": "Válido",
             "data_pedido": "20/10/2026",
-            "comentario": "",
+            "comentario": "Não Explicado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1527",
@@ -786,12 +890,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "20/10/2026",
             "comentario": "Rangido mesmo com o Produto Vazio",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1668",
@@ -799,11 +903,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "20/10/2026",
             "comentario": "Amassado na Parte Traseira",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -812,11 +916,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "21/10/2026",
             "comentario": "Caixa Danificada e Arranhado no Vidro",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -825,12 +929,12 @@
             "marca": "Electrolux",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "21/10/2026",
             "comentario": "Não Funciona e Apresenta Erro",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1874",
@@ -838,12 +942,12 @@
             "marca": "Esmaltec",
             "motivo": "Produto Avariado",
             "transportadora": "Alfa Transportes",
-            "status": "Não Solicitada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "22/10/2026",
             "comentario": "Grade Quebrada",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1090",
@@ -851,12 +955,12 @@
             "marca": "Philco",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "23/10/2026",
             "comentario": "Porta do Forno com Problema",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1514",
@@ -864,12 +968,12 @@
             "marca": "Mueller",
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Item Faltante",
             "tempo_impacto": "Válido",
             "data_pedido": "23/10/2026",
             "comentario": "Espalha Chama (Trempe) Central",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1667",
@@ -877,115 +981,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "23/10/2026",
             "comentario": "Amassado na Mesa Superior do Fogão",
-            "is_valido": true,
-            "is_afetando": false
-        },
-        {
-            "sku": "TI1562",
-            "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
-            "marca": "Mueller",
-            "motivo": "Ocorrência de Entrega",
-            "transportadora": "MMA Cargas",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "23/10/2026",
-            "comentario": "Comprador reclamou da demora para Entrega",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1456",
-            "produto": "Refrigerador Vertical Imbera Vr08 244l Full Black Com Iluminação Led 127/220v",
-            "marca": "Imbera",
-            "motivo": "Item Faltante",
-            "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
-            "tempo_impacto": "Válido",
-            "data_pedido": "25/10/2026",
-            "comentario": "Item Faltante: 1 dos Pés de Apoio",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1768",
-            "produto": "Lava E Seca Electrolux 12kg Cinza Ônix Inverter (lsc12 Cinza 127v Inox",
-            "marca": "Electrolux",
-            "motivo": "Defeito no Produto",
-            "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "25/10/2026",
-            "comentario": "Mal Funcionamento da Vibração e Secagem",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1514",
-            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
-            "marca": "Mueller",
-            "motivo": "Defeito no Produto",
-            "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "26/10/2026",
-            "comentario": "Timer Não Funciona",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1667",
-            "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
-            "marca": "Mueller",
-            "motivo": "Produto Avariado",
-            "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "26/10/2026",
-            "comentario": "Amassado na Parte Frontal Superior",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1514",
-            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
-            "marca": "Mueller",
-            "motivo": "Defeito no Produto",
-            "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "26/10/2026",
-            "comentario": "Produto com Vários Defeitos de Fábrica",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1850",
-            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
-            "marca": "Mueller",
-            "motivo": "Descumpre as características do anúncio",
-            "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "26/10/2026",
-            "comentario": "Pés de Apoio Não se Encaixam",
-            "is_valido": true,
-            "is_afetando": false
-        },
-        {
-            "sku": "TI1090",
-            "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Preto E Cinza 127v",
-            "marca": "Philco",
-            "motivo": "Produto Avariado",
-            "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "27/10/2026",
-            "comentario": "Amassado na Parte Superior",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -994,11 +994,11 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "19/09/2026",
             "comentario": "Pés e Vidro do Produto Avariado",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1007,11 +1007,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "17/09/2026",
             "comentario": "Pés do Produto Avariado",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1020,7 +1020,7 @@
             "marca": "Pulse",
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Item Faltante",
             "tempo_impacto": "Expirado",
             "data_pedido": "09/09/2026",
             "comentario": "Item Faltante: 2 Microfones",
@@ -1033,11 +1033,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Expirado",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "20/09/2026",
             "comentario": "Amassado na parte Superior",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1046,7 +1046,7 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Expirado",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "14/08/2026",
             "comentario": "Quebrado na Parte Inferior",
@@ -1059,7 +1059,7 @@
             "marca": "Midea",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Expirado",
             "data_pedido": "31/08/2026",
             "comentario": "Máquina não Enche de Água",
@@ -1072,12 +1072,12 @@
             "marca": "Philco",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "13/09/2026",
             "comentario": "Tweeter da Caixa com Defeito",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1763",
@@ -1085,11 +1085,11 @@
             "marca": "Electrolux",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "14/09/2026",
             "comentario": "Mesa do Fogão Arranhada",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1098,7 +1098,7 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "28/08/2026",
             "comentario": "Amassado na Parte Frontal Inferior",
@@ -1111,7 +1111,7 @@
             "marca": "Imbera",
             "motivo": "Recebi outro tipo de produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Recebi outro tipo de produto",
             "tempo_impacto": "Expirado",
             "data_pedido": "27/08/2026",
             "comentario": "Foi Enviado Modelo Diferente do Produto",
@@ -1124,12 +1124,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "14/09/2026",
             "comentario": "A Mesa do Fogão está Torta",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1090",
@@ -1137,7 +1137,7 @@
             "marca": "Philco",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Expirado",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "14/08/2026",
             "comentario": "Amassado na Parte Superior do Forno",
@@ -1150,11 +1150,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "14/09/2026",
             "comentario": "Amassado em diversos lados do Fogão",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1163,7 +1163,7 @@
             "marca": "Midea",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Expirado",
             "data_pedido": "05/09/2026",
             "comentario": "Uma Parte da Lavadora estava Solta",
@@ -1176,12 +1176,12 @@
             "marca": "Midea",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "19/09/2026",
             "comentario": "Máquina Liga mas Não Funciona",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1571",
@@ -1189,7 +1189,7 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "25/08/2026",
             "comentario": "Mesa do Fogão Amassada",
@@ -1202,7 +1202,7 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "02/09/2026",
             "comentario": "Diversos Amassados e Arranhados",
@@ -1215,7 +1215,7 @@
             "marca": "Philco",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "06/09/2026",
             "comentario": "Mancha Amarela no Produto",
@@ -1228,7 +1228,7 @@
             "marca": "Mueller",
             "motivo": "Descumpre as características do anúncio",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Descumpre as características do anúncio",
             "tempo_impacto": "Expirado",
             "data_pedido": "25/08/2026",
             "comentario": "Anúncio do Produto com Erro na Descrição",
@@ -1241,7 +1241,7 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Expirado",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "08/08/2026",
             "comentario": "Amassado na Lateral Inferior Direita",
@@ -1254,7 +1254,7 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Expirado",
             "data_pedido": "24/08/2026",
             "comentario": "Painel com Defeito",
@@ -1267,7 +1267,7 @@
             "marca": "System",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Expirado",
             "data_pedido": "20/08/2026",
             "comentario": "Não Funciona",
@@ -1280,7 +1280,7 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Expirado",
             "data_pedido": "10/09/2026",
             "comentario": "Vazamento de Óleo",
@@ -1293,12 +1293,12 @@
             "marca": "Pulse",
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
+            "status": "Item Faltante",
+            "tempo_impacto": "Expirado",
             "data_pedido": "19/09/2026",
             "comentario": "Item Faltante: 2 Microfones",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1633",
@@ -1306,11 +1306,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "16/09/2026",
             "comentario": "Mesa do Fogão Amassada \n Produto foi Entregue de Cabeça pra Baixo",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1319,7 +1319,7 @@
             "marca": "Philco",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Expirado",
             "data_pedido": "07/09/2026",
             "comentario": "Chiado ao utilizar o Modo Bluetooth",
@@ -1332,12 +1332,12 @@
             "marca": "Philco",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "20/09/2026",
             "comentario": "Pinos da Ventilação Amassados",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1581",
@@ -1345,7 +1345,7 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Expirado",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "17/08/2026",
             "comentario": "Puxador Amassado",
@@ -1358,12 +1358,12 @@
             "marca": "Itatiaia",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "15/09/2026",
             "comentario": "Uma das Bocas Não Funcionam",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1524",
@@ -1371,12 +1371,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "21/09/2026",
             "comentario": "Vazamento de Água na parte Inferior\n Aparentemente parou",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1850",
@@ -1384,12 +1384,12 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "15/09/2026",
             "comentario": "Produto Aparentemente de Outlet",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1853",
@@ -1397,12 +1397,12 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "13/09/2026",
             "comentario": "Trincado na Parte Traseira do Tanquinho",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1090",
@@ -1410,7 +1410,7 @@
             "marca": "Philco",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "05/08/2026",
             "comentario": "Porta Empenada e Vidro com Cola Visível",
@@ -1423,11 +1423,11 @@
             "marca": "Imbera",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "15/09/2026",
             "comentario": "Está com Defeito (???)",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1436,12 +1436,12 @@
             "marca": "Wanke",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "21/09/2026",
             "comentario": "Faz Zumbido no Motor e Não Funciona",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1694",
@@ -1449,7 +1449,7 @@
             "marca": "Itatiaia",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "13/08/2026",
             "comentario": "Pé de Apoio Desencaixado",
@@ -1462,12 +1462,12 @@
             "marca": "Philco",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "24/09/2026",
             "comentario": "Led Ruim e Mancha na Lateral Direita",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1668",
@@ -1475,7 +1475,7 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Expirado",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "01/09/2026",
             "comentario": "Trinca na Mesa de Vidro e Vidro Empenado",
@@ -1488,12 +1488,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "15/09/2026",
             "comentario": "Vazamento de Óleo",
-            "is_valido": true,
-            "is_afetando": true
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1571",
@@ -1501,7 +1501,7 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Expirado",
             "data_pedido": "24/08/2026",
             "comentario": "Bocas com Defeito",
@@ -1514,7 +1514,7 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "04/09/2026",
             "comentario": "Mesa do Fogão Amassada",
@@ -1527,7 +1527,7 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Expirado",
             "data_pedido": "13/08/2026",
             "comentario": "Mancha de Risco no Vidro Espelhado",
@@ -1540,7 +1540,7 @@
             "marca": "Imbera",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Expirado",
             "data_pedido": "18/08/2026",
             "comentario": "Fiação e Bobinas de Refrigeração Expostas",
@@ -1553,12 +1553,12 @@
             "marca": "Itatiaia",
             "motivo": "A data de entrega combinada não foi cumprida",
             "transportadora": "Trilog Express",
-            "status": "Revisão Recusada",
+            "status": "A data de entrega combinada não foi cumprida",
             "tempo_impacto": "Válido",
             "data_pedido": "22/09/2026",
             "comentario": "Atraso na Entrega | Falta de Contato",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1602",
@@ -1566,11 +1566,11 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "24/09/2026",
             "comentario": "Amassados na Lateral Direita",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1579,11 +1579,11 @@
             "marca": "Imbera",
             "motivo": "Não posso receber a compra no endereço informado",
             "transportadora": "Trilog Express",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Não posso receber a compra no endereço informado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "24/09/2026",
             "comentario": "Cliente Não Pode receber no Endereço",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1592,23 +1592,23 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Brasil Web",
-            "status": "Não Solicitada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "24/09/2026",
             "comentario": "Porta do Fogão com Várias Avarias",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
-            "sku": "TI1813",
-            "produto": "Fogão 4 Bocas Atlas Agile Glass Automático Mesa De Vidro Branco 127/220v",
-            "marca": "Atlas",
-            "motivo": "Não posso esperar a entrega",
-            "transportadora": "Brasil Web",
-            "status": "Impacto Removido",
+            "sku": "TI1562",
+            "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
+            "marca": "Mueller",
+            "motivo": "Ocorrência de Entrega",
+            "transportadora": "MMA Cargas",
+            "status": "Ocorrência de Entrega",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/10/2026",
-            "comentario": "Cliente deseja Cancelar o Pedido",
+            "data_pedido": "23/10/2026",
+            "comentario": "Comprador reclamou da demora para Entrega",
             "is_valido": true,
             "is_afetando": false
         },
@@ -1618,11 +1618,11 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "24/09/2026",
             "comentario": "Mesa do Fogão Amassada",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1631,11 +1631,11 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "28/09/2026",
             "comentario": "Vazamento de Óleo",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1644,12 +1644,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "28/09/2026",
             "comentario": "Motor Barulhento e Vazamento de Óleo",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1690",
@@ -1657,11 +1657,11 @@
             "marca": "Midea",
             "motivo": "O vendedor não me respondeu",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "O vendedor não me respondeu",
+            "tempo_impacto": "Expirado",
             "data_pedido": "28/09/2026",
             "comentario": "Cliente enviou Mensagem após horário",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1670,64 +1670,64 @@
             "marca": "Itatiaia",
             "motivo": "Não Recebi o Produto",
             "transportadora": "Rio Express",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Não Recebi o Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "24/09/2026",
             "comentario": "Cliente queria Cancelar Pedido",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
-            "sku": "TI1581",
-            "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
-            "marca": "Dako",
-            "motivo": "Produto Avariado",
+            "sku": "TI1456",
+            "produto": "Refrigerador Vertical Imbera Vr08 244l Full Black Com Iluminação Led 127/220v",
+            "marca": "Imbera",
+            "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Item Faltante",
             "tempo_impacto": "Válido",
-            "data_pedido": "05/10/2026",
-            "comentario": "Amassado parte Traseira | Entregue s/Caixa",
+            "data_pedido": "25/10/2026",
+            "comentario": "Item Faltante: 1 dos Pés de Apoio",
             "is_valido": true,
             "is_afetando": false
         },
         {
-            "sku": "TI1603",
-            "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
-            "marca": "Dako",
-            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
-            "transportadora": "Mercado Envios",
-            "status": "Atualizando",
-            "tempo_impacto": "Válido",
-            "data_pedido": "01/10/2026",
-            "comentario": "Cliente Alegou ter Comprado Errado",
-            "is_valido": true,
-            "is_afetando": false
-        },
-        {
-            "sku": "TI1739",
-            "produto": "Caixa De Som Bluetooth Pulse X Boombox 220w Rms - Sp626 Preto 127/220v",
-            "marca": "Pulse",
+            "sku": "TI1768",
+            "produto": "Lava E Seca Electrolux 12kg Cinza Ônix Inverter (lsc12 Cinza 127v Inox",
+            "marca": "Electrolux",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
-            "data_pedido": "02/10/2026",
-            "comentario": "Bateria Não Carrega Totalmente e Descarrega",
+            "data_pedido": "25/10/2026",
+            "comentario": "Mal Funcionamento da Vibração e Secagem",
             "is_valido": true,
             "is_afetando": false
         },
         {
-            "sku": "TI1571",
-            "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
-            "motivo": "Outro motivo",
-            "transportadora": "Brasil Web",
-            "status": "Não Solicitada",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
-            "data_pedido": "02/10/2026",
-            "comentario": "Preço Errado",
+            "data_pedido": "26/10/2026",
+            "comentario": "Timer Não Funciona",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1667",
+            "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+            "marca": "Mueller",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Válido",
+            "data_pedido": "26/10/2026",
+            "comentario": "Amassado na Parte Frontal Superior",
+            "is_valido": true,
+            "is_afetando": false
         },
         {
             "sku": "TI1562",
@@ -1735,50 +1735,63 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "30/09/2026",
             "comentario": "Peça da Mesa e Puxador Quebrada",
+            "is_valido": false,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1514",
+            "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
+            "marca": "Mueller",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Válido",
+            "data_pedido": "26/10/2026",
+            "comentario": "Produto com Vários Defeitos de Fábrica",
             "is_valido": true,
             "is_afetando": false
         },
         {
-            "sku": "TI1568",
-            "produto": "Fogão Mueller 5 Bocas Preto Vidro Temperado Tripla Chama Preto Fosco 127/220v",
+            "sku": "TI1850",
+            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
             "marca": "Mueller",
+            "motivo": "Descumpre as características do anúncio",
+            "transportadora": "Mercado Envios",
+            "status": "Descumpre as características do anúncio",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "26/10/2026",
+            "comentario": "Pés de Apoio Não se Encaixam",
+            "is_valido": false,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1090",
+            "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Preto E Cinza 127v",
+            "marca": "Philco",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "02/10/2026",
-            "comentario": "Vidro Frontal do Fogão TODO Quebrado",
-            "is_valido": true,
-            "is_afetando": false
-        },
-        {
-            "sku": "TI1112",
-            "produto": "Torradeira Duo Ce141 Vermelho 700w Multilaser 127v",
-            "marca": "Duo",
-            "motivo": "Não é da cor, tamanho ou modelo que escolhi",
-            "transportadora": "Mercado Envios",
-            "status": "Expirado",
-            "tempo_impacto": "Válido",
-            "data_pedido": "04/10/2026",
-            "comentario": "O Produto Estava Correto",
-            "is_valido": true,
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "27/10/2026",
+            "comentario": "Amassado na Parte Superior",
+            "is_valido": false,
             "is_afetando": false
         },
         {
             "sku": "TI1816",
             "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
             "marca": "Imbera",
-            "motivo": "Defeito no Produto",
+            "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "06/10/2026",
-            "comentario": "Termostato não muda e mostra apenas 11°",
-            "is_valido": true,
+            "status": "Item Faltante",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "27/10/2026",
+            "comentario": "Item Faltante: 1 Pé de Apoio",
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1787,12 +1800,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "28/10/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1756",
@@ -1800,11 +1813,11 @@
             "marca": "Itatiaia",
             "motivo": "Descumpre as características do anúncio",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Descumpre as características do anúncio",
+            "tempo_impacto": "Expirado",
             "data_pedido": "28/10/2026",
             "comentario": "Não Há Descrição",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1813,12 +1826,12 @@
             "marca": "Mueller",
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Item Faltante",
             "tempo_impacto": "Válido",
             "data_pedido": "28/10/2026",
             "comentario": "Item Faltante: Trempe Trempe Central",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1529",
@@ -1826,12 +1839,12 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "28/10/2026",
             "comentario": "Sinais de Uso",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1760",
@@ -1839,7 +1852,7 @@
             "marca": "Atlas",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "28/10/2026",
             "comentario": "Amassado na Lateral Direita do Fogão",
@@ -1852,23 +1865,10 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "28/10/2026",
             "comentario": "Pés Quebrado | Será Enviado Novamente",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1602",
-            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
-            "marca": "Dako",
-            "motivo": "Produto Avariado",
-            "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "30/10/2026",
-            "comentario": "Amassado na Lateral Esquerda",
             "is_valido": true,
             "is_afetando": false
         },
@@ -1878,12 +1878,12 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "30/10/2026",
-            "comentario": "Amassado na Lateral",
-            "is_valido": true,
-            "is_afetando": true
+            "comentario": "Amassado na Lateral Esquerda",
+            "is_valido": false,
+            "is_afetando": false
         },
         {
             "sku": "TI1602",
@@ -1891,10 +1891,10 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
-            "data_pedido": "31/10/2026",
-            "comentario": "Vidro da Área Inferior Quebrado",
+            "data_pedido": "30/10/2026",
+            "comentario": "Amassado na Lateral",
             "is_valido": true,
             "is_afetando": false
         },
@@ -1904,51 +1904,12 @@
             "marca": "Midea",
             "motivo": "Não é da cor, tamanho ou modelo que escolhi",
             "transportadora": "Trilog Express",
-            "status": "Em Mediação",
+            "status": "Não é da cor, tamanho ou modelo que escolhi",
             "tempo_impacto": "Válido",
             "data_pedido": "30/10/2026",
             "comentario": "Produto Enviado de Modelo Diferente",
             "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1852",
-            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Não Transborda Preto 127v",
-            "marca": "Mueller",
-            "motivo": "Produto Avariado",
-            "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
-            "tempo_impacto": "Válido",
-            "data_pedido": "03/11/2026",
-            "comentario": "Controles da Máquina Quebraram",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1666",
-            "produto": "Fogão Mueller 4 Bocas Titânio Com Mesa De Vidro Mfv4bf 127/220v",
-            "marca": "Mueller",
-            "motivo": "Produto Avariado",
-            "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
-            "tempo_impacto": "Válido",
-            "data_pedido": "03/11/2026",
-            "comentario": "Vidro Frontal do Fogão TODO Quebrado",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1603",
-            "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
-            "marca": "Dako",
-            "motivo": "Produto Avariado",
-            "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
-            "tempo_impacto": "Válido",
-            "data_pedido": "03/11/2026",
-            "comentario": "Pés de Apoio Tortos",
-            "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1602",
@@ -1956,11 +1917,63 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "31/10/2026",
+            "comentario": "Vidro da Área Inferior Quebrado",
+            "is_valido": false,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1852",
+            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Não Transborda Preto 127v",
+            "marca": "Mueller",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "03/11/2026",
-            "comentario": "Lateral Amassada",
+            "comentario": "Controles da Máquina Quebraram",
             "is_valido": true,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1666",
+            "produto": "Fogão Mueller 4 Bocas Titânio Com Mesa De Vidro Mfv4bf 127/220v",
+            "marca": "Mueller",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Válido",
+            "data_pedido": "03/11/2026",
+            "comentario": "Vidro Frontal do Fogão TODO Quebrado",
+            "is_valido": true,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1603",
+            "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
+            "marca": "Dako",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Válido",
+            "data_pedido": "03/11/2026",
+            "comentario": "Pés de Apoio Tortos",
+            "is_valido": true,
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "marca": "Dako",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
+            "data_pedido": "03/11/2026",
+            "comentario": "Lateral Amassada",
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1969,11 +1982,11 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Expirado",
             "data_pedido": "03/11/2026",
             "comentario": "Amassado na Lateral",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1982,11 +1995,11 @@
             "marca": "Dako",
             "motivo": "Defeito no Produto",
             "transportadora": "Brasil Web",
-            "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
+            "status": "Defeito no Produto",
+            "tempo_impacto": "Expirado",
             "data_pedido": "04/11/2026",
             "comentario": "Forno Não Funciona",
-            "is_valido": true,
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -1995,12 +2008,12 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "04/11/2026",
             "comentario": "Vidro da Porta Completamente Quebrado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1524",
@@ -2008,12 +2021,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "05/11/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1524",
@@ -2021,25 +2034,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "06/11/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1525",
-            "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 220v Branco",
-            "marca": "Mueller",
-            "motivo": "Defeito no Produto",
-            "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
-            "tempo_impacto": "Válido",
-            "data_pedido": "07/11/2026",
-            "comentario": "Vazamento de Óleo",
-            "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1529",
@@ -2047,23 +2047,23 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "06/11/2026",
             "comentario": "Produto Não Joga a Água Fora",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
-            "sku": "TI1816",
-            "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
-            "marca": "Imbera",
-            "motivo": "Item Faltante",
+            "sku": "TI1525",
+            "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 220v Branco",
+            "marca": "Mueller",
+            "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
-            "data_pedido": "27/10/2026",
-            "comentario": "Item Faltante: 1 Pé de Apoio",
+            "data_pedido": "07/11/2026",
+            "comentario": "Vazamento de Óleo",
             "is_valido": true,
             "is_afetando": false
         },
@@ -2073,12 +2073,12 @@
             "marca": "Wanke",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "07/11/2026",
             "comentario": "Vazamento de Água na parte Inferior",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1602",
@@ -2086,25 +2086,12 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
-            "tempo_impacto": "Válido",
-            "data_pedido": "08/11/2026",
-            "comentario": "Puxador Amassado",
-            "is_valido": true,
-            "is_afetando": true
-        },
-        {
-            "sku": "TI1602",
-            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
-            "marca": "Dako",
-            "motivo": "Produto Avariado",
-            "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "07/11/2026",
             "comentario": "Vidro do Forno Completamente Quebrado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1525",
@@ -2112,12 +2099,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "07/11/2026",
             "comentario": "Peça Solta e Barulho Exacerbado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1486",
@@ -2125,12 +2112,25 @@
             "marca": "Imbera",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "07/11/2026",
             "comentario": "Trinca na Porta",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
+        },
+        {
+            "sku": "TI1602",
+            "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+            "marca": "Dako",
+            "motivo": "Produto Avariado",
+            "transportadora": "Mercado Envios",
+            "status": "Produto Avariado",
+            "tempo_impacto": "Válido",
+            "data_pedido": "08/11/2026",
+            "comentario": "Puxador Amassado",
+            "is_valido": true,
+            "is_afetando": false
         },
         {
             "sku": "TI1527",
@@ -2138,12 +2138,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "08/11/2026",
             "comentario": "Vazamento de Óleo\n Entregaram a Máquina de Cabeça Pra Baixo",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1580",
@@ -2151,12 +2151,12 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "09/11/2026",
             "comentario": "Amassado na Lateral",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1686",
@@ -2164,12 +2164,12 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Revisão Recusada",
+            "status": "Produto Avariado",
             "tempo_impacto": "Válido",
             "data_pedido": "09/11/2026",
             "comentario": "Amassado Frontal e na Lateral",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "sku": "TI1562",
@@ -2177,12 +2177,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Defeito no Produto",
             "tempo_impacto": "Válido",
             "data_pedido": "09/11/2026",
             "comentario": "Há um Vão na Porta do Forno apenas de um Lado",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         }
     ],
     "amazon": [
@@ -2607,7 +2607,7 @@
             "data_solicitacao": "10/11/2026",
             "valor": "Com o Comprador",
             "reembolso": "R$ 822,90",
-            "impacto": "Em Chamado Premium",
+            "impacto": "Impacto Removido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Tanquinho Plus 4,5 Kg - Branco - 110 V",
             "sku": "TI1524",
@@ -2616,7 +2616,7 @@
             "marca": "Plus",
             "comentario": "",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "id_pedido": "702-1241332-2169855",
@@ -2625,7 +2625,7 @@
             "data_solicitacao": "Não Anotado",
             "valor": "Com o Comprador",
             "reembolso": "R$ 1.661,53",
-            "impacto": "Em Análise",
+            "impacto": "Mantido",
             "motivo": "O Pacote Não Chegou",
             "produto": "Lavadora de Roupas 13kg Branca Midea Wave Agitator 127V",
             "sku": "TI1690",
@@ -2743,6 +2743,24 @@
             "comentario": "Produto diferente do Anúncio",
             "is_valido": true,
             "is_afetando": true
+        },
+        {
+            "id_pedido": "701-4397768-2206666",
+            "data_pedido": "",
+            "data_reivindicacao": "",
+            "data_solicitacao": "",
+            "valor": "",
+            "reembolso": "",
+            "impacto": "",
+            "motivo": "",
+            "produto": "SKU N/A",
+            "sku": "N/A",
+            "transportadora": "",
+            "tempo_impacto": "",
+            "marca": "Outras",
+            "comentario": "",
+            "is_valido": false,
+            "is_afetando": false
         }
     ]
 }
