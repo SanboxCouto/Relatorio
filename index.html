@@ -560,18 +560,15 @@
       });
     }
 
-    function getMaxTimestamp(list) {
-      let maxT = 0;
-      list.forEach(r => {
-        const t = parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
-        if (t && t > maxT) maxT = t;
-      });
-      return maxT || new Date().getTime();
+    // BASEIA-SE NA DATA DE HOJE DO SISTEMA
+    function getTodayTimestamp() {
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
     }
 
     function getDatasetByPeriod(list, daysLimit) {
       if (daysLimit <= 0) return list;
-      const maxTimestamp = getMaxTimestamp(list);
+      const maxTimestamp = getTodayTimestamp();
       const msPerDay = 86400000;
       const currentStart = maxTimestamp - ((daysLimit - 1) * msPerDay);
       return list.filter(r => {
@@ -581,7 +578,7 @@
     }
 
     function getComparisonWindowData(list, compDays, fetchPreviousWindow = false) {
-      const maxTimestamp = getMaxTimestamp(list);
+      const maxTimestamp = getTodayTimestamp();
       const msPerDay = 86400000;
 
       if (!fetchPreviousWindow) {
@@ -663,6 +660,7 @@
         const currentCompList = getComparisonWindowData(rawDataAMZ, compDays, false);
         const prevCompList = getComparisonWindowData(rawDataAMZ, compDays, true);
         
+        let filteredCurrentComp = escopoAMZ === 'afetando' ? currentCompList.filter(r => r.is_afetando) : currentCompList;
         currentPrevCompAMZ = escopoAMZ === 'afetando' ? prevCompList.filter(r => r.is_afetando) : prevCompList;
 
         const cAfetando = currentCompList.filter(r => r.is_afetando).length;
@@ -818,7 +816,7 @@
 
       const tbodySkus = document.querySelector('#tabela-skus-amz tbody');
       tbodySkus.innerHTML = '';
-      const hasComp = currentPrevCompAMZ.length > 0;
+      const hasComp = currentPrevCompAMZ.length > 0 || document.getElementById('filter-comparativo-amz')?.value !== 'NONE';
 
       listSkus.forEach(item => {
         const comHtml = item.comentarios.length ? `<div class="comments-scroll-box">${item.comentarios.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
@@ -856,7 +854,7 @@
 
       const tbody = document.querySelector('#tabela-transp-amz tbody');
       tbody.innerHTML = '';
-      const hasComp = currentPrevCompAMZ.length > 0;
+      const hasComp = currentPrevCompAMZ.length > 0 || document.getElementById('filter-comparativo-amz')?.value !== 'NONE';
 
       list.forEach(item => {
         const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => `<span class="ranking-pill">${mot}: <strong>${count}</strong></span>`).join('') + '</div>';
@@ -865,6 +863,7 @@
         const prevQtd = mapTranspPrev[item.transportadora] || 0;
         const compHtml = hasComp ? generateInlineCompBadge(item.qtd, prevQtd) : '-';
 
+        tbodySkus ? null : null; // dummy
         tbody.innerHTML += `<tr><td><strong>${item.transportadora}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
       });
     }
@@ -896,7 +895,7 @@
 
       const tbody = document.querySelector('#tabela-motivos-amz tbody');
       tbody.innerHTML = '';
-      const hasComp = currentPrevCompAMZ.length > 0;
+      const hasComp = currentPrevCompAMZ.length > 0 || document.getElementById('filter-comparativo-amz')?.value !== 'NONE';
 
       list.forEach(item => {
         const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => `<span class="ranking-pill">${transp}: <strong>${count}</strong></span>`).join('') + '</div>';
@@ -938,6 +937,7 @@
         const currentCompList = getComparisonWindowData(rawDataML, compDays, false);
         const prevCompList = getComparisonWindowData(rawDataML, compDays, true);
 
+        let filteredCurrentComp = escopoML === 'afetando' ? currentCompList.filter(r => r.is_afetando) : currentCompList;
         currentPrevCompML = escopoML === 'afetando' ? prevCompList.filter(r => r.is_afetando) : prevCompList;
 
         const cAfetando = currentCompList.filter(r => r.is_afetando).length;
@@ -1005,7 +1005,7 @@
 
       const tbodySkus = document.querySelector('#tabela-skus-ml tbody');
       tbodySkus.innerHTML = '';
-      const hasComp = currentPrevCompML.length > 0;
+      const hasComp = currentPrevCompML.length > 0 || document.getElementById('filter-comparativo-ml')?.value !== 'NONE';
 
       listSkus.forEach(item => {
         const comHtml = item.comentarios.length ? `<div class="comments-scroll-box">${item.comentarios.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
@@ -1019,15 +1019,17 @@
     function renderTabTranspML(dataset) {
       const mapTranspPrev = {};
       currentPrevCompML.forEach(r => {
-        mapTranspPrev[r.transportadora] = (mapTranspPrev[r.transportadora] || 0) + 1;
+        const t = r.transportadora || 'NÃO INFORMADO';
+        mapTranspPrev[t] = (mapTranspPrev[t] || 0) + 1;
       });
 
       const mapTransp = {};
       dataset.forEach(r => {
-        const t = r.transportadora;
+        const t = r.transportadora || 'NÃO INFORMADO';
         if (!mapTransp[t]) mapTransp[t] = { transportadora: t, qtd: 0, rankingMotivos: {}, registros: [] };
         mapTransp[t].qtd++;
-        mapTransp[t].rankingMotivos[r.motivo] = (mapTransp[t].rankingMotivos[r.motivo] || 0) + 1;
+        const mot = r.motivo || 'OUTROS';
+        mapTransp[t].rankingMotivos[mot] = (mapTransp[t].rankingMotivos[mot] || 0) + 1;
         mapTransp[t].registros.push(r);
       });
 
@@ -1041,7 +1043,7 @@
 
       const tbody = document.querySelector('#tabela-transp-ml tbody');
       tbody.innerHTML = '';
-      const hasComp = currentPrevCompML.length > 0;
+      const hasComp = currentPrevCompML.length > 0 || document.getElementById('filter-comparativo-ml')?.value !== 'NONE';
 
       list.forEach(item => {
         const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => `<span class="ranking-pill">${mot}: <strong>${count}</strong></span>`).join('') + '</div>';
@@ -1057,15 +1059,17 @@
     function renderTabMotivosML(dataset) {
       const mapMotivosPrev = {};
       currentPrevCompML.forEach(r => {
-        mapMotivosPrev[r.motivo] = (mapMotivosPrev[r.motivo] || 0) + 1;
+        const m = r.motivo || 'OUTROS';
+        mapMotivosPrev[m] = (mapMotivosPrev[m] || 0) + 1;
       });
 
       const mapMotivos = {};
       dataset.forEach(r => {
-        const m = r.motivo;
+        const m = r.motivo || 'OUTROS';
         if (!mapMotivos[m]) mapMotivos[m] = { motivo: m, qtd: 0, rankingTransp: {}, registros: [] };
         mapMotivos[m].qtd++;
-        mapMotivos[m].rankingTransp[r.transportadora] = (mapMotivos[m].rankingTransp[r.transportadora] || 0) + 1;
+        const t = r.transportadora || 'NÃO INFORMADO';
+        mapMotivos[m].rankingTransp[t] = (mapMotivos[m].rankingTransp[t] || 0) + 1;
         mapMotivos[m].registros.push(r);
       });
 
@@ -1079,7 +1083,7 @@
 
       const tbody = document.querySelector('#tabela-motivos-ml tbody');
       tbody.innerHTML = '';
-      const hasComp = currentPrevCompML.length > 0;
+      const hasComp = currentPrevCompML.length > 0 || document.getElementById('filter-comparativo-ml')?.value !== 'NONE';
 
       list.forEach(item => {
         const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => `<span class="ranking-pill">${transp}: <strong>${count}</strong></span>`).join('') + '</div>';
