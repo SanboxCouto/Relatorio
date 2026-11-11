@@ -572,14 +572,15 @@
       const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
       const compDaysVal = document.getElementById('filter-comparativo-amz')?.value || 'NONE';
 
-      let dataset = getDatasetByPeriod(rawDataAMZ, days);
       let baseTotalList = getDatasetByPeriod(rawDataAMZ, days);
+      let dataset = getDatasetByPeriod(rawDataAMZ, days);
 
       if (escopoAMZ === 'afetando') {
         dataset = dataset.filter(r => r.is_afetando);
       }
       currentFilteredAMZ = dataset;
 
+      // Cartões de Métricas calculados sobre a 'baseTotalList'
       const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
       const totalRemovidos = baseTotalList.filter(r => normalizeText(r.impacto).includes('REMOVIDO')).length;
       const totalPremium = baseTotalList.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM')).length;
@@ -761,9 +762,12 @@
       }
       currentFilteredML = dataset;
 
+      // Todos os cartões superiores calculados a partir da 'baseTotalList'
       const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
       const totalMediacao = baseTotalList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
       const totalRecusada = baseTotalList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
+      
+      // Cartão Impacto Removido (Válidos) imutável quanto à seleção do botão de escopo
       const totalRemovido = baseTotalList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
 
       document.getElementById('total-afetando-ml').innerText = totalAfetando;
