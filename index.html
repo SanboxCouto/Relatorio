@@ -77,7 +77,7 @@
     .val-warning { color: var(--warning); }
     .val-success { color: var(--success); }
 
-    .nav-tabs { display: flex; gap: 8px; border-bottom: 2px solid var(--border-color); margin-bottom: 24px; }
+    .nav-tabs { display: flex; gap: 8px; border-bottom: 2px solid var(--border-color); margin-bottom: 24px; flex-wrap: wrap; }
     .tab-btn { background: none; border: none; padding: 12px 20px; font-size: 15px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
     .tab-btn:hover { color: var(--primary); }
     .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
@@ -86,7 +86,7 @@
     .tab-content.active { display: block; }
 
     .table-toolbar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
-    .search-box-wrapper { position: relative; min-width: 280px; flex: 1; }
+    .search-box-wrapper { position: relative; min-width: 260px; flex: 1; }
     .search-input { width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; background: #fff; transition: border-color 0.2s; }
     .search-input:focus { border-color: var(--primary); }
     .search-icon-inside { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--text-muted); pointer-events: none; }
@@ -120,6 +120,10 @@
     .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
     .no-comments { color: #94a3b8; font-size: 12px; font-style: italic; }
     .placeholder-card { background: var(--card-bg); border-radius: 12px; padding: 48px; border: 1px solid var(--border-color); text-align: center; }
+
+    /* Estilo para caixa de Nota Editável */
+    .note-textarea { width: 100%; height: 50px; padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; font-family: inherit; resize: vertical; outline: none; background: #fafafa; transition: border-color 0.2s, background 0.2s; }
+    .note-textarea:focus { border-color: var(--primary); background: #ffffff; }
   </style>
 </head>
 <body>
@@ -216,6 +220,7 @@
         <button class="tab-btn active" onclick="switchTabML('tab-skus-ml')">Produtos / SKUs</button>
         <button class="tab-btn" onclick="switchTabML('tab-transp-ml')">Transportadoras</button>
         <button class="tab-btn" onclick="switchTabML('tab-motivos-ml')">Motivos da Reclamação</button>
+        <button class="tab-btn" onclick="switchTabML('tab-consulta-ml')">Consulta de Pedidos com Impacto</button>
       </div>
 
       <div id="tab-skus-ml" class="tab-content active">
@@ -267,6 +272,34 @@
               <th style="width:15%">Comparativo</th>
               <th style="width:30%">Ranking das Transportadoras</th>
               <th style="width:30%">Comentários & Ocorrências</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- ABA CONSULTA DE PEDIDOS COM IMPACTO ML -->
+      <div id="tab-consulta-ml" class="tab-content">
+        <div class="table-toolbar">
+          <div class="search-box-wrapper">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="search-consulta-ml" class="search-input" placeholder="Pesquisar por ID do Pedido..." oninput="renderTabConsultaML()">
+          </div>
+          <select id="filter-transp-consulta-ml" class="select-filter" onchange="renderTabConsultaML()">
+            <option value="TODAS">Todas as Transportadoras</option>
+          </select>
+          <select id="filter-motivo-consulta-ml" class="select-filter" onchange="renderTabConsultaML()">
+            <option value="TODOS">Todos os Motivos</option>
+          </select>
+        </div>
+        <table id="tabela-consulta-ml">
+          <thead>
+            <tr>
+              <th style="width:16%">Nº do Pedido</th>
+              <th style="width:24%">Produto</th>
+              <th style="width:18%">Motivo</th>
+              <th style="width:16%">Transportadora</th>
+              <th style="width:26%">Nota / Observação</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -330,6 +363,7 @@
         <button class="tab-btn" onclick="switchTabAMZ('tab-skus-amz')">Produtos / SKUs</button>
         <button class="tab-btn" onclick="switchTabAMZ('tab-transp-amz')">Transportadoras</button>
         <button class="tab-btn" onclick="switchTabAMZ('tab-motivos-amz')">Motivos da Reclamação</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-consulta-amz')">Consulta de Pedidos com Impacto</button>
       </div>
 
       <!-- ABA 1: CHAMADOS PREMIUM -->
@@ -440,6 +474,34 @@
           <tbody></tbody>
         </table>
       </div>
+
+      <!-- ABA CONSULTA DE PEDIDOS COM IMPACTO AMAZON -->
+      <div id="tab-consulta-amz" class="tab-content">
+        <div class="table-toolbar">
+          <div class="search-box-wrapper">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="search-consulta-amz" class="search-input" placeholder="Pesquisar por ID do Pedido..." oninput="renderTabConsultaAMZ()">
+          </div>
+          <select id="filter-transp-consulta-amz" class="select-filter" onchange="renderTabConsultaAMZ()">
+            <option value="TODAS">Todas as Transportadoras</option>
+          </select>
+          <select id="filter-motivo-consulta-amz" class="select-filter" onchange="renderTabConsultaAMZ()">
+            <option value="TODOS">Todos os Motivos</option>
+          </select>
+        </div>
+        <table id="tabela-consulta-amz">
+          <thead>
+            <tr>
+              <th style="width:18%">Nº do Pedido</th>
+              <th style="width:22%">Produto</th>
+              <th style="width:18%">Motivo</th>
+              <th style="width:16%">Transportadora</th>
+              <th style="width:26%">Nota / Observação</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
 
     <!-- PÁGINA 3: SHOPEE -->
@@ -502,7 +564,6 @@
     let currentCurrCompML = [], currentPrevCompML = [];
     let currentCurrCompAMZ = [], currentPrevCompAMZ = [];
 
-    // Guarda estado dos filtros das linhas de ranking: { "row_index": "NOME_DO_FILTRO" }
     let activePillFiltersMLTransp = {};
     let activePillFiltersMLMotivos = {};
     let activePillFiltersAMZTransp = {};
@@ -548,6 +609,9 @@
         populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
         populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
 
+        populateConsultaFilters('filter-transp-consulta-ml', 'filter-motivo-consulta-ml', rawDataML);
+        populateConsultaFilters('filter-transp-consulta-amz', 'filter-motivo-consulta-amz', rawDataAMZ);
+
         renderML();
         renderAMZ();
         
@@ -565,6 +629,30 @@
       select.innerHTML = '<option value="TODAS">Todas as Marcas</option>';
       sortedMarcas.forEach(m => {
         select.innerHTML += `<option value="${m}">${m}</option>`;
+      });
+    }
+
+    function populateConsultaFilters(transpSelectId, motivoSelectId, dataList) {
+      const transpSelect = document.getElementById(transpSelectId);
+      const motivoSelect = document.getElementById(motivoSelectId);
+      if(!transpSelect || !motivoSelect) return;
+
+      const transpSet = new Set();
+      const motivoSet = new Set();
+
+      dataList.forEach(r => {
+        if(r.transportadora) transpSet.add(r.transportadora);
+        if(r.motivo) motivoSet.add(r.motivo);
+      });
+
+      transpSelect.innerHTML = '<option value="TODAS">Todas as Transportadoras</option>';
+      Array.from(transpSet).sort().forEach(t => {
+        transpSelect.innerHTML += `<option value="${t}">${t}</option>`;
+      });
+
+      motivoSelect.innerHTML = '<option value="TODOS">Todos os Motivos</option>';
+      Array.from(motivoSet).sort().forEach(m => {
+        motivoSelect.innerHTML += `<option value="${m}">${m}</option>`;
       });
     }
 
@@ -638,7 +726,6 @@
       return !['SEM COMENTARIO', 'SEM COMENTARIOS', 'SEM OBSERVACAO', 'SEM OBSERVACOES', 'NAN', 'N/A', '-'].includes(cNorm);
     }
 
-    // TOGGLE DOS PILLS DE RANKING NAS TABELAS
     function togglePillFilter(storageObj, rowIndex, filterName, renderFunc) {
       if (storageObj[rowIndex] === filterName) {
         delete storageObj[rowIndex];
@@ -646,6 +733,15 @@
         storageObj[rowIndex] = filterName;
       }
       renderFunc();
+    }
+
+    // PERSISTÊNCIA DAS NOTAS NO LOCALSTORAGE
+    function saveOrderNote(orderId, noteText) {
+      localStorage.setItem(`order_note_${orderId}`, noteText);
+    }
+
+    function getOrderNote(orderId) {
+      return localStorage.getItem(`order_note_${orderId}`) || '';
     }
 
     // ================= RENDERIZADOR AMAZON =================
@@ -709,6 +805,7 @@
       renderTabSkusAMZ_Current();
       renderTabTranspAMZ(dataset);
       renderTabMotivosAMZ(dataset);
+      renderTabConsultaAMZ();
     }
 
     function renderTabPremiumAMZ() {
@@ -986,6 +1083,52 @@
       });
     }
 
+    function renderTabConsultaAMZ() {
+      const tbody = document.querySelector('#tabela-consulta-amz tbody');
+      tbody.innerHTML = '';
+
+      const searchVal = normalizeText(document.getElementById('search-consulta-amz')?.value || '');
+      const filterTransp = document.getElementById('filter-transp-consulta-amz')?.value || 'TODAS';
+      const filterMotivo = document.getElementById('filter-motivo-consulta-amz')?.value || 'TODOS';
+
+      let list = rawDataAMZ.filter(r => r.is_afetando);
+
+      if (searchVal) {
+        list = list.filter(r => normalizeText(r.id_pedido).includes(searchVal));
+      }
+      if (filterTransp !== 'TODAS') {
+        list = list.filter(r => (r.transportadora || '') === filterTransp);
+      }
+      if (filterMotivo !== 'TODOS') {
+        list = list.filter(r => (r.motivo || '') === filterMotivo);
+      }
+
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum pedido com impacto encontrado com os filtros aplicados.</td></tr>';
+        return;
+      }
+
+      list.forEach(r => {
+        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${r.id_pedido}`;
+        const savedNote = getOrderNote(r.id_pedido);
+
+        tbody.innerHTML += `<tr>
+          <td>
+            <a href="${linkOrder}" target="_blank" class="order-link-box">
+              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
+              <span>${r.id_pedido}</span>
+            </a>
+          </td>
+          <td>${r.produto || '-'}</td>
+          <td>${r.motivo || '-'}</td>
+          <td>${r.transportadora || '-'}</td>
+          <td>
+            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${r.id_pedido}', this.value)">${savedNote}</textarea>
+          </td>
+        </tr>`;
+      });
+    }
+
     // ================= RENDERIZADOR MERCADO LIVRE =================
     function renderML() {
       const days = parseInt(document.getElementById('filter-dias-ml')?.value || '0');
@@ -1045,6 +1188,7 @@
       renderTabSkusML_Current();
       renderTabTranspML(dataset);
       renderTabMotivosML(dataset);
+      renderTabConsultaML();
     }
 
     function renderTabSkusML_Current() {
@@ -1233,6 +1377,46 @@
         const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
 
         tbody.innerHTML += `<tr><td><strong>${item.motivo}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    function renderTabConsultaML() {
+      const tbody = document.querySelector('#tabela-consulta-ml tbody');
+      tbody.innerHTML = '';
+
+      const searchVal = normalizeText(document.getElementById('search-consulta-ml')?.value || '');
+      const filterTransp = document.getElementById('filter-transp-consulta-ml')?.value || 'TODAS';
+      const filterMotivo = document.getElementById('filter-motivo-consulta-ml')?.value || 'TODOS';
+
+      let list = rawDataML.filter(r => r.is_afetando);
+
+      if (searchVal) {
+        list = list.filter(r => normalizeText(r.id_pedido).includes(searchVal));
+      }
+      if (filterTransp !== 'TODAS') {
+        list = list.filter(r => (r.transportadora || '') === filterTransp);
+      }
+      if (filterMotivo !== 'TODOS') {
+        list = list.filter(r => (r.motivo || '') === filterMotivo);
+      }
+
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum pedido com impacto encontrado com os filtros aplicados.</td></tr>';
+        return;
+      }
+
+      list.forEach(r => {
+        const savedNote = getOrderNote(r.id_pedido);
+
+        tbody.innerHTML += `<tr>
+          <td><strong>${r.id_pedido}</strong></td>
+          <td>${r.produto || '-'}</td>
+          <td>${r.motivo || '-'}</td>
+          <td>${r.transportadora || '-'}</td>
+          <td>
+            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${r.id_pedido}', this.value)">${savedNote}</textarea>
+          </td>
+        </tr>`;
       });
     }
   </script>
