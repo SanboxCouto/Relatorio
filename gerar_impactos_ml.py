@@ -43,60 +43,78 @@ def parse_csv_dinamico(url, termos_busca):
     res.encoding = 'utf-8'
     lines = res.text.splitlines()
     
+    # Ignora a Linha 1 (índice 0) e busca o cabeçalho a partir da Linha 2 (índice 1 em diante)
     header_idx = -1
-    for idx, line in enumerate(lines[:15]):
+    lines_para_busca = lines[1:15] if len(lines) > 1 else lines
+    
+    for offset, line in enumerate(lines_para_busca):
         line_norm = remover_acentos(line)
         if any(remover_acentos(t) in line_norm for t in termos_busca):
-            header_idx = idx
+            header_idx = offset + 1  # Reajusta o índice referente a 'lines'
             break
             
+    # Se encontrou a linha de cabeçalho pelos termos, lê a partir dela; caso contrário, força Linha 2 (índice 1)
     if header_idx != -1:
         df = pd.read_csv(io.StringIO("\n".join(lines[header_idx:])))
     else:
-        df = pd.read_csv(io.StringIO(res.text))
+        df = pd.read_csv(io.StringIO("\n".join(lines[1:])))
         
     df.columns = [str(col).replace('"', '').replace("'", "").strip() for col in df.columns]
     return df
 
+def encontrar_coluna(df, termos_possaveis):
+    """Localiza a coluna exata ou correspondente por busca insensível a acentos/caixa."""
+    colunas_norm = {col: remover_acentos(col) for col in df.columns}
+    
+    # 1. Correspondência exata de termo normalizado
+    for termo in termos_possaveis:
+        termo_norm = remover_acentos(termo)
+        for col_original, col_norm in colunas_norm.items():
+            if col_norm == termo_norm:
+                return col_original
+                
+    # 2. Correspondência parcial (contém o termo)
+    for termo in termos_possaveis:
+        termo_norm = remover_acentos(termo)
+        for col_original, col_norm in colunas_norm.items():
+            if termo_norm in col_norm:
+                return col_original
+                
+    return None
+
 def processar_ml():
     df = parse_csv_dinamico(URL_CSV_ML, ['TEMPO DE IMPACTO', 'MOTIVO DA RECLAMACAO', 'STATUS'])
 
-    def get_col(nomes, default_idx):
-        for col in df.columns:
-            if any(n in remover_acentos(col) for n in nomes):
-                return col
-        return df.columns[default_idx] if len(df.columns) > default_idx else df.columns[0]
-
-    col_data_pedido    = get_col(['DATA DO PEDIDO', 'DATA'], 0)
-    col_status_valido = get_col(['TEMPO DE IMPACTO', 'VALIDACAO'], 3)
-    col_produto       = get_col(['PRODUTO'], 4)
-    col_motivo        = get_col(['MOTIVO DA RECLAMACAO', 'MOTIVO'], 5)
-    col_status_g      = get_col(['STATUS'], 6)
-    col_sku           = get_col(['SKU'], 12)
-    col_transportadora= get_col(['TRANSPORTADORA', 'TRANSP'], 13)
-    col_comentario    = get_col(['COMENTARIO', 'OBSERVACAO', 'OBS'], 14)
+    col_data_pedido    = encontrar_coluna(df, ['DATA DO PEDIDO', 'DATA PEDIDO', 'DATA'])
+    col_status_valido = encontrar_coluna(df, ['TEMPO DE IMPACTO', 'VALIDACAO', 'AFETANDO REPUTACAO', 'AFETANDO REPUTAÇÃO'])
+    col_produto       = encontrar_coluna(df, ['PRODUTO DA RECLAMACAO', 'PRODUTO', 'TITULO', 'NOME PRODUTO'])
+    col_motivo        = encontrar_coluna(df, ['MOTIVO DA RECLAMACAO', 'MOTIVO RECLAMACAO', 'MOTIVO'])
+    col_status_g      = encontrar_coluna(df, ['STATUS', 'SITUACAO'])
+    col_sku           = encontrar_coluna(df, ['SKU', 'CODIGO SKU'])
+    col_transportadora= encontrar_coluna(df, ['TRANSPORTADORA', 'LOGISTICA', 'TRANSP'])
+    col_comentario    = encontrar_coluna(df, ['COMENTARIO', 'OBSERVACAO', 'COMENTARIOS', 'OBSERVACOES', 'OBS'])
 
     registros = []
     for idx, row in df.iterrows():
-        valido_clean = remover_acentos(str(row[col_status_valido]))
-        status_g_clean = remover_acentos(str(row[col_status_g]))
+        valido_clean = remover_acentos(str(row[col_status_valido])) if col_status_valido and pd.notna(row[col_status_valido]) else ''
+        status_g_clean = remover_acentos(str(row[col_status_g])) if col_status_g and pd.notna(row[col_status_g]) else ''
 
         is_valido = 'VALIDO' in valido_clean
         status_afetam = ['EM MEDIACAO', 'REVISAO RECUSADA', 'NAO SOLICITADA']
         is_afetando = is_valido and (status_g_clean in status_afetam)
 
-        prod_nome = str(row[col_produto]) if pd.notna(row[col_produto]) else ''
-        coment = limpar_comentario(row[col_comentario])
+        prod_nome = str(row[col_produto]).strip() if col_produto and pd.notna(row[col_produto]) else ''
+        coment = limpar_comentario(row[col_comentario]) if col_comentario else ''
         data_ped = str(row[col_data_pedido]).strip() if col_data_pedido and pd.notna(row[col_data_pedido]) else ''
 
         registros.append({
-            "sku": str(row[col_sku]).strip() if pd.notna(row[col_sku]) else 'N/A',
+            "sku": str(row[col_sku]).strip() if col_sku and pd.notna(row[col_sku]) else 'N/A',
             "produto": prod_nome,
             "marca": extrair_marca(prod_nome),
-            "motivo": str(row[col_motivo]),
-            "transportadora": str(row[col_transportadora]),
-            "status": str(row[col_status_g]),
-            "tempo_impacto": str(row[col_status_valido]),
+            "motivo": str(row[col_motivo]).strip() if col_motivo and pd.notna(row[col_motivo]) else '',
+            "transportadora": str(row[col_transportadora]).strip() if col_transportadora and pd.notna(row[col_transportadora]) else '',
+            "status": str(row[col_status_g]).strip() if col_status_g and pd.notna(row[col_status_g]) else '',
+            "tempo_impacto": str(row[col_status_valido]).strip() if col_status_valido and pd.notna(row[col_status_valido]) else '',
             "data_pedido": data_ped,
             "comentario": coment,
             "is_valido": is_valido,
@@ -107,28 +125,19 @@ def processar_ml():
 def processar_amazon():
     df = parse_csv_dinamico(URL_CSV_AMAZON, ['ID DO PEDIDO', 'PRODUTO DA REIVINDICACAO', 'TEMPO DE IMPACTO'])
 
-    def get_col(nome_exato):
-        for col in df.columns:
-            if remover_acentos(col) == remover_acentos(nome_exato):
-                return col
-        for col in df.columns:
-            if remover_acentos(nome_exato) in remover_acentos(col):
-                return col
-        return None
-
-    col_data_pedido  = get_col('Data do pedido')
-    col_data_reiv    = get_col('Data da Reivindicação')
-    col_tempo_imp    = get_col('Tempo de Impacto')
-    col_id_pedido    = get_col('ID do pedido')
-    col_motivo       = get_col('Motivo')
-    col_comentario   = get_col('Comentário')
-    col_data_solic   = get_col('Data da Solicitação')
-    col_impacto      = get_col('Impacto')
-    col_valor        = get_col('Valor')
-    col_reembolso    = get_col('Reembolso')
-    col_transp       = get_col('Transportadora')
-    col_sku          = get_col('SKU')
-    col_produto      = get_col('Produto da Reivindicação')
+    col_data_pedido  = encontrar_coluna(df, ['DATA DO PEDIDO', 'DATA PEDIDO'])
+    col_data_reiv    = encontrar_coluna(df, ['DATA DA REIVINDICACAO', 'DATA DA REIVINDICAÇÃO', 'DATA REIVINDICACAO'])
+    col_tempo_imp    = encontrar_coluna(df, ['TEMPO DE IMPACTO', 'TEMPO IMPACTO', 'VALIDACAO'])
+    col_id_pedido    = encontrar_coluna(df, ['ID DO PEDIDO', 'ID PEDIDO', 'NUMERO DO PEDIDO', 'Nº PEDIDO'])
+    col_motivo       = encontrar_coluna(df, ['MOTIVO DA REIVINDICACAO', 'MOTIVO'])
+    col_comentario   = encontrar_coluna(df, ['COMENTARIO', 'COMENTÁRIO', 'OBSERVACAO', 'OBSERVAÇÃO'])
+    col_data_solic   = encontrar_coluna(df, ['DATA DA SOLICITACAO', 'DATA DA SOLICITAÇÃO', 'DATA SOLICITACAO'])
+    col_impacto      = encontrar_coluna(df, ['IMPACTO', 'STATUS IMPACTO'])
+    col_valor        = encontrar_coluna(df, ['RESULTADO (VALOR)', 'RESULTADO VALOR', 'VALOR'])
+    col_reembolso    = encontrar_coluna(df, ['REEMBOLSO'])
+    col_transp       = encontrar_coluna(df, ['TRANSPORTADORA', 'TRANSP'])
+    col_sku          = encontrar_coluna(df, ['SKU', 'CODIGO SKU'])
+    col_produto      = encontrar_coluna(df, ['PRODUTO DA REIVINDICACAO', 'PRODUTO DA REIVINDICAÇÃO', 'PRODUTO'])
 
     registros = []
     for idx, row in df.iterrows():
