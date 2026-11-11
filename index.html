@@ -682,4 +682,415 @@
         generateComparisonBadge('comp-premium-amz', cPremium, pPremium, compDays);
         generateComparisonBadge('comp-analise-amz', cAnalise, pAnalise, compDays);
       } else {
-        currentPrev
+        currentPrevCompAMZ = [];
+        ['comp-afetando-amz','comp-removidos-amz','comp-premium-amz','comp-analise-amz'].forEach(id => {
+          document.getElementById(id).innerHTML = '';
+        });
+      }
+
+      renderTabPremiumAMZ();
+      renderTabRepassesAMZ();
+      renderTabSkusAMZ_Current();
+      renderTabTranspAMZ(dataset);
+      renderTabMotivosAMZ(dataset);
+    }
+
+    function renderTabPremiumAMZ() {
+      const tbody = document.querySelector('#tabela-premium-amz tbody');
+      tbody.innerHTML = '';
+      
+      const query = normalizeText(document.getElementById('search-premium-input')?.value || '');
+      let premiumList = currentFilteredAMZ.filter(r => normalizeText(r.impacto).includes('CHAMADO PREMIUM'));
+
+      premiumList.sort((a, b) => {
+        const tA = parseDateToTimestamp(a.data_solicitacao || a.data_reivindicacao) || 0;
+        const tB = parseDateToTimestamp(b.data_solicitacao || b.data_reivindicacao) || 0;
+        return tB - tA;
+      });
+
+      if (query) {
+        premiumList = premiumList.filter(r => 
+          normalizeText(r.id_pedido).includes(query) || 
+          normalizeText(r.reembolso).includes(query) ||
+          normalizeText(r.valor).includes(query)
+        );
+      }
+      
+      if (!premiumList.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#94a3b8;">Nenhum chamado premium encontrado no período.</td></tr>';
+        return;
+      }
+
+      premiumList.forEach(r => {
+        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${r.id_pedido}`;
+        tbody.innerHTML += `<tr>
+          <td>
+            <a href="${linkOrder}" target="_blank" class="order-link-box">
+              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
+              <span>${r.id_pedido}</span>
+            </a>
+          </td>
+          <td><strong>${r.data_solicitacao || '-'}</strong></td>
+          <td>${r.data_reivindicacao || '-'}</td>
+          <td><strong>${r.reembolso || r.valor || '-'}</strong></td>
+          <td>${r.motivo || '-'}</td>
+          <td>${r.transportadora || '-'}</td>
+        </tr>`;
+      });
+    }
+
+    function renderTabRepassesAMZ() {
+      const tbody = document.querySelector('#tabela-repasses-amz tbody');
+      tbody.innerHTML = '';
+
+      const query = normalizeText(document.getElementById('search-repasses-input')?.value || '');
+      const filterRes = document.getElementById('filter-resultado-repasses')?.value || 'TODOS';
+
+      let repassesList = [...currentFilteredAMZ];
+
+      if (filterRes !== 'TODOS') {
+        const filterNorm = normalizeText(filterRes);
+        repassesList = repassesList.filter(r => normalizeText(r.valor).includes(filterNorm));
+      }
+
+      if (query) {
+        repassesList = repassesList.filter(r => 
+          normalizeText(r.id_pedido).includes(query) || 
+          normalizeText(r.valor).includes(query) ||
+          normalizeText(r.reembolso).includes(query)
+        );
+      }
+
+      if (!repassesList.length) {
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#94a3b8;">Nenhum registro de repasse encontrado no período.</td></tr>';
+        return;
+      }
+
+      repassesList.forEach(r => {
+        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${r.id_pedido}`;
+        tbody.innerHTML += `<tr>
+          <td>
+            <a href="${linkOrder}" target="_blank" class="order-link-box">
+              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
+              <span>${r.id_pedido}</span>
+            </a>
+          </td>
+          <td><strong>${r.valor || '-'}</strong></td>
+          <td>${r.reembolso || '-'}</td>
+        </tr>`;
+      });
+    }
+
+    function renderTabSkusAMZ_Current() {
+      const marcaFilter = document.getElementById('filter-marca-skus-amz')?.value || 'TODAS';
+      let dataset = [...currentFilteredAMZ];
+      let prevDataset = [...currentPrevCompAMZ];
+      
+      if(marcaFilter !== 'TODAS') {
+        dataset = dataset.filter(r => r.marca === marcaFilter);
+        prevDataset = prevDataset.filter(r => r.marca === marcaFilter);
+      }
+
+      const mapSkusPrev = {};
+      prevDataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        mapSkusPrev[key] = (mapSkusPrev[key] || 0) + 1;
+      });
+
+      const mapSkus = {};
+      dataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        if (!mapSkus[key]) mapSkus[key] = { key, sku: r.sku, marca: r.marca, produto: r.produto, qtd: 0, comentarios: [] };
+        mapSkus[key].qtd++;
+        if (isComentarioValido(r.comentario)) mapSkus[key].comentarios.push(r.comentario);
+      });
+
+      const listSkus = Object.values(mapSkus).sort((a,b) => b.qtd - a.qtd);
+      const labels = listSkus.slice(0, 15).map(i => `${i.sku} - ${i.produto}`.substring(0, 35) + '...');
+      const values = listSkus.slice(0, 15).map(i => i.qtd);
+
+      if (chartSkusAMZObj) chartSkusAMZObj.destroy();
+      chartSkusAMZObj = new Chart(document.getElementById('chartSkusAMZ'), {
+        type: 'bar',
+        data: { labels, datasets: [{ data: values, backgroundColor: '#146eb4', borderRadius: 4 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'right', font: { weight: 'bold' } } } }
+      });
+
+      const tbodySkus = document.querySelector('#tabela-skus-amz tbody');
+      tbodySkus.innerHTML = '';
+      const hasComp = currentPrevCompAMZ.length > 0;
+
+      listSkus.forEach(item => {
+        const comHtml = item.comentarios.length ? `<div class="comments-scroll-box">${item.comentarios.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+        const prevQtd = mapSkusPrev[item.key] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(item.qtd, prevQtd) : '-';
+
+        tbodySkus.innerHTML += `<tr><td><strong>${item.sku}</strong></td><td><span class="badge-count">${item.marca}</span></td><td>${item.produto}</td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    function renderTabTranspAMZ(dataset) {
+      const mapTranspPrev = {};
+      currentPrevCompAMZ.forEach(r => {
+        const t = r.transportadora || 'NÃO INFORMADO';
+        mapTranspPrev[t] = (mapTranspPrev[t] || 0) + 1;
+      });
+
+      const mapTransp = {};
+      dataset.forEach(r => {
+        const t = r.transportadora || 'NÃO INFORMADO';
+        if (!mapTransp[t]) mapTransp[t] = { transportadora: t, qtd: 0, rankingMotivos: {}, registros: [] };
+        mapTransp[t].qtd++;
+        const mot = r.motivo || 'OUTROS';
+        mapTransp[t].rankingMotivos[mot] = (mapTransp[t].rankingMotivos[mot] || 0) + 1;
+        mapTransp[t].registros.push(r);
+      });
+
+      const list = Object.values(mapTransp).sort((a,b) => b.qtd - a.qtd);
+      if (chartTranspAMZObj) chartTranspAMZObj.destroy();
+      chartTranspAMZObj = new Chart(document.getElementById('chartTranspAMZ'), {
+        type: 'bar',
+        data: { labels: list.map(i => i.transportadora), datasets: [{ data: list.map(i => i.qtd), backgroundColor: '#146eb4', borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', font: { weight: 'bold' } } } }
+      });
+
+      const tbody = document.querySelector('#tabela-transp-amz tbody');
+      tbody.innerHTML = '';
+      const hasComp = currentPrevCompAMZ.length > 0;
+
+      list.forEach(item => {
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => `<span class="ranking-pill">${mot}: <strong>${count}</strong></span>`).join('') + '</div>';
+        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
+        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+        const prevQtd = mapTranspPrev[item.transportadora] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(item.qtd, prevQtd) : '-';
+
+        tbody.innerHTML += `<tr><td><strong>${item.transportadora}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    function renderTabMotivosAMZ(dataset) {
+      const mapMotivosPrev = {};
+      currentPrevCompAMZ.forEach(r => {
+        const m = r.motivo || 'OUTROS';
+        mapMotivosPrev[m] = (mapMotivosPrev[m] || 0) + 1;
+      });
+
+      const mapMotivos = {};
+      dataset.forEach(r => {
+        const m = r.motivo || 'OUTROS';
+        if (!mapMotivos[m]) mapMotivos[m] = { motivo: m, qtd: 0, rankingTransp: {}, registros: [] };
+        mapMotivos[m].qtd++;
+        const t = r.transportadora || 'NÃO INFORMADO';
+        mapMotivos[m].rankingTransp[t] = (mapMotivos[m].rankingTransp[t] || 0) + 1;
+        mapMotivos[m].registros.push(r);
+      });
+
+      const list = Object.values(mapMotivos).sort((a,b) => b.qtd - a.qtd);
+      if (chartMotivosAMZObj) chartMotivosAMZObj.destroy();
+      chartMotivosAMZObj = new Chart(document.getElementById('chartMotivosAMZ'), {
+        type: 'doughnut',
+        data: { labels: list.map(i => i.motivo), datasets: [{ data: list.map(i => i.qtd), backgroundColor: ['#ef4444', '#3b82f6', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#14b8a6'] }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' }, datalabels: { color: '#fff', font: { weight: 'bold' } } } }
+      });
+
+      const tbody = document.querySelector('#tabela-motivos-amz tbody');
+      tbody.innerHTML = '';
+      const hasComp = currentPrevCompAMZ.length > 0;
+
+      list.forEach(item => {
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => `<span class="ranking-pill">${transp}: <strong>${count}</strong></span>`).join('') + '</div>';
+        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
+        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+        const prevQtd = mapMotivosPrev[item.motivo] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(item.qtd, prevQtd) : '-';
+
+        tbody.innerHTML += `<tr><td><strong>${item.motivo}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    // ================= RENDERIZADOR MERCADO LIVRE =================
+    function renderML() {
+      const days = parseInt(document.getElementById('filter-dias-ml')?.value || '0');
+      const compDaysVal = document.getElementById('filter-comparativo-ml')?.value || 'NONE';
+
+      let baseTotalList = getDatasetByPeriod(rawDataML, days);
+      let dataset = getDatasetByPeriod(rawDataML, days);
+
+      if (escopoML === 'afetando') {
+        dataset = dataset.filter(r => r.is_afetando);
+      }
+      currentFilteredML = dataset;
+
+      const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
+      const totalMediacao = baseTotalList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
+      const totalRecusada = baseTotalList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
+      const totalRemovido = baseTotalList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+
+      document.getElementById('total-afetando-ml').innerText = totalAfetando;
+      document.getElementById('total-mediacao-ml').innerText = totalMediacao;
+      document.getElementById('total-recusada-ml').innerText = totalRecusada;
+      document.getElementById('total-removido-ml').innerText = totalRemovido;
+
+      if(compDaysVal !== 'NONE') {
+        const compDays = parseInt(compDaysVal);
+
+        const currentCompList = getComparisonWindowData(rawDataML, compDays, false);
+        const prevCompList = getComparisonWindowData(rawDataML, compDays, true);
+
+        currentPrevCompML = escopoML === 'afetando' ? prevCompList.filter(r => r.is_afetando) : prevCompList;
+
+        const cAfetando = currentCompList.filter(r => r.is_afetando).length;
+        const pAfetando = prevCompList.filter(r => r.is_afetando).length;
+
+        const cMediacao = currentCompList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
+        const pMediacao = prevCompList.filter(r => r.is_valido && ['EM MEDIAÇÃO', 'EM MEDIACAO'].includes(r.status.toUpperCase())).length;
+
+        const cRecusada = currentCompList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
+        const pRecusada = prevCompList.filter(r => r.is_valido && ['REVISÃO RECUSADA', 'REVISAO RECUSADA'].includes(r.status.toUpperCase())).length;
+
+        const cRemovido = currentCompList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+        const pRemovido = prevCompList.filter(r => r.is_valido && ['IMPACTO REMOVIDO', 'REMOVIDO'].includes(r.status.toUpperCase())).length;
+
+        generateComparisonBadge('comp-afetando-ml', cAfetando, pAfetando, compDays);
+        generateComparisonBadge('comp-mediacao-ml', cMediacao, pMediacao, compDays);
+        generateComparisonBadge('comp-recusada-ml', cRecusada, pRecusada, compDays);
+        generateComparisonBadge('comp-removido-ml', cRemovido, pRemovido, compDays);
+      } else {
+        currentPrevCompML = [];
+        ['comp-afetando-ml','comp-mediacao-ml','comp-recusada-ml','comp-removido-ml'].forEach(id => {
+          document.getElementById(id).innerHTML = '';
+        });
+      }
+
+      renderTabSkusML_Current();
+      renderTabTranspML(dataset);
+      renderTabMotivosML(dataset);
+    }
+
+    function renderTabSkusML_Current() {
+      const marcaFilter = document.getElementById('filter-marca-skus-ml')?.value || 'TODAS';
+      let dataset = [...currentFilteredML];
+      let prevDataset = [...currentPrevCompML];
+      
+      if(marcaFilter !== 'TODAS') {
+        dataset = dataset.filter(r => r.marca === marcaFilter);
+        prevDataset = prevDataset.filter(r => r.marca === marcaFilter);
+      }
+
+      const mapSkusPrev = {};
+      prevDataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        mapSkusPrev[key] = (mapSkusPrev[key] || 0) + 1;
+      });
+
+      const mapSkus = {};
+      dataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        if (!mapSkus[key]) mapSkus[key] = { key, sku: r.sku, marca: r.marca, produto: r.produto, qtd: 0, comentarios: [] };
+        mapSkus[key].qtd++;
+        if (isComentarioValido(r.comentario)) mapSkus[key].comentarios.push(r.comentario);
+      });
+
+      const listSkus = Object.values(mapSkus).sort((a,b) => b.qtd - a.qtd);
+      const labels = listSkus.slice(0, 15).map(i => `${i.sku} - ${i.produto}`.substring(0, 35) + '...');
+      const values = listSkus.slice(0, 15).map(i => i.qtd);
+
+      if (chartSkusMLObj) chartSkusMLObj.destroy();
+      chartSkusMLObj = new Chart(document.getElementById('chartSkusML'), {
+        type: 'bar',
+        data: { labels, datasets: [{ data: values, backgroundColor: '#3b82f6', borderRadius: 4 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'right', color: '#1d4ed8', font: { weight: 'bold' } } } }
+      });
+
+      const tbodySkus = document.querySelector('#tabela-skus-ml tbody');
+      tbodySkus.innerHTML = '';
+      const hasComp = currentPrevCompML.length > 0;
+
+      listSkus.forEach(item => {
+        const comHtml = item.comentarios.length ? `<div class="comments-scroll-box">${item.comentarios.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+        const prevQtd = mapSkusPrev[item.key] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(item.qtd, prevQtd) : '-';
+
+        tbodySkus.innerHTML += `<tr><td><strong>${item.sku}</strong></td><td><span class="badge-count">${item.marca}</span></td><td>${item.produto}</td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    function renderTabTranspML(dataset) {
+      const mapTranspPrev = {};
+      currentPrevCompML.forEach(r => {
+        mapTranspPrev[r.transportadora] = (mapTranspPrev[r.transportadora] || 0) + 1;
+      });
+
+      const mapTransp = {};
+      dataset.forEach(r => {
+        const t = r.transportadora;
+        if (!mapTransp[t]) mapTransp[t] = { transportadora: t, qtd: 0, rankingMotivos: {}, registros: [] };
+        mapTransp[t].qtd++;
+        mapTransp[t].rankingMotivos[r.motivo] = (mapTransp[t].rankingMotivos[r.motivo] || 0) + 1;
+        mapTransp[t].registros.push(r);
+      });
+
+      const list = Object.values(mapTransp).sort((a,b) => b.qtd - a.qtd);
+      if (chartTranspMLObj) chartTranspMLObj.destroy();
+      chartTranspMLObj = new Chart(document.getElementById('chartTranspML'), {
+        type: 'bar',
+        data: { labels: list.map(i => i.transportadora), datasets: [{ data: list.map(i => i.qtd), backgroundColor: '#0284c7', borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', font: { weight: 'bold' } } } }
+      });
+
+      const tbody = document.querySelector('#tabela-transp-ml tbody');
+      tbody.innerHTML = '';
+      const hasComp = currentPrevCompML.length > 0;
+
+      list.forEach(item => {
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => `<span class="ranking-pill">${mot}: <strong>${count}</strong></span>`).join('') + '</div>';
+        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
+        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+        const prevQtd = mapTranspPrev[item.transportadora] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(item.qtd, prevQtd) : '-';
+
+        tbody.innerHTML += `<tr><td><strong>${item.transportadora}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    function renderTabMotivosML(dataset) {
+      const mapMotivosPrev = {};
+      currentPrevCompML.forEach(r => {
+        mapMotivosPrev[r.motivo] = (mapMotivosPrev[r.motivo] || 0) + 1;
+      });
+
+      const mapMotivos = {};
+      dataset.forEach(r => {
+        const m = r.motivo;
+        if (!mapMotivos[m]) mapMotivos[m] = { motivo: m, qtd: 0, rankingTransp: {}, registros: [] };
+        mapMotivos[m].qtd++;
+        mapMotivos[m].rankingTransp[r.transportadora] = (mapMotivos[m].rankingTransp[r.transportadora] || 0) + 1;
+        mapMotivos[m].registros.push(r);
+      });
+
+      const list = Object.values(mapMotivos).sort((a,b) => b.qtd - a.qtd);
+      if (chartMotivosMLObj) chartMotivosMLObj.destroy();
+      chartMotivosMLObj = new Chart(document.getElementById('chartMotivosML'), {
+        type: 'doughnut',
+        data: { labels: list.map(i => i.motivo), datasets: [{ data: list.map(i => i.qtd), backgroundColor: ['#ef4444', '#3b82f6', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#14b8a6'] }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' }, datalabels: { color: '#fff', font: { weight: 'bold' } } } }
+      });
+
+      const tbody = document.querySelector('#tabela-motivos-ml tbody');
+      tbody.innerHTML = '';
+      const hasComp = currentPrevCompML.length > 0;
+
+      list.forEach(item => {
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => `<span class="ranking-pill">${transp}: <strong>${count}</strong></span>`).join('') + '</div>';
+        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
+        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+        const prevQtd = mapMotivosPrev[item.motivo] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(item.qtd, prevQtd) : '-';
+
+        tbody.innerHTML += `<tr><td><strong>${item.motivo}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+  </script>
+</body>
+</html>
