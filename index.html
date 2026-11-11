@@ -108,8 +108,13 @@
     .ranking-container { display: flex; flex-wrap: wrap; gap: 6px; }
     .ranking-pill { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px; font-size: 12px; color: #334155; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s; user-select: none; }
     .ranking-pill:hover { background: #e2e8f0; border-color: var(--primary); }
+    .ranking-pill.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
+    .ranking-pill.active strong { color: #ffffff; }
     .ranking-pill strong { color: var(--primary); font-weight: 700; }
 
+    .comments-wrapper { display: flex; flex-direction: column; gap: 4px; }
+    .comments-filter-tag { font-size: 11px; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 2px 6px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: space-between; gap: 4px; max-width: fit-content; }
+    .comments-filter-tag span { cursor: pointer; font-weight: 800; margin-left: 4px; }
     .comments-scroll-box { max-height: 180px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px; }
     .comment-bubble { background: #f8fafc; border-left: 3px solid var(--primary); border-radius: 4px; padding: 6px 10px; font-size: 12px; color: #475569; word-break: break-word; }
     .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
@@ -162,7 +167,6 @@
       <div class="header-bar">
         <h1>Impactos ML</h1>
         <div class="filter-controls-group">
-          <!-- Filtro Principal por Data -->
           <select id="filter-dias-ml" class="select-filter-hdr" onchange="renderML()">
             <option value="0">Todo o Período</option>
             <option value="7">Últimos 7 Dias</option>
@@ -171,7 +175,6 @@
             <option value="60">Últimos 60 Dias</option>
           </select>
 
-          <!-- Comparativo Independente -->
           <select id="filter-comparativo-ml" class="select-filter-hdr" onchange="renderML()">
             <option value="NONE">Sem Comparativo</option>
             <option value="7">vs 7d Anteriores</option>
@@ -276,7 +279,6 @@
       <div class="header-bar">
         <h1>Reivindicações A-Z Amazon</h1>
         <div class="filter-controls-group">
-          <!-- Filtro Principal Amazon -->
           <select id="filter-dias-amz" class="select-filter-hdr" onchange="renderAMZ()">
             <option value="0">Todo o Período</option>
             <option value="7">Últimos 7 Dias</option>
@@ -285,7 +287,6 @@
             <option value="60">Últimos 60 Dias</option>
           </select>
 
-          <!-- Comparativo Amazon -->
           <select id="filter-comparativo-amz" class="select-filter-hdr" onchange="renderAMZ()">
             <option value="NONE">Sem Comparativo</option>
             <option value="7">vs 7d Anteriores</option>
@@ -501,6 +502,12 @@
     let currentCurrCompML = [], currentPrevCompML = [];
     let currentCurrCompAMZ = [], currentPrevCompAMZ = [];
 
+    // Guarda estado dos filtros das linhas de ranking: { "row_index": "NOME_DO_FILTRO" }
+    let activePillFiltersMLTransp = {};
+    let activePillFiltersMLMotivos = {};
+    let activePillFiltersAMZTransp = {};
+    let activePillFiltersAMZMotivos = {};
+
     let chartSkusMLObj = null, chartTranspMLObj = null, chartMotivosMLObj = null;
     let chartSkusAMZObj = null, chartTranspAMZObj = null, chartMotivosAMZObj = null;
 
@@ -561,13 +568,11 @@
       });
     }
 
-    // RETORNA A DATA DE HOJE À MEIA-NOITE
     function getTodayTimestamp() {
       const now = new Date();
       return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
     }
 
-    // FILTRO PRINCIPAL (SE = 0, PEGA TUDO)
     function getDatasetByPeriod(list, daysLimit) {
       if (daysLimit <= 0) return list;
       const todayTimestamp = getTodayTimestamp();
@@ -579,20 +584,17 @@
       });
     }
 
-    // JANELA DE COMPARATIVO: SEMPRE BASEADA NO DIA DE HOJE
     function getComparisonWindowData(list, compDays, fetchPreviousWindow = false) {
       const todayTimestamp = getTodayTimestamp();
       const msPerDay = 86400000;
 
       if (!fetchPreviousWindow) {
-        // Janela Atual (ex: 7 dias a partir de Hoje)
         const currentStart = todayTimestamp - ((compDays - 1) * msPerDay);
         return list.filter(r => {
           const t = parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
           return t && t >= currentStart && t <= (todayTimestamp + msPerDay - 1);
         });
       } else {
-        // Janela Anterior (ex: os 7 dias antes da janela atual)
         const prevEnd = todayTimestamp - (compDays * msPerDay);
         const prevStart = todayTimestamp - ((2 * compDays - 1) * msPerDay);
         return list.filter(r => {
@@ -634,6 +636,16 @@
       if (!c) return false;
       const cNorm = normalizeText(c);
       return !['SEM COMENTARIO', 'SEM COMENTARIOS', 'SEM OBSERVACAO', 'SEM OBSERVACOES', 'NAN', 'N/A', '-'].includes(cNorm);
+    }
+
+    // TOGGLE DOS PILLS DE RANKING NAS TABELAS
+    function togglePillFilter(storageObj, rowIndex, filterName, renderFunc) {
+      if (storageObj[rowIndex] === filterName) {
+        delete storageObj[rowIndex];
+      } else {
+        storageObj[rowIndex] = filterName;
+      }
+      renderFunc();
     }
 
     // ================= RENDERIZADOR AMAZON =================
@@ -877,10 +889,29 @@
       tbody.innerHTML = '';
       const hasComp = document.getElementById('filter-comparativo-amz')?.value !== 'NONE';
 
-      list.forEach(item => {
-        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => `<span class="ranking-pill">${mot}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
-        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+      list.forEach((item, idx) => {
+        const selectedMotivo = activePillFiltersAMZTransp[idx];
+
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => {
+          const isActive = selectedMotivo === mot ? 'active' : '';
+          return `<span class="ranking-pill ${isActive}" onclick="togglePillFilter(activePillFiltersAMZTransp, ${idx}, '${mot.replace(/'/g, "\\'")}', () => renderTabTranspAMZ(currentFilteredAMZ))">${mot}: <strong>${count}</strong></span>`;
+        }).join('') + '</div>';
+
+        let comsRegistros = item.registros;
+        if (selectedMotivo) {
+          comsRegistros = comsRegistros.filter(r => (r.motivo || 'OUTROS') === selectedMotivo);
+        }
+        const coms = comsRegistros.map(r => r.comentario).filter(isComentarioValido);
+
+        let filterTagHtml = '';
+        if (selectedMotivo) {
+          filterTagHtml = `<div class="comments-filter-tag">Filtrado por: ${selectedMotivo} <span onclick="togglePillFilter(activePillFiltersAMZTransp, ${idx}, '${selectedMotivo.replace(/'/g, "\\'")}', () => renderTabTranspAMZ(currentFilteredAMZ))">✕</span></div>`;
+        }
+
+        const comHtml = coms.length 
+          ? `<div class="comments-wrapper">${filterTagHtml}<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div></div>` 
+          : `<div class="comments-wrapper">${filterTagHtml}<span class="no-comments">Sem observações${selectedMotivo ? ' para este motivo' : ''}</span></div>`;
+
         const currQtd = mapTranspCurr[item.transportadora] || 0;
         const prevQtd = mapTranspPrev[item.transportadora] || 0;
         const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
@@ -924,10 +955,29 @@
       tbody.innerHTML = '';
       const hasComp = document.getElementById('filter-comparativo-amz')?.value !== 'NONE';
 
-      list.forEach(item => {
-        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => `<span class="ranking-pill">${transp}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
-        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+      list.forEach((item, idx) => {
+        const selectedTransp = activePillFiltersAMZMotivos[idx];
+
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => {
+          const isActive = selectedTransp === transp ? 'active' : '';
+          return `<span class="ranking-pill ${isActive}" onclick="togglePillFilter(activePillFiltersAMZMotivos, ${idx}, '${transp.replace(/'/g, "\\'")}', () => renderTabMotivosAMZ(currentFilteredAMZ))">${transp}: <strong>${count}</strong></span>`;
+        }).join('') + '</div>';
+
+        let comsRegistros = item.registros;
+        if (selectedTransp) {
+          comsRegistros = comsRegistros.filter(r => (r.transportadora || 'NÃO INFORMADO') === selectedTransp);
+        }
+        const coms = comsRegistros.map(r => r.comentario).filter(isComentarioValido);
+
+        let filterTagHtml = '';
+        if (selectedTransp) {
+          filterTagHtml = `<div class="comments-filter-tag">Filtrado por: ${selectedTransp} <span onclick="togglePillFilter(activePillFiltersAMZMotivos, ${idx}, '${selectedTransp.replace(/'/g, "\\'")}', () => renderTabMotivosAMZ(currentFilteredAMZ))">✕</span></div>`;
+        }
+
+        const comHtml = coms.length 
+          ? `<div class="comments-wrapper">${filterTagHtml}<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div></div>` 
+          : `<div class="comments-wrapper">${filterTagHtml}<span class="no-comments">Sem observações${selectedTransp ? ' para esta transportadora' : ''}</span></div>`;
+
         const currQtd = mapMotivosCurr[item.motivo] || 0;
         const prevQtd = mapMotivosPrev[item.motivo] || 0;
         const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
@@ -1089,10 +1139,29 @@
       tbody.innerHTML = '';
       const hasComp = document.getElementById('filter-comparativo-ml')?.value !== 'NONE';
 
-      list.forEach(item => {
-        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => `<span class="ranking-pill">${mot}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
-        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+      list.forEach((item, idx) => {
+        const selectedMotivo = activePillFiltersMLTransp[idx];
+
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => {
+          const isActive = selectedMotivo === mot ? 'active' : '';
+          return `<span class="ranking-pill ${isActive}" onclick="togglePillFilter(activePillFiltersMLTransp, ${idx}, '${mot.replace(/'/g, "\\'")}', () => renderTabTranspML(currentFilteredML))">${mot}: <strong>${count}</strong></span>`;
+        }).join('') + '</div>';
+
+        let comsRegistros = item.registros;
+        if (selectedMotivo) {
+          comsRegistros = comsRegistros.filter(r => (r.motivo || 'OUTROS') === selectedMotivo);
+        }
+        const coms = comsRegistros.map(r => r.comentario).filter(isComentarioValido);
+
+        let filterTagHtml = '';
+        if (selectedMotivo) {
+          filterTagHtml = `<div class="comments-filter-tag">Filtrado por: ${selectedMotivo} <span onclick="togglePillFilter(activePillFiltersMLTransp, ${idx}, '${selectedMotivo.replace(/'/g, "\\'")}', () => renderTabTranspML(currentFilteredML))">✕</span></div>`;
+        }
+
+        const comHtml = coms.length 
+          ? `<div class="comments-wrapper">${filterTagHtml}<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div></div>` 
+          : `<div class="comments-wrapper">${filterTagHtml}<span class="no-comments">Sem observações${selectedMotivo ? ' para este motivo' : ''}</span></div>`;
+
         const currQtd = mapTranspCurr[item.transportadora] || 0;
         const prevQtd = mapTranspPrev[item.transportadora] || 0;
         const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
@@ -1136,10 +1205,29 @@
       tbody.innerHTML = '';
       const hasComp = document.getElementById('filter-comparativo-ml')?.value !== 'NONE';
 
-      list.forEach(item => {
-        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => `<span class="ranking-pill">${transp}: <strong>${count}</strong></span>`).join('') + '</div>';
-        const coms = item.registros.map(r => r.comentario).filter(isComentarioValido);
-        const comHtml = coms.length ? `<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+      list.forEach((item, idx) => {
+        const selectedTransp = activePillFiltersMLMotivos[idx];
+
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => {
+          const isActive = selectedTransp === transp ? 'active' : '';
+          return `<span class="ranking-pill ${isActive}" onclick="togglePillFilter(activePillFiltersMLMotivos, ${idx}, '${transp.replace(/'/g, "\\'")}', () => renderTabMotivosML(currentFilteredML))">${transp}: <strong>${count}</strong></span>`;
+        }).join('') + '</div>';
+
+        let comsRegistros = item.registros;
+        if (selectedTransp) {
+          comsRegistros = comsRegistros.filter(r => (r.transportadora || 'NÃO INFORMADO') === selectedTransp);
+        }
+        const coms = comsRegistros.map(r => r.comentario).filter(isComentarioValido);
+
+        let filterTagHtml = '';
+        if (selectedTransp) {
+          filterTagHtml = `<div class="comments-filter-tag">Filtrado por: ${selectedTransp} <span onclick="togglePillFilter(activePillFiltersMLMotivos, ${idx}, '${selectedTransp.replace(/'/g, "\\'")}', () => renderTabMotivosML(currentFilteredML))">✕</span></div>`;
+        }
+
+        const comHtml = coms.length 
+          ? `<div class="comments-wrapper">${filterTagHtml}<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div></div>` 
+          : `<div class="comments-wrapper">${filterTagHtml}<span class="no-comments">Sem observações${selectedTransp ? ' para esta transportadora' : ''}</span></div>`;
+
         const currQtd = mapMotivosCurr[item.motivo] || 0;
         const prevQtd = mapMotivosPrev[item.motivo] || 0;
         const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
