@@ -9,6 +9,7 @@ URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqf
 URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=134048884&single=true&output=csv"
 URL_CSV_AVALIACOES_AMZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=329618718&single=true&output=csv"
 URL_CSV_VIA = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=876023604&single=true&output=csv"
+URL_CSV_NOTAS_PAGE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1342007728&single=true&output=csv"
 
 
 def remover_acentos(texto):
@@ -43,6 +44,22 @@ def limpar_texto(val):
   if s.upper() in ["NAN", "NONE", "NAT", "-"]:
     return ""
   return s
+
+
+def extrair_numero(val):
+  if pd.isna(val) or val is None:
+    return None
+  s = str(val).strip()
+  if not s or s.upper() in ["NAN", "NONE", "NAT", "-"]:
+    return None
+  s_clean = s.replace("%", "").replace(" ", "").replace(",", ".")
+  match = re.search(r"-?\d+(\.\d+)?", s_clean)
+  if match:
+    try:
+      return float(match.group(0))
+    except ValueError:
+      return None
+  return None
 
 
 def extrair_marca(produto):
@@ -147,6 +164,66 @@ def encontrar_coluna_exata(df, candidatos, excluir_substrings=None):
         return orig
 
   return None
+
+
+def processar_notas_page():
+  resp = requests.get(URL_CSV_NOTAS_PAGE, timeout=30)
+  resp.encoding = "utf-8"
+  # Cabeçalhos exatamente na linha 1 (header=0)
+  df = pd.read_csv(io.StringIO(resp.text), header=0, dtype=str)
+  df.columns = [str(c).strip() for c in df.columns]
+  print("COLUNAS NOTAS_PAGE:", list(df.columns))
+
+  col_data = encontrar_coluna_exata(
+      df, ["DATA", "DIA", "ATUALIZACAO", "DATA ATUALIZACAO"]
+  )
+
+  mapeamento_metricas = {
+      "reclamacoes_ml": ["Reclamações ML", "Reclamacoes ML"],
+      "mediacoes_ml": ["Mediações ML", "Mediacoes ML"],
+      "vendas_canceladas_ml": ["Vendas Canceladas ML"],
+      "envios_incorretos_ml": ["Envios Incorretos ML"],
+      "pedidos_problema_amz": ["Pedidos com Problema Amazon"],
+      "problemas_envios_amz": ["Problemas Envios Amazon"],
+      "agilidade_magalu": ["Agilidade de Atendimento MagaLu"],
+      "cancelamentos_magalu": ["Cancelamentos MagaLu"],
+      "avaliacao_magalu": [
+          "Avaliação da Loja MagaLu",
+          "Avaliacao da Loja MagaLu",
+      ],
+      "reclamacoes_via": ["Reclamações VIA", "Reclamacoes VIA"],
+      "cancelamentos_via": ["Cancelamentos VIA"],
+      "nao_cumprimento_shopee": [
+          "Taxa de Não Cumprimento Shoppe",
+          "Taxa de Nao Cumprimento Shoppe",
+          "Taxa de Não Cumprimento Shopee",
+      ],
+      "taxa_resposta_shopee": ["Taxa de Resposta Shopee"],
+      "nota_shopee": ["Nota da Loja Shopee"],
+  }
+
+  colunas_encontradas = {}
+  for chave, cands in mapeamento_metricas.items():
+    colunas_encontradas[chave] = encontrar_coluna_exata(df, cands)
+
+  registros = []
+  for _, row in df.iterrows():
+    data_str = limpar_texto(row[col_data]) if col_data else ""
+    item = {"data": data_str, "valores": {}, "raw": {}}
+    tem_algum_dado = False
+
+    for chave, col_nome in colunas_encontradas.items():
+      raw_val = limpar_texto(row[col_nome]) if col_nome else ""
+      num_val = extrair_numero(raw_val)
+      item["raw"][chave] = raw_val
+      item["valores"][chave] = num_val
+      if raw_val != "" or num_val is not None:
+        tem_algum_dado = True
+
+    if tem_algum_dado:
+      registros.append(item)
+
+  return registros
 
 
 def processar_ml():
@@ -530,7 +607,6 @@ def processar_via():
     prod_nome = limpar_texto(row[col_produto]) if col_produto else ""
     coment_val = limpar_texto(row[col_comentario]) if col_comentario else ""
 
-    # Ignora apenas linhas totalmente vazias; preserva pedidos repetidos com protocolos distintos
     if (
         not pedido_val
         and not protocolo_val
@@ -579,12 +655,14 @@ def processar_via():
 
 
 if __name__ == "__main__":
+  notas_page_data = processar_notas_page()
   ml_data = processar_ml()
   amz_data = processar_amazon()
   aval_amz_data = processar_avaliacoes_amazon()
   via_data = processar_via()
 
   output = {
+      "notas_page": notas_page_data,
       "ml": ml_data,
       "amazon": amz_data,
       "avaliacoes_amazon": aval_amz_data,
@@ -595,6 +673,7 @@ if __name__ == "__main__":
     json.dump(output, f, ensure_ascii=False, indent=2)
 
   print(
-      f"Concluído: {len(ml_data)} ML | {len(amz_data)} Amazon |"
-      f" {len(aval_amz_data)} Avaliações Amazon | {len(via_data)} VIA"
+      f"Concluído: {len(notas_page_data)} Notas_Page | {len(ml_data)} ML |"
+      f" {len(amz_data)} Amazon | {len(aval_amz_data)} Avaliações Amazon |"
+      f" {len(via_data)} VIA"
   )
