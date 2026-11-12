@@ -38,7 +38,7 @@
     .sidebar.collapsed .sidebar-logo-text { opacity: 0; pointer-events: none; }
 
     .sidebar-menu { padding: 16px 10px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-    .menu-category { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); padding: 8px 12px 4px 12px; white-space: nowrap; font-weight: 700; }
+    .menu-category { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); padding: 12px 12px 4px 12px; white-space: nowrap; font-weight: 700; }
     .sidebar.collapsed .menu-category { display: none; }
     .menu-item { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 8px; color: #475569; text-decoration: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
     .menu-item:hover { background-color: #f1f5f9; color: var(--primary); }
@@ -53,9 +53,109 @@
     .toggle-icon { font-size: 18px; flex-shrink: 0; }
 
     .main-wrapper { flex: 1; padding: 28px 36px; overflow-y: auto; min-width: 0; }
+    .main-wrapper.no-scroll-mode { height: 100vh; overflow: hidden; padding: 14px 22px; display: flex; flex-direction: column; }
+
     .page-section { display: none; }
     .page-section.active { display: block; }
+    #page-reputacao-geral.active { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
 
+    /* ESTILOS DA PÁGINA INICIAL: REPUTAÇÃO GERAL (SEM SCROLL) */
+    .rg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-shrink: 0; gap: 12px; }
+    .rg-title-group { display: flex; align-items: baseline; gap: 12px; }
+    .rg-header h1 { font-size: 20px; font-weight: 800; color: var(--text-main); margin: 0; }
+    .rg-date-tag { font-size: 12px; font-weight: 600; color: var(--text-muted); background: #e2e8f0; padding: 3px 10px; border-radius: 999px; }
+
+    .rg-grid-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .rg-quadro {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .rg-quadro-ml { grid-column: span 4; border-top: 4px solid #facc15; }
+    .rg-quadro-amz { grid-column: span 2; border-top: 4px solid #ff9900; }
+    .rg-quadro-magalu { grid-column: span 2; border-top: 4px solid #0086ff; }
+    .rg-quadro-via { grid-column: span 2; border-top: 4px solid #16a34a; }
+    .rg-quadro-shopee { grid-column: span 2; border-top: 4px solid #ee4d2d; }
+
+    .rg-quadro-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #f1f5f9;
+      flex-shrink: 0;
+    }
+    .rg-quadro-title { font-size: 13px; font-weight: 800; color: #1e293b; text-transform: uppercase; letter-spacing: 0.4px; display: flex; align-items: center; gap: 6px; }
+    .rg-quadro-badge { font-size: 10px; font-weight: 700; color: var(--text-muted); background: #f1f5f9; padding: 2px 7px; border-radius: 4px; }
+
+    .rg-metrics-row {
+      flex: 1;
+      display: grid;
+      gap: 8px;
+      min-height: 0;
+    }
+    .rg-cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .rg-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .rg-cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .rg-kpi-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 0;
+    }
+    .rg-kpi-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      line-height: 1.2;
+    }
+    .rg-kpi-value {
+      font-size: clamp(20px, 2.3vw, 28px);
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.1;
+      margin: 2px 0;
+    }
+    .rg-kpi-status {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 6px;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      width: fit-content;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .rg-status-melhora { background: #dcfce7; color: #15803d; }
+    .rg-status-piora { background: #fee2e2; color: #b91c1c; }
+    .rg-status-igual { background: #e2e8f0; color: #475569; }
+
+    /* ESTILOS GERAIS DAS DEMAIS PÁGINAS */
     .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
     .header-bar h1 { font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0; }
     
@@ -153,8 +253,13 @@
     </div>
 
     <div class="sidebar-menu">
+      <a class="menu-item active" data-page="page-reputacao-geral" onclick="navigatePage('page-reputacao-geral', this)">
+        <span class="menu-icon">📊</span>
+        <span class="menu-text">Reputação Geral</span>
+      </a>
+
       <div class="menu-category">Relatórios</div>
-      <a class="menu-item active" data-page="page-impactos-ml" onclick="navigatePage('page-impactos-ml', this)">
+      <a class="menu-item" data-page="page-impactos-ml" onclick="navigatePage('page-impactos-ml', this)">
         <span class="menu-icon">🛍️</span>
         <span class="menu-text">Impactos ML</span>
       </a>
@@ -180,10 +285,94 @@
     </div>
   </aside>
 
-  <main class="main-wrapper">
+  <main class="main-wrapper no-scroll-mode" id="main-wrapper">
+
+    <!-- PÁGINA INICIAL: REPUTAÇÃO GERAL (SEM SCROLL) -->
+    <section id="page-reputacao-geral" class="page-section active">
+      <div class="rg-header">
+        <div class="rg-title-group">
+          <h1>Reputação Geral</h1>
+          <span class="rg-date-tag" id="rg-current-date">Atualização: -</span>
+        </div>
+        <div class="filter-controls-group">
+          <select id="filter-comp-rg" class="select-filter-hdr" onchange="renderReputacaoGeral()">
+            <option value="PREV">Comparar com Registro Anterior</option>
+            <option value="7">Comparar com Últimos 7 Dias</option>
+            <option value="15">Comparar com Últimos 15 Dias</option>
+            <option value="30">Comparar com Últimos 30 Dias</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="rg-grid-container">
+        <!-- QUADRO 1: MERCADO LIVRE -->
+        <div class="rg-quadro rg-quadro-ml">
+          <div class="rg-quadro-header">
+            <span class="rg-quadro-title">🛍️ Mercado Livre</span>
+            <span class="rg-quadro-badge">4 Indicadores</span>
+          </div>
+          <div class="rg-metrics-row rg-cols-4">
+            <div class="rg-kpi-card" id="rg-card-reclamacoes_ml"></div>
+            <div class="rg-kpi-card" id="rg-card-mediacoes_ml"></div>
+            <div class="rg-kpi-card" id="rg-card-vendas_canceladas_ml"></div>
+            <div class="rg-kpi-card" id="rg-card-envios_incorretos_ml"></div>
+          </div>
+        </div>
+
+        <!-- QUADRO 2: AMAZON -->
+        <div class="rg-quadro rg-quadro-amz">
+          <div class="rg-quadro-header">
+            <span class="rg-quadro-title">📦 Amazon</span>
+            <span class="rg-quadro-badge">2 Indicadores</span>
+          </div>
+          <div class="rg-metrics-row rg-cols-2">
+            <div class="rg-kpi-card" id="rg-card-pedidos_problema_amz"></div>
+            <div class="rg-kpi-card" id="rg-card-problemas_envios_amz"></div>
+          </div>
+        </div>
+
+        <!-- QUADRO 3: MAGALU -->
+        <div class="rg-quadro rg-quadro-magalu">
+          <div class="rg-quadro-header">
+            <span class="rg-quadro-title">💙 Magalu</span>
+            <span class="rg-quadro-badge">3 Indicadores</span>
+          </div>
+          <div class="rg-metrics-row rg-cols-3">
+            <div class="rg-kpi-card" id="rg-card-agilidade_magalu"></div>
+            <div class="rg-kpi-card" id="rg-card-cancelamentos_magalu"></div>
+            <div class="rg-kpi-card" id="rg-card-avaliacao_magalu"></div>
+          </div>
+        </div>
+
+        <!-- QUADRO 4: VIA -->
+        <div class="rg-quadro rg-quadro-via">
+          <div class="rg-quadro-header">
+            <span class="rg-quadro-title">🛒 VIA</span>
+            <span class="rg-quadro-badge">2 Indicadores</span>
+          </div>
+          <div class="rg-metrics-row rg-cols-2">
+            <div class="rg-kpi-card" id="rg-card-reclamacoes_via"></div>
+            <div class="rg-kpi-card" id="rg-card-cancelamentos_via"></div>
+          </div>
+        </div>
+
+        <!-- QUADRO 5: SHOPEE -->
+        <div class="rg-quadro rg-quadro-shopee">
+          <div class="rg-quadro-header">
+            <span class="rg-quadro-title">🧡 Shopee</span>
+            <span class="rg-quadro-badge">3 Indicadores</span>
+          </div>
+          <div class="rg-metrics-row rg-cols-3">
+            <div class="rg-kpi-card" id="rg-card-nao_cumprimento_shopee"></div>
+            <div class="rg-kpi-card" id="rg-card-taxa_resposta_shopee"></div>
+            <div class="rg-kpi-card" id="rg-card-nota_shopee"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- PÁGINA 1: IMPACTOS ML -->
-    <section id="page-impactos-ml" class="page-section active">
+    <section id="page-impactos-ml" class="page-section">
       <div class="header-bar">
         <h1>Impactos ML</h1>
         <div class="filter-controls-group">
@@ -576,7 +765,6 @@
         <button class="tab-btn" onclick="switchTabAval('tab-consulta-aval', this)">Consultas de Avaliações com Impacto</button>
       </div>
 
-      <!-- ABA 1: CHAMADOS PREMIUM -->
       <div id="tab-premium-aval" class="tab-content active">
         <div class="table-toolbar">
           <div class="search-box-wrapper">
@@ -598,7 +786,6 @@
         </table>
       </div>
 
-      <!-- ABA 2: CHAMADOS -->
       <div id="tab-chamados-aval" class="tab-content">
         <div class="table-toolbar">
           <div class="search-box-wrapper">
@@ -620,7 +807,6 @@
         </table>
       </div>
 
-      <!-- ABA 3: TRANSPORTADORA -->
       <div id="tab-transp-aval" class="tab-content">
         <div class="chart-box"><div style="height: 350px;"><canvas id="chartTranspAval"></canvas></div></div>
         <table id="tabela-transp-aval">
@@ -637,7 +823,6 @@
         </table>
       </div>
 
-      <!-- ABA 4: SKUs / PRODUTOS -->
       <div id="tab-skus-aval" class="tab-content">
         <div class="table-toolbar">
           <select id="filter-marca-skus-aval" class="select-filter" onchange="renderTabSkusAval()">
@@ -663,7 +848,6 @@
         </table>
       </div>
 
-      <!-- ABA 5: CONSULTAS DE AVALIAÇÕES COM IMPACTO -->
       <div id="tab-consulta-aval" class="tab-content">
         <div class="table-toolbar">
           <div class="search-box-wrapper">
@@ -741,7 +925,6 @@
         <button class="tab-btn" onclick="switchTabVIA('tab-motivos-via', this)">Motivos da Reclamação</button>
       </div>
 
-      <!-- ABA 1: TRANSPORTADORA -->
       <div id="tab-transp-via" class="tab-content active">
         <div class="chart-box"><div style="height: 350px;"><canvas id="chartTranspVIA"></canvas></div></div>
         <table id="tabela-transp-via">
@@ -758,7 +941,6 @@
         </table>
       </div>
 
-      <!-- ABA 2: SKUs / PRODUTOS -->
       <div id="tab-skus-via" class="tab-content">
         <div class="table-toolbar">
           <select id="filter-marca-skus-via" class="select-filter" onchange="renderTabSkusVIA()">
@@ -784,7 +966,6 @@
         </table>
       </div>
 
-      <!-- ABA 3: MOTIVOS DA RECLAMAÇÃO -->
       <div id="tab-motivos-via" class="tab-content">
         <div class="chart-box"><div style="height: 360px; display: flex; justify-content: center;"><canvas id="chartMotivosVIA"></canvas></div></div>
         <table id="tabela-motivos-via">
@@ -913,17 +1094,23 @@
     function navigatePage(pageId, linkElem) {
       const targetSection = document.getElementById(pageId);
       if (!targetSection) {
-        pageId = 'page-impactos-ml';
-        linkElem = document.querySelector('.menu-item[data-page="page-impactos-ml"]');
+        pageId = 'page-reputacao-geral';
+        linkElem = document.querySelector('.menu-item[data-page="page-reputacao-geral"]');
       }
       document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-      if(linkElem) linkElem.classList.add('active');
-      localStorage.setItem('activePage', pageId);
+      if (linkElem) linkElem.classList.add('active');
+
+      const mainWrapper = document.getElementById('main-wrapper');
+      if (pageId === 'page-reputacao-geral') {
+        mainWrapper.classList.add('no-scroll-mode');
+      } else {
+        mainWrapper.classList.remove('no-scroll-mode');
+      }
     }
 
-    let rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [];
+    let rawNotasPage = [], rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [];
     let escopoML = 'afetando', escopoAMZ = 'afetando', escopoAval = 'afetando', escopoVIA = 'afetando';
     
     let currentFilteredML = [], currentFilteredAMZ = [], currentFilteredAval = [], currentFilteredVIA = [];
@@ -944,6 +1131,119 @@
     let chartSkusAMZObj = null, chartTranspAMZObj = null, chartMotivosAMZObj = null;
     let chartSkusAvalObj = null, chartTranspAvalObj = null;
     let chartSkusVIAObj = null, chartTranspVIAObj = null, chartMotivosVIAObj = null;
+
+    const METRICAS_CONFIG = [
+      { key: 'reclamacoes_ml', label: 'Reclamações ML', higherIsBetter: false },
+      { key: 'mediacoes_ml', label: 'Mediações ML', higherIsBetter: false },
+      { key: 'vendas_canceladas_ml', label: 'Vendas Canceladas ML', higherIsBetter: false },
+      { key: 'envios_incorretos_ml', label: 'Envios Incorretos ML', higherIsBetter: false },
+      { key: 'pedidos_problema_amz', label: 'Pedidos com Problema Amazon', higherIsBetter: false },
+      { key: 'problemas_envios_amz', label: 'Problemas Envios Amazon', higherIsBetter: false },
+      { key: 'agilidade_magalu', label: 'Agilidade de Atendimento MagaLu', higherIsBetter: true },
+      { key: 'cancelamentos_magalu', label: 'Cancelamentos MagaLu', higherIsBetter: false },
+      { key: 'avaliacao_magalu', label: 'Avaliação da Loja MagaLu', higherIsBetter: true },
+      { key: 'reclamacoes_via', label: 'Reclamações VIA', higherIsBetter: false },
+      { key: 'cancelamentos_via', label: 'Cancelamentos VIA', higherIsBetter: false },
+      { key: 'nao_cumprimento_shopee', label: 'Taxa de Não Cumprimento Shoppe', higherIsBetter: false },
+      { key: 'taxa_resposta_shopee', label: 'Taxa de Resposta Shopee', higherIsBetter: true },
+      { key: 'nota_shopee', label: 'Nota da Loja Shopee', higherIsBetter: true }
+    ];
+
+    function renderReputacaoGeral() {
+      const mode = document.getElementById('filter-comp-rg')?.value || 'PREV';
+      const dateTagEl = document.getElementById('rg-current-date');
+
+      if (!rawNotasPage || rawNotasPage.length === 0) {
+        if (dateTagEl) dateTagEl.innerText = 'Sem dados na Notas_Page';
+        METRICAS_CONFIG.forEach(m => {
+          const el = document.getElementById(`rg-card-${m.key}`);
+          if (el) el.innerHTML = `<span class="rg-kpi-label">${m.label}</span><div class="rg-kpi-value">-</div><span class="rg-kpi-status rg-status-igual">Sem histórico</span>`;
+        });
+        return;
+      }
+
+      // Ordena cronologicamente se houver datas válidas; caso contrário preserva ordem das linhas
+      let sorted = [...rawNotasPage];
+      const hasDates = sorted.some(r => parseDateToTimestamp(r.data) !== null);
+      if (hasDates) {
+        sorted.sort((a, b) => (parseDateToTimestamp(a.data) || 0) - (parseDateToTimestamp(b.data) || 0));
+      }
+
+      const latest = sorted[sorted.length - 1];
+      if (dateTagEl) {
+        dateTagEl.innerText = latest.data ? `Última atualização: ${latest.data}` : `Registro #${sorted.length}`;
+      }
+
+      // Seleciona o registro base para comparação
+      let compRecord = null;
+      let compLabel = '';
+
+      if (mode === 'PREV') {
+        if (sorted.length >= 2) {
+          compRecord = sorted[sorted.length - 2];
+          compLabel = compRecord.data ? `vs ${compRecord.data}` : 'vs anterior';
+        }
+      } else {
+        const daysAgo = parseInt(mode);
+        const latestTs = parseDateToTimestamp(latest.data);
+        if (latestTs && sorted.length >= 2) {
+          const targetTs = latestTs - (daysAgo * 86400000);
+          let bestCandidate = null;
+          let bestDiff = Infinity;
+          for (let i = 0; i < sorted.length - 1; i++) {
+            const ts = parseDateToTimestamp(sorted[i].data);
+            if (ts !== null) {
+              const diff = Math.abs(ts - targetTs);
+              if (diff < bestDiff) {
+                bestDiff = diff;
+                bestCandidate = sorted[i];
+              }
+            }
+          }
+          compRecord = bestCandidate || sorted[Math.max(0, sorted.length - 1 - daysAgo)];
+          compLabel = compRecord && compRecord.data ? `vs ${compRecord.data} (${daysAgo}d)` : `vs ${daysAgo}d ant.`;
+        } else if (sorted.length >= 2) {
+          const idx = Math.max(0, sorted.length - 1 - daysAgo);
+          compRecord = sorted[idx];
+          compLabel = `vs ${daysAgo} reg. ant.`;
+        }
+      }
+
+      METRICAS_CONFIG.forEach(m => {
+        const cardEl = document.getElementById(`rg-card-${m.key}`);
+        if (!cardEl) return;
+
+        const currNum = latest.valores ? latest.valores[m.key] : null;
+        const currRaw = latest.raw && latest.raw[m.key] ? latest.raw[m.key] : (currNum !== null && currNum !== undefined ? String(currNum) : '-');
+        const prevNum = (compRecord && compRecord.valores) ? compRecord.valores[m.key] : null;
+        const prevRaw = (compRecord && compRecord.raw && compRecord.raw[m.key]) ? compRecord.raw[m.key] : (prevNum !== null && prevNum !== undefined ? String(prevNum) : '-');
+
+        let statusHtml = `<span class="rg-kpi-status rg-status-igual">• Sem histórico anterior</span>`;
+
+        if (currNum !== null && currNum !== undefined && prevNum !== null && prevNum !== undefined) {
+          const diff = Number((currNum - prevNum).toFixed(2));
+          const isPercent = String(currRaw).includes('%');
+          const suffix = isPercent ? '%' : '';
+
+          if (Math.abs(diff) < 0.0001) {
+            statusHtml = `<span class="rg-kpi-status rg-status-igual">● Estável (${prevRaw} ${compLabel})</span>`;
+          } else {
+            const improved = m.higherIsBetter ? (diff > 0) : (diff < 0);
+            const arrow = diff > 0 ? '▲' : '▼';
+            const sign = diff > 0 ? '+' : '';
+            const cls = improved ? 'rg-status-melhora' : 'rg-status-piora';
+            const textoStatus = improved ? 'Melhora' : 'Piora';
+            statusHtml = `<span class="rg-kpi-status ${cls}" title="Anterior: ${prevRaw} (${compLabel})">${arrow} ${textoStatus} (${sign}${diff}${suffix} | ant: ${prevRaw})</span>`;
+          }
+        }
+
+        cardEl.innerHTML = `
+          <span class="rg-kpi-label">${m.label}</span>
+          <div class="rg-kpi-value">${currRaw}</div>
+          ${statusHtml}
+        `;
+      });
+    }
 
     function switchTabML(tabId, btn) {
       document.querySelectorAll('#page-impactos-ml .tab-content').forEach(el => el.classList.remove('active'));
@@ -1047,6 +1347,7 @@
 
       const [notesData, data] = await Promise.all([fetchNotesCSV, fetchDados]);
       sharedNotesMap = notesData || {};
+      rawNotasPage = data.notas_page || [];
       rawDataML = data.ml || [];
       rawDataAMZ = data.amazon || [];
       rawDataAvalAMZ = data.avaliacoes_amazon || [];
@@ -1061,14 +1362,15 @@
       populateConsultaFilters('filter-transp-consulta-amz', 'filter-motivo-consulta-amz', rawDataAMZ);
       populateEstrelasFilter('filter-estrelas-consulta-aval', rawDataAvalAMZ);
 
+      renderReputacaoGeral();
       renderML();
       renderAMZ();
       renderAvaliacoesAMZ();
       renderVIA();
       
-      const savedPage = localStorage.getItem('activePage') || 'page-impactos-ml';
-      const targetLink = document.querySelector(`.menu-item[data-page="${savedPage}"]`);
-      navigatePage(savedPage, targetLink);
+      // Sempre abre na Page Inicial: Reputação Geral
+      const initialLink = document.querySelector('.menu-item[data-page="page-reputacao-geral"]');
+      navigatePage('page-reputacao-geral', initialLink);
     }
 
     initDashboard();
