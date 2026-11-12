@@ -166,6 +166,10 @@
         <span class="menu-icon">⭐</span>
         <span class="menu-text">Avaliações com Impacto Amazon</span>
       </a>
+      <a class="menu-item" data-page="page-via" onclick="navigatePage('page-via', this)">
+        <span class="menu-icon">🛒</span>
+        <span class="menu-text">Reclamações VIA</span>
+      </a>
     </div>
 
     <div class="sidebar-footer">
@@ -686,6 +690,118 @@
       </div>
     </section>
 
+    <!-- PÁGINA 4: RECLAMAÇÕES VIA -->
+    <section id="page-via" class="page-section">
+      <div class="header-bar">
+        <h1>Reclamações VIA</h1>
+        <div class="filter-controls-group">
+          <select id="filter-dias-via" class="select-filter-hdr" onchange="renderVIA()">
+            <option value="0">Todo o Período</option>
+            <option value="7">Últimos 7 Dias</option>
+            <option value="15">Últimos 15 Dias</option>
+            <option value="30">Últimos 30 Dias</option>
+            <option value="60">Últimos 60 Dias</option>
+          </select>
+
+          <select id="filter-comparativo-via" class="select-filter-hdr" onchange="renderVIA()">
+            <option value="NONE">Sem Comparativo</option>
+            <option value="7">vs 7d Anteriores</option>
+            <option value="15">vs 15d Anteriores</option>
+            <option value="30">vs 30d Anteriores</option>
+          </select>
+
+          <div class="filter-switch">
+            <button id="btn-afetando-via" class="filter-btn active" onclick="setEscopoVIA('afetando')">Apenas Afetando a Reputação</button>
+            <button id="btn-todas-via" class="filter-btn" onclick="setEscopoVIA('todas')">Todas</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Pedidos Afetando a Reputação</h3>
+          <div class="val val-danger" id="total-afetando-via">-</div>
+          <div id="comp-afetando-via"></div>
+        </div>
+        <div class="metric-card">
+          <h3>Impactos Retirados</h3>
+          <div class="val val-success" id="total-retirados-via">-</div>
+          <div id="comp-retirados-via"></div>
+        </div>
+        <div class="metric-card">
+          <h3>Reclamações que Não Se Aplicam Revisão</h3>
+          <div class="val val-warning" id="total-naoseaplica-via">-</div>
+          <div id="comp-naoseaplica-via"></div>
+        </div>
+      </div>
+
+      <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTabVIA('tab-transp-via', this)">Transportadora</button>
+        <button class="tab-btn" onclick="switchTabVIA('tab-skus-via', this)">SKUs / Produtos</button>
+        <button class="tab-btn" onclick="switchTabVIA('tab-motivos-via', this)">Motivos da Reclamação</button>
+      </div>
+
+      <!-- ABA 1: TRANSPORTADORA -->
+      <div id="tab-transp-via" class="tab-content active">
+        <div class="chart-box"><div style="height: 350px;"><canvas id="chartTranspVIA"></canvas></div></div>
+        <table id="tabela-transp-via">
+          <thead>
+            <tr>
+              <th style="width:18%">Transportadora</th>
+              <th style="width:7%">Qtd</th>
+              <th style="width:15%">Comparativo</th>
+              <th style="width:30%">Ranking dos Motivos</th>
+              <th style="width:30%">Comentários & Ocorrências</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- ABA 2: SKUs / PRODUTOS -->
+      <div id="tab-skus-via" class="tab-content">
+        <div class="table-toolbar">
+          <select id="filter-marca-skus-via" class="select-filter" onchange="renderTabSkusVIA()">
+            <option value="TODAS">Todas as Marcas</option>
+          </select>
+        </div>
+        <div class="chart-box">
+          <h2 class="section-subtitle">Top SKUs & Produtos VIA</h2>
+          <div style="height: 440px;"><canvas id="chartSkusVIA"></canvas></div>
+        </div>
+        <table id="tabela-skus-via">
+          <thead>
+            <tr>
+              <th style="width:14%">SKU</th>
+              <th style="width:14%">Marca</th>
+              <th style="width:24%">Produto</th>
+              <th style="width:7%">Qtd</th>
+              <th style="width:15%">Comparativo</th>
+              <th style="width:26%">Comentários & Ocorrências</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- ABA 3: MOTIVOS DA RECLAMAÇÃO -->
+      <div id="tab-motivos-via" class="tab-content">
+        <div class="chart-box"><div style="height: 360px; display: flex; justify-content: center;"><canvas id="chartMotivosVIA"></canvas></div></div>
+        <table id="tabela-motivos-via">
+          <thead>
+            <tr>
+              <th style="width:18%">Motivo</th>
+              <th style="width:7%">Qtd</th>
+              <th style="width:15%">Comparativo</th>
+              <th style="width:30%">Ranking das Transportadoras</th>
+              <th style="width:30%">Comentários & Ocorrências</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
   </main>
 
   <script>
@@ -807,23 +923,27 @@
       localStorage.setItem('activePage', pageId);
     }
 
-    let rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [];
-    let escopoML = 'afetando', escopoAMZ = 'afetando', escopoAval = 'afetando';
+    let rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [];
+    let escopoML = 'afetando', escopoAMZ = 'afetando', escopoAval = 'afetando', escopoVIA = 'afetando';
     
-    let currentFilteredML = [], currentFilteredAMZ = [], currentFilteredAval = [];
+    let currentFilteredML = [], currentFilteredAMZ = [], currentFilteredAval = [], currentFilteredVIA = [];
     let currentCurrCompML = [], currentPrevCompML = [];
     let currentCurrCompAMZ = [], currentPrevCompAMZ = [];
     let currentCurrCompAval = [], currentPrevCompAval = [];
+    let currentCurrCompVIA = [], currentPrevCompVIA = [];
 
     let activePillFiltersMLTransp = {};
     let activePillFiltersMLMotivos = {};
     let activePillFiltersAMZTransp = {};
     let activePillFiltersAMZMotivos = {};
     let activePillFiltersAvalTransp = {};
+    let activePillFiltersVIATransp = {};
+    let activePillFiltersVIAMotivos = {};
 
     let chartSkusMLObj = null, chartTranspMLObj = null, chartMotivosMLObj = null;
     let chartSkusAMZObj = null, chartTranspAMZObj = null, chartMotivosAMZObj = null;
     let chartSkusAvalObj = null, chartTranspAvalObj = null;
+    let chartSkusVIAObj = null, chartTranspVIAObj = null, chartMotivosVIAObj = null;
 
     function switchTabML(tabId, btn) {
       document.querySelectorAll('#page-impactos-ml .tab-content').forEach(el => el.classList.remove('active'));
@@ -842,6 +962,13 @@
     function switchTabAval(tabId, btn) {
       document.querySelectorAll('#page-avaliacoes-amazon .tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('#page-avaliacoes-amazon .tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    function switchTabVIA(tabId, btn) {
+      document.querySelectorAll('#page-via .tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('#page-via .tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       if (btn) btn.classList.add('active');
     }
@@ -867,6 +994,13 @@
       renderAvaliacoesAMZ();
     }
 
+    function setEscopoVIA(modo) {
+      escopoVIA = modo;
+      document.getElementById('btn-afetando-via').classList.toggle('active', modo === 'afetando');
+      document.getElementById('btn-todas-via').classList.toggle('active', modo === 'todas');
+      renderVIA();
+    }
+
     function isAvaliacaoAfetando(r) {
       if (!r) return false;
       const tempoClean = normalizeText(r.tempo_impacto);
@@ -874,6 +1008,20 @@
       const valido = tempoClean.includes('VALIDO') && !tempoClean.includes('INVALIDO');
       const sitAfeta = ['RESPONDIDA', 'CHAMADO ABERTO', 'EM CHAMADO PREMIUM'].includes(sitClean);
       return (valido && sitAfeta) || Boolean(r.is_afetando);
+    }
+
+    function isViaValido(r) {
+      if (!r) return false;
+      const tempoClean = normalizeText(r.tempo_impacto);
+      return (tempoClean.includes('VALIDO') && !tempoClean.includes('INVALIDO')) || Boolean(r.is_valido);
+    }
+
+    function isViaAfetando(r) {
+      if (!r) return false;
+      const valido = isViaValido(r);
+      const statusClean = normalizeText(r.status_impacto);
+      const statusAfetam = ['MANTIDO', 'ABERTO', 'SEGUNDA ANALISE', 'CRIAR', 'NAO SE APLICA'];
+      return (valido && statusAfetam.includes(statusClean)) || Boolean(r.is_afetando);
     }
 
     function formatEstrelaLabel(estrelasRaw) {
@@ -902,10 +1050,12 @@
       rawDataML = data.ml || [];
       rawDataAMZ = data.amazon || [];
       rawDataAvalAMZ = data.avaliacoes_amazon || [];
+      rawDataVIA = data.via || [];
       
       populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
       populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
       populateMarcaFilterOptions('filter-marca-skus-aval', rawDataAvalAMZ);
+      populateMarcaFilterOptions('filter-marca-skus-via', rawDataVIA);
 
       populateConsultaFilters('filter-transp-consulta-ml', 'filter-motivo-consulta-ml', rawDataML);
       populateConsultaFilters('filter-transp-consulta-amz', 'filter-motivo-consulta-amz', rawDataAMZ);
@@ -914,6 +1064,7 @@
       renderML();
       renderAMZ();
       renderAvaliacoesAMZ();
+      renderVIA();
       
       const savedPage = localStorage.getItem('activePage') || 'page-impactos-ml';
       const targetLink = document.querySelector(`.menu-item[data-page="${savedPage}"]`);
@@ -1086,6 +1237,260 @@
           statusEl.innerText = 'Erro ao salvar nota.';
         }
       }
+    }
+
+    // ================= RENDERIZADOR RECLAMAÇÕES VIA =================
+    function renderVIA() {
+      const days = parseInt(document.getElementById('filter-dias-via')?.value || '0');
+      const compDaysVal = document.getElementById('filter-comparativo-via')?.value || 'NONE';
+
+      let baseTotalList = getDatasetByPeriod(rawDataVIA, days);
+      let dataset = getDatasetByPeriod(rawDataVIA, days);
+
+      if (escopoVIA === 'afetando') {
+        dataset = dataset.filter(isViaAfetando);
+      }
+      currentFilteredVIA = dataset;
+
+      const totalAfetando = baseTotalList.filter(isViaAfetando).length;
+      const totalRetirados = baseTotalList.filter(r => isViaValido(r) && normalizeText(r.status_impacto).includes('RETIRADO')).length;
+      const totalNaoSeAplica = baseTotalList.filter(r => isViaValido(r) && normalizeText(r.status_impacto).includes('NAO SE APLICA')).length;
+
+      document.getElementById('total-afetando-via').innerText = totalAfetando;
+      document.getElementById('total-retirados-via').innerText = totalRetirados;
+      document.getElementById('total-naoseaplica-via').innerText = totalNaoSeAplica;
+
+      if (compDaysVal !== 'NONE') {
+        const compDays = parseInt(compDaysVal);
+        const currentCompList = getComparisonWindowData(rawDataVIA, compDays, false);
+        const prevCompList = getComparisonWindowData(rawDataVIA, compDays, true);
+
+        currentCurrCompVIA = escopoVIA === 'afetando' ? currentCompList.filter(isViaAfetando) : currentCompList;
+        currentPrevCompVIA = escopoVIA === 'afetando' ? prevCompList.filter(isViaAfetando) : prevCompList;
+
+        const cAfet = currentCompList.filter(isViaAfetando).length;
+        const pAfet = prevCompList.filter(isViaAfetando).length;
+
+        const cRet = currentCompList.filter(r => isViaValido(r) && normalizeText(r.status_impacto).includes('RETIRADO')).length;
+        const pRet = prevCompList.filter(r => isViaValido(r) && normalizeText(r.status_impacto).includes('RETIRADO')).length;
+
+        const cNsa = currentCompList.filter(r => isViaValido(r) && normalizeText(r.status_impacto).includes('NAO SE APLICA')).length;
+        const pNsa = prevCompList.filter(r => isViaValido(r) && normalizeText(r.status_impacto).includes('NAO SE APLICA')).length;
+
+        generateComparisonBadge('comp-afetando-via', cAfet, pAfet, compDays);
+        generateComparisonBadge('comp-retirados-via', cRet, pRet, compDays);
+        generateComparisonBadge('comp-naoseaplica-via', cNsa, pNsa, compDays);
+      } else {
+        currentCurrCompVIA = [];
+        currentPrevCompVIA = [];
+        ['comp-afetando-via', 'comp-retirados-via', 'comp-naoseaplica-via'].forEach(id => {
+          document.getElementById(id).innerHTML = '';
+        });
+      }
+
+      renderTabTranspVIA(dataset);
+      renderTabSkusVIA();
+      renderTabMotivosVIA(dataset);
+    }
+
+    function renderTabTranspVIA(dataset) {
+      const mapTranspCurr = {};
+      currentCurrCompVIA.forEach(r => {
+        const t = r.transportadora || 'NÃO INFORMADO';
+        mapTranspCurr[t] = (mapTranspCurr[t] || 0) + 1;
+      });
+
+      const mapTranspPrev = {};
+      currentPrevCompVIA.forEach(r => {
+        const t = r.transportadora || 'NÃO INFORMADO';
+        mapTranspPrev[t] = (mapTranspPrev[t] || 0) + 1;
+      });
+
+      const mapTransp = {};
+      dataset.forEach(r => {
+        const t = r.transportadora || 'NÃO INFORMADO';
+        if (!mapTransp[t]) mapTransp[t] = { transportadora: t, qtd: 0, rankingMotivos: {}, registros: [] };
+        mapTransp[t].qtd++;
+        const mot = r.motivo || 'OUTROS';
+        mapTransp[t].rankingMotivos[mot] = (mapTransp[t].rankingMotivos[mot] || 0) + 1;
+        mapTransp[t].registros.push(r);
+      });
+
+      const list = Object.values(mapTransp).sort((a, b) => b.qtd - a.qtd);
+      if (chartTranspVIAObj) chartTranspVIAObj.destroy();
+      chartTranspVIAObj = new Chart(document.getElementById('chartTranspVIA'), {
+        type: 'bar',
+        data: { labels: list.map(i => i.transportadora), datasets: [{ data: list.map(i => i.qtd), backgroundColor: '#16a34a', borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', font: { weight: 'bold' } } } }
+      });
+
+      const tbody = document.querySelector('#tabela-transp-via tbody');
+      tbody.innerHTML = '';
+      const hasComp = document.getElementById('filter-comparativo-via')?.value !== 'NONE';
+
+      list.forEach((item, idx) => {
+        const selectedMotivo = activePillFiltersVIATransp[idx];
+
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingMotivos).map(([mot, count]) => {
+          const isActive = selectedMotivo === mot ? 'active' : '';
+          return `<span class="ranking-pill ${isActive}" onclick="togglePillFilter(activePillFiltersVIATransp, ${idx}, '${mot.replace(/'/g, "\\'")}', () => renderTabTranspVIA(currentFilteredVIA))">${mot}: <strong>${count}</strong></span>`;
+        }).join('') + '</div>';
+
+        let comsRegistros = item.registros;
+        if (selectedMotivo) {
+          comsRegistros = comsRegistros.filter(r => (r.motivo || 'OUTROS') === selectedMotivo);
+        }
+        const coms = comsRegistros.filter(r => isComentarioValido(r.comentario));
+
+        let filterTagHtml = '';
+        if (selectedMotivo) {
+          filterTagHtml = `<div class="comments-filter-tag">Filtrado por: ${selectedMotivo} <span onclick="togglePillFilter(activePillFiltersVIATransp, ${idx}, '${selectedMotivo.replace(/'/g, "\\'")}', () => renderTabTranspVIA(currentFilteredVIA))">✕</span></div>`;
+        }
+
+        const comHtml = coms.length
+          ? `<div class="comments-wrapper">${filterTagHtml}<div class="comments-scroll-box">${coms.map(r => {
+              const tagProt = r.protocolo ? `<strong>[Prot: ${r.protocolo}]</strong> ` : (r.pedido ? `<strong>[Ped: ${r.pedido}]</strong> ` : '');
+              return `<div class="comment-bubble">💬 ${tagProt}${r.comentario}</div>`;
+            }).join('')}</div></div>`
+          : `<div class="comments-wrapper">${filterTagHtml}<span class="no-comments">Sem observações${selectedMotivo ? ' para este motivo' : ''}</span></div>`;
+
+        const currQtd = mapTranspCurr[item.transportadora] || 0;
+        const prevQtd = mapTranspPrev[item.transportadora] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
+
+        tbody.innerHTML += `<tr><td><strong>${item.transportadora}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    function renderTabSkusVIA() {
+      const marcaFilter = document.getElementById('filter-marca-skus-via')?.value || 'TODAS';
+      let dataset = [...currentFilteredVIA];
+      let currDataset = [...currentCurrCompVIA];
+      let prevDataset = [...currentPrevCompVIA];
+
+      if (marcaFilter !== 'TODAS') {
+        dataset = dataset.filter(r => r.marca === marcaFilter);
+        currDataset = currDataset.filter(r => r.marca === marcaFilter);
+        prevDataset = prevDataset.filter(r => r.marca === marcaFilter);
+      }
+
+      const mapSkusCurr = {};
+      currDataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        mapSkusCurr[key] = (mapSkusCurr[key] || 0) + 1;
+      });
+
+      const mapSkusPrev = {};
+      prevDataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        mapSkusPrev[key] = (mapSkusPrev[key] || 0) + 1;
+      });
+
+      const mapSkus = {};
+      dataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        if (!mapSkus[key]) mapSkus[key] = { key, sku: r.sku || 'N/A', marca: r.marca || 'OUTROS', produto: r.produto || '-', qtd: 0, registrosCom: [] };
+        mapSkus[key].qtd++;
+        if (isComentarioValido(r.comentario)) mapSkus[key].registrosCom.push(r);
+      });
+
+      const listSkus = Object.values(mapSkus).sort((a, b) => b.qtd - a.qtd);
+      const labels = listSkus.slice(0, 15).map(i => `${i.sku} - ${i.produto}`.substring(0, 35) + '...');
+      const values = listSkus.slice(0, 15).map(i => i.qtd);
+
+      if (chartSkusVIAObj) chartSkusVIAObj.destroy();
+      chartSkusVIAObj = new Chart(document.getElementById('chartSkusVIA'), {
+        type: 'bar',
+        data: { labels, datasets: [{ data: values, backgroundColor: '#16a34a', borderRadius: 4 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'right', font: { weight: 'bold' } } } }
+      });
+
+      const tbodySkus = document.querySelector('#tabela-skus-via tbody');
+      tbodySkus.innerHTML = '';
+      const hasComp = document.getElementById('filter-comparativo-via')?.value !== 'NONE';
+
+      listSkus.forEach(item => {
+        const comHtml = item.registrosCom.length
+          ? `<div class="comments-scroll-box">${item.registrosCom.map(r => {
+              const tagProt = r.protocolo ? `<strong>[Prot: ${r.protocolo}]</strong> ` : (r.pedido ? `<strong>[Ped: ${r.pedido}]</strong> ` : '');
+              return `<div class="comment-bubble">💬 ${tagProt}${r.comentario}</div>`;
+            }).join('')}</div>`
+          : '<span class="no-comments">Sem observações</span>';
+        const currQtd = mapSkusCurr[item.key] || 0;
+        const prevQtd = mapSkusPrev[item.key] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
+
+        tbodySkus.innerHTML += `<tr><td><strong>${item.sku}</strong></td><td><span class="badge-count">${item.marca}</span></td><td>${item.produto}</td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    function renderTabMotivosVIA(dataset) {
+      const mapMotivosCurr = {};
+      currentCurrCompVIA.forEach(r => {
+        const m = r.motivo || 'OUTROS';
+        mapMotivosCurr[m] = (mapMotivosCurr[m] || 0) + 1;
+      });
+
+      const mapMotivosPrev = {};
+      currentPrevCompVIA.forEach(r => {
+        const m = r.motivo || 'OUTROS';
+        mapMotivosPrev[m] = (mapMotivosPrev[m] || 0) + 1;
+      });
+
+      const mapMotivos = {};
+      dataset.forEach(r => {
+        const m = r.motivo || 'OUTROS';
+        if (!mapMotivos[m]) mapMotivos[m] = { motivo: m, qtd: 0, rankingTransp: {}, registros: [] };
+        mapMotivos[m].qtd++;
+        const t = r.transportadora || 'NÃO INFORMADO';
+        mapMotivos[m].rankingTransp[t] = (mapMotivos[m].rankingTransp[t] || 0) + 1;
+        mapMotivos[m].registros.push(r);
+      });
+
+      const list = Object.values(mapMotivos).sort((a, b) => b.qtd - a.qtd);
+      if (chartMotivosVIAObj) chartMotivosVIAObj.destroy();
+      chartMotivosVIAObj = new Chart(document.getElementById('chartMotivosVIA'), {
+        type: 'doughnut',
+        data: { labels: list.map(i => i.motivo), datasets: [{ data: list.map(i => i.qtd), backgroundColor: ['#16a34a', '#ef4444', '#3b82f6', '#f59e0b', '#8b5cf6', '#ec4899', '#14b8a6'] }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' }, datalabels: { color: '#fff', font: { weight: 'bold' } } } }
+      });
+
+      const tbody = document.querySelector('#tabela-motivos-via tbody');
+      tbody.innerHTML = '';
+      const hasComp = document.getElementById('filter-comparativo-via')?.value !== 'NONE';
+
+      list.forEach((item, idx) => {
+        const selectedTransp = activePillFiltersVIAMotivos[idx];
+
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingTransp).map(([transp, count]) => {
+          const isActive = selectedTransp === transp ? 'active' : '';
+          return `<span class="ranking-pill ${isActive}" onclick="togglePillFilter(activePillFiltersVIAMotivos, ${idx}, '${transp.replace(/'/g, "\\'")}', () => renderTabMotivosVIA(currentFilteredVIA))">${transp}: <strong>${count}</strong></span>`;
+        }).join('') + '</div>';
+
+        let comsRegistros = item.registros;
+        if (selectedTransp) {
+          comsRegistros = comsRegistros.filter(r => (r.transportadora || 'NÃO INFORMADO') === selectedTransp);
+        }
+        const coms = comsRegistros.filter(r => isComentarioValido(r.comentario));
+
+        let filterTagHtml = '';
+        if (selectedTransp) {
+          filterTagHtml = `<div class="comments-filter-tag">Filtrado por: ${selectedTransp} <span onclick="togglePillFilter(activePillFiltersVIAMotivos, ${idx}, '${selectedTransp.replace(/'/g, "\\'")}', () => renderTabMotivosVIA(currentFilteredVIA))">✕</span></div>`;
+        }
+
+        const comHtml = coms.length
+          ? `<div class="comments-wrapper">${filterTagHtml}<div class="comments-scroll-box">${coms.map(r => {
+              const tagProt = r.protocolo ? `<strong>[Prot: ${r.protocolo}]</strong> ` : (r.pedido ? `<strong>[Ped: ${r.pedido}]</strong> ` : '');
+              return `<div class="comment-bubble">💬 ${tagProt}${r.comentario}</div>`;
+            }).join('')}</div></div>`
+          : `<div class="comments-wrapper">${filterTagHtml}<span class="no-comments">Sem observações${selectedTransp ? ' para esta transportadora' : ''}</span></div>`;
+
+        const currQtd = mapMotivosCurr[item.motivo] || 0;
+        const prevQtd = mapMotivosPrev[item.motivo] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
+
+        tbody.innerHTML += `<tr><td><strong>${item.motivo}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
+      });
     }
 
     // ================= RENDERIZADOR AVALIAÇÕES AMAZON =================
