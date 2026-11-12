@@ -8,6 +8,7 @@ import requests
 URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1773072804&single=true&output=csv"
 URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=134048884&single=true&output=csv"
 URL_CSV_AVALIACOES_AMZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=329618718&single=true&output=csv"
+URL_CSV_VIA = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=876023604&single=true&output=csv"
 
 
 def remover_acentos(texto):
@@ -474,15 +475,112 @@ def processar_avaliacoes_amazon():
   return registros
 
 
+def processar_via():
+  df = parse_csv_dinamico(
+      URL_CSV_VIA,
+      [
+          "PEDIDO",
+          "PROTOCOLO",
+          "TEMPO DE IMPACTO",
+          "STATUS IMPACTO",
+          "MOTIVO RELATADO",
+      ],
+      default_header_idx=1,
+  )
+  print("COLUNAS VIA:", list(df.columns))
+
+  col_pedido = encontrar_coluna_exata(
+      df, ["PEDIDO", "NUMERO DO PEDIDO", "ID DO PEDIDO"]
+  )
+  col_protocolo = encontrar_coluna_exata(
+      df, ["PROTOCOLO", "NUMERO PROTOCOLO", "N PROTOCOLO"], excluir_substrings=["DATA"]
+  )
+  col_data = encontrar_coluna_exata(
+      df, ["DATA DO PROTOCOLO", "DATA PROTOCOLO", "DATA"]
+  )
+  col_tempo_impacto = encontrar_coluna_exata(
+      df, ["TEMPO DE IMPACTO", "TEMPO IMPACTO", "VALIDACAO"]
+  )
+  col_status_impacto = encontrar_coluna_exata(
+      df, ["STATUS IMPACTO", "STATUS DO IMPACTO", "STATUS", "SITUACAO"]
+  )
+  col_motivo = encontrar_coluna_exata(
+      df, ["MOTIVO RELATADO", "MOTIVO DA RECLAMACAO", "MOTIVO"]
+  )
+  col_transp = encontrar_coluna_exata(
+      df, ["TRANSPORTADORA", "TRANSP", "LOGISTICA", "ENVIO"]
+  )
+  col_sku = encontrar_coluna_exata(df, ["SKU", "CODIGO SKU", "CODIGO"])
+  col_produto = encontrar_coluna_exata(
+      df, ["PRODUTO", "NOME DO PRODUTO", "TITULO", "ITEM"]
+  )
+  col_analise = encontrar_coluna_exata(
+      df, ["ANALISE", "ANÁLISE", "COMENTARIO", "OBSERVACAO", "OBS"]
+  )
+
+  registros = []
+  for _, row in df.iterrows():
+    pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ""
+    protocolo_val = (
+        limpar_identificador(row[col_protocolo]) if col_protocolo else ""
+    )
+    prod_nome = limpar_texto(row[col_produto]) if col_produto else ""
+    analise_val = limpar_texto(row[col_analise]) if col_analise else ""
+
+    # Ignora apenas linhas totalmente vazias; preserva pedidos repetidos com protocolos distintos
+    if not pedido_val and not protocolo_val and not prod_nome and not analise_val:
+      continue
+
+    tempo_val = (
+        limpar_texto(row[col_tempo_impacto]) if col_tempo_impacto else ""
+    )
+    status_val = (
+        limpar_texto(row[col_status_impacto]) if col_status_impacto else ""
+    )
+
+    tempo_clean = remover_acentos(tempo_val)
+    status_clean = remover_acentos(status_val)
+
+    is_valido = ("VALIDO" in tempo_clean) and ("INVALIDO" not in tempo_clean)
+    status_afetam = [
+        "MANTIDO",
+        "ABERTO",
+        "SEGUNDA ANALISE",
+        "CRIAR",
+        "NAO SE APLICA",
+    ]
+    is_afetando = is_valido and (status_clean in status_afetam)
+
+    registros.append({
+        "pedido": pedido_val,
+        "protocolo": protocolo_val,
+        "data": limpar_texto(row[col_data]) if col_data else "",
+        "tempo_impacto": tempo_val,
+        "status_impacto": status_val,
+        "motivo": limpar_texto(row[col_motivo]) if col_motivo else "",
+        "transportadora": limpar_texto(row[col_transp]) if col_transp else "",
+        "sku": limpar_texto(row[col_sku]) if col_sku else "N/A",
+        "marca": extrair_marca(prod_nome),
+        "produto": prod_nome,
+        "comentario": analise_val,
+        "is_valido": is_valido,
+        "is_afetando": is_afetando,
+    })
+
+  return registros
+
+
 if __name__ == "__main__":
   ml_data = processar_ml()
   amz_data = processar_amazon()
   aval_amz_data = processar_avaliacoes_amazon()
+  via_data = processar_via()
 
   output = {
       "ml": ml_data,
       "amazon": amz_data,
       "avaliacoes_amazon": aval_amz_data,
+      "via": via_data,
   }
 
   with open("impactos_ml.json", "w", encoding="utf-8") as f:
@@ -490,5 +588,5 @@ if __name__ == "__main__":
 
   print(
       f"Concluído: {len(ml_data)} ML | {len(amz_data)} Amazon |"
-      f" {len(aval_amz_data)} Avaliações Amazon"
+      f" {len(aval_amz_data)} Avaliações Amazon | {len(via_data)} VIA"
   )
