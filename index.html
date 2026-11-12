@@ -22,17 +22,17 @@
       --info: #0284c7;
       --success: #16a34a;
     }
- 
+
     * { box-sizing: border-box; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: var(--text-main); display: flex; min-height: 100vh; }
- 
+
     .sidebar { width: var(--sidebar-expanded-width); background-color: #ffffff; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: sticky; top: 0; height: 100vh; z-index: 100; overflow-x: hidden; }
     .sidebar.collapsed { width: var(--sidebar-collapsed-width); }
     .sidebar-header { padding: 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); min-height: 70px; }
     .sidebar-logo-icon { width: 32px; height: 32px; background: var(--primary); color: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0; }
     .sidebar-logo-text { font-size: 18px; font-weight: 700; color: var(--text-main); white-space: nowrap; opacity: 1; transition: opacity 0.2s; }
     .sidebar.collapsed .sidebar-logo-text { opacity: 0; pointer-events: none; }
- 
+
     .sidebar-menu { padding: 16px 10px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
     .menu-category { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); padding: 8px 12px 4px 12px; white-space: nowrap; font-weight: 700; }
     .sidebar.collapsed .menu-category { display: none; }
@@ -282,7 +282,7 @@
         <div class="table-toolbar">
           <div class="search-box-wrapper">
             <span class="search-icon-inside">🔍</span>
-            <input type="text" id="search-consulta-ml" class="search-input" placeholder="Pesquisar por N° da Venda..." oninput="renderTabConsultaML()">
+            <input type="text" id="search-consulta-ml" class="search-input" placeholder="Pesquisar por N° da Venda / Pedido..." oninput="renderTabConsultaML()">
           </div>
           <select id="filter-transp-consulta-ml" class="select-filter" onchange="renderTabConsultaML()">
             <option value="TODAS">Todas as Transportadoras</option>
@@ -294,7 +294,7 @@
         <table id="tabela-consulta-ml">
           <thead>
             <tr>
-              <th style="width:18%">N° Venda</th>
+              <th style="width:18%">Pedido / N° Venda</th>
               <th style="width:22%">Produto</th>
               <th style="width:18%">Motivo</th>
               <th style="width:16%">Transportadora</th>
@@ -536,16 +536,29 @@
 
     function getOrderId(record) {
       if (!record) return '-';
-      return record.n_venda || 
-             record.n_da_venda || 
-             record['N° Venda'] || 
-             record['Nº Venda'] || 
-             record['N° da Venda'] || 
-             record['Nº da Venda'] || 
-             record.venda || 
-             record.id_pedido || 
-             record.pedido || 
-             '-';
+      
+      let val = record.pedido || 
+                record.Pedido || 
+                record.n_venda || 
+                record.n_da_venda || 
+                record['N° Venda'] || 
+                record['Nº Venda'] || 
+                record['N° da Venda'] || 
+                record['Nº da Venda'] || 
+                record.venda || 
+                record.id_pedido;
+
+      if (!val) {
+        const foundKey = Object.keys(record).find(k => {
+          const norm = normalizeText(k);
+          return norm === 'PEDIDO' || norm === 'N VENDA' || norm === 'NO VENDA' || norm === 'N DA VENDA';
+        });
+        if (foundKey) val = record[foundKey];
+      }
+
+      if (!val || String(val).trim() === '' || String(val).toUpperCase() === 'NAN') return '-';
+      
+      return String(val).trim().replace(/\.0$/, '');
     }
 
     function parseDateToTimestamp(dateStr) {
