@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel ERP - Gestão de Marketplaces</title>
+  <title>Relatórios de Reputação SANBOX</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23ff9900'/%3E%3Cpath d='M0 18 Q0 0 18 0 L100 100 L18 100 Q0 100 0 82 Z' fill='%23f58200'/%3E%3Cpath d='M21 21 H79 V71 Q79 79 71 79 H29 Q21 79 21 71 Z' fill='%23ffffff'/%3E%3Crect x='39' y='33' width='22' height='12' fill='%23ff9900'/%3E%3C/svg%3E">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <style>
@@ -17,6 +18,7 @@
       --border-color: #e2e8f0;
       --primary: #2563eb;
       --primary-light: #eff6ff;
+      --sanbox-orange: #ff9900;
       --danger: #dc2626;
       --warning: #d97706;
       --info: #0284c7;
@@ -29,8 +31,9 @@
     .sidebar { width: var(--sidebar-expanded-width); background-color: #ffffff; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: sticky; top: 0; height: 100vh; z-index: 100; overflow-x: hidden; }
     .sidebar.collapsed { width: var(--sidebar-collapsed-width); }
     .sidebar-header { padding: 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); min-height: 70px; }
-    .sidebar-logo-icon { width: 32px; height: 32px; background: var(--primary); color: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0; }
-    .sidebar-logo-text { font-size: 18px; font-weight: 700; color: var(--text-main); white-space: nowrap; opacity: 1; transition: opacity 0.2s; }
+    .sidebar-logo-icon { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sidebar-logo-icon svg { width: 100%; height: 100%; display: block; }
+    .sidebar-logo-text { font-size: 20px; font-weight: 800; color: var(--sanbox-orange); letter-spacing: 0.5px; white-space: nowrap; opacity: 1; transition: opacity 0.2s; }
     .sidebar.collapsed .sidebar-logo-text { opacity: 0; pointer-events: none; }
 
     .sidebar-menu { padding: 16px 10px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
@@ -120,7 +123,6 @@
     .comment-bubble { background: #f8fafc; border-left: 3px solid var(--primary); border-radius: 4px; padding: 6px 10px; font-size: 12px; color: #475569; word-break: break-word; }
     .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
     .no-comments { color: #94a3b8; font-size: 12px; font-style: italic; }
-    .placeholder-card { background: var(--card-bg); border-radius: 12px; padding: 48px; border: 1px solid var(--border-color); text-align: center; }
 
     .note-textarea { width: 100%; height: 50px; padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; font-family: inherit; resize: vertical; outline: none; background: #fafafa; transition: border-color 0.2s, background 0.2s; }
     .note-textarea:focus { border-color: var(--primary); background: #ffffff; }
@@ -130,12 +132,19 @@
 
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-logo-icon">E</div>
-      <span class="sidebar-logo-text">Painel ERP</span>
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="18" fill="#ff9900"/>
+          <path d="M0 18 Q0 0 18 0 L100 100 L18 100 Q0 100 0 82 Z" fill="#f58200"/>
+          <path d="M21 21 H79 V71 Q79 79 71 79 H29 Q21 79 21 71 Z" fill="#ffffff"/>
+          <rect x="39" y="33" width="22" height="12" fill="#ff9900"/>
+        </svg>
+      </div>
+      <span class="sidebar-logo-text">SANBOX</span>
     </div>
 
     <div class="sidebar-menu">
-      <div class="menu-category">Marketplaces</div>
+      <div class="menu-category">Relatórios</div>
       <a class="menu-item active" data-page="page-impactos-ml" onclick="navigatePage('page-impactos-ml', this)">
         <span class="menu-icon">🛍️</span>
         <span class="menu-text">Impactos ML</span>
@@ -143,16 +152,6 @@
       <a class="menu-item" data-page="page-amazon" onclick="navigatePage('page-amazon', this)">
         <span class="menu-icon">📦</span>
         <span class="menu-text">Reivindicações A-Z Amazon</span>
-      </a>
-      <a class="menu-item" data-page="page-shopee" onclick="navigatePage('page-shopee', this)">
-        <span class="menu-icon">🟧</span>
-        <span class="menu-text">Shopee</span>
-      </a>
-
-      <div class="menu-category">Geral</div>
-      <a class="menu-item" data-page="page-config" onclick="navigatePage('page-config', this)">
-        <span class="menu-icon">⚙️</span>
-        <span class="menu-text">Configurações</span>
       </a>
     </div>
 
@@ -504,24 +503,6 @@
       </div>
     </section>
 
-    <!-- PÁGINA 3: SHOPEE -->
-    <section id="page-shopee" class="page-section">
-      <h1>Relatório Shopee</h1>
-      <div class="placeholder-card">
-        <h3>Módulo Shopee em Desenvolvimento</h3>
-        <p style="color: var(--text-muted);">Aqui estarão os dados de reputação do marketplace Shopee.</p>
-      </div>
-    </section>
-
-    <!-- PÁGINA 4: CONFIGURAÇÕES -->
-    <section id="page-config" class="page-section">
-      <h1>Configurações do Sistema</h1>
-      <div class="placeholder-card">
-        <h3>Configurações Gerais</h3>
-        <p style="color: var(--text-muted);">Ajustes de sincronização das planilhas do Google Sheets.</p>
-      </div>
-    </section>
-
   </main>
 
   <script>
@@ -540,13 +521,11 @@
       return String(val).trim().replace(/\.0$/, '');
     }
 
-    // Retorna o ID do Pedido (para Amazon ou coluna Pedido do ML que vai no link)
     function getPedidoId(record) {
       if (!record) return '';
       return cleanVal(record.pedido || record.Pedido || record.id_pedido);
     }
 
-    // Retorna o N° da Venda (coluna N° Venda do ML)
     function getNVendaId(record) {
       if (!record) return '';
       return cleanVal(record.n_venda || record.n_da_venda || record['N° Venda'] || record['Nº Venda']);
@@ -569,6 +548,11 @@
     }
 
     function navigatePage(pageId, linkElem) {
+      const targetSection = document.getElementById(pageId);
+      if (!targetSection) {
+        pageId = 'page-impactos-ml';
+        linkElem = document.querySelector('.menu-item[data-page="page-impactos-ml"]');
+      }
       document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
@@ -635,7 +619,7 @@
         
         const savedPage = localStorage.getItem('activePage') || 'page-impactos-ml';
         const targetLink = document.querySelector(`.menu-item[data-page="${savedPage}"]`);
-        if (targetLink) navigatePage(savedPage, targetLink);
+        navigatePage(savedPage, targetLink);
       });
 
     function populateMarcaFilterOptions(selectId, dataList) {
@@ -1440,7 +1424,6 @@
         const pedido = getPedidoId(r);
         const nVenda = getNVendaId(r);
         
-        // O link usa especificamente o Pedido; se estiver vazio, usa o N° Venda como fallback
         const targetLinkId = pedido || nVenda || '-';
         const displayMainId = nVenda || pedido || '-';
         const subPedidoHtml = (nVenda && pedido && nVenda !== pedido) ? `<span class="sub-id-label">Pedido: ${pedido}</span>` : '';
