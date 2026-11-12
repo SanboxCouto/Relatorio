@@ -7,6 +7,7 @@ import requests
 
 URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1773072804&single=true&output=csv"
 URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=134048884&single=true&output=csv"
+URL_CSV_AVALIACOES_AMZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=329618718&single=true&output=csv"
 
 
 def remover_acentos(texto):
@@ -34,7 +35,7 @@ def limpar_identificador(val):
   return s
 
 
-def limpar_comentario(val):
+def limpar_texto(val):
   if pd.isna(val) or val is None:
     return ""
   s = str(val).strip()
@@ -121,17 +122,31 @@ def parse_csv_dinamico(url, palavras_chave_cabecalho):
   return df
 
 
-def encontrar_coluna_exata(df, candidatos):
-  cols_norm = {remover_acentos(c): c for c in df.columns}
+def encontrar_coluna_exata(df, candidatos, excluir_substrings=None):
+  if excluir_substrings is None:
+    excluir_substrings = []
+  excluir_norm = [remover_acentos(e) for e in excluir_substrings]
+
+  cols_norm = {}
+  for c in df.columns:
+    c_norm = remover_acentos(c)
+    if any(ex in c_norm for ex in excluir_norm):
+      continue
+    cols_norm[c_norm] = c
+
+  # 1. Busca correspondência exata (sem acentos/case)
   for cand in candidatos:
     cand_norm = remover_acentos(cand)
     if cand_norm in cols_norm:
       return cols_norm[cand_norm]
+
+  # 2. Busca por substring
   for cand in candidatos:
     cand_norm = remover_acentos(cand)
     for k, orig in cols_norm.items():
       if cand_norm in k:
         return orig
+
   return None
 
 
@@ -214,7 +229,7 @@ def processar_ml():
         if col_produto and pd.notna(row[col_produto])
         else ""
     )
-    coment = limpar_comentario(row[col_comentario]) if col_comentario else ""
+    coment = limpar_texto(row[col_comentario]) if col_comentario else ""
     data_ped = (
         str(row[col_data_pedido]).strip()
         if col_data_pedido and pd.notna(row[col_data_pedido])
@@ -348,7 +363,7 @@ def processar_amazon():
             else ""
         ),
         "comentario": (
-            limpar_comentario(row[col_comentario]) if col_comentario else ""
+            limpar_texto(row[col_comentario]) if col_comentario else ""
         ),
         "is_valido": is_valido,
         "is_afetando": is_afetando,
@@ -356,13 +371,125 @@ def processar_amazon():
   return registros
 
 
+def processar_avaliacoes_amazon():
+  df = parse_csv_dinamico(
+      URL_CSV_AVALIACOES_AMZ,
+      ["PEDIDO", "SITUACAO", "TEMPO DE IMPACTO", "ESTRELAS", "COMENTARIOS"],
+  )
+  print("COLUNAS AVALIACOES AMAZON:", list(df.columns))
+
+  col_pedido = encontrar_coluna_exata(
+      df, ["ID DO PEDIDO", "PEDIDO", "NUMERO DO PEDIDO"]
+  )
+  # Garante que "Data" não pegue "Data da Ação"
+  col_data = encontrar_coluna_exata(
+      df,
+      ["DATA", "DATA DA AVALIACAO", "DATA AVALIACAO"],
+      excluir_substrings=["ACAO"],
+  )
+  col_data_acao = encontrar_coluna_exata(
+      df,
+      [
+          "DATA DA ACAO",
+          "DATA ACAO",
+          "DATA DO CHAMADO",
+          "DATA CHAMADO",
+          "DATA DA AÇÃO",
+      ],
+  )
+  col_tempo_impacto = encontrar_coluna_exata(
+      df, ["TEMPO DE IMPACTO", "TEMPO IMPACTO", "VALIDACAO"]
+  )
+  col_situacao = encontrar_coluna_exata(df, ["SITUACAO", "SITUAÇÃO", "STATUS"])
+  col_estrelas = encontrar_coluna_exata(
+      df, ["ESTRELAS", "NOTA", "AVALIACAO", "NOTA DA AVALIACAO"]
+  )
+  col_comentarios = encontrar_coluna_exata(
+      df, ["COMENTARIOS", "COMENTARIO", "COMENTÁRIOS", "COMENTÁRIO"]
+  )
+  col_resposta = encontrar_coluna_exata(
+      df, ["RESPOSTA DA AVALIACAO", "RESPOSTA AVALIACAO", "RESPOSTA"]
+  )
+  col_sku = encontrar_coluna_exata(df, ["SKU", "ASIN", "CODIGO"])
+  col_produto = encontrar_coluna_exata(
+      df, ["PRODUTO", "TITULO", "NOME DO PRODUTO", "ITEM"]
+  )
+  col_transp = encontrar_coluna_exata(
+      df, ["TRANSPORTADORA", "TRANSP", "ENVIO", "LOGISTICA"]
+  )
+  col_num_chamado = encontrar_coluna_exata(
+      df,
+      [
+          "NUMERO CHAMADO",
+          "NUMERO DO CHAMADO",
+          "N CHAMADO",
+          "N° CHAMADO",
+          "Nº CHAMADO",
+          "CHAMADO",
+      ],
+  )
+
+  registros = []
+  for _, row in df.iterrows():
+    pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ""
+    if not pedido_val:
+      continue
+
+    tempo_val = (
+        limpar_texto(row[col_tempo_impacto]) if col_tempo_impacto else ""
+    )
+    situacao_val = limpar_texto(row[col_situacao]) if col_situacao else ""
+
+    tempo_clean = remover_acentos(tempo_val)
+    situacao_clean = remover_acentos(situacao_val)
+
+    # Afetando a Reputação: "Válidos" (ou "Válido") na coluna Tempo de Impacto E não está como "Removido" na coluna Situação
+    is_valido = "VALIDO" in tempo_clean
+    is_removido = "REMOVIDO" in situacao_clean
+    is_afetando = is_valido and not is_removido
+
+    prod_nome = limpar_texto(row[col_produto]) if col_produto else ""
+
+    registros.append({
+        "pedido": pedido_val,
+        "data": limpar_texto(row[col_data]) if col_data else "",
+        "data_acao": limpar_texto(row[col_data_acao]) if col_data_acao else "",
+        "tempo_impacto": tempo_val,
+        "situacao": situacao_val,
+        "estrelas": limpar_texto(row[col_estrelas]) if col_estrelas else "",
+        "comentario": (
+            limpar_texto(row[col_comentarios]) if col_comentarios else ""
+        ),
+        "resposta": limpar_texto(row[col_resposta]) if col_resposta else "",
+        "sku": limpar_texto(row[col_sku]) if col_sku else "N/A",
+        "marca": extrair_marca(prod_nome),
+        "produto": prod_nome,
+        "transportadora": limpar_texto(row[col_transp]) if col_transp else "",
+        "numero_chamado": (
+            limpar_identificador(row[col_num_chamado]) if col_num_chamado else ""
+        ),
+        "is_valido": is_valido,
+        "is_afetando": is_afetando,
+    })
+
+  return registros
+
+
 if __name__ == "__main__":
   ml_data = processar_ml()
   amz_data = processar_amazon()
+  aval_amz_data = processar_avaliacoes_amazon()
 
-  output = {"ml": ml_data, "amazon": amz_data}
+  output = {
+      "ml": ml_data,
+      "amazon": amz_data,
+      "avaliacoes_amazon": aval_amz_data,
+  }
 
   with open("impactos_ml.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-  print(f"Concluído: {len(ml_data)} ML | {len(amz_data)} Amazon")
+  print(
+      f"Concluído: {len(ml_data)} ML | {len(amz_data)} Amazon |"
+      f" {len(aval_amz_data)} Avaliações Amazon"
+  )
