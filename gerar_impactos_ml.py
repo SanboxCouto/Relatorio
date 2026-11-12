@@ -1,214 +1,164 @@
-import pandas as pd
 import json
-import re
+import pandas as pd
 import unicodedata
-import io
-import requests
- 
-URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRH_71QAinoH_JzNzSswCNjswyM6EoMMSSFwbAlm-BPEeNXX5Xm1PKBbqaPQkVysQ/pub?gid=1773072804&single=true&output=csv"
-URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRH_71QAinoH_JzNzSswCNjswyM6EoMMSSFwbAlm-BPEeNXX5Xm1PKBbqaPQkVysQ/pub?gid=134048884&single=true&output=csv"
 
-MARCAS_CONHECIDAS = [
-    'MUELLER', 'DAKO', 'ELECTROLUX', 'IMBERA', 'PHILCO', 'ESMALTEC', 
-    'ITATIAIA', 'ATLAS', 'WANKE', 'MIDEA', 'PULSE', 'CONSUL', 'BRASTEMP', 
-    'SUGGAR', 'VENAX', 'MONDIAL', 'ARNO', 'BRITANIA', 'OSTER'
-]
+URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1773072804&single=true&output=csv"
+URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=134048884&single=true&output=csv"
 
-def remover_acentos(texto):
-    if not isinstance(texto, str):
-        return ""
-    return ''.join(c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn').upper().strip()
 
-def extrair_marca(nome_produto):
-    texto = str(nome_produto).upper()
-    for marca in MARCAS_CONHECIDAS:
-        if marca in texto:
-            return marca.capitalize()
-    partes = str(nome_produto).split()
-    if len(partes) > 1:
-        return partes[1].capitalize()
-    return "Outras"
+def normalize_str(val):
+  if pd.isna(val) or val is None:
+    return ""
+  s = str(val).strip()
+  if s.upper() in ["NAN", "NONE", "NAT"]:
+    return ""
+  return s
 
-def limpar_comentario(texto):
-    if pd.isna(texto):
-        return ""
-    coment = str(texto).strip()
-    coment_norm = remover_acentos(coment)
-    if coment_norm in ['', 'NAN', 'SEM COMENTARIO', 'SEM COMENTARIOS', 'SEM OBSERVACOES', 'SEM OBSERVACAO', 'N/A', '-']:
-        return ""
-    return coment
 
-def limpar_identificador(valor):
-    if pd.isna(valor):
-        return ""
-    val_str = str(valor).strip()
-    if val_str.lower() in ['', 'nan', 'none', '-']:
-        return ""
-    if val_str.endswith('.0'):
-        val_str = val_str[:-2]
-    return val_str
+def remove_accents(s):
+  return "".join(
+      c
+      for c in unicodedata.normalize("NFD", s)
+      if unicodedata.category(c) != "Mn"
+  )
 
-def parse_csv_dinamico(url, termos_busca):
-    res = requests.get(url)
-    res.encoding = 'utf-8'
-    lines = res.text.splitlines()
-    
-    header_idx = -1
-    for idx, line in enumerate(lines[1:15], start=1):
-        line_norm = remover_acentos(line)
-        if any(remover_acentos(t) in line_norm for t in termos_busca):
-            header_idx = idx
-            break
-            
-    if header_idx != -1:
-        df = pd.read_csv(io.StringIO("\n".join(lines[header_idx:])))
-    else:
-        df = pd.read_csv(io.StringIO("\n".join(lines[1:])))
-        
-    df.columns = [str(col).replace('"', '').replace("'", "").strip() for col in df.columns]
-    return df
 
-def encontrar_coluna_exata(df, nomes_possiveis):
-    colunas_map = {remover_acentos(col): col for col in df.columns}
-    # 1. Tenta correspondência exata
-    for nome in nomes_possiveis:
-        nome_norm = remover_acentos(nome)
-        if nome_norm in colunas_map:
-            return colunas_map[nome_norm]
-    # 2. Tenta por inclusão parcial se não achar exato
-    for nome in nomes_possiveis:
-        nome_norm = remover_acentos(nome)
-        for c_norm, c_orig in colunas_map.items():
-            if nome_norm in c_norm:
-                return c_orig
-    return None
+def normalize_col(col):
+  return remove_accents(str(col)).upper().strip()
 
-def processar_ml():
-    df = parse_csv_dinamico(URL_CSV_ML, ['TEMPO DE IMPACTO', 'MOTIVO DA RECLAMACAO', 'ACAO TOMADA', 'PRODUTO'])
 
-    col_pedido        = encontrar_coluna_exata(df, ['PEDIDO'])
-    col_n_venda       = encontrar_coluna_exata(df, ['N° VENDA', 'Nº VENDA', 'NO VENDA', 'N° DA VENDA', 'Nº DA VENDA'])
-    col_data_pedido   = encontrar_coluna_exata(df, ['DATA DA RECLAMACAO', 'DATA DA RECLAMAÇÃO', 'DATA', 'DATA DA VENDA', 'DATA DO PEDIDO'])
-    col_status_valido = encontrar_coluna_exata(df, ['TEMPO DE IMPACTO', 'VALIDACAO'])
-    col_produto       = encontrar_coluna_exata(df, ['PRODUTO', 'PRODUTO DA RECLAMACAO'])
-    col_motivo        = encontrar_coluna_exata(df, ['MOTIVO DA RECLAMACAO', 'MOTIVO DA RECLAMAÇÃO', 'MOTIVO'])
-    col_status_g      = encontrar_coluna_exata(df, ['ACAO TOMADA', 'AÇÃO TOMADA', 'STATUS', 'SITUACAO'])
-    col_sku           = encontrar_coluna_exata(df, ['SKU', 'CODIGO SKU', 'ID DE RECLAMACAO'])
-    col_transportadora= encontrar_coluna_exata(df, ['TRANSPORTADORA', 'TRANSP', 'LOGISTICA'])
-    col_comentario    = encontrar_coluna_exata(df, ['COMENTARIO', 'COMENTÁRIO', 'OBSERVACAO', 'OBSERVAÇÃO', 'OBS'])
+def find_col(df, candidates):
+  norm_cols = {normalize_col(c): c for c in df.columns}
+  for cand in candidates:
+    cand_norm = normalize_col(cand)
+    if cand_norm in norm_cols:
+      return norm_cols[cand_norm]
+  for cand in candidates:
+    cand_norm = normalize_col(cand)
+    for k, orig in norm_cols.items():
+      if cand_norm in k:
+        return orig
+  return None
 
-    registros = []
-    for idx, row in df.iterrows():
-        valido_val = str(row[col_status_valido]) if col_status_valido and pd.notna(row[col_status_valido]) else ''
-        status_g_val = str(row[col_status_g]) if col_status_g and pd.notna(row[col_status_g]) else ''
 
-        valido_clean = remover_acentos(valido_val)
-        status_g_clean = remover_acentos(status_g_val)
+def clean_id(val):
+  s = normalize_str(val)
+  if s.endswith(".0"):
+    s = s[:-2]
+  return s
 
-        is_valido = 'VALIDO' in valido_clean
-        status_afetam = ['EM MEDIACAO', 'REVISAO RECUSADA', 'NAO SOLICITADA']
-        is_afetando = is_valido and (status_g_clean in status_afetam)
 
-        pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ''
-        n_venda_val = limpar_identificador(row[col_n_venda]) if col_n_venda else ''
-        prod_nome = str(row[col_produto]).strip() if col_produto and pd.notna(row[col_produto]) else ''
-        coment = limpar_comentario(row[col_comentario]) if col_comentario else ''
-        data_ped = str(row[col_data_pedido]).strip() if col_data_pedido and pd.notna(row[col_data_pedido]) else ''
+def process_ml(url):
+  df = pd.read_csv(url, dtype=str)
+  records = []
 
-        registros.append({
-            "pedido": pedido_val,
-            "n_venda": n_venda_val,
-            "sku": str(row[col_sku]).strip() if col_sku and pd.notna(row[col_sku]) else 'N/A',
-            "produto": prod_nome,
-            "marca": extrair_marca(prod_nome),
-            "motivo": str(row[col_motivo]).strip() if col_motivo and pd.notna(row[col_motivo]) else '',
-            "transportadora": str(row[col_transportadora]).strip() if col_transportadora and pd.notna(row[col_transportadora]) else '',
-            "status": status_g_val,
-            "tempo_impacto": valido_val,
-            "data_pedido": data_ped,
-            "comentario": coment,
-            "is_valido": is_valido,
-            "is_afetando": is_afetando
-        })
-    return registros
+  col_pedido = find_col(df, ["PEDIDO", "ID DO PEDIDO", "ID PEDIDO"])
+  col_nvenda = find_col(
+      df, ["N° VENDA", "Nº VENDA", "N DA VENDA", "NUMERO DA VENDA", "VENDA"]
+  )
+  col_data = find_col(df, ["DATA PEDIDO", "DATA DA VENDA", "DATA"])
+  col_sku = find_col(df, ["SKU", "CODIGO"])
+  col_marca = find_col(df, ["MARCA"])
+  col_produto = find_col(df, ["PRODUTO", "TITULO", "ITEM"])
+  col_motivo = find_col(df, ["MOTIVO", "MOTIVO DA RECLAMACAO"])
+  col_transp = find_col(df, ["TRANSPORTADORA", "FORMA DE ENVIO", "ENVIO"])
+  col_status = find_col(df, ["STATUS", "SITUACAO", "IMPACTO"])
+  col_coment = find_col(df, ["COMENTARIO", "COMENTARIOS", "OBSERVACAO", "OBS"])
 
-def processar_amazon():
-    df = parse_csv_dinamico(URL_CSV_AMAZON, ['ID DO PEDIDO', 'PRODUTO DA REIVINDICACAO', 'TEMPO DE IMPACTO'])
+  for _, row in df.iterrows():
+    pedido = clean_id(row[col_pedido]) if col_pedido else ""
+    n_venda = clean_id(row[col_nvenda]) if col_nvenda else ""
+    if not pedido and not n_venda:
+      continue
 
-    col_data_pedido  = encontrar_coluna_exata(df, ['DATA DO PEDIDO', 'DATA PEDIDO'])
-    col_data_reiv    = encontrar_coluna_exata(df, ['DATA DA REIVINDICACAO', 'DATA DA REIVINDICAÇÃO'])
-    col_tempo_imp    = encontrar_coluna_exata(df, ['TEMPO DE IMPACTO', 'VALIDACAO'])
-    col_id_pedido    = encontrar_coluna_exata(df, ['ID DO PEDIDO', 'ID PEDIDO', 'Nº PEDIDO'])
-    col_motivo       = encontrar_coluna_exata(df, ['MOTIVO'])
-    col_comentario   = encontrar_coluna_exata(df, ['COMENTARIO', 'COMENTÁRIO', 'OBSERVACAO'])
-    col_data_solic   = encontrar_coluna_exata(df, ['DATA DA SOLICITACAO', 'DATA DA SOLICITAÇÃO'])
-    col_impacto      = encontrar_coluna_exata(df, ['IMPACTO'])
-    col_valor        = encontrar_coluna_exata(df, ['VALOR', 'RESULTADO (VALOR)'])
-    col_reembolso    = encontrar_coluna_exata(df, ['REEMBOLSO'])
-    col_transp       = encontrar_coluna_exata(df, ['TRANSPORTADORA', 'TRANSP'])
-    col_sku          = encontrar_coluna_exata(df, ['SKU'])
-    col_produto      = encontrar_coluna_exata(df, ['PRODUTO DA REIVINDICACAO', 'PRODUTO DA REIVINDICAÇÃO', 'PRODUTO'])
+    status = normalize_str(row[col_status]) if col_status else ""
+    status_up = remove_accents(status).upper()
 
-    registros = []
-    for idx, row in df.iterrows():
-        id_ped = str(row[col_id_pedido]).strip() if col_id_pedido and pd.notna(row[col_id_pedido]) else ''
-        
-        if not id_ped or id_ped.lower() == 'nan' or 'id do pedido' in id_ped.lower():
-            continue
+    is_removido = "REMOVIDO" in status_up
+    is_valido = status_up != "" and "DESCONSIDERAR" not in status_up
+    is_afetando = is_valido and not is_removido
 
-        tempo_val = str(row[col_tempo_imp]).strip() if col_tempo_imp and pd.notna(row[col_tempo_imp]) else ''
-        impacto_val = str(row[col_impacto]).strip() if col_impacto and pd.notna(row[col_impacto]) else ''
+    records.append({
+        "pedido": pedido,
+        "n_venda": n_venda,
+        "data_pedido": normalize_str(row[col_data]) if col_data else "",
+        "sku": normalize_str(row[col_sku]) if col_sku else "",
+        "marca": normalize_str(row[col_marca]) if col_marca else "",
+        "produto": normalize_str(row[col_produto]) if col_produto else "",
+        "motivo": normalize_str(row[col_motivo]) if col_motivo else "",
+        "transportadora": normalize_str(row[col_transp]) if col_transp else "",
+        "status": status,
+        "comentario": normalize_str(row[col_coment]) if col_coment else "",
+        "is_valido": is_valido,
+        "is_afetando": is_afetando,
+    })
 
-        tempo_clean = remover_acentos(tempo_val)
-        impacto_clean = remover_acentos(impacto_val)
+  return records
 
-        is_valido = 'VALIDO' in tempo_clean
-        is_afetando = is_valido and any(st in impacto_clean for st in ['MANTIDO', 'CHAMADO PREMIUM', 'ANALISE'])
 
-        sku_val = str(row[col_sku]).strip() if col_sku and pd.notna(row[col_sku]) and str(row[col_sku]).strip().lower() != 'nan' else 'N/A'
-        
-        prod_val = ''
-        if col_produto and pd.notna(row[col_produto]):
-            prod_val = str(row[col_produto]).strip()
-        if not prod_val or prod_val.lower() == 'nan':
-            prod_val = f"SKU {sku_val}"
+def process_amazon(url):
+  df = pd.read_csv(url, dtype=str)
+  records = []
 
-        coment_val = str(row[col_comentario]) if col_comentario and pd.notna(row[col_comentario]) else ''
-        data_solic_val = str(row[col_data_solic]).strip() if col_data_solic and pd.notna(row[col_data_solic]) else ''
+  col_pedido = find_col(df, ["ID DO PEDIDO", "PEDIDO", "NUMERO DO PEDIDO"])
+  col_data_sol = find_col(df, ["DATA SOLICITACAO", "DATA PEDIDO", "DATA"])
+  col_data_rei = find_col(df, ["DATA REIVINDICACAO", "REIVINDICACAO"])
+  col_sku = find_col(df, ["SKU", "ASIN"])
+  col_marca = find_col(df, ["MARCA"])
+  col_produto = find_col(df, ["PRODUTO", "TITULO", "ITEM"])
+  col_motivo = find_col(df, ["MOTIVO", "MOTIVO DA RECLAMACAO"])
+  col_transp = find_col(df, ["TRANSPORTADORA", "ENVIO"])
+  col_impacto = find_col(df, ["IMPACTO", "STATUS", "SITUACAO"])
+  col_valor = find_col(df, ["RESULTADO", "VALOR"])
+  col_reembolso = find_col(df, ["REEMBOLSO", "VALOR REEMBOLSO"])
+  col_coment = find_col(df, ["COMENTARIO", "COMENTARIOS", "OBSERVACAO", "OBS"])
 
-        registros.append({
-            "id_pedido": id_ped,
-            "data_pedido": str(row[col_data_pedido]).strip() if col_data_pedido and pd.notna(row[col_data_pedido]) else '',
-            "data_reivindicacao": str(row[col_data_reiv]).strip() if col_data_reiv and pd.notna(row[col_data_reiv]) else '',
-            "data_solicitacao": data_solic_val,
-            "valor": str(row[col_valor]).strip() if col_valor and pd.notna(row[col_valor]) else '',
-            "reembolso": str(row[col_reembolso]).strip() if col_reembolso and pd.notna(row[col_reembolso]) else '',
-            "impacto": impacto_val,
-            "motivo": str(row[col_motivo]).strip() if col_motivo and pd.notna(row[col_motivo]) else '',
-            "produto": prod_val,
-            "sku": sku_val,
-            "transportadora": str(row[col_transp]).strip() if col_transp and pd.notna(row[col_transp]) else '',
-            "tempo_impacto": tempo_val,
-            "marca": extrair_marca(prod_val if prod_val != f"SKU {sku_val}" else sku_val),
-            "comentario": limpar_comentario(coment_val),
-            "is_valido": is_valido,
-            "is_afetando": is_afetando
-        })
-    return registros
+  for _, row in df.iterrows():
+    pedido = clean_id(row[col_pedido]) if col_pedido else ""
+    if not pedido:
+      continue
 
-def main():
-    registros_ml = processar_ml()
-    registros_amazon = processar_amazon()
+    impacto = normalize_str(row[col_impacto]) if col_impacto else ""
+    impacto_up = remove_accents(impacto).upper()
 
-    dados = {
-        "ml": registros_ml,
-        "amazon": registros_amazon
-    }
+    is_removido = "REMOVIDO" in impacto_up or "NEGADA" in impacto_up
+    is_valido = impacto_up != "" and "DESCONSIDERAR" not in impacto_up
+    is_afetando = is_valido and not is_removido
 
-    with open("impactos_ml.json", "w", encoding="utf-8") as f:
-        json.dump(dados, f, ensure_ascii=False, indent=4)
-        
-    print(f"Sucesso! ML: {len(registros_ml)} | Amazon: {len(registros_amazon)}")
+    records.append({
+        "pedido": pedido,
+        "data_solicitacao": (
+            normalize_str(row[col_data_sol]) if col_data_sol else ""
+        ),
+        "data_reivindicacao": (
+            normalize_str(row[col_data_rei]) if col_data_rei else ""
+        ),
+        "sku": normalize_str(row[col_sku]) if col_sku else "",
+        "marca": normalize_str(row[col_marca]) if col_marca else "",
+        "produto": normalize_str(row[col_produto]) if col_produto else "",
+        "motivo": normalize_str(row[col_motivo]) if col_motivo else "",
+        "transportadora": normalize_str(row[col_transp]) if col_transp else "",
+        "impacto": impacto,
+        "valor": normalize_str(row[col_valor]) if col_valor else "",
+        "reembolso": normalize_str(row[col_reembolso]) if col_reembolso else "",
+        "comentario": normalize_str(row[col_coment]) if col_coment else "",
+        "is_valido": is_valido,
+        "is_afetando": is_afetando,
+    })
+
+  return records
+
 
 if __name__ == "__main__":
-    main()
+  ml_data = process_ml(URL_CSV_ML)
+  amz_data = process_amazon(URL_CSV_AMAZON)
+
+  output = {"ml": ml_data, "amazon": amz_data}
+
+  with open("impactos_ml.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
+
+  print(
+      f"JSON gerado com sucesso: {len(ml_data)} registros ML e"
+      f" {len(amz_data)} registros Amazon."
+  )
