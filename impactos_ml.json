@@ -1,6 +1,8 @@
 {
     "ml": [
         {
+            "pedido": "2000014533064197",
+            "n_venda": "2000017936324394",
             "sku": "TI1686",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Preto Fosco Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -14,6 +16,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014624327725",
+            "n_venda": "2000018031233332",
             "sku": "TI1391",
             "produto": "Cooktop Braslar Pop Gás 4 Bocas Mesa Vidro - Cor Preto 127/220v",
             "marca": "Braslar",
@@ -27,6 +31,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018246494028",
+            "n_venda": "2000018246494028",
             "sku": "TI1763",
             "produto": "Fogão 5 Bocas Electrolux Cinza Mesa Inox Perfectcook Fe5ig Prateado 127/220v",
             "marca": "Electrolux",
@@ -40,6 +46,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018249354072",
+            "n_venda": "2000018249354072",
             "sku": "TI1633",
             "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
             "marca": "Mueller",
@@ -53,6 +61,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014826716241",
+            "n_venda": "2000018241379628",
             "sku": "TI1454",
             "produto": "Cervejeira Vertical Imbera 569l Full Black Porta Vidro Preto 220v",
             "marca": "Imbera",
@@ -66,6 +76,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014953832729",
+            "n_venda": "2000018376200808",
             "sku": "TI1766",
             "produto": "Microondas Electrolux De Embutir Painel Digital Função Tira Odor Preto 34l 127v Me3ep",
             "marca": "Electrolux",
@@ -79,6 +91,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018195274776",
+            "n_venda": "2000018195274776",
             "sku": "TI1633",
             "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
             "marca": "Mueller",
@@ -92,6 +106,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014531304481",
+            "n_venda": "2000017934394442",
             "sku": "TI1792",
             "produto": "Frigobar Midea Mrc12b1 124l Porta Reversível Termostato Cor Branco 127v",
             "marca": "Midea",
@@ -105,6 +121,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015034327117",
+            "n_venda": "2000018461767050",
             "sku": "TI1567",
             "produto": "Fogão 4 Bocas A Gás Mueller Mfv4bf Mesa Vidro Preto 127/220v",
             "marca": "Mueller",
@@ -118,6 +136,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018390530338",
+            "n_venda": "2000018390530338",
             "sku": "TI1524",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
             "marca": "Mueller",
@@ -131,6 +151,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018504109122",
+            "n_venda": "2000018504109122",
             "sku": "TI1581",
             "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
             "marca": "Dako",
@@ -144,6 +166,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015138272485",
+            "n_venda": "2000018570799730",
             "sku": "TI1684",
             "produto": "Forno Elétrico Mueller Mfb50f Sonetto Easy Clean Com Timer 220v Preto",
             "marca": "Mueller",
@@ -157,6 +181,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018543140112",
+            "n_venda": "2000018543140112",
             "sku": "TI1633",
             "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
             "marca": "Mueller",
@@ -170,6 +196,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015070179993",
+            "n_venda": "2000018499631464",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
             "marca": "Mueller",
@@ -183,6 +211,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018638866882",
+            "n_venda": "2000018638866882",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
             "marca": "Mueller",
@@ -196,6 +226,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018570021494",
+            "n_venda": "2000018570021494",
             "sku": "TI1668",
             "produto": "Fogão Mueller 5 Bocas Branco Com Tripla Chama Mfv5bf 127/220v",
             "marca": "Mueller",
@@ -209,6 +241,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018271843530",
+            "n_venda": "2000018271843530",
             "sku": "TI1763",
             "produto": "Fogão 5 Bocas Electrolux Cinza Mesa Inox Perfectcook Fe5ig Prateado 127/220v",
             "marca": "Electrolux",
@@ -222,6 +256,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018488985332",
+            "n_venda": "2000018488985332",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
             "marca": "Mueller",
@@ -235,6 +271,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018573474614",
+            "n_venda": "2000018573474614",
             "sku": "TI1675",
             "produto": "Cooktop 5 Bocas Mueller Mcg5bm Mesa De Vidro Tripla Chama Super Automático Preto 127/220v",
             "marca": "Mueller",
@@ -248,6 +286,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015212959065",
+            "n_venda": "2000018649214990",
             "sku": "TI1603",
             "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
             "marca": "Dako",
@@ -261,6 +301,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018667804914",
+            "n_venda": "2000018667804914",
             "sku": "TI1739",
             "produto": "Caixa De Som Bluetooth Pulse X Boombox 220w Rms - Sp626 Preto 127/220v",
             "marca": "Pulse",
@@ -274,6 +316,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018602468426",
+            "n_venda": "2000018602468426",
             "sku": "TI1571",
             "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
             "marca": "Mueller",
@@ -287,6 +331,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018670949706",
+            "n_venda": "2000018670949706",
             "sku": "TI1568",
             "produto": "Fogão Mueller 5 Bocas Preto Vidro Temperado Tripla Chama Preto Fosco 127/220v",
             "marca": "Mueller",
@@ -300,6 +346,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018473413834",
+            "n_venda": "2000018473413834",
             "sku": "TI1562",
             "produto": "Fogão Mueller 5b Decorato Vetro Inox Com Mesa Vidro- Bivolt Inox 127/220v",
             "marca": "Mueller",
@@ -313,6 +361,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015278080601",
+            "n_venda": "2000018717843804",
             "sku": "TI1112",
             "produto": "Torradeira Duo Ce141 Vermelho 700w Multilaser 127v",
             "marca": "Duo",
@@ -326,6 +376,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018725800386",
+            "n_venda": "2000018725800386",
             "sku": "TI1789",
             "produto": "Cooktop De Indução Portátil 1 Boca Midea Cyad12 Preto 220v",
             "marca": "Midea",
@@ -339,6 +391,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000014912639507",
+            "n_venda": "2000018332418538",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -352,6 +406,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018598907544",
+            "n_venda": "2000018598907544",
             "sku": "TI1581",
             "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
             "marca": "Dako",
@@ -365,6 +421,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018698756746",
+            "n_venda": "2000018698756746",
             "sku": "TI1469",
             "produto": "Caixa De Som Torre Double 15pol 3500w Pulse Sp515 Pulsesound Preto 127/220v",
             "marca": "Pulse",
@@ -378,6 +436,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018572588248",
+            "n_venda": "2000018572588248",
             "sku": "TI1688",
             "produto": "Cervejeira Imbera Ccv-144 Pv 244 L Preta Com Porta De Vidro E Multi Temperatura Tudo Preto 127/220v",
             "marca": "Imbera",
@@ -391,6 +451,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015303707645",
+            "n_venda": "2000018744734202",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -404,6 +466,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014934135989",
+            "n_venda": "2000018355065782",
             "sku": "TI1816",
             "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
             "marca": "Imbera",
@@ -417,6 +481,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018756621772",
+            "n_venda": "2000018756621772",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -430,6 +496,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018226070808",
+            "n_venda": "2000018226070808",
             "sku": "TI1524",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
             "marca": "Mueller",
@@ -443,6 +511,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015051234883",
+            "n_venda": "2000018479607446",
             "sku": "TI1455",
             "produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
             "marca": "Imbera",
@@ -456,6 +526,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015040200641",
+            "n_venda": "2000018467783798",
             "sku": "TI1580",
             "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa De Vidro E Forno 60 L A Gás Branco Bivolt 127/220v",
             "marca": "Dako",
@@ -469,6 +541,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018613847008",
+            "n_venda": "2000018613847008",
             "sku": "TI1813",
             "produto": "Fogão 4 Bocas Atlas Agile Glass Automático Mesa De Vidro Branco 127/220v",
             "marca": "Atlas",
@@ -482,6 +556,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015382026649",
+            "n_venda": "2000018826886716",
             "sku": "TI1276\n TI287-3",
             "produto": "Caixa De Som Pulse Sp512 Flamebox Dj Bluetooth 5000w - 2 Mic Preto",
             "marca": "Pulse",
@@ -495,6 +571,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015315124849",
+            "n_venda": "2000018756640860",
             "sku": "TI1529",
             "produto": "Máquina De Lavar Mueller Energy Automática 8kg Branco-127v 127v Branco",
             "marca": "Mueller",
@@ -508,6 +586,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015288934697",
+            "n_venda": "2000018729405716",
             "sku": "TI1609",
             "produto": "Fogão 4 Bocas Itatiaia Vidro Temperado Electra Glass Plus Preto 127/220v",
             "marca": "Itatiaia",
@@ -521,6 +601,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018697265786",
+            "n_venda": "2000018697265786",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -534,6 +616,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018698723710",
+            "n_venda": "2000018698723710",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
             "marca": "Mueller",
@@ -547,6 +631,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015368102053",
+            "n_venda": "2000018812150472",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
             "marca": "Mueller",
@@ -560,6 +646,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015343382369",
+            "n_venda": "2000018786268692",
             "sku": "TI1121\n TI287",
             "produto": "Caixa De Som Torre Pulse Double Sp508 2300w 12 Led - 1 Mic Preto",
             "marca": "Pulse",
@@ -573,6 +661,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015145727789",
+            "n_venda": "2000018578710384",
             "sku": "TI1876",
             "produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
             "marca": "Esmaltec",
@@ -586,6 +676,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015388669025",
+            "n_venda": "2000018833964886",
             "sku": "TI1529",
             "produto": "Mueller Lavadora De Roupas Energy 8kg Lavadora De Roupas Branca 127v Branco",
             "marca": "Mueller",
@@ -599,6 +691,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018809283996",
+            "n_venda": "2000018809283996",
             "sku": "TI1759",
             "produto": "Freezer Vertical Imbera Full Black Evz21 Max 597l - 220v Preto 220v",
             "marca": "Imbera",
@@ -612,6 +706,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018623300942",
+            "n_venda": "2000018623300942",
             "sku": "TI1870",
             "produto": "Fogão A Gás Mesa Inox E Forno 50l Limpa Fácil Esmaltec Ideal Pop F4isp Cor Preto 4 Bocas 127/220v",
             "marca": "Esmaltec",
@@ -625,6 +721,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018161170020",
+            "n_venda": "2000018161170020",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -638,6 +736,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018840631412",
+            "n_venda": "2000018840631412",
             "sku": "TI1667",
             "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
             "marca": "Mueller",
@@ -651,6 +751,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018872559658",
+            "n_venda": "2000018872559658",
             "sku": "TI1877",
             "produto": "Fogão Esmaltec Ideal Pop 5 Bocas Manual Mesa Aço Inox Cor Preto",
             "marca": "Esmaltec",
@@ -664,6 +766,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015197144687",
+            "n_venda": "2000018632527746",
             "sku": "TI1524",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
             "marca": "Mueller",
@@ -677,6 +781,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018766114014",
+            "n_venda": "2000018766114014",
             "sku": "TI1603",
             "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
             "marca": "Dako",
@@ -690,6 +796,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015406777195",
+            "n_venda": "2000018853404926",
             "sku": "TI1633",
             "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
             "marca": "Mueller",
@@ -703,6 +811,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018748307548",
+            "n_venda": "2000018748307548",
             "sku": "TI1699",
             "produto": "Tanquinho De Lavar Mueller 10kg Branco Superesfregador-127v 127v Branco",
             "marca": "Mueller",
@@ -716,6 +826,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018633026698",
+            "n_venda": "2000018633026698",
             "sku": "TI1876",
             "produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
             "marca": "Esmaltec",
@@ -729,6 +841,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018647459598",
+            "n_venda": "2000018647459598",
             "sku": "TI1524",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
             "marca": "Mueller",
@@ -742,6 +856,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015051234879",
+            "n_venda": "2000018479610294",
             "sku": "TI1455",
             "produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
             "marca": "Imbera",
@@ -755,6 +871,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018849083718",
+            "n_venda": "2000018849083718",
             "sku": "TI1835-2",
             "produto": "Tanquinho Wanker 201kg Semiautomática Premium -127v 127v Preto",
             "marca": "Wanke",
@@ -768,6 +886,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018915350324",
+            "n_venda": "2000018915350324",
             "sku": "TI1603",
             "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
             "marca": "Dako",
@@ -781,6 +901,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018806131966",
+            "n_venda": "2000018806131966",
             "sku": "TI1090",
             "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Prateado 127v",
             "marca": "Philco",
@@ -794,6 +916,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015320570093",
+            "n_venda": "2000018762377524",
             "sku": "TI1456",
             "produto": "Refrigerador Vertical Imbera Vr08 244l Full Black Com Iluminação Led 127/220v",
             "marca": "Imbera",
@@ -807,6 +931,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018838353618",
+            "n_venda": "2000018838353618",
             "sku": "TI1607",
             "produto": "Fogão Dako A Gás Supreme Glass 5 Bocas Timer Digital-bivolt Titânio 127/220v",
             "marca": "Dako",
@@ -820,6 +946,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018622551666",
+            "n_venda": "2000018622551666",
             "sku": "TI1876",
             "produto": "Fogão De Piso 5 Bocas Esmaltec F5isb Ideal Pop Cor Branco",
             "marca": "Esmaltec",
@@ -833,6 +961,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000014941759281",
+            "n_venda": "2000018363089060",
             "sku": "TI1766",
             "produto": "Microondas Electrolux De Embutir Painel Digital Função Tira Odor Preto 34l 127v Me3ep",
             "marca": "Electrolux",
@@ -846,6 +976,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018807792166",
+            "n_venda": "2000018807792166",
             "sku": "TI1454",
             "produto": "Cervejeira Vertical Imbera 569l Full Black Porta Vidro Preto 220v",
             "marca": "Imbera",
@@ -859,6 +991,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018817969396",
+            "n_venda": "2000018817969396",
             "sku": "TI1846",
             "produto": "Tanquinho De Lavar Roupa Mueller 10kg Aquatec Não Transborda Branco 127v",
             "marca": "Mueller",
@@ -872,6 +1006,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018748567806",
+            "n_venda": "2000018748567806",
             "sku": "TI1759",
             "produto": "Freezer Vertical Imbera Evz21 Max 597l Preto 220v",
             "marca": "Imbera",
@@ -885,6 +1021,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015501270945",
+            "n_venda": "2000018955026964",
             "sku": "TI1527",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Preto 220v",
             "marca": "Mueller",
@@ -898,6 +1036,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018939046816",
+            "n_venda": "2000018939046816",
             "sku": "TI1668",
             "produto": "Fogão Mueller 5 Bocas Branco Com Tripla Chama Mfv5bf 127/220v",
             "marca": "Mueller",
@@ -911,6 +1051,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018891671662",
+            "n_venda": "2000018891671662",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
             "marca": "Mueller",
@@ -924,6 +1066,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015271122399",
+            "n_venda": "2000018710700126",
             "sku": "TI1768",
             "produto": "Lava E Seca Electrolux 12kg Cinza Ônix Inverter (lsc12 Cinza 127v Inox",
             "marca": "Electrolux",
@@ -937,6 +1081,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018941719384",
+            "n_venda": "2000018941719384",
             "sku": "TI1874",
             "produto": "Fogão Ideal Top Glass Mesa De Vidro T4vap 4 Bocas Preto Esmaltec Bivolt 127/220v",
             "marca": "Esmaltec",
@@ -950,6 +1096,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019026539914",
+            "n_venda": "2000019026539914",
             "sku": "TI1090",
             "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Preto E Cinza 127v",
             "marca": "Philco",
@@ -963,6 +1111,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015485195265",
+            "n_venda": "2000018937988118",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -976,6 +1126,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015588214685",
+            "n_venda": "2000019047368002",
             "sku": "TI1667",
             "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
             "marca": "Mueller",
@@ -989,6 +1141,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018474196452",
+            "n_venda": "2000018474196452",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -1002,6 +1156,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018459316632",
+            "n_venda": "2000018459316632",
             "sku": "TI1571",
             "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
             "marca": "Mueller",
@@ -1015,6 +1171,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014772004181",
+            "n_venda": "2000018184344626",
             "sku": "TI1469",
             "produto": "Caixa De Som Torre Double Pulse Sp515 15 Pol 3500w - 2 Mic Cor Preto 127/220v",
             "marca": "Pulse",
@@ -1028,6 +1186,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014224837759",
+            "n_venda": "2000017623325004",
             "sku": "TI1571",
             "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
             "marca": "Mueller",
@@ -1041,6 +1201,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014426228343",
+            "n_venda": "2000017824766756",
             "sku": "TI1486",
             "produto": "Geladeira Expositora Vertical Imbera 485l Preto Modelo Vrs16 Full Black 127/220v",
             "marca": "Imbera",
@@ -1054,6 +1216,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014371410877",
+            "n_venda": "2000017767894696",
             "sku": "TI1690",
             "produto": "Lavadora De Roupas Midea Wave Agitator 13kg Branca 127v Branco",
             "marca": "Midea",
@@ -1067,6 +1231,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018256751640",
+            "n_venda": "2000018256751640",
             "sku": "TI1758",
             "produto": "Caixa de som philco led festa 3900w bluetooth 5.3 pcx39000 Preto 127/220v",
             "marca": "Philco",
@@ -1080,6 +1246,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014837581977",
+            "n_venda": "2000018252805504",
             "sku": "TI1763",
             "produto": "Fogão 5 Bocas Electrolux Cinza Mesa Inox Perfectcook Fe5ig Prateado 127/220v",
             "marca": "Electrolux",
@@ -1093,6 +1261,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000017686798574",
+            "n_venda": "2000017686798574",
             "sku": "TI1571",
             "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
             "marca": "Mueller",
@@ -1106,6 +1276,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014570240885",
+            "n_venda": "2000017975117858",
             "sku": "TI1454",
             "produto": "Cervejeira Vertical Imbera 569l Full Black Porta Vidro Preto 220v",
             "marca": "Imbera",
@@ -1119,6 +1291,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014368099557",
+            "n_venda": "2000017764435064",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -1132,6 +1306,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014435171867",
+            "n_venda": "2000017834365942",
             "sku": "TI1090",
             "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Prateado 127v",
             "marca": "Philco",
@@ -1145,6 +1321,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014911359801",
+            "n_venda": "2000018331127580",
             "sku": "TI1567",
             "produto": "Fogão 4 Bocas A Gás Mueller Mfv4bf Mesa Vidro Preto 127/220v",
             "marca": "Mueller",
@@ -1158,6 +1336,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018260087132",
+            "n_venda": "2000018260087132",
             "sku": "TI1690",
             "produto": "Lavadora De Roupas Midea Wave Agitator 13kg Branca 127v Branco",
             "marca": "Midea",
@@ -1171,6 +1351,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018309510610",
+            "n_venda": "2000018309510610",
             "sku": "TI1690",
             "produto": "Máquina De Lavar Midea Wave Agitator 13kg Branca - 127v 127v Branco",
             "marca": "Midea",
@@ -1184,6 +1366,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014557022249",
+            "n_venda": "2000017961380230",
             "sku": "TI1571",
             "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
             "marca": "Mueller",
@@ -1197,6 +1381,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014693507061",
+            "n_venda": "2000018102951554",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
             "marca": "Mueller",
@@ -1210,6 +1396,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018126257466",
+            "n_venda": "2000018126257466",
             "sku": "TI1656",
             "produto": "Ar Condicionado Split Philco Hi Wall Inverter 12.000 Btu/h Frio Monofásico Branco Pac12fc 220v",
             "marca": "Philco",
@@ -1223,6 +1411,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014561069675",
+            "n_venda": "2000017965682578",
             "sku": "TI1560",
             "produto": "Fogão Mueller Preto Fosco 4 Bocas Mesa Esmaltada Mfi4bc 127/220v",
             "marca": "Mueller",
@@ -1236,6 +1426,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014369180549",
+            "n_venda": "2000017765535550",
             "sku": "TI1607",
             "produto": "Fogão 5 Bocas Dako Supreme Glass Mesa De Vidro Com Timer Touch Titanium Bivolt Titânio 127/220v",
             "marca": "Dako",
@@ -1249,6 +1441,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000017915981952",
+            "n_venda": "2000017915981952",
             "sku": "TI1740",
             "produto": "Máquina De Lavar Mueller 8kg Automática Energy Com Ciclo Rápido E Filtro Fiapos 220v Branco",
             "marca": "Mueller",
@@ -1262,6 +1456,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014522903257",
+            "n_venda": "2000017925653912",
             "sku": "SS001",
             "produto": "Mini System Ss-001 Ssound 200w Bluetooth Rádio - Bivolt Preto 127/220v 200 W",
             "marca": "System",
@@ -1275,6 +1471,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018245850498",
+            "n_venda": "2000018245850498",
             "sku": "TI1525",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 220v",
             "marca": "Mueller",
@@ -1288,6 +1486,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014985206741",
+            "n_venda": "2000018409467868",
             "sku": "TI1469",
             "produto": "Caixa De Som Torre Double Pulse Sp515 15 Pol 3500w - 2 Mic Cor Preto 127/220v",
             "marca": "Pulse",
@@ -1301,6 +1501,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018393440790",
+            "n_venda": "2000018393440790",
             "sku": "TI1633",
             "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
             "marca": "Mueller",
@@ -1314,6 +1516,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014745267089",
+            "n_venda": "2000018156520028",
             "sku": "TI857",
             "produto": "Caixa De Som Amplificada 2500w Philcoex Bass Pcx30000-bivolt Preto 127/220v",
             "marca": "Philco",
@@ -1327,6 +1531,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018185256008",
+            "n_venda": "2000018185256008",
             "sku": "TI1656",
             "produto": "Ar Condicionado Split Philco Hi Wall Inverter 12.000 Btu/h Frio Monofásico Branco Pac12fc 220v",
             "marca": "Philco",
@@ -1340,6 +1546,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014488327397",
+            "n_venda": "2000017889736134",
             "sku": "TI1581",
             "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa Vidro Preto Bivolt Preto Bivolt 127/220v",
             "marca": "Dako",
@@ -1353,6 +1561,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014747411417",
+            "n_venda": "2000018158600142",
             "sku": "TI1756",
             "produto": "Fogão 4 Bocas Itatiaia Itamaster 58 Litro De Forno - Bivolt Preto 127/220v",
             "marca": "Itatiaia",
@@ -1366,6 +1576,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018386347438",
+            "n_venda": "2000018386347438",
             "sku": "TI1524",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
             "marca": "Mueller",
@@ -1379,6 +1591,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014980980067",
+            "n_venda": "2000018404965858",
             "sku": "TI1850",
             "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
             "marca": "Mueller",
@@ -1392,6 +1606,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014953832729",
+            "n_venda": "2000018353542744",
             "sku": "TI1853",
             "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Preto 220v",
             "marca": "Mueller",
@@ -1405,6 +1621,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014315611813",
+            "n_venda": "2000017711180126",
             "sku": "TI1090",
             "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Prateado 127v",
             "marca": "Philco",
@@ -1418,6 +1636,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000014934135991",
+            "n_venda": "2000018355074340",
             "sku": "TI1816",
             "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
             "marca": "Imbera",
@@ -1431,6 +1651,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018488330206",
+            "n_venda": "2000018488330206",
             "sku": "TI1837-1",
             "produto": "Máquina De Lavar Semi-automática Wanke Até 5kg Marrom-claro 127v",
             "marca": "Wanke",
@@ -1444,6 +1666,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000014394929229",
+            "n_venda": "2000017792252102",
             "sku": "TI1694",
             "produto": "Fogão Itatiaia Star New Piso 6 Bocas Preto Mesa Inox 127/220v",
             "marca": "Itatiaia",
@@ -1457,6 +1681,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018408287996",
+            "n_venda": "2000018408287996",
             "sku": "TI1758",
             "produto": "Caixa De Som Amplificada Torre Philco Pcx39000 15 Pol Efeito Fumaça 3900w- 2 Microfone Preto 127/220v",
             "marca": "Philco",
@@ -1470,6 +1696,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000017659423100",
+            "n_venda": "2000017659423100",
             "sku": "TI1668",
             "produto": "Fogão Mueller 5 Bocas Branco Com Tripla Chama Mfv5bf 127/220v",
             "marca": "Mueller",
@@ -1483,6 +1711,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018345620742",
+            "n_venda": "2000018345620742",
             "sku": "TI1525",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 220v",
             "marca": "Mueller",
@@ -1496,6 +1726,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000017868402148",
+            "n_venda": "2000017868402148",
             "sku": "TI1571",
             "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
             "marca": "Mueller",
@@ -1509,6 +1741,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000017952060636",
+            "n_venda": "2000017952060636",
             "sku": "TI1571",
             "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
             "marca": "Mueller",
@@ -1522,6 +1756,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018828285204",
+            "n_venda": "2000018828285204",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -1535,6 +1771,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000017616784682",
+            "n_venda": "2000017616784682",
             "sku": "TI1455",
             "produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
             "marca": "Imbera",
@@ -1548,6 +1786,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015060443113",
+            "n_venda": "2000018489350398",
             "sku": "TI1609",
             "produto": "Fogão 4 Bocas Itatiaia Vidro Temperado Electra Glass Plus Preto 127/220v",
             "marca": "Itatiaia",
@@ -1561,6 +1801,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018516591730",
+            "n_venda": "2000018516591730",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -1574,6 +1816,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018622655100",
+            "n_venda": "2000018622655100",
             "sku": "TI1486",
             "produto": "Geladeira Expositora Vertical Imbera 485l Preto Modelo Vrs16 Full Black 127/220v",
             "marca": "Imbera",
@@ -1587,6 +1831,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018507073508",
+            "n_venda": "2000018507073508",
             "sku": "TI1638",
             "produto": "Fogão Mueller 4 Bocas Decorato Vetro Inox Com Mesa De Vidro Cinza 127/220v",
             "marca": "Mueller",
@@ -1600,6 +1846,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015606199953",
+            "n_venda": "2000019066208650",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
             "marca": "Mueller",
@@ -1613,6 +1861,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018090697252",
+            "n_venda": "2000018090697252",
             "sku": "TI1571",
             "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
             "marca": "Mueller",
@@ -1626,6 +1876,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018495087080",
+            "n_venda": "2000018495087080",
             "sku": "TI1524",
             "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 127v Branco",
             "marca": "Mueller",
@@ -1639,6 +1891,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018435032026",
+            "n_venda": "2000018435032026",
             "sku": "TI1524",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
             "marca": "Mueller",
@@ -1652,6 +1906,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018385832374",
+            "n_venda": "2000018385832374",
             "sku": "TI1690",
             "produto": "Lavadora De Roupas Midea Wave Agitator 13kg Branca 127v Branco",
             "marca": "Midea",
@@ -1665,6 +1921,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000018626752948",
+            "n_venda": "2000018626752948",
             "sku": "TI1756",
             "produto": "Fogão 4 Bocas Itatiaia Itamaster 58 Litro De Forno - Bivolt Preto 127/220v",
             "marca": "Itatiaia",
@@ -1678,6 +1936,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000019089250868",
+            "n_venda": "2000019089250868",
             "sku": "TI1456",
             "produto": "Refrigerador Vertical Imbera Vr08 244l Full Black Com Iluminação Led 127/220v",
             "marca": "Imbera",
@@ -1691,6 +1951,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015418677915",
+            "n_venda": "2000018865948396",
             "sku": "TI1768",
             "produto": "Lava E Seca Electrolux 12kg Cinza Ônix Inverter (lsc12 Cinza 127v Inox",
             "marca": "Electrolux",
@@ -1704,6 +1966,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015584571273",
+            "n_venda": "2000019043379040",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -1717,6 +1981,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015655059317",
+            "n_venda": "2000019117682126",
             "sku": "TI1667",
             "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
             "marca": "Mueller",
@@ -1730,6 +1996,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018631062056",
+            "n_venda": "2000018631062056",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Com Mesa De Vidro Aço Inoxidável Gas/eléctrica 127/220v",
             "marca": "Mueller",
@@ -1743,6 +2011,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000019135752540",
+            "n_venda": "2000019135752540",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -1756,6 +2026,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015575291665",
+            "n_venda": "2000019033444276",
             "sku": "TI1850",
             "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
             "marca": "Mueller",
@@ -1769,6 +2041,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015657213851",
+            "n_venda": "2000019119970208",
             "sku": "TI1090",
             "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Preto E Cinza 127v",
             "marca": "Philco",
@@ -1782,6 +2056,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015614853369",
+            "n_venda": "2000019075252180",
             "sku": "TI1816",
             "produto": "Cervejeira Ccv-315 Todo Preto 485l Inverter Imbera 127/220v",
             "marca": "Imbera",
@@ -1795,6 +2071,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015587350259",
+            "n_venda": "2000019046406866",
             "sku": "TI1524",
             "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 127v Branco",
             "marca": "Mueller",
@@ -1808,6 +2086,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015575524273",
+            "n_venda": "2000019033673568",
             "sku": "TI1756",
             "produto": "Fogão Itatiaia Itamaster 4 Bocas Preto 127/220v",
             "marca": "Itatiaia",
@@ -1821,6 +2101,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000015514010969",
+            "n_venda": "2000018968597956",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -1834,6 +2116,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015377162637",
+            "n_venda": "2000018821645624",
             "sku": "TI1529",
             "produto": "Mueller Lavadora De Roupas Energy 8kg Lavadora De Roupas Branca 127v Branco",
             "marca": "Mueller",
@@ -1847,6 +2131,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015655122361",
+            "n_venda": "2000019117717664",
             "sku": "TI1760",
             "produto": "Fogão 4 Bocas Atlas Coliseum Plus Com Mesa De Inox E Forno De 48 Litros A Gás Acendimento Manual Preto",
             "marca": "Atlas",
@@ -1860,6 +2146,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019069958586",
+            "n_venda": "2000019069958586",
             "sku": "TI1667",
             "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
             "marca": "Mueller",
@@ -1873,6 +2161,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015701534469",
+            "n_venda": "2000019166750640",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -1886,6 +2176,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000019188759334",
+            "n_venda": "2000019188759334",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -1899,6 +2191,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000018905028942",
+            "n_venda": "2000018905028942",
             "sku": "TI1881",
             "produto": "Maquina De Lavar Midea Wave Impeller 14kg Função Turbo-127v 127v Branco",
             "marca": "Midea",
@@ -1912,6 +2206,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015586776905",
+            "n_venda": "2000019045739938",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -1925,6 +2221,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000019161949330",
+            "n_venda": "2000019161949330",
             "sku": "TI1852",
             "produto": "Tanquinho De Lavar Roupa Mueller 20kg Não Transborda Preto 127v",
             "marca": "Mueller",
@@ -1938,6 +2236,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015545813865",
+            "n_venda": "2000019002136438",
             "sku": "TI1666",
             "produto": "Fogão Mueller 4 Bocas Titânio Com Mesa De Vidro Mfv4bf 127/220v",
             "marca": "Mueller",
@@ -1951,6 +2251,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015719846461",
+            "n_venda": "2000019185631734",
             "sku": "TI1603",
             "produto": "Fogão 5 Bocas Dako Magister Espelhado Mesa Inox Style Bivolt Prateado 127/220v",
             "marca": "Dako",
@@ -1964,6 +2266,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019232947528",
+            "n_venda": "2000019232947528",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -1977,6 +2281,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000019158375200",
+            "n_venda": "2000019158375200",
             "sku": "TI1601",
             "produto": "Cervejeira Imbera 244l Preto Ccv144 Com Controle De Temperatura E Iluminação Led 220v",
             "marca": "Imbera",
@@ -1990,6 +2296,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000019220080750",
+            "n_venda": "2000019220080750",
             "sku": "TI1604",
             "produto": "Fogão Dako A Gás Supreme Titanium Mesa Inox 4 Bocas - Bivolt Titânio 127/220v",
             "marca": "Dako",
@@ -2003,6 +2311,8 @@
             "is_afetando": false
         },
         {
+            "pedido": "2000019199262830",
+            "n_venda": "2000019199262830",
             "sku": "TI1759",
             "produto": "Freezer Vertical Imbera Evz21 Max 597l Preto 220v",
             "marca": "Imbera",
@@ -2016,6 +2326,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019220323374",
+            "n_venda": "2000019220323374",
             "sku": "TI1524",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Branco 127v",
             "marca": "Mueller",
@@ -2029,6 +2341,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015572913037",
+            "n_venda": "2000019030866958",
             "sku": "TI1524",
             "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 127v Branco",
             "marca": "Mueller",
@@ -2042,6 +2356,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019180093530",
+            "n_venda": "2000019180093530",
             "sku": "TI1529",
             "produto": "Mueller Lavadora De Roupas Energy 8kg Lavadora De Roupas Branca 127v Branco",
             "marca": "Mueller",
@@ -2055,6 +2371,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019275184658",
+            "n_venda": "2000019275184658",
             "sku": "TI1525",
             "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 220v Branco",
             "marca": "Mueller",
@@ -2068,6 +2386,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019237821802",
+            "n_venda": "2000019237821802",
             "sku": "TI1837-1",
             "produto": "Máquina De Lavar Semi-automática Wanke Até 5kg Marrom-claro 127v",
             "marca": "Wanke",
@@ -2081,6 +2401,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019081013906",
+            "n_venda": "2000019081013906",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -2094,6 +2416,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019280038402",
+            "n_venda": "2000019280038402",
             "sku": "TI1525",
             "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 220v Branco",
             "marca": "Mueller",
@@ -2107,6 +2431,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019319044266",
+            "n_venda": "2000019319044266",
             "sku": "TI1486",
             "produto": "Geladeira Vertical Imbera Vrs16 485l Full Black - Bivolt Full Black 127/220v",
             "marca": "Imbera",
@@ -2120,6 +2446,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015521472945",
+            "n_venda": "2000018976474188",
             "sku": "TI1602",
             "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
             "marca": "Dako",
@@ -2133,6 +2461,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015826984473",
+            "n_venda": "2000019300416204",
             "sku": "TI1527",
             "produto": "Tanquinho/lavadora Semiautomática Mueller Plus 45kg Cor Preto 220v",
             "marca": "Mueller",
@@ -2146,6 +2476,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019323690174",
+            "n_venda": "2000019323690174",
             "sku": "TI1580",
             "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa De Vidro E Forno 60 L A Gás Branco Bivolt 127/220v",
             "marca": "Dako",
@@ -2159,6 +2491,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000015767742669",
+            "n_venda": "2000019236260806",
             "sku": "TI1686",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Preto Fosco Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
@@ -2172,6 +2506,8 @@
             "is_afetando": true
         },
         {
+            "pedido": "2000019207071594",
+            "n_venda": "2000019207071594",
             "sku": "TI1562",
             "produto": "Fogão 5 Bocas Decorato Vetro G3 Mueller Inox Tipo De Conexão Gás Engarrafado 127/220v",
             "marca": "Mueller",
