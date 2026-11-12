@@ -38,6 +38,16 @@ def limpar_comentario(texto):
         return ""
     return coment
 
+def limpar_identificador(valor):
+    if pd.isna(valor):
+        return ""
+    val_str = str(valor).strip()
+    if val_str.lower() in ['', 'nan', 'none', '-']:
+        return ""
+    if val_str.endswith('.0'):
+        val_str = val_str[:-2]
+    return val_str
+
 def parse_csv_dinamico(url, termos_busca):
     res = requests.get(url)
     res.encoding = 'utf-8'
@@ -76,12 +86,14 @@ def encontrar_coluna_exata(df, nomes_possiveis):
 def processar_ml():
     df = parse_csv_dinamico(URL_CSV_ML, ['TEMPO DE IMPACTO', 'MOTIVO DA RECLAMACAO', 'ACAO TOMADA', 'PRODUTO'])
 
-    col_data_pedido    = encontrar_coluna_exata(df, ['DATA DA RECLAMACAO', 'DATA DA RECLAMAÇÃO', 'DATA', 'DATA DA VENDA', 'DATA DO PEDIDO'])
+    col_pedido        = encontrar_coluna_exata(df, ['PEDIDO'])
+    col_n_venda       = encontrar_coluna_exata(df, ['N° VENDA', 'Nº VENDA', 'NO VENDA', 'N° DA VENDA', 'Nº DA VENDA'])
+    col_data_pedido   = encontrar_coluna_exata(df, ['DATA DA RECLAMACAO', 'DATA DA RECLAMAÇÃO', 'DATA', 'DATA DA VENDA', 'DATA DO PEDIDO'])
     col_status_valido = encontrar_coluna_exata(df, ['TEMPO DE IMPACTO', 'VALIDACAO'])
     col_produto       = encontrar_coluna_exata(df, ['PRODUTO', 'PRODUTO DA RECLAMACAO'])
     col_motivo        = encontrar_coluna_exata(df, ['MOTIVO DA RECLAMACAO', 'MOTIVO DA RECLAMAÇÃO', 'MOTIVO'])
     col_status_g      = encontrar_coluna_exata(df, ['ACAO TOMADA', 'AÇÃO TOMADA', 'STATUS', 'SITUACAO'])
-    col_sku           = encontrar_coluna_exata(df, ['SKU', 'CODIGO SKU', 'Nº VENDA', 'NO VENDA', 'ID DE RECLAMACAO'])
+    col_sku           = encontrar_coluna_exata(df, ['SKU', 'CODIGO SKU', 'ID DE RECLAMACAO'])
     col_transportadora= encontrar_coluna_exata(df, ['TRANSPORTADORA', 'TRANSP', 'LOGISTICA'])
     col_comentario    = encontrar_coluna_exata(df, ['COMENTARIO', 'COMENTÁRIO', 'OBSERVACAO', 'OBSERVAÇÃO', 'OBS'])
 
@@ -97,11 +109,15 @@ def processar_ml():
         status_afetam = ['EM MEDIACAO', 'REVISAO RECUSADA', 'NAO SOLICITADA']
         is_afetando = is_valido and (status_g_clean in status_afetam)
 
+        pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ''
+        n_venda_val = limpar_identificador(row[col_n_venda]) if col_n_venda else ''
         prod_nome = str(row[col_produto]).strip() if col_produto and pd.notna(row[col_produto]) else ''
         coment = limpar_comentario(row[col_comentario]) if col_comentario else ''
         data_ped = str(row[col_data_pedido]).strip() if col_data_pedido and pd.notna(row[col_data_pedido]) else ''
 
         registros.append({
+            "pedido": pedido_val,
+            "n_venda": n_venda_val,
             "sku": str(row[col_sku]).strip() if col_sku and pd.notna(row[col_sku]) else 'N/A',
             "produto": prod_nome,
             "marca": extrair_marca(prod_nome),
