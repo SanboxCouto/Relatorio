@@ -46,62 +46,62 @@ def limpar_texto(val):
 
 
 def extrair_marca(produto):
-  if not produto:
-    return "OUTROS"
-  prod_up = remover_acentos(produto)
-  marcas = [
-      "WAP",
-      "MONDIAL",
-      "PHILCO",
-      "BRITANIA",
-      "OSTER",
-      "CADENCE",
-      "ELECTROLUX",
-      "ARNO",
-      "BLACK+DECKER",
-      "BLACK & DECKER",
-      "MIDEA",
-      "CONSUL",
-      "BRASTEMP",
-      "LG",
-      "SAMSUNG",
-      "PHILIPS",
-      "WALITA",
-      "MALLORY",
-      "VENTISOL",
-      "LORENZETTI",
-      "TRAMONTINA",
-      "STANLEY",
-      "DEWALT",
-      "MAKITA",
-      "BOSCH",
-      "VONDER",
-      "SCHULZ",
-      "KARCHER",
-      "JACTO",
-      "INTEX",
-      "MOR",
-      "NAUTIKA",
-      "COLEMAN",
-      "MULTILASER",
-      "MULTI",
-      "INTELBRAS",
-      "POSITIVO",
-      "LENOVO",
-      "DELL",
-      "HP",
-      "ACER",
-      "ASUS",
-      "JBL",
-      "XIAOMI",
-      "APPLE",
-      "MOTOROLA",
-  ]
-  for m in marcas:
-    if re.search(r"\b" + re.escape(m) + r"\b", prod_up):
-      return m
-  palavras = [p for p in prod_up.split() if len(p) > 2]
-  return palavras[0] if palavras else "OUTROS"
+  if produto:
+    prod_up = remover_acentos(produto)
+    marcas = [
+        "WAP",
+        "MONDIAL",
+        "PHILCO",
+        "BRITANIA",
+        "OSTER",
+        "CADENCE",
+        "ELECTROLUX",
+        "ARNO",
+        "BLACK+DECKER",
+        "BLACK & DECKER",
+        "MIDEA",
+        "CONSUL",
+        "BRASTEMP",
+        "LG",
+        "SAMSUNG",
+        "PHILIPS",
+        "WALITA",
+        "MALLORY",
+        "VENTISOL",
+        "LORENZETTI",
+        "TRAMONTINA",
+        "STANLEY",
+        "DEWALT",
+        "MAKITA",
+        "BOSCH",
+        "VONDER",
+        "SCHULZ",
+        "KARCHER",
+        "JACTO",
+        "INTEX",
+        "MOR",
+        "NAUTIKA",
+        "COLEMAN",
+        "MULTILASER",
+        "MULTI",
+        "INTELBRAS",
+        "POSITIVO",
+        "LENOVO",
+        "DELL",
+        "HP",
+        "ACER",
+        "ASUS",
+        "JBL",
+        "XIAOMI",
+        "APPLE",
+        "MOTOROLA",
+    ]
+    for m in marcas:
+      if re.search(r"\b" + re.escape(m) + r"\b", prod_up):
+        return m
+    palavras = [p for p in prod_up.split() if len(p) > 2]
+    return palavras[0] if palavras else "OUTROS"
+  return "OUTROS"
 
 
 def parse_csv_dinamico(url, palavras_chave_cabecalho, default_header_idx=1):
@@ -183,7 +183,7 @@ def processar_ml():
       ],
   )
   col_status_valido = encontrar_coluna_exata(
-      df, ["TEMPO DE IMPACTO", "VALIDACAO"]
+      df, ["TEMPO DE IMPACTO", "TEMPO IMPACTO", "VALIDACAO"]
   )
   col_produto = encontrar_coluna_exata(df, ["PRODUTO", "PRODUTO DA RECLAMACAO"])
   col_motivo = encontrar_coluna_exata(
@@ -481,9 +481,9 @@ def processar_via():
       [
           "PEDIDO",
           "PROTOCOLO",
-          "TEMPO DE IMPACTO",
-          "STATUS IMPACTO",
+          "TEMPO IMPACTO",
           "MOTIVO RELATADO",
+          "TRANSPORTADORA",
       ],
       default_header_idx=1,
   )
@@ -493,16 +493,19 @@ def processar_via():
       df, ["PEDIDO", "NUMERO DO PEDIDO", "ID DO PEDIDO"]
   )
   col_protocolo = encontrar_coluna_exata(
-      df, ["PROTOCOLO", "NUMERO PROTOCOLO", "N PROTOCOLO"], excluir_substrings=["DATA"]
+      df,
+      ["PROTOCOLO", "NUMERO PROTOCOLO", "N PROTOCOLO"],
+      excluir_substrings=["DATA"],
   )
   col_data = encontrar_coluna_exata(
       df, ["DATA DO PROTOCOLO", "DATA PROTOCOLO", "DATA"]
   )
   col_tempo_impacto = encontrar_coluna_exata(
-      df, ["TEMPO DE IMPACTO", "TEMPO IMPACTO", "VALIDACAO"]
+      df, ["TEMPO IMPACTO", "TEMPO DE IMPACTO", "VALIDACAO"]
   )
   col_status_impacto = encontrar_coluna_exata(
-      df, ["STATUS IMPACTO", "STATUS DO IMPACTO", "STATUS", "SITUACAO"]
+      df,
+      ["STATUS IMPACTO", "STATUS DO IMPACTO", "ANALISE", "ANÁLISE", "STATUS"],
   )
   col_motivo = encontrar_coluna_exata(
       df, ["MOTIVO RELATADO", "MOTIVO DA RECLAMACAO", "MOTIVO"]
@@ -514,8 +517,8 @@ def processar_via():
   col_produto = encontrar_coluna_exata(
       df, ["PRODUTO", "NOME DO PRODUTO", "TITULO", "ITEM"]
   )
-  col_analise = encontrar_coluna_exata(
-      df, ["ANALISE", "ANÁLISE", "COMENTARIO", "OBSERVACAO", "OBS"]
+  col_comentario = encontrar_coluna_exata(
+      df, ["COMENTARIO", "COMENTÁRIO", "COMENTARIOS", "OBSERVACAO", "OBS"]
   )
 
   registros = []
@@ -525,10 +528,15 @@ def processar_via():
         limpar_identificador(row[col_protocolo]) if col_protocolo else ""
     )
     prod_nome = limpar_texto(row[col_produto]) if col_produto else ""
-    analise_val = limpar_texto(row[col_analise]) if col_analise else ""
+    coment_val = limpar_texto(row[col_comentario]) if col_comentario else ""
 
     # Ignora apenas linhas totalmente vazias; preserva pedidos repetidos com protocolos distintos
-    if not pedido_val and not protocolo_val and not prod_nome and not analise_val:
+    if (
+        not pedido_val
+        and not protocolo_val
+        and not prod_nome
+        and not coment_val
+    ):
       continue
 
     tempo_val = (
@@ -562,7 +570,7 @@ def processar_via():
         "sku": limpar_texto(row[col_sku]) if col_sku else "N/A",
         "marca": extrair_marca(prod_nome),
         "produto": prod_nome,
-        "comentario": analise_val,
+        "comentario": coment_val,
         "is_valido": is_valido,
         "is_afetando": is_afetando,
     })
