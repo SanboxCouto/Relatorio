@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <style>
     :root {
-      --sidebar-expanded-width: 260px;
+      --sidebar-expanded-width: 270px;
       --sidebar-collapsed-width: 70px;
       --bg-color: #f8fafc;
       --card-bg: #ffffff;
@@ -23,12 +23,13 @@
       --warning: #d97706;
       --info: #0284c7;
       --success: #16a34a;
+      --purple: #7c3aed;
     }
 
     * { box-sizing: border-box; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: var(--text-main); display: flex; min-height: 100vh; }
 
-    .sidebar { width: var(--sidebar-expanded-width); background-color: #ffffff; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: sticky; top: 0; height: 100vh; z-index: 100; overflow-x: hidden; }
+    .sidebar { width: var(--sidebar-expanded-width); background-color: #ffffff; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: sticky; top: 0; height: 100vh; z-index: 100; overflow-x: hidden; flex-shrink: 0; }
     .sidebar.collapsed { width: var(--sidebar-collapsed-width); }
     .sidebar-header { padding: 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); min-height: 70px; }
     .sidebar-logo-icon { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -51,7 +52,7 @@
     .toggle-btn:hover { color: var(--primary); }
     .toggle-icon { font-size: 18px; flex-shrink: 0; }
 
-    .main-wrapper { flex: 1; padding: 28px 36px; overflow-y: auto; }
+    .main-wrapper { flex: 1; padding: 28px 36px; overflow-y: auto; min-width: 0; }
     .page-section { display: none; }
     .page-section.active { display: block; }
 
@@ -66,7 +67,7 @@
     .select-filter-hdr { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 13px; background: #fff; font-weight: 600; color: var(--text-main); outline: none; cursor: pointer; }
     .select-filter-hdr:focus { border-color: var(--primary); }
 
-    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
     .metric-card { background: var(--card-bg); border-radius: 12px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.04); position: relative; }
     .metric-card h3 { margin: 0 0 8px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
     .metric-card .val { font-size: 32px; font-weight: 800; }
@@ -79,6 +80,8 @@
     .val-info { color: var(--info); }
     .val-warning { color: var(--warning); }
     .val-success { color: var(--success); }
+    .val-purple { color: var(--purple); }
+    .val-dark { color: var(--text-main); }
 
     .nav-tabs { display: flex; gap: 8px; border-bottom: 2px solid var(--border-color); margin-bottom: 24px; flex-wrap: wrap; }
     .tab-btn { background: none; border: none; padding: 12px 20px; font-size: 15px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
@@ -101,11 +104,11 @@
     .section-subtitle { font-size: 16px; font-weight: 700; color: #1e293b; margin: 0 0 16px 0; }
 
     table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); table-layout: fixed; margin-bottom: 24px; }
-    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: middle; word-wrap: break-word; }
     th { background: #f1f5f9; font-weight: 600; color: #334155; }
 
     .order-link-box { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #0f172a; text-decoration: none; }
-    .amazon-logo-img, .ml-logo-img { width: 22px; height: 22px; object-fit: contain; cursor: pointer; transition: transform 0.15s; }
+    .amazon-logo-img, .ml-logo-img { width: 22px; height: 22px; object-fit: contain; cursor: pointer; transition: transform 0.15s; flex-shrink: 0; }
     .amazon-logo-img:hover, .ml-logo-img:hover { transform: scale(1.15); }
     .sub-id-label { display: block; font-size: 11px; color: var(--text-muted); font-weight: 500; margin-top: 2px; }
 
@@ -122,10 +125,11 @@
     .comments-scroll-box { max-height: 180px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px; }
     .comment-bubble { background: #f8fafc; border-left: 3px solid var(--primary); border-radius: 4px; padding: 6px 10px; font-size: 12px; color: #475569; word-break: break-word; }
     .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
+    .badge-star { background: #fef3c7; color: #b45309; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
     .no-comments { color: #94a3b8; font-size: 12px; font-style: italic; }
 
     .note-box-wrapper { display: flex; flex-direction: column; gap: 4px; }
-    .note-textarea { width: 100%; height: 50px; padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; font-family: inherit; resize: vertical; outline: none; background: #fafafa; transition: border-color 0.2s, background 0.2s; }
+    .note-textarea { width: 100%; height: 54px; padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; font-family: inherit; resize: vertical; outline: none; background: #fafafa; transition: border-color 0.2s, background 0.2s; }
     .note-textarea:focus { border-color: var(--primary); background: #ffffff; }
     .note-status { font-size: 11px; color: var(--text-muted); min-height: 14px; font-weight: 600; }
     .note-status.saving { color: var(--warning); }
@@ -157,6 +161,10 @@
       <a class="menu-item" data-page="page-amazon" onclick="navigatePage('page-amazon', this)">
         <span class="menu-icon">📦</span>
         <span class="menu-text">Reivindicações A-Z Amazon</span>
+      </a>
+      <a class="menu-item" data-page="page-avaliacoes-amazon" onclick="navigatePage('page-avaliacoes-amazon', this)">
+        <span class="menu-icon">⭐</span>
+        <span class="menu-text">Avaliações com Impacto Amazon</span>
       </a>
     </div>
 
@@ -221,10 +229,10 @@
       </div>
 
       <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTabML('tab-skus-ml')">Produtos / SKUs</button>
-        <button class="tab-btn" onclick="switchTabML('tab-transp-ml')">Transportadoras</button>
-        <button class="tab-btn" onclick="switchTabML('tab-motivos-ml')">Motivos da Reclamação</button>
-        <button class="tab-btn" onclick="switchTabML('tab-consulta-ml')">Consulta de Pedidos com Impacto</button>
+        <button class="tab-btn active" onclick="switchTabML('tab-skus-ml', this)">Produtos / SKUs</button>
+        <button class="tab-btn" onclick="switchTabML('tab-transp-ml', this)">Transportadoras</button>
+        <button class="tab-btn" onclick="switchTabML('tab-motivos-ml', this)">Motivos da Reclamação</button>
+        <button class="tab-btn" onclick="switchTabML('tab-consulta-ml', this)">Consulta de Pedidos com Impacto</button>
       </div>
 
       <div id="tab-skus-ml" class="tab-content active">
@@ -282,7 +290,6 @@
         </table>
       </div>
 
-      <!-- ABA CONSULTA DE PEDIDOS COM IMPACTO ML -->
       <div id="tab-consulta-ml" class="tab-content">
         <div class="table-toolbar">
           <div class="search-box-wrapper">
@@ -362,15 +369,14 @@
       </div>
 
       <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTabAMZ('tab-premium-amz')">Chamados Premium</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-repasses-amz')">Repasses</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-skus-amz')">Produtos / SKUs</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-transp-amz')">Transportadoras</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-motivos-amz')">Motivos da Reclamação</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-consulta-amz')">Consulta de Pedidos com Impacto</button>
+        <button class="tab-btn active" onclick="switchTabAMZ('tab-premium-amz', this)">Chamados Premium</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-repasses-amz', this)">Repasses</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-skus-amz', this)">Produtos / SKUs</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-transp-amz', this)">Transportadoras</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-motivos-amz', this)">Motivos da Reclamação</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-consulta-amz', this)">Consulta de Pedidos com Impacto</button>
       </div>
 
-      <!-- ABA 1: CHAMADOS PREMIUM -->
       <div id="tab-premium-amz" class="tab-content active">
         <div class="table-toolbar">
           <div class="search-box-wrapper">
@@ -393,7 +399,6 @@
         </table>
       </div>
 
-      <!-- ABA 2: REPASSES -->
       <div id="tab-repasses-amz" class="tab-content">
         <div class="table-toolbar">
           <div class="search-box-wrapper">
@@ -419,7 +424,6 @@
         </table>
       </div>
 
-      <!-- ABA 3: SKUS / PRODUTOS -->
       <div id="tab-skus-amz" class="tab-content">
         <div class="table-toolbar">
           <select id="filter-marca-skus-amz" class="select-filter" onchange="renderTabSkusAMZ_Current()">
@@ -445,7 +449,6 @@
         </table>
       </div>
 
-      <!-- ABA 4: TRANSPORTADORAS AMAZON -->
       <div id="tab-transp-amz" class="tab-content">
         <div class="chart-box"><div style="height: 350px;"><canvas id="chartTranspAMZ"></canvas></div></div>
         <table id="tabela-transp-amz">
@@ -462,7 +465,6 @@
         </table>
       </div>
 
-      <!-- ABA 5: MOTIVOS AMAZON -->
       <div id="tab-motivos-amz" class="tab-content">
         <div class="chart-box"><div style="height: 360px; display: flex; justify-content: center;"><canvas id="chartMotivosAMZ"></canvas></div></div>
         <table id="tabela-motivos-amz">
@@ -479,7 +481,6 @@
         </table>
       </div>
 
-      <!-- ABA CONSULTA DE PEDIDOS COM IMPACTO AMAZON -->
       <div id="tab-consulta-amz" class="tab-content">
         <div class="table-toolbar">
           <div class="search-box-wrapper">
@@ -501,6 +502,183 @@
               <th style="width:18%">Motivo</th>
               <th style="width:16%">Transportadora</th>
               <th style="width:26%">Nota / Observação (Compartilhada)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PÁGINA 3: AVALIAÇÕES COM IMPACTO AMAZON -->
+    <section id="page-avaliacoes-amazon" class="page-section">
+      <div class="header-bar">
+        <h1>Avaliações com Impacto Amazon</h1>
+        <div class="filter-controls-group">
+          <select id="filter-dias-aval" class="select-filter-hdr" onchange="renderAvaliacoesAMZ()">
+            <option value="0">Todo o Período</option>
+            <option value="7">Últimos 7 Dias</option>
+            <option value="15">Últimos 15 Dias</option>
+            <option value="30">Últimos 30 Dias</option>
+            <option value="60">Últimos 60 Dias</option>
+          </select>
+
+          <select id="filter-comparativo-aval" class="select-filter-hdr" onchange="renderAvaliacoesAMZ()">
+            <option value="NONE">Sem Comparativo</option>
+            <option value="7">vs 7d Anteriores</option>
+            <option value="15">vs 15d Anteriores</option>
+            <option value="30">vs 30d Anteriores</option>
+          </select>
+
+          <div class="filter-switch">
+            <button id="btn-afetando-aval" class="filter-btn active" onclick="setEscopoAval('afetando')">Apenas Afetando a Reputação</button>
+            <button id="btn-todas-aval" class="filter-btn" onclick="setEscopoAval('todas')">Todas</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Avaliações Negativas</h3>
+          <div class="val val-dark" id="total-negativas-aval">-</div>
+          <div id="comp-negativas-aval"></div>
+        </div>
+        <div class="metric-card">
+          <h3>Afetando a Reputação</h3>
+          <div class="val val-danger" id="total-afetando-aval">-</div>
+          <div id="comp-afetando-aval"></div>
+        </div>
+        <div class="metric-card">
+          <h3>Chamados Abertos</h3>
+          <div class="val val-info" id="total-chamados-abertos-aval">-</div>
+          <div id="comp-chamados-abertos-aval"></div>
+        </div>
+        <div class="metric-card">
+          <h3>Suporte Premium</h3>
+          <div class="val val-warning" id="total-premium-aval">-</div>
+          <div id="comp-premium-aval"></div>
+        </div>
+        <div class="metric-card">
+          <h3>Removidos</h3>
+          <div class="val val-success" id="total-removidos-aval">-</div>
+          <div id="comp-removidos-aval"></div>
+        </div>
+      </div>
+
+      <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTabAval('tab-premium-aval', this)">Chamados Premium</button>
+        <button class="tab-btn" onclick="switchTabAval('tab-chamados-aval', this)">Chamados</button>
+        <button class="tab-btn" onclick="switchTabAval('tab-transp-aval', this)">Transportadora</button>
+        <button class="tab-btn" onclick="switchTabAval('tab-skus-aval', this)">SKUs / Produtos</button>
+        <button class="tab-btn" onclick="switchTabAval('tab-consulta-aval', this)">Consultas de Avaliações com Impacto</button>
+      </div>
+
+      <!-- ABA 1: CHAMADOS PREMIUM -->
+      <div id="tab-premium-aval" class="tab-content active">
+        <div class="table-toolbar">
+          <div class="search-box-wrapper">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="search-premium-aval" class="search-input" placeholder="Pesquisar por ID do Pedido ou Avaliação..." oninput="renderTabPremiumAval()">
+          </div>
+        </div>
+        <table id="tabela-premium-aval">
+          <thead>
+            <tr>
+              <th style="width:19%">Número do Pedido</th>
+              <th style="width:12%">Data da Avaliação</th>
+              <th style="width:12%">Data do Chamado</th>
+              <th style="width:31%">Avaliação</th>
+              <th style="width:26%">Resposta</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- ABA 2: CHAMADOS -->
+      <div id="tab-chamados-aval" class="tab-content">
+        <div class="table-toolbar">
+          <div class="search-box-wrapper">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="search-chamados-aval" class="search-input" placeholder="Pesquisar por Número do Pedido, Chamado ou Avaliação..." oninput="renderTabChamadosAval()">
+          </div>
+        </div>
+        <table id="tabela-chamados-aval">
+          <thead>
+            <tr>
+              <th style="width:19%">Número do Pedido</th>
+              <th style="width:12%">Data da Avaliação</th>
+              <th style="width:12%">Data do Chamado</th>
+              <th style="width:39%">Avaliação</th>
+              <th style="width:18%">Número do Chamado</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- ABA 3: TRANSPORTADORA -->
+      <div id="tab-transp-aval" class="tab-content">
+        <div class="chart-box"><div style="height: 350px;"><canvas id="chartTranspAval"></canvas></div></div>
+        <table id="tabela-transp-aval">
+          <thead>
+            <tr>
+              <th style="width:18%">Transportadora</th>
+              <th style="width:7%">Qtd</th>
+              <th style="width:15%">Comparativo</th>
+              <th style="width:25%">Ranking por Nota (Estrelas)</th>
+              <th style="width:35%">Comentários & Avaliações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- ABA 4: SKUs / PRODUTOS -->
+      <div id="tab-skus-aval" class="tab-content">
+        <div class="table-toolbar">
+          <select id="filter-marca-skus-aval" class="select-filter" onchange="renderTabSkusAval()">
+            <option value="TODAS">Todas as Marcas</option>
+          </select>
+        </div>
+        <div class="chart-box">
+          <h2 class="section-subtitle">Top SKUs & Produtos Avaliados</h2>
+          <div style="height: 440px;"><canvas id="chartSkusAval"></canvas></div>
+        </div>
+        <table id="tabela-skus-aval">
+          <thead>
+            <tr>
+              <th style="width:14%">SKU</th>
+              <th style="width:14%">Marca</th>
+              <th style="width:24%">Produto</th>
+              <th style="width:7%">Qtd</th>
+              <th style="width:15%">Comparativo</th>
+              <th style="width:26%">Comentários & Avaliações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- ABA 5: CONSULTAS DE AVALIAÇÕES COM IMPACTO -->
+      <div id="tab-consulta-aval" class="tab-content">
+        <div class="table-toolbar">
+          <div class="search-box-wrapper">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="search-consulta-aval" class="search-input" placeholder="Pesquisar por Número do Pedido ou Comentário..." oninput="renderTabConsultaAval()">
+          </div>
+          <select id="filter-estrelas-consulta-aval" class="select-filter" onchange="renderTabConsultaAval()">
+            <option value="TODAS">Todas as Notas</option>
+          </select>
+        </div>
+        <table id="tabela-consulta-aval">
+          <thead>
+            <tr>
+              <th style="width:17%">Número do Pedido</th>
+              <th style="width:10%">Nota</th>
+              <th style="width:24%">Avaliação</th>
+              <th style="width:17%">Resposta</th>
+              <th style="width:10%">Data</th>
+              <th style="width:22%">Nota / Observação (Compartilhada)</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -543,9 +721,11 @@
 
     function parseDateToTimestamp(dateStr) {
       if (!dateStr) return null;
-      const parts = String(dateStr).trim().split('/');
+      const cleanStr = String(dateStr).trim().split(' ')[0];
+      const parts = cleanStr.split('/');
       if (parts.length === 3) {
-        return new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+        const year = parts[2].length === 2 ? '20' + parts[2] : parts[2];
+        return new Date(year, parts[1] - 1, parts[0]).getTime();
       }
       return null;
     }
@@ -627,32 +807,43 @@
       localStorage.setItem('activePage', pageId);
     }
 
-    let rawDataML = [], rawDataAMZ = [];
-    let escopoML = 'afetando', escopoAMZ = 'afetando';
-    let currentFilteredML = [], currentFilteredAMZ = [];
+    let rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [];
+    let escopoML = 'afetando', escopoAMZ = 'afetando', escopoAval = 'afetando';
+    
+    let currentFilteredML = [], currentFilteredAMZ = [], currentFilteredAval = [];
     let currentCurrCompML = [], currentPrevCompML = [];
     let currentCurrCompAMZ = [], currentPrevCompAMZ = [];
+    let currentCurrCompAval = [], currentPrevCompAval = [];
 
     let activePillFiltersMLTransp = {};
     let activePillFiltersMLMotivos = {};
     let activePillFiltersAMZTransp = {};
     let activePillFiltersAMZMotivos = {};
+    let activePillFiltersAvalTransp = {};
 
     let chartSkusMLObj = null, chartTranspMLObj = null, chartMotivosMLObj = null;
     let chartSkusAMZObj = null, chartTranspAMZObj = null, chartMotivosAMZObj = null;
+    let chartSkusAvalObj = null, chartTranspAvalObj = null;
 
-    function switchTabML(tabId) {
+    function switchTabML(tabId, btn) {
       document.querySelectorAll('#page-impactos-ml .tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('#page-impactos-ml .tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
+      if (btn) btn.classList.add('active');
     }
 
-    function switchTabAMZ(tabId) {
+    function switchTabAMZ(tabId, btn) {
       document.querySelectorAll('#page-amazon .tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('#page-amazon .tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    function switchTabAval(tabId, btn) {
+      document.querySelectorAll('#page-avaliacoes-amazon .tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('#page-avaliacoes-amazon .tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if (btn) btn.classList.add('active');
     }
 
     function setEscopoML(modo) {
@@ -669,6 +860,13 @@
       renderAMZ();
     }
 
+    function setEscopoAval(modo) {
+      escopoAval = modo;
+      document.getElementById('btn-afetando-aval').classList.toggle('active', modo === 'afetando');
+      document.getElementById('btn-todas-aval').classList.toggle('active', modo === 'todas');
+      renderAvaliacoesAMZ();
+    }
+
     async function initDashboard() {
       const fetchNotesCSV = fetch(NOTAS_CSV_URL + '&t=' + new Date().getTime())
         .then(r => r.text())
@@ -681,15 +879,19 @@
       sharedNotesMap = notesData || {};
       rawDataML = data.ml || [];
       rawDataAMZ = data.amazon || [];
+      rawDataAvalAMZ = data.avaliacoes_amazon || [];
       
       populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
       populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
+      populateMarcaFilterOptions('filter-marca-skus-aval', rawDataAvalAMZ);
 
       populateConsultaFilters('filter-transp-consulta-ml', 'filter-motivo-consulta-ml', rawDataML);
       populateConsultaFilters('filter-transp-consulta-amz', 'filter-motivo-consulta-amz', rawDataAMZ);
+      populateEstrelasFilter('filter-estrelas-consulta-aval', rawDataAvalAMZ);
 
       renderML();
       renderAMZ();
+      renderAvaliacoesAMZ();
       
       const savedPage = localStorage.getItem('activePage') || 'page-impactos-ml';
       const targetLink = document.querySelector(`.menu-item[data-page="${savedPage}"]`);
@@ -734,9 +936,24 @@
       });
     }
 
+    function populateEstrelasFilter(selectId, dataList) {
+      const select = document.getElementById(selectId);
+      if (!select) return;
+      const set = new Set();
+      dataList.forEach(r => { if (r.estrelas) set.add(r.estrelas); });
+      select.innerHTML = '<option value="TODAS">Todas as Notas</option>';
+      Array.from(set).sort().forEach(e => {
+        select.innerHTML += `<option value="${e}">${e}</option>`;
+      });
+    }
+
     function getTodayTimestamp() {
       const now = new Date();
       return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+    }
+
+    function getRecordDateStr(r) {
+      return r.data || r.data_pedido || r.data_solicitacao || r.data_reivindicacao || '';
     }
 
     function getDatasetByPeriod(list, daysLimit) {
@@ -745,7 +962,7 @@
       const msPerDay = 86400000;
       const currentStart = todayTimestamp - ((daysLimit - 1) * msPerDay);
       return list.filter(r => {
-        const t = parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
+        const t = parseDateToTimestamp(getRecordDateStr(r));
         return t && t >= currentStart && t <= (todayTimestamp + msPerDay - 1);
       });
     }
@@ -757,14 +974,14 @@
       if (!fetchPreviousWindow) {
         const currentStart = todayTimestamp - ((compDays - 1) * msPerDay);
         return list.filter(r => {
-          const t = parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
+          const t = parseDateToTimestamp(getRecordDateStr(r));
           return t && t >= currentStart && t <= (todayTimestamp + msPerDay - 1);
         });
       } else {
         const prevEnd = todayTimestamp - (compDays * msPerDay);
         const prevStart = todayTimestamp - ((2 * compDays - 1) * msPerDay);
         return list.filter(r => {
-          const t = parseDateToTimestamp(r.data_pedido || r.data_solicitacao || r.data_reivindicacao);
+          const t = parseDateToTimestamp(getRecordDateStr(r));
           return t && t >= prevStart && t <= (prevEnd + msPerDay - 1);
         });
       }
@@ -849,7 +1066,327 @@
       }
     }
 
-    // ================= RENDERIZADOR AMAZON =================
+    // ================= RENDERIZADOR AVALIAÇÕES AMAZON =================
+    function renderAvaliacoesAMZ() {
+      const days = parseInt(document.getElementById('filter-dias-aval')?.value || '0');
+      const compDaysVal = document.getElementById('filter-comparativo-aval')?.value || 'NONE';
+
+      let baseTotalList = getDatasetByPeriod(rawDataAvalAMZ, days);
+      let dataset = getDatasetByPeriod(rawDataAvalAMZ, days);
+
+      if (escopoAval === 'afetando') {
+        dataset = dataset.filter(r => r.is_afetando);
+      }
+      currentFilteredAval = dataset;
+
+      // Indicadores
+      const totalNegativas = baseTotalList.length;
+      const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
+      const totalChamadosAbertos = baseTotalList.filter(r => normalizeText(r.situacao) === 'CHAMADO ABERTO').length;
+      const totalPremium = baseTotalList.filter(r => normalizeText(r.situacao) === 'EM CHAMADO PREMIUM').length;
+      const totalRemovidos = baseTotalList.filter(r => normalizeText(r.situacao) === 'REMOVIDO').length;
+
+      document.getElementById('total-negativas-aval').innerText = totalNegativas;
+      document.getElementById('total-afetando-aval').innerText = totalAfetando;
+      document.getElementById('total-chamados-abertos-aval').innerText = totalChamadosAbertos;
+      document.getElementById('total-premium-aval').innerText = totalPremium;
+      document.getElementById('total-removidos-aval').innerText = totalRemovidos;
+
+      if (compDaysVal !== 'NONE') {
+        const compDays = parseInt(compDaysVal);
+        const currentCompList = getComparisonWindowData(rawDataAvalAMZ, compDays, false);
+        const prevCompList = getComparisonWindowData(rawDataAvalAMZ, compDays, true);
+
+        currentCurrCompAval = escopoAval === 'afetando' ? currentCompList.filter(r => r.is_afetando) : currentCompList;
+        currentPrevCompAval = escopoAval === 'afetando' ? prevCompList.filter(r => r.is_afetando) : prevCompList;
+
+        const cNeg = currentCompList.length;
+        const pNeg = prevCompList.length;
+
+        const cAfet = currentCompList.filter(r => r.is_afetando).length;
+        const pAfet = prevCompList.filter(r => r.is_afetando).length;
+
+        const cChamados = currentCompList.filter(r => normalizeText(r.situacao) === 'CHAMADO ABERTO').length;
+        const pChamados = prevCompList.filter(r => normalizeText(r.situacao) === 'CHAMADO ABERTO').length;
+
+        const cPrem = currentCompList.filter(r => normalizeText(r.situacao) === 'EM CHAMADO PREMIUM').length;
+        const pPrem = prevCompList.filter(r => normalizeText(r.situacao) === 'EM CHAMADO PREMIUM').length;
+
+        const cRem = currentCompList.filter(r => normalizeText(r.situacao) === 'REMOVIDO').length;
+        const pRem = prevCompList.filter(r => normalizeText(r.situacao) === 'REMOVIDO').length;
+
+        generateComparisonBadge('comp-negativas-aval', cNeg, pNeg, compDays);
+        generateComparisonBadge('comp-afetando-aval', cAfet, pAfet, compDays);
+        generateComparisonBadge('comp-chamados-abertos-aval', cChamados, pChamados, compDays);
+        generateComparisonBadge('comp-premium-aval', cPrem, pPrem, compDays);
+        generateComparisonBadge('comp-removidos-aval', cRem, pRem, compDays);
+      } else {
+        currentCurrCompAval = [];
+        currentPrevCompAval = [];
+        ['comp-negativas-aval', 'comp-afetando-aval', 'comp-chamados-abertos-aval', 'comp-premium-aval', 'comp-removidos-aval'].forEach(id => {
+          document.getElementById(id).innerHTML = '';
+        });
+      }
+
+      renderTabPremiumAval();
+      renderTabChamadosAval();
+      renderTabTranspAval(dataset);
+      renderTabSkusAval();
+      renderTabConsultaAval();
+    }
+
+    function renderTabPremiumAval() {
+      const tbody = document.querySelector('#tabela-premium-aval tbody');
+      tbody.innerHTML = '';
+
+      const query = normalizeText(document.getElementById('search-premium-aval')?.value || '');
+      let list = currentFilteredAval.filter(r => normalizeText(r.situacao) === 'EM CHAMADO PREMIUM');
+
+      list.sort((a, b) => (parseDateToTimestamp(b.data_acao || b.data) || 0) - (parseDateToTimestamp(a.data_acao || a.data) || 0));
+
+      if (query) {
+        list = list.filter(r => normalizeText(getPedidoId(r)).includes(query) || normalizeText(r.comentario).includes(query));
+      }
+
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum pedido em Chamado Premium encontrado.</td></tr>';
+        return;
+      }
+
+      list.forEach(r => {
+        const orderId = getPedidoId(r) || '-';
+        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
+        tbody.innerHTML += `<tr>
+          <td>
+            <a href="${linkOrder}" target="_blank" class="order-link-box">
+              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
+              <span>${orderId}</span>
+            </a>
+          </td>
+          <td>${r.data || '-'}</td>
+          <td><strong>${r.data_acao || '-'}</strong></td>
+          <td>${r.comentario || '<span class="no-comments">Sem comentário</span>'}</td>
+          <td>${r.resposta || '<span class="no-comments">Sem resposta</span>'}</td>
+        </tr>`;
+      });
+    }
+
+    function renderTabChamadosAval() {
+      const tbody = document.querySelector('#tabela-chamados-aval tbody');
+      tbody.innerHTML = '';
+
+      const query = normalizeText(document.getElementById('search-chamados-aval')?.value || '');
+      let list = currentFilteredAval.filter(r => normalizeText(r.situacao) === 'CHAMADO ABERTO');
+
+      list.sort((a, b) => (parseDateToTimestamp(b.data_acao || b.data) || 0) - (parseDateToTimestamp(a.data_acao || a.data) || 0));
+
+      if (query) {
+        list = list.filter(r =>
+          normalizeText(getPedidoId(r)).includes(query) ||
+          normalizeText(r.numero_chamado).includes(query) ||
+          normalizeText(r.comentario).includes(query)
+        );
+      }
+
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum chamado aberto encontrado.</td></tr>';
+        return;
+      }
+
+      list.forEach(r => {
+        const orderId = getPedidoId(r) || '-';
+        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
+        tbody.innerHTML += `<tr>
+          <td>
+            <a href="${linkOrder}" target="_blank" class="order-link-box">
+              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
+              <span>${orderId}</span>
+            </a>
+          </td>
+          <td>${r.data || '-'}</td>
+          <td><strong>${r.data_acao || '-'}</strong></td>
+          <td>${r.comentario || '<span class="no-comments">Sem comentário</span>'}</td>
+          <td><strong>${r.numero_chamado || '-'}</strong></td>
+        </tr>`;
+      });
+    }
+
+    function renderTabTranspAval(dataset) {
+      const mapTranspCurr = {};
+      currentCurrCompAval.forEach(r => {
+        const t = r.transportadora || 'NÃO INFORMADO';
+        mapTranspCurr[t] = (mapTranspCurr[t] || 0) + 1;
+      });
+
+      const mapTranspPrev = {};
+      currentPrevCompAval.forEach(r => {
+        const t = r.transportadora || 'NÃO INFORMADO';
+        mapTranspPrev[t] = (mapTranspPrev[t] || 0) + 1;
+      });
+
+      const mapTransp = {};
+      dataset.forEach(r => {
+        const t = r.transportadora || 'NÃO INFORMADO';
+        if (!mapTransp[t]) mapTransp[t] = { transportadora: t, qtd: 0, rankingEstrelas: {}, registros: [] };
+        mapTransp[t].qtd++;
+        const est = r.estrelas ? `${r.estrelas} ★` : 'S/ Nota';
+        mapTransp[t].rankingEstrelas[est] = (mapTransp[t].rankingEstrelas[est] || 0) + 1;
+        mapTransp[t].registros.push(r);
+      });
+
+      const list = Object.values(mapTransp).sort((a, b) => b.qtd - a.qtd);
+      if (chartTranspAvalObj) chartTranspAvalObj.destroy();
+      chartTranspAvalObj = new Chart(document.getElementById('chartTranspAval'), {
+        type: 'bar',
+        data: { labels: list.map(i => i.transportadora), datasets: [{ data: list.map(i => i.qtd), backgroundColor: '#f59e0b', borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', font: { weight: 'bold' } } } }
+      });
+
+      const tbody = document.querySelector('#tabela-transp-aval tbody');
+      tbody.innerHTML = '';
+      const hasComp = document.getElementById('filter-comparativo-aval')?.value !== 'NONE';
+
+      list.forEach((item, idx) => {
+        const selectedEst = activePillFiltersAvalTransp[idx];
+
+        const rankingHtml = '<div class="ranking-container">' + Object.entries(item.rankingEstrelas).map(([est, count]) => {
+          const isActive = selectedEst === est ? 'active' : '';
+          return `<span class="ranking-pill ${isActive}" onclick="togglePillFilter(activePillFiltersAvalTransp, ${idx}, '${est.replace(/'/g, "\\'")}', () => renderTabTranspAval(currentFilteredAval))">${est}: <strong>${count}</strong></span>`;
+        }).join('') + '</div>';
+
+        let comsRegistros = item.registros;
+        if (selectedEst) {
+          comsRegistros = comsRegistros.filter(r => (r.estrelas ? `${r.estrelas} ★` : 'S/ Nota') === selectedEst);
+        }
+        const coms = comsRegistros.map(r => r.comentario).filter(isComentarioValido);
+
+        let filterTagHtml = '';
+        if (selectedEst) {
+          filterTagHtml = `<div class="comments-filter-tag">Filtrado por: ${selectedEst} <span onclick="togglePillFilter(activePillFiltersAvalTransp, ${idx}, '${selectedEst.replace(/'/g, "\\'")}', () => renderTabTranspAval(currentFilteredAval))">✕</span></div>`;
+        }
+
+        const comHtml = coms.length
+          ? `<div class="comments-wrapper">${filterTagHtml}<div class="comments-scroll-box">${coms.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div></div>`
+          : `<div class="comments-wrapper">${filterTagHtml}<span class="no-comments">Sem observações${selectedEst ? ' para esta nota' : ''}</span></div>`;
+
+        const currQtd = mapTranspCurr[item.transportadora] || 0;
+        const prevQtd = mapTranspPrev[item.transportadora] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
+
+        tbody.innerHTML += `<tr><td><strong>${item.transportadora}</strong></td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${rankingHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    function renderTabSkusAval() {
+      const marcaFilter = document.getElementById('filter-marca-skus-aval')?.value || 'TODAS';
+      let dataset = [...currentFilteredAval];
+      let currDataset = [...currentCurrCompAval];
+      let prevDataset = [...currentPrevCompAval];
+
+      if (marcaFilter !== 'TODAS') {
+        dataset = dataset.filter(r => r.marca === marcaFilter);
+        currDataset = currDataset.filter(r => r.marca === marcaFilter);
+        prevDataset = prevDataset.filter(r => r.marca === marcaFilter);
+      }
+
+      const mapSkusCurr = {};
+      currDataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        mapSkusCurr[key] = (mapSkusCurr[key] || 0) + 1;
+      });
+
+      const mapSkusPrev = {};
+      prevDataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        mapSkusPrev[key] = (mapSkusPrev[key] || 0) + 1;
+      });
+
+      const mapSkus = {};
+      dataset.forEach(r => {
+        const key = `${r.sku}||${r.produto}||${r.marca}`;
+        if (!mapSkus[key]) mapSkus[key] = { key, sku: r.sku || 'N/A', marca: r.marca || 'OUTROS', produto: r.produto || '-', qtd: 0, comentarios: [] };
+        mapSkus[key].qtd++;
+        if (isComentarioValido(r.comentario)) mapSkus[key].comentarios.push(r.comentario);
+      });
+
+      const listSkus = Object.values(mapSkus).sort((a, b) => b.qtd - a.qtd);
+      const labels = listSkus.slice(0, 15).map(i => `${i.sku} - ${i.produto}`.substring(0, 35) + '...');
+      const values = listSkus.slice(0, 15).map(i => i.qtd);
+
+      if (chartSkusAvalObj) chartSkusAvalObj.destroy();
+      chartSkusAvalObj = new Chart(document.getElementById('chartSkusAval'), {
+        type: 'bar',
+        data: { labels, datasets: [{ data: values, backgroundColor: '#f59e0b', borderRadius: 4 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'right', font: { weight: 'bold' } } } }
+      });
+
+      const tbodySkus = document.querySelector('#tabela-skus-aval tbody');
+      tbodySkus.innerHTML = '';
+      const hasComp = document.getElementById('filter-comparativo-aval')?.value !== 'NONE';
+
+      listSkus.forEach(item => {
+        const comHtml = item.comentarios.length ? `<div class="comments-scroll-box">${item.comentarios.map(c => `<div class="comment-bubble">💬 ${c}</div>`).join('')}</div>` : '<span class="no-comments">Sem observações</span>';
+        const currQtd = mapSkusCurr[item.key] || 0;
+        const prevQtd = mapSkusPrev[item.key] || 0;
+        const compHtml = hasComp ? generateInlineCompBadge(currQtd, prevQtd) : '-';
+
+        tbodySkus.innerHTML += `<tr><td><strong>${item.sku}</strong></td><td><span class="badge-count">${item.marca}</span></td><td>${item.produto}</td><td><span class="badge-count">${item.qtd}</span></td><td>${compHtml}</td><td>${comHtml}</td></tr>`;
+      });
+    }
+
+    function renderTabConsultaAval() {
+      const tbody = document.querySelector('#tabela-consulta-aval tbody');
+      tbody.innerHTML = '';
+
+      const searchVal = normalizeText(document.getElementById('search-consulta-aval')?.value || '');
+      const filterEstrelas = document.getElementById('filter-estrelas-consulta-aval')?.value || 'TODAS';
+
+      let list = [...currentFilteredAval];
+
+      if (searchVal) {
+        list = list.filter(r =>
+          normalizeText(getPedidoId(r)).includes(searchVal) ||
+          normalizeText(r.comentario).includes(searchVal)
+        );
+      }
+      if (filterEstrelas !== 'TODAS') {
+        list = list.filter(r => (r.estrelas || '') === filterEstrelas);
+      }
+
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#94a3b8;">Nenhuma avaliação encontrada com os filtros aplicados.</td></tr>';
+        return;
+      }
+
+      list.forEach((r, idx) => {
+        const orderId = getPedidoId(r) || '-';
+        const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
+        const savedNote = getOrderNote(orderId);
+        const statusId = `note-status-aval-${idx}`;
+        const notaBadge = r.estrelas ? `<span class="badge-star">${r.estrelas} ★</span>` : '-';
+
+        tbody.innerHTML += `<tr>
+          <td>
+            <a href="${linkOrder}" target="_blank" class="order-link-box">
+              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" title="Abrir pedido na Amazon">
+              <span>${orderId}</span>
+            </a>
+          </td>
+          <td>${notaBadge}</td>
+          <td>${r.comentario || '<span class="no-comments">Sem comentário</span>'}</td>
+          <td>${r.resposta || '<span class="no-comments">Sem resposta</span>'}</td>
+          <td>${r.data || '-'}</td>
+          <td>
+            <div class="note-box-wrapper">
+              <textarea class="note-textarea" placeholder="Digite uma nota visível para todos..." onchange="saveOrderNote('${orderId}', this.value, '${statusId}')">${savedNote}</textarea>
+              <span id="${statusId}" class="note-status"></span>
+            </div>
+          </td>
+        </tr>`;
+      });
+    }
+
+    // ================= RENDERIZADOR AMAZON A-Z =================
     function renderAMZ() {
       const days = parseInt(document.getElementById('filter-dias-amz')?.value || '0');
       const compDaysVal = document.getElementById('filter-comparativo-amz')?.value || 'NONE';
