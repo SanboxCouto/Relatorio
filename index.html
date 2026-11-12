@@ -125,7 +125,7 @@
     .comments-scroll-box { max-height: 180px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px; }
     .comment-bubble { background: #f8fafc; border-left: 3px solid var(--primary); border-radius: 4px; padding: 6px 10px; font-size: 12px; color: #475569; word-break: break-word; }
     .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
-    .badge-star { background: #fef3c7; color: #b45309; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
+    .badge-star { background: #fef3c7; color: #b45309; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 13px; display: inline-block; letter-spacing: 1px; }
     .no-comments { color: #94a3b8; font-size: 12px; font-style: italic; }
 
     .note-box-wrapper { display: flex; flex-direction: column; gap: 4px; }
@@ -674,8 +674,8 @@
           <thead>
             <tr>
               <th style="width:17%">Número do Pedido</th>
-              <th style="width:10%">Nota</th>
-              <th style="width:24%">Avaliação</th>
+              <th style="width:11%">Nota</th>
+              <th style="width:23%">Avaliação</th>
               <th style="width:17%">Resposta</th>
               <th style="width:10%">Data</th>
               <th style="width:22%">Nota / Observação (Compartilhada)</th>
@@ -867,6 +867,28 @@
       renderAvaliacoesAMZ();
     }
 
+    function isAvaliacaoAfetando(r) {
+      if (!r) return false;
+      const tempoClean = normalizeText(r.tempo_impacto);
+      const sitClean = normalizeText(r.situacao);
+      const valido = tempoClean.includes('VALIDO') && !tempoClean.includes('INVALIDO');
+      const sitAfeta = ['RESPONDIDA', 'CHAMADO ABERTO', 'EM CHAMADO PREMIUM'].includes(sitClean);
+      return (valido && sitAfeta) || Boolean(r.is_afetando);
+    }
+
+    function formatEstrelaLabel(estrelasRaw) {
+      if (!estrelasRaw) return 'S/ Nota';
+      const s = String(estrelasRaw).trim();
+      if (s.includes('★') || s.includes('☆')) {
+        return s;
+      }
+      const num = parseInt(s);
+      if (!isNaN(num) && num >= 1 && num <= 5) {
+        return '★'.repeat(num) + '☆'.repeat(5 - num);
+      }
+      return s;
+    }
+
     async function initDashboard() {
       const fetchNotesCSV = fetch(NOTAS_CSV_URL + '&t=' + new Date().getTime())
         .then(r => r.text())
@@ -940,7 +962,7 @@
       const select = document.getElementById(selectId);
       if (!select) return;
       const set = new Set();
-      dataList.forEach(r => { if (r.estrelas) set.add(r.estrelas); });
+      dataList.forEach(r => { if (r.estrelas) set.add(formatEstrelaLabel(r.estrelas)); });
       select.innerHTML = '<option value="TODAS">Todas as Notas</option>';
       Array.from(set).sort().forEach(e => {
         select.innerHTML += `<option value="${e}">${e}</option>`;
@@ -1075,13 +1097,12 @@
       let dataset = getDatasetByPeriod(rawDataAvalAMZ, days);
 
       if (escopoAval === 'afetando') {
-        dataset = dataset.filter(r => r.is_afetando);
+        dataset = dataset.filter(isAvaliacaoAfetando);
       }
       currentFilteredAval = dataset;
 
-      // Indicadores
       const totalNegativas = baseTotalList.length;
-      const totalAfetando = baseTotalList.filter(r => r.is_afetando).length;
+      const totalAfetando = baseTotalList.filter(isAvaliacaoAfetando).length;
       const totalChamadosAbertos = baseTotalList.filter(r => normalizeText(r.situacao) === 'CHAMADO ABERTO').length;
       const totalPremium = baseTotalList.filter(r => normalizeText(r.situacao) === 'EM CHAMADO PREMIUM').length;
       const totalRemovidos = baseTotalList.filter(r => normalizeText(r.situacao) === 'REMOVIDO').length;
@@ -1097,14 +1118,14 @@
         const currentCompList = getComparisonWindowData(rawDataAvalAMZ, compDays, false);
         const prevCompList = getComparisonWindowData(rawDataAvalAMZ, compDays, true);
 
-        currentCurrCompAval = escopoAval === 'afetando' ? currentCompList.filter(r => r.is_afetando) : currentCompList;
-        currentPrevCompAval = escopoAval === 'afetando' ? prevCompList.filter(r => r.is_afetando) : prevCompList;
+        currentCurrCompAval = escopoAval === 'afetando' ? currentCompList.filter(isAvaliacaoAfetando) : currentCompList;
+        currentPrevCompAval = escopoAval === 'afetando' ? prevCompList.filter(isAvaliacaoAfetando) : prevCompList;
 
         const cNeg = currentCompList.length;
         const pNeg = prevCompList.length;
 
-        const cAfet = currentCompList.filter(r => r.is_afetando).length;
-        const pAfet = prevCompList.filter(r => r.is_afetando).length;
+        const cAfet = currentCompList.filter(isAvaliacaoAfetando).length;
+        const pAfet = prevCompList.filter(isAvaliacaoAfetando).length;
 
         const cChamados = currentCompList.filter(r => normalizeText(r.situacao) === 'CHAMADO ABERTO').length;
         const pChamados = prevCompList.filter(r => normalizeText(r.situacao) === 'CHAMADO ABERTO').length;
@@ -1229,7 +1250,7 @@
         const t = r.transportadora || 'NÃO INFORMADO';
         if (!mapTransp[t]) mapTransp[t] = { transportadora: t, qtd: 0, rankingEstrelas: {}, registros: [] };
         mapTransp[t].qtd++;
-        const est = r.estrelas ? `${r.estrelas} ★` : 'S/ Nota';
+        const est = formatEstrelaLabel(r.estrelas);
         mapTransp[t].rankingEstrelas[est] = (mapTransp[t].rankingEstrelas[est] || 0) + 1;
         mapTransp[t].registros.push(r);
       });
@@ -1256,7 +1277,7 @@
 
         let comsRegistros = item.registros;
         if (selectedEst) {
-          comsRegistros = comsRegistros.filter(r => (r.estrelas ? `${r.estrelas} ★` : 'S/ Nota') === selectedEst);
+          comsRegistros = comsRegistros.filter(r => formatEstrelaLabel(r.estrelas) === selectedEst);
         }
         const coms = comsRegistros.map(r => r.comentario).filter(isComentarioValido);
 
@@ -1350,7 +1371,7 @@
         );
       }
       if (filterEstrelas !== 'TODAS') {
-        list = list.filter(r => (r.estrelas || '') === filterEstrelas);
+        list = list.filter(r => formatEstrelaLabel(r.estrelas) === filterEstrelas);
       }
 
       if (!list.length) {
@@ -1363,7 +1384,8 @@
         const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
         const savedNote = getOrderNote(orderId);
         const statusId = `note-status-aval-${idx}`;
-        const notaBadge = r.estrelas ? `<span class="badge-star">${r.estrelas} ★</span>` : '-';
+        const notaFormatada = formatEstrelaLabel(r.estrelas);
+        const notaBadge = r.estrelas ? `<span class="badge-star">${notaFormatada}</span>` : '-';
 
         tbody.innerHTML += `<tr>
           <td>
