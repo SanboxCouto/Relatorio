@@ -10,7 +10,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "20/09/2026",
+            "data_pedido": "14/08/2026",
             "comentario": "Amassado na Lateral Esquerda",
             "is_valido": false,
             "is_afetando": false
@@ -25,7 +25,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "18/08/2026",
+            "data_pedido": "20/08/2026",
             "comentario": "Grade Descascando e com Lascas",
             "is_valido": false,
             "is_afetando": false
@@ -40,7 +40,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "01/09/2026",
+            "data_pedido": "08/09/2026",
             "comentario": "Amassado na Parte Superior do Fogão",
             "is_valido": false,
             "is_afetando": false
@@ -55,7 +55,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "28/08/2026",
+            "data_pedido": "09/09/2026",
             "comentario": "Amassado na Lateral",
             "is_valido": false,
             "is_afetando": false
@@ -70,7 +70,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "05/08/2026",
+            "data_pedido": "10/09/2026",
             "comentario": "Parte Frontal Inferior Quebrada",
             "is_valido": false,
             "is_afetando": false
@@ -85,7 +85,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "31/08/2026",
+            "data_pedido": "09/09/2026",
             "comentario": "Amassado e Riscos em Partes Externas",
             "is_valido": false,
             "is_afetando": false
@@ -100,7 +100,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "08/08/2026",
+            "data_pedido": "30/08/2026",
             "comentario": "Fogão está dando Choques ao utilizar",
             "is_valido": false,
             "is_afetando": false
@@ -115,7 +115,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "13/08/2026",
+            "data_pedido": "14/08/2026",
             "comentario": "Arranhado na Lateral Direita",
             "is_valido": false,
             "is_afetando": false
@@ -130,7 +130,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "13/08/2026",
+            "data_pedido": "22/09/2026",
             "comentario": "Amassado na Lateral Direita do Fogão",
             "is_valido": true,
             "is_afetando": true
@@ -143,9 +143,9 @@
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "14/08/2026",
+            "data_pedido": "10/09/2026",
             "comentario": "Parafuso e Tempinho Soltos",
             "is_valido": false,
             "is_afetando": false
@@ -160,7 +160,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "14/08/2026",
+            "data_pedido": "23/09/2026",
             "comentario": "Riscos, Arranhões e Amassados no Fogão",
             "is_valido": true,
             "is_afetando": true
@@ -175,7 +175,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "24/08/2026",
+            "data_pedido": "24/09/2026",
             "comentario": "Amassado na Parte Superior do Forno",
             "is_valido": true,
             "is_afetando": true
@@ -190,7 +190,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "17/08/2026",
+            "data_pedido": "26/09/2026",
             "comentario": "Quina Superior Esquerda do Fogão Amassada",
             "is_valido": true,
             "is_afetando": true
@@ -205,7 +205,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "24/08/2026",
+            "data_pedido": "27/09/2026",
             "comentario": "Barra Amassada",
             "is_valido": true,
             "is_afetando": false
@@ -220,7 +220,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "20/08/2026",
+            "data_pedido": "28/09/2026",
             "comentario": "Item Faltante: 1 Trempe Central",
             "is_valido": true,
             "is_afetando": false
@@ -235,7 +235,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "14/08/2026",
+            "data_pedido": "28/09/2026",
             "comentario": "Amassado na Lateral Esquerda",
             "is_valido": true,
             "is_afetando": true
@@ -250,7 +250,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "14/08/2026",
+            "data_pedido": "03/09/2026",
             "comentario": "Amassado na Parte Superior do Fogão",
             "is_valido": false,
             "is_afetando": false
@@ -265,7 +265,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "04/09/2026",
+            "data_pedido": "30/09/2026",
             "comentario": "Botão de Acendimento Automático Ñ Funciona",
             "is_valido": true,
             "is_afetando": true
@@ -280,7 +280,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "25/08/2026",
+            "data_pedido": "30/09/2026",
             "comentario": "Pequenas Avarias na Mesa do Fogão",
             "is_valido": true,
             "is_afetando": true
@@ -295,7 +295,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "25/08/2026",
+            "data_pedido": "01/10/2026",
             "comentario": "Cliente Alegou ter Comprado Errado",
             "is_valido": true,
             "is_afetando": false
@@ -310,7 +310,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "27/08/2026",
+            "data_pedido": "02/10/2026",
             "comentario": "Bateria Não Carrega Totalmente e Descarrega",
             "is_valido": true,
             "is_afetando": false
@@ -325,7 +325,7 @@
             "transportadora": "Brasil Web",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "20/08/2026",
+            "data_pedido": "02/10/2026",
             "comentario": "Preço Errado",
             "is_valido": true,
             "is_afetando": true
@@ -340,7 +340,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "02/09/2026",
+            "data_pedido": "02/10/2026",
             "comentario": "Vidro Frontal do Fogão TODO Quebrado",
             "is_valido": true,
             "is_afetando": true
@@ -355,7 +355,7 @@
             "transportadora": "Trilog Express",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "24/09/2026",
+            "data_pedido": "04/10/2026",
             "comentario": "Entrega Atrasada",
             "is_valido": true,
             "is_afetando": true
@@ -370,7 +370,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "06/09/2026",
+            "data_pedido": "04/10/2026",
             "comentario": "O Produto Estava Correto",
             "is_valido": true,
             "is_afetando": false
@@ -385,23 +385,23 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/09/2026",
+            "data_pedido": "05/10/2026",
             "comentario": "Vidro do Cooktop Quebrada",
             "is_valido": true,
             "is_afetando": true
         },
         {
-            "pedido": "2000014912639507",
-            "n_venda": "2000018332418538",
+            "pedido": "2000014368099557",
+            "n_venda": "2000017764435064",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
-            "motivo": "Defeito no Produto",
+            "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Impacto Removido",
+            "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "14/09/2026",
-            "comentario": "Botão de Acendimento Automático Ñ Funciona",
+            "data_pedido": "13/08/2026",
+            "comentario": "Mancha de Risco no Vidro Espelhado",
             "is_valido": false,
             "is_afetando": false
         },
@@ -415,7 +415,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "15/09/2026",
+            "data_pedido": "26/09/2026",
             "comentario": "Amassado parte Traseira | Entregue s/Caixa",
             "is_valido": true,
             "is_afetando": false
@@ -430,7 +430,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "09/09/2026",
+            "data_pedido": "06/10/2026",
             "comentario": "Amassado",
             "is_valido": true,
             "is_afetando": true
@@ -445,7 +445,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "20/09/2026",
+            "data_pedido": "06/10/2026",
             "comentario": "Problema no LED",
             "is_valido": true,
             "is_afetando": false
@@ -460,7 +460,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "30/08/2026",
+            "data_pedido": "01/10/2026",
             "comentario": "Amassado na Lateral Superior Esquerda",
             "is_valido": true,
             "is_afetando": false
@@ -475,7 +475,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "01/09/2026",
+            "data_pedido": "08/09/2026",
             "comentario": "Termostato não muda e mostra apenas 11°",
             "is_valido": false,
             "is_afetando": false
@@ -490,7 +490,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "08/09/2026",
+            "data_pedido": "02/10/2026",
             "comentario": "Puxador Quebrado",
             "is_valido": true,
             "is_afetando": true
@@ -505,7 +505,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "09/09/2026",
+            "data_pedido": "01/09/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": false,
             "is_afetando": false
@@ -520,7 +520,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "10/09/2026",
+            "data_pedido": "15/09/2026",
             "comentario": "Arranhados na Quina",
             "is_valido": true,
             "is_afetando": true
@@ -535,7 +535,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "14/09/2026",
+            "data_pedido": "15/09/2026",
             "comentario": "Amassado na Lateral Tampado com Papel",
             "is_valido": true,
             "is_afetando": true
@@ -550,7 +550,7 @@
             "transportadora": "Brasil Web",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "10/09/2026",
+            "data_pedido": "23/09/2026",
             "comentario": "Cliente deseja Cancelar o Pedido",
             "is_valido": true,
             "is_afetando": true
@@ -565,7 +565,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "03/09/2026",
+            "data_pedido": "06/10/2026",
             "comentario": "Item Faltante: 2 Microfones",
             "is_valido": true,
             "is_afetando": false
@@ -580,7 +580,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "13/09/2026",
+            "data_pedido": "02/10/2026",
             "comentario": "Cesto da Máquina Danificado",
             "is_valido": true,
             "is_afetando": true
@@ -595,24 +595,24 @@
             "transportadora": "Brasil Web",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "05/09/2026",
+            "data_pedido": "10/10/2026",
             "comentario": "Diversos Amassados",
             "is_valido": true,
             "is_afetando": false
         },
         {
-            "pedido": "2000018697265786",
-            "n_venda": "2000018697265786",
+            "pedido": "2000014912639507",
+            "n_venda": "2000018332418538",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
-            "motivo": "Item Faltante",
+            "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
-            "tempo_impacto": "Válido",
-            "data_pedido": "19/09/2026",
-            "comentario": "Item Faltante: Boca Central",
-            "is_valido": true,
+            "tempo_impacto": "Expirado",
+            "data_pedido": "07/09/2026",
+            "comentario": "Botão de Acendimento Automático Ñ Funciona",
+            "is_valido": false,
             "is_afetando": false
         },
         {
@@ -625,7 +625,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/09/2026",
+            "data_pedido": "10/10/2026",
             "comentario": "Mesa de Vidro Quebrada",
             "is_valido": true,
             "is_afetando": true
@@ -640,7 +640,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "14/09/2026",
+            "data_pedido": "10/10/2026",
             "comentario": "Amassado no Puxador",
             "is_valido": true,
             "is_afetando": false
@@ -655,7 +655,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "08/09/2026",
+            "data_pedido": "10/10/2026",
             "comentario": "Botão Quebrado",
             "is_valido": true,
             "is_afetando": false
@@ -670,7 +670,7 @@
             "transportadora": "Tecmar Transportadora",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "13/09/2026",
+            "data_pedido": "10/10/2026",
             "comentario": "Envio Atrasado | Pedido Cancelado",
             "is_valido": true,
             "is_afetando": true
@@ -685,7 +685,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "15/09/2026",
+            "data_pedido": "12/10/2026",
             "comentario": "Máquina não Enche de Água",
             "is_valido": true,
             "is_afetando": true
@@ -700,7 +700,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "15/09/2026",
+            "data_pedido": "12/10/2026",
             "comentario": "Vedação da Porta com Problema",
             "is_valido": true,
             "is_afetando": false
@@ -715,7 +715,7 @@
             "transportadora": "Alfa Transportes",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "09/09/2026",
+            "data_pedido": "12/10/2026",
             "comentario": "Barulho nas Válvulas ao Ligar",
             "is_valido": true,
             "is_afetando": false
@@ -730,7 +730,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "24/09/2026",
+            "data_pedido": "14/09/2026",
             "comentario": "A Mesa do Fogão está Torta",
             "is_valido": false,
             "is_afetando": false
@@ -745,7 +745,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "10/09/2026",
+            "data_pedido": "12/10/2026",
             "comentario": "Mesa do Fogão Amassado",
             "is_valido": true,
             "is_afetando": false
@@ -760,7 +760,7 @@
             "transportadora": "MMA Cargas",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "16/09/2026",
+            "data_pedido": "13/10/2026",
             "comentario": "Forno Não Funciona",
             "is_valido": true,
             "is_afetando": true
@@ -775,7 +775,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "21/09/2026",
+            "data_pedido": "13/10/2026",
             "comentario": "Vazamento de Óleo, Barulho no Motor e Defeito no Time",
             "is_valido": true,
             "is_afetando": true
@@ -790,7 +790,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "28/09/2026",
+            "data_pedido": "13/10/2026",
             "comentario": "Mesa do Fogão Amassada e Estalo na Porta do Forno",
             "is_valido": true,
             "is_afetando": true
@@ -805,7 +805,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "19/09/2026",
+            "data_pedido": "13/10/2026",
             "comentario": "Vidro Espelhado Quebrado e Tampa Empenada",
             "is_valido": true,
             "is_afetando": false
@@ -820,7 +820,7 @@
             "transportadora": "Tecmar Transportadora",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "15/09/2026",
+            "data_pedido": "13/10/2026",
             "comentario": "Atraso na Entrega",
             "is_valido": true,
             "is_afetando": true
@@ -835,7 +835,7 @@
             "transportadora": "Trilog Express",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "24/09/2026",
+            "data_pedido": "13/10/2026",
             "comentario": "Atraso na Entrega",
             "is_valido": true,
             "is_afetando": true
@@ -850,7 +850,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "28/09/2026",
+            "data_pedido": "14/10/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
             "is_afetando": true
@@ -865,7 +865,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "22/09/2026",
+            "data_pedido": "14/10/2026",
             "comentario": "Diversos Amassados na Parte Inferior",
             "is_valido": true,
             "is_afetando": true
@@ -880,7 +880,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "17/09/2026",
+            "data_pedido": "14/10/2026",
             "comentario": "Comprador Não deu Tempo para Resposta",
             "is_valido": true,
             "is_afetando": false
@@ -895,7 +895,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "04/10/2026",
+            "data_pedido": "15/10/2026",
             "comentario": "Lascas nas Trempes",
             "is_valido": true,
             "is_afetando": true
@@ -910,7 +910,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "15/09/2026",
+            "data_pedido": "15/10/2026",
             "comentario": "Produto Enviado de Cor Errada",
             "is_valido": true,
             "is_afetando": true
@@ -925,7 +925,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "15/09/2026",
+            "data_pedido": "15/10/2026",
             "comentario": "Refrigerador Não está Gelando e Contém Algumas Avarias",
             "is_valido": true,
             "is_afetando": true
@@ -940,7 +940,7 @@
             "transportadora": "Alfa Transportes",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "14/10/2026",
+            "data_pedido": "15/10/2026",
             "comentario": "Amassado na Tampa e Risco Profundo",
             "is_valido": true,
             "is_afetando": true
@@ -955,7 +955,7 @@
             "transportadora": "Tecmar Transportadora",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "19/09/2026",
+            "data_pedido": "16/10/2026",
             "comentario": "Amassado na Quina Direita Superior",
             "is_valido": true,
             "is_afetando": true
@@ -970,7 +970,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "23/09/2026",
+            "data_pedido": "16/10/2026",
             "comentario": "Produto Instalado e Cheiro de Queimado no Primeiro Uso",
             "is_valido": false,
             "is_afetando": false
@@ -985,7 +985,7 @@
             "transportadora": "Alfa Transportes",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "27/09/2026",
+            "data_pedido": "16/10/2026",
             "comentario": "Diversos Arranhados e Um Amassado",
             "is_valido": true,
             "is_afetando": true
@@ -1000,7 +1000,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "30/09/2026",
+            "data_pedido": "17/10/2026",
             "comentario": "Comprador Insatisfeito",
             "is_valido": true,
             "is_afetando": false
@@ -1015,7 +1015,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "21/09/2026",
+            "data_pedido": "20/10/2026",
             "comentario": "Não Explicado",
             "is_valido": true,
             "is_afetando": false
@@ -1030,7 +1030,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "22/09/2026",
+            "data_pedido": "20/10/2026",
             "comentario": "Rangido mesmo com o Produto Vazio",
             "is_valido": true,
             "is_afetando": true
@@ -1045,7 +1045,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "28/09/2026",
+            "data_pedido": "20/10/2026",
             "comentario": "Amassado na Parte Traseira",
             "is_valido": true,
             "is_afetando": false
@@ -1060,7 +1060,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "24/09/2026",
+            "data_pedido": "21/10/2026",
             "comentario": "Caixa Danificada e Arranhado no Vidro",
             "is_valido": true,
             "is_afetando": false
@@ -1075,7 +1075,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "24/09/2026",
+            "data_pedido": "21/10/2026",
             "comentario": "Não Funciona e Apresenta Erro",
             "is_valido": true,
             "is_afetando": true
@@ -1090,7 +1090,7 @@
             "transportadora": "Alfa Transportes",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "26/09/2026",
+            "data_pedido": "22/10/2026",
             "comentario": "Grade Quebrada",
             "is_valido": true,
             "is_afetando": true
@@ -1105,25 +1105,25 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "24/09/2026",
+            "data_pedido": "23/10/2026",
             "comentario": "Porta do Forno com Problema",
             "is_valido": true,
             "is_afetando": true
         },
         {
-            "pedido": "2000015485195265",
-            "n_venda": "2000018937988118",
+            "pedido": "2000018697265786",
+            "n_venda": "2000018697265786",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
             "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "30/09/2026",
-            "comentario": "Espalha Chama (Trempe) Central",
+            "data_pedido": "10/10/2026",
+            "comentario": "Item Faltante: Boca Central",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "pedido": "2000015588214685",
@@ -1135,7 +1135,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "06/10/2026",
+            "data_pedido": "23/10/2026",
             "comentario": "Amassado na Mesa Superior do Fogão",
             "is_valido": true,
             "is_afetando": false
@@ -1150,7 +1150,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "10/10/2026",
+            "data_pedido": "19/09/2026",
             "comentario": "Pés e Vidro do Produto Avariado",
             "is_valido": true,
             "is_afetando": false
@@ -1165,7 +1165,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "28/09/2026",
+            "data_pedido": "17/09/2026",
             "comentario": "Pés do Produto Avariado",
             "is_valido": true,
             "is_afetando": false
@@ -1180,7 +1180,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "26/09/2026",
+            "data_pedido": "09/09/2026",
             "comentario": "Item Faltante: 2 Microfones",
             "is_valido": false,
             "is_afetando": false
@@ -1195,7 +1195,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "02/10/2026",
+            "data_pedido": "20/09/2026",
             "comentario": "Amassado na parte Superior",
             "is_valido": false,
             "is_afetando": false
@@ -1210,7 +1210,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "23/09/2026",
+            "data_pedido": "14/08/2026",
             "comentario": "Quebrado na Parte Inferior",
             "is_valido": false,
             "is_afetando": false
@@ -1225,7 +1225,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "12/10/2026",
+            "data_pedido": "31/08/2026",
             "comentario": "Máquina não Enche de Água",
             "is_valido": false,
             "is_afetando": false
@@ -1240,7 +1240,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "13/10/2026",
+            "data_pedido": "13/09/2026",
             "comentario": "Tweeter da Caixa com Defeito",
             "is_valido": false,
             "is_afetando": false
@@ -1255,7 +1255,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "13/10/2026",
+            "data_pedido": "14/09/2026",
             "comentario": "Mesa do Fogão Arranhada",
             "is_valido": false,
             "is_afetando": false
@@ -1270,7 +1270,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "16/10/2026",
+            "data_pedido": "28/08/2026",
             "comentario": "Amassado na Parte Frontal Inferior",
             "is_valido": false,
             "is_afetando": false
@@ -1285,24 +1285,24 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "24/09/2026",
+            "data_pedido": "27/08/2026",
             "comentario": "Foi Enviado Modelo Diferente do Produto",
             "is_valido": false,
             "is_afetando": false
         },
         {
-            "pedido": "2000014368099557",
-            "n_venda": "2000017764435064",
+            "pedido": "2000018828285204",
+            "n_venda": "2000018828285204",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Não Solicitada",
-            "tempo_impacto": "Expirado",
+            "status": "Impacto Removido",
+            "tempo_impacto": "Válido",
             "data_pedido": "12/10/2026",
-            "comentario": "Mancha de Risco no Vidro Espelhado",
-            "is_valido": false,
+            "comentario": "Diversos Amassados",
+            "is_valido": true,
             "is_afetando": false
         },
         {
@@ -1315,7 +1315,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "30/09/2026",
+            "data_pedido": "14/08/2026",
             "comentario": "Amassado na Parte Superior do Forno",
             "is_valido": false,
             "is_afetando": false
@@ -1330,7 +1330,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "28/09/2026",
+            "data_pedido": "14/09/2026",
             "comentario": "Amassado em diversos lados do Fogão",
             "is_valido": false,
             "is_afetando": false
@@ -1345,7 +1345,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "01/10/2026",
+            "data_pedido": "05/09/2026",
             "comentario": "Uma Parte da Lavadora estava Solta",
             "is_valido": false,
             "is_afetando": false
@@ -1360,7 +1360,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "14/10/2026",
+            "data_pedido": "19/09/2026",
             "comentario": "Máquina Liga mas Não Funciona",
             "is_valido": false,
             "is_afetando": false
@@ -1375,7 +1375,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "03/11/2026",
+            "data_pedido": "25/08/2026",
             "comentario": "Mesa do Fogão Amassada",
             "is_valido": false,
             "is_afetando": false
@@ -1390,7 +1390,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "02/10/2026",
+            "data_pedido": "02/09/2026",
             "comentario": "Diversos Amassados e Arranhados",
             "is_valido": false,
             "is_afetando": false
@@ -1405,7 +1405,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "02/10/2026",
+            "data_pedido": "06/09/2026",
             "comentario": "Mancha Amarela no Produto",
             "is_valido": false,
             "is_afetando": false
@@ -1420,7 +1420,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "06/10/2026",
+            "data_pedido": "25/08/2026",
             "comentario": "Anúncio do Produto com Erro na Descrição",
             "is_valido": false,
             "is_afetando": false
@@ -1435,7 +1435,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "10/10/2026",
+            "data_pedido": "08/08/2026",
             "comentario": "Amassado na Lateral Inferior Direita",
             "is_valido": false,
             "is_afetando": false
@@ -1450,7 +1450,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "10/10/2026",
+            "data_pedido": "24/08/2026",
             "comentario": "Painel com Defeito",
             "is_valido": false,
             "is_afetando": false
@@ -1465,7 +1465,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "21/10/2026",
+            "data_pedido": "20/08/2026",
             "comentario": "Não Funciona",
             "is_valido": false,
             "is_afetando": false
@@ -1480,7 +1480,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "04/10/2026",
+            "data_pedido": "10/09/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": false,
             "is_afetando": false
@@ -1495,7 +1495,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "05/10/2026",
+            "data_pedido": "19/09/2026",
             "comentario": "Item Faltante: 2 Microfones",
             "is_valido": false,
             "is_afetando": false
@@ -1510,7 +1510,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "10/10/2026",
+            "data_pedido": "16/09/2026",
             "comentario": "Mesa do Fogão Amassada \n Produto foi Entregue de Cabeça pra Baixo",
             "is_valido": false,
             "is_afetando": false
@@ -1525,7 +1525,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "01/10/2026",
+            "data_pedido": "07/09/2026",
             "comentario": "Chiado ao utilizar o Modo Bluetooth",
             "is_valido": false,
             "is_afetando": false
@@ -1540,7 +1540,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "13/10/2026",
+            "data_pedido": "20/09/2026",
             "comentario": "Pinos da Ventilação Amassados",
             "is_valido": false,
             "is_afetando": false
@@ -1555,7 +1555,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "20/10/2026",
+            "data_pedido": "17/08/2026",
             "comentario": "Puxador Amassado",
             "is_valido": false,
             "is_afetando": false
@@ -1570,7 +1570,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "02/10/2026",
+            "data_pedido": "15/09/2026",
             "comentario": "Uma das Bocas Não Funcionam",
             "is_valido": false,
             "is_afetando": false
@@ -1585,7 +1585,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "02/10/2026",
+            "data_pedido": "21/09/2026",
             "comentario": "Vazamento de Água na parte Inferior\n Aparentemente parou",
             "is_valido": false,
             "is_afetando": false
@@ -1600,7 +1600,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "13/10/2026",
+            "data_pedido": "15/09/2026",
             "comentario": "Produto Aparentemente de Outlet",
             "is_valido": false,
             "is_afetando": false
@@ -1615,7 +1615,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "15/10/2026",
+            "data_pedido": "13/09/2026",
             "comentario": "Trincado na Parte Traseira do Tanquinho",
             "is_valido": false,
             "is_afetando": false
@@ -1630,7 +1630,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "10/10/2026",
+            "data_pedido": "05/08/2026",
             "comentario": "Porta Empenada e Vidro com Cola Visível",
             "is_valido": false,
             "is_afetando": false
@@ -1645,7 +1645,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "10/10/2026",
+            "data_pedido": "15/09/2026",
             "comentario": "Está com Defeito (???)",
             "is_valido": false,
             "is_afetando": false
@@ -1660,7 +1660,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "12/10/2026",
+            "data_pedido": "21/09/2026",
             "comentario": "Faz Zumbido no Motor e Não Funciona",
             "is_valido": true,
             "is_afetando": true
@@ -1675,7 +1675,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "15/10/2026",
+            "data_pedido": "13/08/2026",
             "comentario": "Pé de Apoio Desencaixado",
             "is_valido": false,
             "is_afetando": false
@@ -1690,7 +1690,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "16/10/2026",
+            "data_pedido": "24/09/2026",
             "comentario": "Led Ruim e Mancha na Lateral Direita",
             "is_valido": false,
             "is_afetando": false
@@ -1705,7 +1705,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "17/10/2026",
+            "data_pedido": "01/09/2026",
             "comentario": "Trinca na Mesa de Vidro e Vidro Empenado",
             "is_valido": false,
             "is_afetando": false
@@ -1720,7 +1720,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "06/10/2026",
+            "data_pedido": "15/09/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": false,
             "is_afetando": false
@@ -1735,7 +1735,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "12/10/2026",
+            "data_pedido": "24/08/2026",
             "comentario": "Bocas com Defeito",
             "is_valido": false,
             "is_afetando": false
@@ -1750,23 +1750,23 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "12/10/2026",
+            "data_pedido": "04/09/2026",
             "comentario": "Mesa do Fogão Amassada",
             "is_valido": false,
             "is_afetando": false
         },
         {
-            "pedido": "2000018828285204",
-            "n_venda": "2000018828285204",
+            "pedido": "2000015485195265",
+            "n_venda": "2000018937988118",
             "sku": "TI1514",
             "produto": "Fogão Mueller 5 Bocas Decorato Vetro Inox Com Mesa De Vidro E Timer Digital 127/220v",
             "marca": "Mueller",
-            "motivo": "Produto Avariado",
+            "motivo": "Item Faltante",
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "16/10/2026",
-            "comentario": "Diversos Amassados",
+            "data_pedido": "23/10/2026",
+            "comentario": "Espalha Chama (Trempe) Central",
             "is_valido": true,
             "is_afetando": false
         },
@@ -1780,7 +1780,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Expirado",
-            "data_pedido": "15/10/2026",
+            "data_pedido": "18/08/2026",
             "comentario": "Fiação e Bobinas de Refrigeração Expostas",
             "is_valido": false,
             "is_afetando": false
@@ -1795,7 +1795,7 @@
             "transportadora": "Trilog Express",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "28/10/2026",
+            "data_pedido": "22/09/2026",
             "comentario": "Atraso na Entrega | Falta de Contato",
             "is_valido": true,
             "is_afetando": false
@@ -1810,7 +1810,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "13/10/2026",
+            "data_pedido": "24/09/2026",
             "comentario": "Amassados na Lateral Direita",
             "is_valido": true,
             "is_afetando": false
@@ -1825,7 +1825,7 @@
             "transportadora": "Trilog Express",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "14/10/2026",
+            "data_pedido": "24/09/2026",
             "comentario": "Cliente Não Pode receber no Endereço",
             "is_valido": true,
             "is_afetando": false
@@ -1840,7 +1840,7 @@
             "transportadora": "Brasil Web",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "13/10/2026",
+            "data_pedido": "24/09/2026",
             "comentario": "Porta do Fogão com Várias Avarias",
             "is_valido": true,
             "is_afetando": true
@@ -1855,7 +1855,7 @@
             "transportadora": "MMA Cargas",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "25/10/2026",
+            "data_pedido": "23/10/2026",
             "comentario": "Comprador reclamou da demora para Entrega",
             "is_valido": true,
             "is_afetando": true
@@ -1870,7 +1870,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "15/10/2026",
+            "data_pedido": "24/09/2026",
             "comentario": "Mesa do Fogão Amassada",
             "is_valido": false,
             "is_afetando": false
@@ -1885,7 +1885,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "30/10/2026",
+            "data_pedido": "28/09/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
             "is_afetando": false
@@ -1900,7 +1900,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "20/10/2026",
+            "data_pedido": "28/09/2026",
             "comentario": "Motor Barulhento e Vazamento de Óleo",
             "is_valido": true,
             "is_afetando": true
@@ -1915,7 +1915,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Expirado",
-            "data_pedido": "22/10/2026",
+            "data_pedido": "28/09/2026",
             "comentario": "Cliente enviou Mensagem após horário",
             "is_valido": false,
             "is_afetando": false
@@ -1930,7 +1930,7 @@
             "transportadora": "Rio Express",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "23/10/2026",
+            "data_pedido": "24/09/2026",
             "comentario": "Cliente queria Cancelar Pedido",
             "is_valido": true,
             "is_afetando": false
@@ -1945,7 +1945,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "20/10/2026",
+            "data_pedido": "25/10/2026",
             "comentario": "Item Faltante: 1 dos Pés de Apoio",
             "is_valido": true,
             "is_afetando": false
@@ -1960,7 +1960,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "28/10/2026",
+            "data_pedido": "25/10/2026",
             "comentario": "Mal Funcionamento da Vibração e Secagem",
             "is_valido": true,
             "is_afetando": true
@@ -1975,7 +1975,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "21/10/2026",
+            "data_pedido": "26/10/2026",
             "comentario": "Timer Não Funciona",
             "is_valido": true,
             "is_afetando": true
@@ -1990,7 +1990,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "08/11/2026",
+            "data_pedido": "26/10/2026",
             "comentario": "Amassado na Parte Frontal Superior",
             "is_valido": true,
             "is_afetando": true
@@ -2005,7 +2005,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "03/11/2026",
+            "data_pedido": "30/09/2026",
             "comentario": "Peça da Mesa e Puxador Quebrada",
             "is_valido": true,
             "is_afetando": false
@@ -2020,7 +2020,7 @@
             "transportadora": "Mercado Envios",
             "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "23/10/2026",
+            "data_pedido": "26/10/2026",
             "comentario": "Produto com Vários Defeitos de Fábrica",
             "is_valido": true,
             "is_afetando": true
@@ -2050,7 +2050,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "28/10/2026",
+            "data_pedido": "27/10/2026",
             "comentario": "Amassado na Parte Superior",
             "is_valido": true,
             "is_afetando": false
@@ -2065,7 +2065,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "06/11/2026",
+            "data_pedido": "27/10/2026",
             "comentario": "Item Faltante: 1 Pé de Apoio",
             "is_valido": true,
             "is_afetando": false
@@ -2080,7 +2080,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "23/10/2026",
+            "data_pedido": "28/10/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
             "is_afetando": true
@@ -2095,7 +2095,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "26/10/2026",
+            "data_pedido": "28/10/2026",
             "comentario": "Não Há Descrição",
             "is_valido": true,
             "is_afetando": false
@@ -2110,7 +2110,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "31/10/2026",
+            "data_pedido": "28/10/2026",
             "comentario": "Item Faltante: Trempe Trempe Central",
             "is_valido": true,
             "is_afetando": true
@@ -2125,7 +2125,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "23/10/2026",
+            "data_pedido": "28/10/2026",
             "comentario": "Sinais de Uso",
             "is_valido": true,
             "is_afetando": true
@@ -2155,7 +2155,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "25/10/2026",
+            "data_pedido": "28/10/2026",
             "comentario": "Pés Quebrado | Será Enviado Novamente",
             "is_valido": true,
             "is_afetando": true
@@ -2170,7 +2170,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "27/10/2026",
+            "data_pedido": "30/10/2026",
             "comentario": "Amassado na Lateral Esquerda",
             "is_valido": true,
             "is_afetando": false
@@ -2185,7 +2185,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/11/2026",
+            "data_pedido": "30/10/2026",
             "comentario": "Amassado na Lateral",
             "is_valido": true,
             "is_afetando": true
@@ -2200,7 +2200,7 @@
             "transportadora": "Trilog Express",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "26/10/2026",
+            "data_pedido": "30/10/2026",
             "comentario": "Produto Enviado de Modelo Diferente",
             "is_valido": true,
             "is_afetando": true
@@ -2215,7 +2215,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "27/10/2026",
+            "data_pedido": "31/10/2026",
             "comentario": "Vidro da Área Inferior Quebrado",
             "is_valido": true,
             "is_afetando": false
@@ -2230,7 +2230,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "28/10/2026",
+            "data_pedido": "03/11/2026",
             "comentario": "Controles da Máquina Quebraram",
             "is_valido": true,
             "is_afetando": true
@@ -2245,7 +2245,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "26/10/2026",
+            "data_pedido": "03/11/2026",
             "comentario": "Vidro Frontal do Fogão TODO Quebrado",
             "is_valido": true,
             "is_afetando": true
@@ -2258,9 +2258,9 @@
             "marca": "Dako",
             "motivo": "Produto Avariado",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Não Solicitada",
             "tempo_impacto": "Válido",
-            "data_pedido": "28/10/2026",
+            "data_pedido": "03/11/2026",
             "comentario": "Pés de Apoio Tortos",
             "is_valido": true,
             "is_afetando": true
@@ -2275,7 +2275,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "30/10/2026",
+            "data_pedido": "03/11/2026",
             "comentario": "Lateral Amassada",
             "is_valido": true,
             "is_afetando": false
@@ -2290,7 +2290,7 @@
             "transportadora": "Mercado Envios",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "30/10/2026",
+            "data_pedido": "03/11/2026",
             "comentario": "Amassado na Lateral",
             "is_valido": true,
             "is_afetando": false
@@ -2305,7 +2305,7 @@
             "transportadora": "Brasil Web",
             "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "03/11/2026",
+            "data_pedido": "04/11/2026",
             "comentario": "Forno Não Funciona",
             "is_valido": true,
             "is_afetando": false
@@ -2320,7 +2320,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "03/11/2026",
+            "data_pedido": "04/11/2026",
             "comentario": "Vidro da Porta Completamente Quebrado",
             "is_valido": true,
             "is_afetando": true
@@ -2335,7 +2335,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "06/11/2026",
+            "data_pedido": "05/11/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
             "is_afetando": true
@@ -2350,7 +2350,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "04/11/2026",
+            "data_pedido": "06/11/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
             "is_afetando": true
@@ -2363,12 +2363,12 @@
             "marca": "Mueller",
             "motivo": "Defeito no Produto",
             "transportadora": "Mercado Envios",
-            "status": "Em Mediação",
+            "status": "Impacto Removido",
             "tempo_impacto": "Válido",
-            "data_pedido": "09/11/2026",
+            "data_pedido": "06/11/2026",
             "comentario": "Produto Não Joga a Água Fora",
             "is_valido": true,
-            "is_afetando": true
+            "is_afetando": false
         },
         {
             "pedido": "2000019275184658",
@@ -2380,7 +2380,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "04/11/2026",
+            "data_pedido": "07/11/2026",
             "comentario": "Vazamento de Óleo",
             "is_valido": true,
             "is_afetando": true
@@ -2395,7 +2395,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "05/11/2026",
+            "data_pedido": "07/11/2026",
             "comentario": "Vazamento de Água na parte Inferior",
             "is_valido": true,
             "is_afetando": true
@@ -2410,7 +2410,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "03/11/2026",
+            "data_pedido": "07/11/2026",
             "comentario": "Vidro do Forno Completamente Quebrado",
             "is_valido": true,
             "is_afetando": true
@@ -2440,7 +2440,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "09/11/2026",
+            "data_pedido": "07/11/2026",
             "comentario": "Trinca na Porta",
             "is_valido": true,
             "is_afetando": true
@@ -2455,7 +2455,7 @@
             "transportadora": "Mercado Envios",
             "status": "Em Mediação",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/11/2026",
+            "data_pedido": "08/11/2026",
             "comentario": "Puxador Amassado",
             "is_valido": true,
             "is_afetando": true
@@ -2470,7 +2470,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/11/2026",
+            "data_pedido": "08/11/2026",
             "comentario": "Vazamento de Óleo\n Entregaram a Máquina de Cabeça Pra Baixo",
             "is_valido": true,
             "is_afetando": true
@@ -2485,7 +2485,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "08/11/2026",
+            "data_pedido": "09/11/2026",
             "comentario": "Amassado na Lateral",
             "is_valido": true,
             "is_afetando": true
@@ -2500,7 +2500,7 @@
             "transportadora": "Mercado Envios",
             "status": "Revisão Recusada",
             "tempo_impacto": "Válido",
-            "data_pedido": "07/11/2026",
+            "data_pedido": "09/11/2026",
             "comentario": "Amassado Frontal e na Lateral",
             "is_valido": true,
             "is_afetando": true
@@ -2517,6 +2517,21 @@
             "tempo_impacto": "Válido",
             "data_pedido": "09/11/2026",
             "comentario": "Há um Vão na Porta do Forno apenas de um Lado",
+            "is_valido": true,
+            "is_afetando": true
+        },
+        {
+            "pedido": "2000015672840587",
+            "n_venda": "2000019136422420",
+            "sku": "TI1850",
+            "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
+            "marca": "Mueller",
+            "motivo": "Defeito no Produto",
+            "transportadora": "Mercado Envios",
+            "status": "Em Mediação",
+            "tempo_impacto": "Válido",
+            "data_pedido": "11/11/2026",
+            "comentario": "Avarias e o Tanquinho Não Liga",
             "is_valido": true,
             "is_afetando": true
         }
