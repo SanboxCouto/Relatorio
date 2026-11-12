@@ -104,6 +104,7 @@
     .order-link-box { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #0f172a; text-decoration: none; }
     .amazon-logo-img, .ml-logo-img { width: 22px; height: 22px; object-fit: contain; cursor: pointer; transition: transform 0.15s; }
     .amazon-logo-img:hover, .ml-logo-img:hover { transform: scale(1.15); }
+    .sub-id-label { display: block; font-size: 11px; color: var(--text-muted); font-weight: 500; margin-top: 2px; }
 
     .ranking-container { display: flex; flex-wrap: wrap; gap: 6px; }
     .ranking-pill { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px; font-size: 12px; color: #334155; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s; user-select: none; }
@@ -282,7 +283,7 @@
         <div class="table-toolbar">
           <div class="search-box-wrapper">
             <span class="search-icon-inside">🔍</span>
-            <input type="text" id="search-consulta-ml" class="search-input" placeholder="Pesquisar por N° da Venda / Pedido..." oninput="renderTabConsultaML()">
+            <input type="text" id="search-consulta-ml" class="search-input" placeholder="Pesquisar por N° Venda ou Pedido..." oninput="renderTabConsultaML()">
           </div>
           <select id="filter-transp-consulta-ml" class="select-filter" onchange="renderTabConsultaML()">
             <option value="TODAS">Todas as Transportadoras</option>
@@ -294,9 +295,9 @@
         <table id="tabela-consulta-ml">
           <thead>
             <tr>
-              <th style="width:18%">Pedido / N° Venda</th>
+              <th style="width:20%">N° Venda / Pedido</th>
               <th style="width:22%">Produto</th>
-              <th style="width:18%">Motivo</th>
+              <th style="width:16%">Motivo</th>
               <th style="width:16%">Transportadora</th>
               <th style="width:26%">Nota / Observação</th>
             </tr>
@@ -534,31 +535,21 @@
       return String(str).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
     }
 
-    function getOrderId(record) {
-      if (!record) return '-';
-      
-      let val = record.pedido || 
-                record.Pedido || 
-                record.n_venda || 
-                record.n_da_venda || 
-                record['N° Venda'] || 
-                record['Nº Venda'] || 
-                record['N° da Venda'] || 
-                record['Nº da Venda'] || 
-                record.venda || 
-                record.id_pedido;
-
-      if (!val) {
-        const foundKey = Object.keys(record).find(k => {
-          const norm = normalizeText(k);
-          return norm === 'PEDIDO' || norm === 'N VENDA' || norm === 'NO VENDA' || norm === 'N DA VENDA';
-        });
-        if (foundKey) val = record[foundKey];
-      }
-
-      if (!val || String(val).trim() === '' || String(val).toUpperCase() === 'NAN') return '-';
-      
+    function cleanVal(val) {
+      if (!val || String(val).trim() === '' || String(val).toUpperCase() === 'NAN') return '';
       return String(val).trim().replace(/\.0$/, '');
+    }
+
+    // Retorna o ID do Pedido (para Amazon ou coluna Pedido do ML que vai no link)
+    function getPedidoId(record) {
+      if (!record) return '';
+      return cleanVal(record.pedido || record.Pedido || record.id_pedido);
+    }
+
+    // Retorna o N° da Venda (coluna N° Venda do ML)
+    function getNVendaId(record) {
+      if (!record) return '';
+      return cleanVal(record.n_venda || record.n_da_venda || record['N° Venda'] || record['Nº Venda']);
     }
 
     function parseDateToTimestamp(dateStr) {
@@ -851,7 +842,7 @@
 
       if (query) {
         premiumList = premiumList.filter(r => {
-          const orderId = getOrderId(r);
+          const orderId = getPedidoId(r);
           return normalizeText(orderId).includes(query) || 
                  normalizeText(r.reembolso).includes(query) ||
                  normalizeText(r.valor).includes(query);
@@ -864,7 +855,7 @@
       }
 
       premiumList.forEach(r => {
-        const orderId = getOrderId(r);
+        const orderId = getPedidoId(r) || '-';
         const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
         tbody.innerHTML += `<tr>
           <td>
@@ -898,7 +889,7 @@
 
       if (query) {
         repassesList = repassesList.filter(r => {
-          const orderId = getOrderId(r);
+          const orderId = getPedidoId(r);
           return normalizeText(orderId).includes(query) || 
                  normalizeText(r.valor).includes(query) ||
                  normalizeText(r.reembolso).includes(query);
@@ -911,7 +902,7 @@
       }
 
       repassesList.forEach(r => {
-        const orderId = getOrderId(r);
+        const orderId = getPedidoId(r) || '-';
         const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
         tbody.innerHTML += `<tr>
           <td>
@@ -1127,7 +1118,7 @@
 
       if (searchVal) {
         list = list.filter(r => {
-          const orderId = getOrderId(r);
+          const orderId = getPedidoId(r);
           return normalizeText(orderId).includes(searchVal);
         });
       }
@@ -1144,7 +1135,7 @@
       }
 
       list.forEach(r => {
-        const orderId = getOrderId(r);
+        const orderId = getPedidoId(r) || '-';
         const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
         const savedNote = getOrderNote(orderId);
 
@@ -1428,8 +1419,9 @@
 
       if (searchVal) {
         list = list.filter(r => {
-          const orderId = getOrderId(r);
-          return normalizeText(orderId).includes(searchVal);
+          const pedido = getPedidoId(r);
+          const nVenda = getNVendaId(r);
+          return normalizeText(pedido).includes(searchVal) || normalizeText(nVenda).includes(searchVal);
         });
       }
       if (filterTransp !== 'TODAS') {
@@ -1445,22 +1437,33 @@
       }
 
       list.forEach(r => {
-        const orderId = getOrderId(r);
-        const linkOrder = `https://vendedores.mercadolivre.com.br/vendas/${orderId}/detalhe`;
-        const savedNote = getOrderNote(orderId);
+        const pedido = getPedidoId(r);
+        const nVenda = getNVendaId(r);
+        
+        // O link usa especificamente o Pedido; se estiver vazio, usa o N° Venda como fallback
+        const targetLinkId = pedido || nVenda || '-';
+        const displayMainId = nVenda || pedido || '-';
+        const subPedidoHtml = (nVenda && pedido && nVenda !== pedido) ? `<span class="sub-id-label">Pedido: ${pedido}</span>` : '';
+
+        const linkOrder = `https://vendedores.mercadolivre.com.br/vendas/${targetLinkId}/detalhe`;
+        const noteKey = pedido || nVenda;
+        const savedNote = getOrderNote(noteKey);
 
         tbody.innerHTML += `<tr>
           <td>
-            <a href="${linkOrder}" target="_blank" class="order-link-box">
-              <img src="${ML_LOGO_URL}" class="ml-logo-img" title="Abrir venda no Mercado Livre">
-              <span>${orderId}</span>
+            <a href="${linkOrder}" target="_blank" class="order-link-box" title="Abrir venda no Mercado Livre (Pedido: ${targetLinkId})">
+              <img src="${ML_LOGO_URL}" class="ml-logo-img">
+              <div>
+                <span>${displayMainId}</span>
+                ${subPedidoHtml}
+              </div>
             </a>
           </td>
           <td>${r.produto || '-'}</td>
           <td>${r.motivo || '-'}</td>
           <td>${r.transportadora || '-'}</td>
           <td>
-            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${orderId}', this.value)">${savedNote}</textarea>
+            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${noteKey}', this.value)">${savedNote}</textarea>
           </td>
         </tr>`;
       });
