@@ -103,12 +103,12 @@ def extrair_marca(produto):
   return palavras[0] if palavras else "OUTROS"
 
 
-def parse_csv_dinamico(url, palavras_chave_cabecalho):
+def parse_csv_dinamico(url, palavras_chave_cabecalho, default_header_idx=1):
   resp = requests.get(url, timeout=30)
   resp.encoding = "utf-8"
   linhas = resp.text.splitlines()
 
-  header_idx = 0
+  header_idx = default_header_idx
   for i, linha in enumerate(linhas[:25]):
     linha_norm = remover_acentos(linha)
     matches = sum(1 for kw in palavras_chave_cabecalho if kw in linha_norm)
@@ -134,13 +134,11 @@ def encontrar_coluna_exata(df, candidatos, excluir_substrings=None):
       continue
     cols_norm[c_norm] = c
 
-  # 1. Busca correspondência exata (sem acentos/case)
   for cand in candidatos:
     cand_norm = remover_acentos(cand)
     if cand_norm in cols_norm:
       return cols_norm[cand_norm]
 
-  # 2. Busca por substring
   for cand in candidatos:
     cand_norm = remover_acentos(cand)
     for k, orig in cols_norm.items():
@@ -154,6 +152,7 @@ def processar_ml():
   df = parse_csv_dinamico(
       URL_CSV_ML,
       ["TEMPO DE IMPACTO", "MOTIVO DA RECLAMACAO", "ACAO TOMADA", "PRODUTO"],
+      default_header_idx=1,
   )
   print("COLUNAS ML:", list(df.columns))
 
@@ -218,7 +217,7 @@ def processar_ml():
     valido_clean = remover_acentos(valido_val)
     status_g_clean = remover_acentos(status_g_val)
 
-    is_valido = "VALIDO" in valido_clean
+    is_valido = ("VALIDO" in valido_clean) and ("INVALIDO" not in valido_clean)
     status_afetam = ["EM MEDIACAO", "REVISAO RECUSADA", "NAO SOLICITADA"]
     is_afetando = is_valido and (status_g_clean in status_afetam)
 
@@ -271,7 +270,9 @@ def processar_ml():
 
 def processar_amazon():
   df = parse_csv_dinamico(
-      URL_CSV_AMAZON, ["PEDIDO", "IMPACTO", "MOTIVO", "PRODUTO"]
+      URL_CSV_AMAZON,
+      ["PEDIDO", "IMPACTO", "MOTIVO", "PRODUTO"],
+      default_header_idx=1,
   )
   print("COLUNAS AMAZON:", list(df.columns))
 
@@ -375,13 +376,13 @@ def processar_avaliacoes_amazon():
   df = parse_csv_dinamico(
       URL_CSV_AVALIACOES_AMZ,
       ["PEDIDO", "SITUACAO", "TEMPO DE IMPACTO", "ESTRELAS", "COMENTARIOS"],
+      default_header_idx=1,
   )
   print("COLUNAS AVALIACOES AMAZON:", list(df.columns))
 
   col_pedido = encontrar_coluna_exata(
       df, ["ID DO PEDIDO", "PEDIDO", "NUMERO DO PEDIDO"]
   )
-  # Garante que "Data" não pegue "Data da Ação"
   col_data = encontrar_coluna_exata(
       df,
       ["DATA", "DATA DA AVALIACAO", "DATA AVALIACAO"],
@@ -432,7 +433,10 @@ def processar_avaliacoes_amazon():
   registros = []
   for _, row in df.iterrows():
     pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ""
-    if not pedido_val:
+    coment_val = limpar_texto(row[col_comentarios]) if col_comentarios else ""
+    prod_nome = limpar_texto(row[col_produto]) if col_produto else ""
+
+    if not pedido_val and not coment_val and not prod_nome:
       continue
 
     tempo_val = (
@@ -443,12 +447,9 @@ def processar_avaliacoes_amazon():
     tempo_clean = remover_acentos(tempo_val)
     situacao_clean = remover_acentos(situacao_val)
 
-    # Afetando a Reputação: "Válidos" (ou "Válido") na coluna Tempo de Impacto E não está como "Removido" na coluna Situação
-    is_valido = "VALIDO" in tempo_clean
-    is_removido = "REMOVIDO" in situacao_clean
-    is_afetando = is_valido and not is_removido
-
-    prod_nome = limpar_texto(row[col_produto]) if col_produto else ""
+    is_valido = ("VALIDO" in tempo_clean) and ("INVALIDO" not in tempo_clean)
+    situacoes_afetam = ["RESPONDIDA", "CHAMADO ABERTO", "EM CHAMADO PREMIUM"]
+    is_afetando = is_valido and (situacao_clean in situacoes_afetam)
 
     registros.append({
         "pedido": pedido_val,
@@ -457,9 +458,7 @@ def processar_avaliacoes_amazon():
         "tempo_impacto": tempo_val,
         "situacao": situacao_val,
         "estrelas": limpar_texto(row[col_estrelas]) if col_estrelas else "",
-        "comentario": (
-            limpar_texto(row[col_comentarios]) if col_comentarios else ""
-        ),
+        "comentario": coment_val,
         "resposta": limpar_texto(row[col_resposta]) if col_resposta else "",
         "sku": limpar_texto(row[col_sku]) if col_sku else "N/A",
         "marca": extrair_marca(prod_nome),
