@@ -124,8 +124,13 @@
     .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
     .no-comments { color: #94a3b8; font-size: 12px; font-style: italic; }
 
+    .note-box-wrapper { display: flex; flex-direction: column; gap: 4px; }
     .note-textarea { width: 100%; height: 50px; padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; font-family: inherit; resize: vertical; outline: none; background: #fafafa; transition: border-color 0.2s, background 0.2s; }
     .note-textarea:focus { border-color: var(--primary); background: #ffffff; }
+    .note-status { font-size: 11px; color: var(--text-muted); min-height: 14px; font-weight: 600; }
+    .note-status.saving { color: var(--warning); }
+    .note-status.saved { color: var(--success); }
+    .note-status.error { color: var(--danger); }
   </style>
 </head>
 <body>
@@ -298,7 +303,7 @@
               <th style="width:22%">Produto</th>
               <th style="width:16%">Motivo</th>
               <th style="width:16%">Transportadora</th>
-              <th style="width:26%">Nota / Observação</th>
+              <th style="width:26%">Nota / Observação (Compartilhada)</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -495,7 +500,7 @@
               <th style="width:22%">Produto</th>
               <th style="width:18%">Motivo</th>
               <th style="width:16%">Transportadora</th>
-              <th style="width:26%">Nota / Observação</th>
+              <th style="width:26%">Nota / Observação (Compartilhada)</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -508,8 +513,13 @@
   <script>
     Chart.register(ChartDataLabels);
 
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbweCxSjRp2L2Vgx8fWCkmMs5GptsHmEU8-3LGRr1GrY-zSOPDpj7xxiVaJN2mQtVAC3/exec";
+    const NOTAS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1103009754&single=true&output=csv";
+
     const AMAZON_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg';
     const ML_LOGO_URL = 'https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__small@2x.png';
+
+    let sharedNotesMap = {};
 
     function normalizeText(str) {
       if (!str) return '';
@@ -538,6 +548,63 @@
         return new Date(parts[2], parts[1] - 1, parts[0]).getTime();
       }
       return null;
+    }
+
+    function parseCSVNotes(csvText) {
+      const map = {};
+      if (!csvText) return map;
+      const rows = [];
+      let row = [];
+      let field = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < csvText.length; i++) {
+        const c = csvText[i];
+        const next = csvText[i + 1];
+        if (inQuotes) {
+          if (c === '"' && next === '"') {
+            field += '"';
+            i++;
+          } else if (c === '"') {
+            inQuotes = false;
+          } else {
+            field += c;
+          }
+        } else {
+          if (c === '"') {
+            inQuotes = true;
+          } else if (c === ',') {
+            row.push(field);
+            field = '';
+          } else if (c === '\n' || (c === '\r' && next === '\n')) {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = '';
+            if (c === '\r') i++;
+          } else if (c === '\r') {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = '';
+          } else {
+            field += c;
+          }
+        }
+      }
+      if (field || row.length > 0) {
+        row.push(field);
+        rows.push(row);
+      }
+
+      for (let i = 1; i < rows.length; i++) {
+        const pedido = cleanVal(rows[i][0]);
+        const nota = rows[i][1] !== undefined ? String(rows[i][1]) : '';
+        if (pedido) {
+          map[pedido] = nota;
+        }
+      }
+      return map;
     }
 
     function toggleSidebar() {
@@ -602,25 +669,34 @@
       renderAMZ();
     }
 
-    fetch('impactos_ml.json?v=' + new Date().getTime())
-      .then(res => res.json())
-      .then(data => {
-        rawDataML = data.ml || [];
-        rawDataAMZ = data.amazon || [];
-        
-        populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
-        populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
+    async function initDashboard() {
+      const fetchNotesCSV = fetch(NOTAS_CSV_URL + '&t=' + new Date().getTime())
+        .then(r => r.text())
+        .then(txt => parseCSVNotes(txt))
+        .catch(() => ({}));
 
-        populateConsultaFilters('filter-transp-consulta-ml', 'filter-motivo-consulta-ml', rawDataML);
-        populateConsultaFilters('filter-transp-consulta-amz', 'filter-motivo-consulta-amz', rawDataAMZ);
+      const fetchDados = fetch('impactos_ml.json?v=' + new Date().getTime()).then(res => res.json());
 
-        renderML();
-        renderAMZ();
-        
-        const savedPage = localStorage.getItem('activePage') || 'page-impactos-ml';
-        const targetLink = document.querySelector(`.menu-item[data-page="${savedPage}"]`);
-        navigatePage(savedPage, targetLink);
-      });
+      const [notesData, data] = await Promise.all([fetchNotesCSV, fetchDados]);
+      sharedNotesMap = notesData || {};
+      rawDataML = data.ml || [];
+      rawDataAMZ = data.amazon || [];
+      
+      populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
+      populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
+
+      populateConsultaFilters('filter-transp-consulta-ml', 'filter-motivo-consulta-ml', rawDataML);
+      populateConsultaFilters('filter-transp-consulta-amz', 'filter-motivo-consulta-amz', rawDataAMZ);
+
+      renderML();
+      renderAMZ();
+      
+      const savedPage = localStorage.getItem('activePage') || 'page-impactos-ml';
+      const targetLink = document.querySelector(`.menu-item[data-page="${savedPage}"]`);
+      navigatePage(savedPage, targetLink);
+    }
+
+    initDashboard();
 
     function populateMarcaFilterOptions(selectId, dataList) {
       const select = document.getElementById(selectId);
@@ -737,14 +813,40 @@
       renderFunc();
     }
 
-    function saveOrderNote(orderId, noteText) {
-      if (!orderId || orderId === '-') return;
-      localStorage.setItem(`order_note_${orderId}`, noteText);
-    }
-
     function getOrderNote(orderId) {
       if (!orderId || orderId === '-') return '';
-      return localStorage.getItem(`order_note_${orderId}`) || '';
+      return sharedNotesMap[orderId] || '';
+    }
+
+    async function saveOrderNote(orderId, noteText, statusElemId) {
+      if (!orderId || orderId === '-') return;
+      sharedNotesMap[orderId] = noteText;
+
+      const statusEl = document.getElementById(statusElemId);
+      if (statusEl) {
+        statusEl.className = 'note-status saving';
+        statusEl.innerText = 'Salvando na planilha...';
+      }
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ pedido: orderId, nota: noteText })
+        });
+
+        if (statusEl) {
+          statusEl.className = 'note-status saved';
+          statusEl.innerText = '✓ Salvo para todos';
+          setTimeout(() => { if (statusEl) statusEl.innerText = ''; }, 3000);
+        }
+      } catch (err) {
+        if (statusEl) {
+          statusEl.className = 'note-status error';
+          statusEl.innerText = 'Erro ao salvar nota.';
+        }
+      }
     }
 
     // ================= RENDERIZADOR AMAZON =================
@@ -1118,10 +1220,11 @@
         return;
       }
 
-      list.forEach(r => {
+      list.forEach((r, idx) => {
         const orderId = getPedidoId(r) || '-';
         const linkOrder = `https://sellercentral.amazon.com/orders-v3/order/${orderId}`;
         const savedNote = getOrderNote(orderId);
+        const statusId = `note-status-amz-${idx}`;
 
         tbody.innerHTML += `<tr>
           <td>
@@ -1134,7 +1237,10 @@
           <td>${r.motivo || '-'}</td>
           <td>${r.transportadora || '-'}</td>
           <td>
-            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${orderId}', this.value)">${savedNote}</textarea>
+            <div class="note-box-wrapper">
+              <textarea class="note-textarea" placeholder="Digite uma nota visível para todos..." onchange="saveOrderNote('${orderId}', this.value, '${statusId}')">${savedNote}</textarea>
+              <span id="${statusId}" class="note-status"></span>
+            </div>
           </td>
         </tr>`;
       });
@@ -1420,7 +1526,7 @@
         return;
       }
 
-      list.forEach(r => {
+      list.forEach((r, idx) => {
         const pedido = getPedidoId(r);
         const nVenda = getNVendaId(r);
         
@@ -1431,6 +1537,7 @@
         const linkOrder = `https://vendedores.mercadolivre.com.br/vendas/${targetLinkId}/detalhe`;
         const noteKey = pedido || nVenda;
         const savedNote = getOrderNote(noteKey);
+        const statusId = `note-status-ml-${idx}`;
 
         tbody.innerHTML += `<tr>
           <td>
@@ -1446,7 +1553,10 @@
           <td>${r.motivo || '-'}</td>
           <td>${r.transportadora || '-'}</td>
           <td>
-            <textarea class="note-textarea" placeholder="Digite uma nota sobre este pedido..." onchange="saveOrderNote('${noteKey}', this.value)">${savedNote}</textarea>
+            <div class="note-box-wrapper">
+              <textarea class="note-textarea" placeholder="Digite uma nota visível para todos..." onchange="saveOrderNote('${noteKey}', this.value, '${statusId}')">${savedNote}</textarea>
+              <span id="${statusId}" class="note-status"></span>
+            </div>
           </td>
         </tr>`;
       });
