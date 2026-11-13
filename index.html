@@ -9,9 +9,9 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <style>
     :root {
-      --sidebar-expanded-width: 270px;
+      --sidebar-expanded-width: 260px;
       --sidebar-collapsed-width: 70px;
-      --bg-color: #f8fafc;
+      --bg-color: #f1f5f9;
       --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #64748b;
@@ -27,7 +27,7 @@
     }
 
     * { box-sizing: border-box; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: var(--text-main); display: flex; min-height: 100vh; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: var(--text-main); display: flex; min-height: 100vh; }
 
     .sidebar { width: var(--sidebar-expanded-width); background-color: #ffffff; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: sticky; top: 0; height: 100vh; z-index: 100; overflow-x: hidden; flex-shrink: 0; }
     .sidebar.collapsed { width: var(--sidebar-collapsed-width); }
@@ -53,109 +53,200 @@
     .toggle-icon { font-size: 18px; flex-shrink: 0; }
 
     .main-wrapper { flex: 1; padding: 28px 36px; overflow-y: auto; min-width: 0; }
-    .main-wrapper.no-scroll-mode { height: 100vh; overflow: hidden; padding: 14px 22px; display: flex; flex-direction: column; }
+    .main-wrapper.no-scroll-mode { height: 100vh; overflow: hidden; padding: 12px 18px; display: flex; flex-direction: column; }
 
     .page-section { display: none; }
     .page-section.active { display: block; }
     #page-reputacao-geral.active { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
 
-    /* ESTILOS DA PÁGINA INICIAL: REPUTAÇÃO GERAL (SEM SCROLL) */
-    .rg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-shrink: 0; gap: 12px; }
-    .rg-title-group { display: flex; align-items: baseline; gap: 12px; }
-    .rg-header h1 { font-size: 20px; font-weight: 800; color: var(--text-main); margin: 0; }
-    .rg-date-tag { font-size: 12px; font-weight: 600; color: var(--text-muted); background: #e2e8f0; padding: 3px 10px; border-radius: 999px; }
+    /* ================= ESTILOS DA PÁGINA INICIAL: REPUTAÇÃO GERAL (5 COLUNAS SEM SCROLL) ================= */
+    .rg-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      flex-shrink: 0;
+      gap: 12px;
+      background: #ffffff;
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .rg-title-group { display: flex; align-items: center; gap: 12px; }
+    .rg-header h1 { font-size: 19px; font-weight: 800; color: var(--text-main); margin: 0; letter-spacing: -0.2px; }
+    .rg-date-pill-hdr {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #92400e;
+      background: #fffbeb;
+      border: 1px solid #f59e0b;
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
 
-    .rg-grid-container {
+    .rg-columns-grid {
       flex: 1;
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: repeat(5, 1fr);
       gap: 12px;
       min-height: 0;
     }
 
-    .rg-quadro {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 10px 14px;
+    .rg-mp-col {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
       display: flex;
       flex-direction: column;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      min-height: 0;
       overflow: hidden;
+      min-height: 0;
+      position: relative;
     }
 
-    .rg-quadro-ml { grid-column: span 4; border-top: 4px solid #facc15; }
-    .rg-quadro-amz { grid-column: span 2; border-top: 4px solid #ff9900; }
-    .rg-quadro-magalu { grid-column: span 2; border-top: 4px solid #0086ff; }
-    .rg-quadro-via { grid-column: span 2; border-top: 4px solid #16a34a; }
-    .rg-quadro-shopee { grid-column: span 2; border-top: 4px solid #ee4d2d; }
+    .rg-mp-top-bar { height: 6px; width: 100%; flex-shrink: 0; }
+    .bar-ml { background: linear-gradient(90deg, #ffe600, #facc15); }
+    .bar-amz { background: linear-gradient(90deg, #ff9900, #f59e0b); }
+    .bar-magalu { background: linear-gradient(90deg, #0086ff, #38bdf8); }
+    .bar-via { background: linear-gradient(90deg, #003399, #1d4ed8); }
+    .bar-shopee { background: linear-gradient(90deg, #ee4d2d, #f97316); }
 
-    .rg-quadro-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #f1f5f9;
-      flex-shrink: 0;
-    }
-    .rg-quadro-title { font-size: 13px; font-weight: 800; color: #1e293b; text-transform: uppercase; letter-spacing: 0.4px; display: flex; align-items: center; gap: 6px; }
-    .rg-quadro-badge { font-size: 10px; font-weight: 700; color: var(--text-muted); background: #f1f5f9; padding: 2px 7px; border-radius: 4px; }
-
-    .rg-metrics-row {
+    .rg-mp-body {
       flex: 1;
-      display: grid;
+      padding: 12px 12px 12px 12px;
+      display: flex;
+      flex-direction: column;
       gap: 8px;
       min-height: 0;
     }
-    .rg-cols-4 { grid-template-columns: repeat(4, 1fr); }
-    .rg-cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .rg-cols-2 { grid-template-columns: repeat(2, 1fr); }
 
-    .rg-kpi-card {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 8px 10px;
+    .rg-mp-header {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 0;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 4px 0 6px 0;
+      flex-shrink: 0;
     }
-    .rg-kpi-label {
+    .rg-mp-logo {
+      height: 24px;
+      max-width: 34px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .rg-mp-title {
+      font-size: 15px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .rg-mp-date-banner {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #fffbeb;
+      border: 1px solid #f59e0b;
+      color: #92400e;
       font-size: 11px;
       font-weight: 700;
-      color: #475569;
+      padding: 5px 10px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .rg-mp-cards-stack {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .rg-metric-box {
+      flex: 1;
+      max-height: 110px;
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border: 1px solid #e2e8f0;
+      border-left-width: 5px;
+      background: #f8fafc;
+      min-height: 0;
+      transition: transform 0.15s;
+    }
+    .rg-metric-box:hover { transform: translateY(-1px); }
+
+    .rg-metric-box.state-melhora {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+      border-left-color: #059669;
+    }
+    .rg-metric-box.state-piora {
+      background: #fef2f2;
+      border-color: #fecaca;
+      border-left-color: #dc2626;
+    }
+    .rg-metric-box.state-estavel {
+      background: #fffbeb;
+      border-color: #fde68a;
+      border-left-color: #d97706;
+    }
+    .rg-metric-box.state-neutro {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      border-left-color: #94a3b8;
+    }
+
+    .rg-metric-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 3px;
+      min-width: 0;
+      flex: 1;
+    }
+    .rg-metric-name {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #1e293b;
       line-height: 1.2;
     }
-    .rg-kpi-value {
-      font-size: clamp(20px, 2.3vw, 28px);
-      font-weight: 800;
-      color: #0f172a;
-      line-height: 1.1;
-      margin: 2px 0;
-    }
-    .rg-kpi-status {
+    .rg-metric-sub {
       font-size: 10.5px;
       font-weight: 700;
-      padding: 3px 6px;
-      border-radius: 5px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      width: fit-content;
-      max-width: 100%;
+      line-height: 1.2;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .rg-status-melhora { background: #dcfce7; color: #15803d; }
-    .rg-status-piora { background: #fee2e2; color: #b91c1c; }
-    .rg-status-igual { background: #e2e8f0; color: #475569; }
+    .state-melhora .rg-metric-sub { color: #047857; }
+    .state-piora .rg-metric-sub { color: #b91c1c; }
+    .state-estavel .rg-metric-sub { color: #b45309; }
+    .state-neutro .rg-metric-sub { color: #64748b; }
 
-    /* ESTILOS GERAIS DAS DEMAIS PÁGINAS */
+    .rg-metric-val {
+      font-size: clamp(19px, 1.85vw, 26px);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+    .state-melhora .rg-metric-val { color: #047857; }
+    .state-piora .rg-metric-val { color: #b91c1c; }
+    .state-estavel .rg-metric-val { color: #b45309; }
+    .state-neutro .rg-metric-val { color: #0f172a; }
+
+    /* ================= ESTILOS GERAIS DAS DEMAIS PÁGINAS ================= */
     .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
     .header-bar h1 { font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0; }
     
@@ -287,12 +378,12 @@
 
   <main class="main-wrapper no-scroll-mode" id="main-wrapper">
 
-    <!-- PÁGINA INICIAL: REPUTAÇÃO GERAL (SEM SCROLL) -->
+    <!-- PÁGINA INICIAL: REPUTAÇÃO GERAL (5 COLUNAS SEM SCROLL) -->
     <section id="page-reputacao-geral" class="page-section active">
       <div class="rg-header">
         <div class="rg-title-group">
           <h1>Reputação Geral</h1>
-          <span class="rg-date-tag" id="rg-current-date">Atualização: -</span>
+          <span class="rg-date-pill-hdr" id="rg-current-date">⚠️ Dados de -</span>
         </div>
         <div class="filter-controls-group">
           <select id="filter-comp-rg" class="select-filter-hdr" onchange="renderReputacaoGeral()">
@@ -304,68 +395,101 @@
         </div>
       </div>
 
-      <div class="rg-grid-container">
-        <!-- QUADRO 1: MERCADO LIVRE -->
-        <div class="rg-quadro rg-quadro-ml">
-          <div class="rg-quadro-header">
-            <span class="rg-quadro-title">🛍️ Mercado Livre</span>
-            <span class="rg-quadro-badge">4 Indicadores</span>
-          </div>
-          <div class="rg-metrics-row rg-cols-4">
-            <div class="rg-kpi-card" id="rg-card-reclamacoes_ml"></div>
-            <div class="rg-kpi-card" id="rg-card-mediacoes_ml"></div>
-            <div class="rg-kpi-card" id="rg-card-vendas_canceladas_ml"></div>
-            <div class="rg-kpi-card" id="rg-card-envios_incorretos_ml"></div>
-          </div>
-        </div>
-
-        <!-- QUADRO 2: AMAZON -->
-        <div class="rg-quadro rg-quadro-amz">
-          <div class="rg-quadro-header">
-            <span class="rg-quadro-title">📦 Amazon</span>
-            <span class="rg-quadro-badge">2 Indicadores</span>
-          </div>
-          <div class="rg-metrics-row rg-cols-2">
-            <div class="rg-kpi-card" id="rg-card-pedidos_problema_amz"></div>
-            <div class="rg-kpi-card" id="rg-card-problemas_envios_amz"></div>
+      <div class="rg-columns-grid">
+        <!-- COLUNA 1: MERCADO LIVRE -->
+        <div class="rg-mp-col">
+          <div class="rg-mp-top-bar bar-ml"></div>
+          <div class="rg-mp-body">
+            <div class="rg-mp-header">
+              <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__small@2x.png" class="rg-mp-logo" alt="ML">
+              <span class="rg-mp-title">Mercado Livre</span>
+            </div>
+            <div class="rg-mp-date-banner" id="rg-date-ml">⚠️ Dados de -</div>
+            <div class="rg-mp-cards-stack">
+              <div class="rg-metric-box" id="rg-card-reclamacoes_ml"></div>
+              <div class="rg-metric-box" id="rg-card-mediacoes_ml"></div>
+              <div class="rg-metric-box" id="rg-card-vendas_canceladas_ml"></div>
+              <div class="rg-metric-box" id="rg-card-envios_incorretos_ml"></div>
+            </div>
           </div>
         </div>
 
-        <!-- QUADRO 3: MAGALU -->
-        <div class="rg-quadro rg-quadro-magalu">
-          <div class="rg-quadro-header">
-            <span class="rg-quadro-title">💙 Magalu</span>
-            <span class="rg-quadro-badge">3 Indicadores</span>
-          </div>
-          <div class="rg-metrics-row rg-cols-3">
-            <div class="rg-kpi-card" id="rg-card-agilidade_magalu"></div>
-            <div class="rg-kpi-card" id="rg-card-cancelamentos_magalu"></div>
-            <div class="rg-kpi-card" id="rg-card-avaliacao_magalu"></div>
-          </div>
-        </div>
-
-        <!-- QUADRO 4: VIA -->
-        <div class="rg-quadro rg-quadro-via">
-          <div class="rg-quadro-header">
-            <span class="rg-quadro-title">🛒 VIA</span>
-            <span class="rg-quadro-badge">2 Indicadores</span>
-          </div>
-          <div class="rg-metrics-row rg-cols-2">
-            <div class="rg-kpi-card" id="rg-card-reclamacoes_via"></div>
-            <div class="rg-kpi-card" id="rg-card-cancelamentos_via"></div>
+        <!-- COLUNA 2: AMAZON -->
+        <div class="rg-mp-col">
+          <div class="rg-mp-top-bar bar-amz"></div>
+          <div class="rg-mp-body">
+            <div class="rg-mp-header">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="rg-mp-logo" alt="Amazon">
+              <span class="rg-mp-title">Amazon</span>
+            </div>
+            <div class="rg-mp-date-banner" id="rg-date-amz">⚠️ Dados de -</div>
+            <div class="rg-mp-cards-stack">
+              <div class="rg-metric-box" id="rg-card-pedidos_problema_amz"></div>
+              <div class="rg-metric-box" id="rg-card-problemas_envios_amz"></div>
+            </div>
           </div>
         </div>
 
-        <!-- QUADRO 5: SHOPEE -->
-        <div class="rg-quadro rg-quadro-shopee">
-          <div class="rg-quadro-header">
-            <span class="rg-quadro-title">🧡 Shopee</span>
-            <span class="rg-quadro-badge">3 Indicadores</span>
+        <!-- COLUNA 3: MAGAZINE LUIZA -->
+        <div class="rg-mp-col">
+          <div class="rg-mp-top-bar bar-magalu"></div>
+          <div class="rg-mp-body">
+            <div class="rg-mp-header">
+              <svg class="rg-mp-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="10" fill="#0086ff"/>
+                <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="22">M</text>
+                <path d="M10 31 Q20 35 30 31" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              </svg>
+              <span class="rg-mp-title">Magazine Luiza</span>
+            </div>
+            <div class="rg-mp-date-banner" id="rg-date-magalu">⚠️ Dados de -</div>
+            <div class="rg-mp-cards-stack">
+              <div class="rg-metric-box" id="rg-card-agilidade_magalu"></div>
+              <div class="rg-metric-box" id="rg-card-cancelamentos_magalu"></div>
+              <div class="rg-metric-box" id="rg-card-avaliacao_magalu"></div>
+            </div>
           </div>
-          <div class="rg-metrics-row rg-cols-3">
-            <div class="rg-kpi-card" id="rg-card-nao_cumprimento_shopee"></div>
-            <div class="rg-kpi-card" id="rg-card-taxa_resposta_shopee"></div>
-            <div class="rg-kpi-card" id="rg-card-nota_shopee"></div>
+        </div>
+
+        <!-- COLUNA 4: CASAS BAHIA / VIA -->
+        <div class="rg-mp-col">
+          <div class="rg-mp-top-bar bar-via"></div>
+          <div class="rg-mp-body">
+            <div class="rg-mp-header">
+              <svg class="rg-mp-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="10" fill="#003399"/>
+                <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="16">CB</text>
+                <circle cx="31" cy="10" r="4" fill="#e30613"/>
+              </svg>
+              <span class="rg-mp-title">Casas Bahia</span>
+            </div>
+            <div class="rg-mp-date-banner" id="rg-date-via">⚠️ Dados de -</div>
+            <div class="rg-mp-cards-stack">
+              <div class="rg-metric-box" id="rg-card-reclamacoes_via"></div>
+              <div class="rg-metric-box" id="rg-card-cancelamentos_via"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUNA 5: SHOPEE -->
+        <div class="rg-mp-col">
+          <div class="rg-mp-top-bar bar-shopee"></div>
+          <div class="rg-mp-body">
+            <div class="rg-mp-header">
+              <svg class="rg-mp-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="10" fill="#ee4d2d"/>
+                <path d="M14 14 C14 9, 26 9, 26 14" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+                <rect x="10" y="14" width="20" height="19" rx="3" fill="#ffffff"/>
+                <text x="50%" y="25" dominant-baseline="middle" text-anchor="middle" fill="#ee4d2d" font-family="Arial, sans-serif" font-weight="900" font-size="14">S</text>
+              </svg>
+              <span class="rg-mp-title">Shopee</span>
+            </div>
+            <div class="rg-mp-date-banner" id="rg-date-shopee">⚠️ Dados de -</div>
+            <div class="rg-mp-cards-stack">
+              <div class="rg-metric-box" id="rg-card-nao_cumprimento_shopee"></div>
+              <div class="rg-metric-box" id="rg-card-taxa_resposta_shopee"></div>
+              <div class="rg-metric-box" id="rg-card-nota_shopee"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1019,12 +1143,35 @@
     function parseDateToTimestamp(dateStr) {
       if (!dateStr) return null;
       const cleanStr = String(dateStr).trim().split(' ')[0];
+      if (cleanStr.includes('-')) {
+        const isoParts = cleanStr.split('-');
+        if (isoParts.length === 3 && isoParts[0].length === 4) {
+          return new Date(parseInt(isoParts[0]), parseInt(isoParts[1]) - 1, parseInt(isoParts[2])).getTime();
+        }
+      }
       const parts = cleanStr.split('/');
       if (parts.length === 3) {
         const year = parts[2].length === 2 ? '20' + parts[2] : parts[2];
-        return new Date(year, parts[1] - 1, parts[0]).getTime();
+        return new Date(parseInt(year), parseInt(parts[1]) - 1, parseInt(parts[0])).getTime();
       }
       return null;
+    }
+
+    function formatDisplayDate(dateStr) {
+      if (!dateStr) return '';
+      const cleanStr = String(dateStr).trim().split(' ')[0];
+      if (cleanStr.includes('-')) {
+        const p = cleanStr.split('-');
+        if (p.length === 3 && p[0].length === 4) {
+          return `${p[2].padStart(2, '0')}/${p[1].padStart(2, '0')}/${p[0]}`;
+        }
+      }
+      const parts = cleanStr.split('/');
+      if (parts.length === 3) {
+        const year = parts[2].length === 2 ? '20' + parts[2] : parts[2];
+        return `${parts[0].padStart(2, '0')}/${parts[1].padStart(2, '0')}/${year}`;
+      }
+      return cleanStr;
     }
 
     function parseCSVNotes(csvText) {
@@ -1133,36 +1280,43 @@
     let chartSkusVIAObj = null, chartTranspVIAObj = null, chartMotivosVIAObj = null;
 
     const METRICAS_CONFIG = [
-      { key: 'reclamacoes_ml', label: 'Reclamações ML', higherIsBetter: false },
-      { key: 'mediacoes_ml', label: 'Mediações ML', higherIsBetter: false },
-      { key: 'vendas_canceladas_ml', label: 'Vendas Canceladas ML', higherIsBetter: false },
-      { key: 'envios_incorretos_ml', label: 'Envios Incorretos ML', higherIsBetter: false },
-      { key: 'pedidos_problema_amz', label: 'Pedidos com Problema Amazon', higherIsBetter: false },
-      { key: 'problemas_envios_amz', label: 'Problemas Envios Amazon', higherIsBetter: false },
-      { key: 'agilidade_magalu', label: 'Agilidade de Atendimento MagaLu', higherIsBetter: true },
-      { key: 'cancelamentos_magalu', label: 'Cancelamentos MagaLu', higherIsBetter: false },
-      { key: 'avaliacao_magalu', label: 'Avaliação da Loja MagaLu', higherIsBetter: true },
-      { key: 'reclamacoes_via', label: 'Reclamações VIA', higherIsBetter: false },
-      { key: 'cancelamentos_via', label: 'Cancelamentos VIA', higherIsBetter: false },
-      { key: 'nao_cumprimento_shopee', label: 'Taxa de Não Cumprimento Shoppe', higherIsBetter: false },
-      { key: 'taxa_resposta_shopee', label: 'Taxa de Resposta Shopee', higherIsBetter: true },
-      { key: 'nota_shopee', label: 'Nota da Loja Shopee', higherIsBetter: true }
+      { key: 'reclamacoes_ml', label: 'Reclamações ML', shortLabel: 'Reclamações', higherIsBetter: false },
+      { key: 'mediacoes_ml', label: 'Mediações ML', shortLabel: 'Mediações', higherIsBetter: false },
+      { key: 'vendas_canceladas_ml', label: 'Vendas Canceladas ML', shortLabel: 'Vendas Canceladas', higherIsBetter: false },
+      { key: 'envios_incorretos_ml', label: 'Envios Incorretos ML', shortLabel: 'Envios Incorretos', higherIsBetter: false },
+      { key: 'pedidos_problema_amz', label: 'Pedidos com Problema Amazon', shortLabel: 'Pedidos com Problema', higherIsBetter: false },
+      { key: 'problemas_envios_amz', label: 'Problemas Envios Amazon', shortLabel: 'Problemas Envios', higherIsBetter: false },
+      { key: 'agilidade_magalu', label: 'Agilidade de Atendimento MagaLu', shortLabel: 'Agilidade Atendimento', higherIsBetter: true },
+      { key: 'cancelamentos_magalu', label: 'Cancelamentos MagaLu', shortLabel: 'Cancelamentos', higherIsBetter: false },
+      { key: 'avaliacao_magalu', label: 'Avaliação da Loja MagaLu', shortLabel: 'Avaliação da Loja', higherIsBetter: true },
+      { key: 'reclamacoes_via', label: 'Reclamações VIA', shortLabel: 'Reclamações', higherIsBetter: false },
+      { key: 'cancelamentos_via', label: 'Cancelamentos VIA', shortLabel: 'Cancelamentos', higherIsBetter: false },
+      { key: 'nao_cumprimento_shopee', label: 'Taxa de Não Cumprimento Shoppe', shortLabel: 'Taxa de Não Cumprimento', higherIsBetter: false },
+      { key: 'taxa_resposta_shopee', label: 'Taxa de Resposta Shopee', shortLabel: 'Taxa de Resposta', higherIsBetter: true },
+      { key: 'nota_shopee', label: 'Nota da Loja Shopee', shortLabel: 'Nota da Loja', higherIsBetter: true }
     ];
 
     function renderReputacaoGeral() {
       const mode = document.getElementById('filter-comp-rg')?.value || 'PREV';
       const dateTagEl = document.getElementById('rg-current-date');
+      const dateBanners = ['rg-date-ml', 'rg-date-amz', 'rg-date-magalu', 'rg-date-via', 'rg-date-shopee'];
 
       if (!rawNotasPage || rawNotasPage.length === 0) {
-        if (dateTagEl) dateTagEl.innerText = 'Sem dados na Notas_Page';
+        if (dateTagEl) dateTagEl.innerText = '⚠️ Sem dados na Notas_Page';
+        dateBanners.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.innerText = '⚠️ Sem data';
+        });
         METRICAS_CONFIG.forEach(m => {
           const el = document.getElementById(`rg-card-${m.key}`);
-          if (el) el.innerHTML = `<span class="rg-kpi-label">${m.label}</span><div class="rg-kpi-value">-</div><span class="rg-kpi-status rg-status-igual">Sem histórico</span>`;
+          if (el) {
+            el.className = 'rg-metric-box state-neutro';
+            el.innerHTML = `<div class="rg-metric-info"><span class="rg-metric-name">${m.shortLabel}</span><span class="rg-metric-sub">Sem histórico</span></div><div class="rg-metric-val">-</div>`;
+          }
         });
         return;
       }
 
-      // Ordena cronologicamente se houver datas válidas; caso contrário preserva ordem das linhas
       let sorted = [...rawNotasPage];
       const hasDates = sorted.some(r => parseDateToTimestamp(r.data) !== null);
       if (hasDates) {
@@ -1170,18 +1324,23 @@
       }
 
       const latest = sorted[sorted.length - 1];
-      if (dateTagEl) {
-        dateTagEl.innerText = latest.data ? `Última atualização: ${latest.data}` : `Registro #${sorted.length}`;
-      }
+      const latestDateFormatted = formatDisplayDate(latest.data);
+      const displayDateText = latestDateFormatted ? `⚠️ Dados de ${latestDateFormatted}` : `⚠️ Registro #${sorted.length}`;
 
-      // Seleciona o registro base para comparação
+      if (dateTagEl) dateTagEl.innerText = displayDateText;
+      dateBanners.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = displayDateText;
+      });
+
       let compRecord = null;
       let compLabel = '';
 
       if (mode === 'PREV') {
         if (sorted.length >= 2) {
           compRecord = sorted[sorted.length - 2];
-          compLabel = compRecord.data ? `vs ${compRecord.data}` : 'vs anterior';
+          const prevDateFmt = formatDisplayDate(compRecord.data);
+          compLabel = prevDateFmt ? prevDateFmt : 'anterior';
         }
       } else {
         const daysAgo = parseInt(mode);
@@ -1201,11 +1360,12 @@
             }
           }
           compRecord = bestCandidate || sorted[Math.max(0, sorted.length - 1 - daysAgo)];
-          compLabel = compRecord && compRecord.data ? `vs ${compRecord.data} (${daysAgo}d)` : `vs ${daysAgo}d ant.`;
+          const prevDateFmt = compRecord ? formatDisplayDate(compRecord.data) : '';
+          compLabel = prevDateFmt ? `${prevDateFmt}` : `${daysAgo}d ant.`;
         } else if (sorted.length >= 2) {
           const idx = Math.max(0, sorted.length - 1 - daysAgo);
           compRecord = sorted[idx];
-          compLabel = `vs ${daysAgo} reg. ant.`;
+          compLabel = `${daysAgo} reg. ant.`;
         }
       }
 
@@ -1218,7 +1378,8 @@
         const prevNum = (compRecord && compRecord.valores) ? compRecord.valores[m.key] : null;
         const prevRaw = (compRecord && compRecord.raw && compRecord.raw[m.key]) ? compRecord.raw[m.key] : (prevNum !== null && prevNum !== undefined ? String(prevNum) : '-');
 
-        let statusHtml = `<span class="rg-kpi-status rg-status-igual">• Sem histórico anterior</span>`;
+        let boxState = 'state-neutro';
+        let subText = 'Sem histórico anterior';
 
         if (currNum !== null && currNum !== undefined && prevNum !== null && prevNum !== undefined) {
           const diff = Number((currNum - prevNum).toFixed(2));
@@ -1226,21 +1387,27 @@
           const suffix = isPercent ? '%' : '';
 
           if (Math.abs(diff) < 0.0001) {
-            statusHtml = `<span class="rg-kpi-status rg-status-igual">● Estável (${prevRaw} ${compLabel})</span>`;
+            boxState = 'state-estavel';
+            subText = `● Estável (ant: ${prevRaw} • ${compLabel})`;
           } else {
             const improved = m.higherIsBetter ? (diff > 0) : (diff < 0);
             const arrow = diff > 0 ? '▲' : '▼';
             const sign = diff > 0 ? '+' : '';
-            const cls = improved ? 'rg-status-melhora' : 'rg-status-piora';
+            const diffFormatted = String(diff).replace('.', ',');
+            boxState = improved ? 'state-melhora' : 'state-piora';
             const textoStatus = improved ? 'Melhora' : 'Piora';
-            statusHtml = `<span class="rg-kpi-status ${cls}" title="Anterior: ${prevRaw} (${compLabel})">${arrow} ${textoStatus} (${sign}${diff}${suffix} | ant: ${prevRaw})</span>`;
+            subText = `${arrow} ${textoStatus} (${sign}${diffFormatted}${suffix} | ant: ${prevRaw})`;
           }
         }
 
+        cardEl.className = `rg-metric-box ${boxState}`;
+        cardEl.title = `${m.label}: ${currRaw}${prevRaw !== '-' ? ` | Anterior (${compLabel}): ${prevRaw}` : ''}`;
         cardEl.innerHTML = `
-          <span class="rg-kpi-label">${m.label}</span>
-          <div class="rg-kpi-value">${currRaw}</div>
-          ${statusHtml}
+          <div class="rg-metric-info">
+            <span class="rg-metric-name">${m.shortLabel}</span>
+            <span class="rg-metric-sub">${subText}</span>
+          </div>
+          <div class="rg-metric-val">${currRaw}</div>
         `;
       });
     }
@@ -1368,7 +1535,6 @@
       renderAvaliacoesAMZ();
       renderVIA();
       
-      // Sempre abre na Page Inicial: Reputação Geral
       const initialLink = document.querySelector('.menu-item[data-page="page-reputacao-geral"]');
       navigatePage('page-reputacao-geral', initialLink);
     }
