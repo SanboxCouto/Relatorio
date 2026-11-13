@@ -46,6 +46,27 @@ def limpar_texto(val):
   return s
 
 
+def normalizar_data_str(val):
+  s = limpar_texto(val)
+  if not s:
+    return ""
+  s_date = s.split(" ")[0]
+  # Converte yyyy-mm-dd para dd/mm/yyyy
+  m_iso = re.match(r"^(\d{4})-(\d{2})-(\d{2})$", s_date)
+  if m_iso:
+    return f"{m_iso.group(3)}/{m_iso.group(2)}/{m_iso.group(1)}"
+  # Garante dd/mm/yyyy
+  m_br = re.match(r"^(\d{1,2})/(\d{1,2})/(\d{2,4})$", s_date)
+  if m_br:
+    d = m_br.group(1).zfill(2)
+    m = m_br.group(2).zfill(2)
+    y = m_br.group(3)
+    if len(y) == 2:
+      y = "20" + y
+    return f"{d}/{m}/{y}"
+  return s
+
+
 def extrair_numero(val):
   if pd.isna(val) or val is None:
     return None
@@ -169,14 +190,30 @@ def encontrar_coluna_exata(df, candidatos, excluir_substrings=None):
 def processar_notas_page():
   resp = requests.get(URL_CSV_NOTAS_PAGE, timeout=30)
   resp.encoding = "utf-8"
-  # Cabeçalhos exatamente na linha 1 (header=0)
   df = pd.read_csv(io.StringIO(resp.text), header=0, dtype=str)
   df.columns = [str(c).strip() for c in df.columns]
   print("COLUNAS NOTAS_PAGE:", list(df.columns))
 
   col_data = encontrar_coluna_exata(
-      df, ["DATA", "DIA", "ATUALIZACAO", "DATA ATUALIZACAO"]
+      df,
+      [
+          "DATA",
+          "DIA",
+          "ATUALIZACAO",
+          "DATA ATUALIZACAO",
+          "DATA DA ATUALIZACAO",
+          "PERIODO",
+          "FECHA",
+      ],
   )
+
+  # Fallback: verifica se alguma coluna contém padrão de data (ex: Unnamed: 0)
+  if col_data is None and len(df.columns) > 0:
+    for c in df.columns:
+      amostra = df[c].dropna().astype(str).head(5).tolist()
+      if any(re.search(r"\d{1,4}[/-]\d{1,2}[/-]\d{1,4}", v) for v in amostra):
+        col_data = c
+        break
 
   mapeamento_metricas = {
       "reclamacoes_ml": ["Reclamações ML", "Reclamacoes ML"],
@@ -208,7 +245,7 @@ def processar_notas_page():
 
   registros = []
   for _, row in df.iterrows():
-    data_str = limpar_texto(row[col_data]) if col_data else ""
+    data_str = normalizar_data_str(row[col_data]) if col_data else ""
     item = {"data": data_str, "valores": {}, "raw": {}}
     tem_algum_dado = False
 
