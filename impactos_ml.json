@@ -335,12 +335,12 @@
       "marca": "FOGAO",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "30/09/2026",
       "comentario": "Botão de Acendimento Automático Ñ Funciona",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000018573474614",
@@ -410,7 +410,7 @@
       "marca": "FOGAO",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Não Solicitada",
       "tempo_impacto": "Válido",
       "data_pedido": "02/10/2026",
       "comentario": "Vidro Frontal do Fogão TODO Quebrado",
@@ -860,7 +860,7 @@
       "marca": "FOGAO",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Não Solicitada",
       "tempo_impacto": "Válido",
       "data_pedido": "13/10/2026",
       "comentario": "Mesa do Fogão Amassada e Estalo na Porta do Forno",
@@ -1145,12 +1145,12 @@
       "marca": "ELECTROLUX",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "21/10/2026",
       "comentario": "Não Funciona e Apresenta Erro",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000018941719384",
@@ -1971,11 +1971,11 @@
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Não Solicitada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "28/09/2026",
       "comentario": "Motor Barulhento e Vazamento de Óleo",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000018385832374",
@@ -2606,6 +2606,36 @@
       "comentario": "Avarias e o Tanquinho Não Liga",
       "is_valido": true,
       "is_afetando": true
+    },
+    {
+      "pedido": "2000015242055465",
+      "n_venda": "2000018681918608",
+      "sku": "TI1667",
+      "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+      "marca": "FOGAO",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "12/11/2026",
+      "comentario": "Quina Superior Esquerda Amassada",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019267159092",
+      "n_venda": "2000019267159092",
+      "sku": "TI1580",
+      "produto": "Fogão 4 Bocas Dako Supreme Glass Com Mesa De Vidro E Forno 60 L A Gás Branco Bivolt 127/220v",
+      "marca": "FOGAO",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Não Solicitada",
+      "tempo_impacto": "Válido",
+      "data_pedido": "12/11/2026",
+      "comentario": "Acendedor Quebrado",
+      "is_valido": true,
+      "is_afetando": true
     }
   ],
   "amazon": [
@@ -3002,12 +3032,12 @@
       "produto": "Fogão Mueller titânio 5 Bocas com mesa esmaltada e acendimento Mfi5bc",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Trilog Express",
-      "impacto": "Em Análise",
-      "valor": "Com o Comprador",
+      "impacto": "Impacto Removido",
+      "valor": "Repasse Liberado à Sanbox",
       "reembolso": "R$ 803,60",
       "comentario": "Sem Comentário",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "702-7190553-6287463",
@@ -3082,7 +3112,7 @@
       "produto": "Fogão Mueller 5 bocas Preto com Mesa de Vidro e Tripla Chama Bivolt MFV5BF",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Trilog Express",
-      "impacto": "Em Análise",
+      "impacto": "Mantido",
       "valor": "Com o Comprador",
       "reembolso": "R$ 1.250,11",
       "comentario": "Atraso de Entrega",
@@ -3114,10 +3144,26 @@
       "produto": "Vonder, Caixa Plástica para Ferramentas Cpv 700. Plus",
       "motivo": "Diferente do que eu Pedi",
       "transportadora": "Total Frenet",
-      "impacto": "Em Análise",
+      "impacto": "Mantido",
       "valor": "Com o Comprador",
       "reembolso": "R$ 238,59",
       "comentario": "Produto diferente do Anúncio",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "702-4676536-0845841",
+      "data_solicitacao": "13/11/2026",
+      "data_reivindicacao": "12/11/2026",
+      "sku": "TI1667",
+      "marca": "FOGAO",
+      "produto": "Fogão Mueller titânio 5 Bocas com mesa esmaltada e acendimento Mfi5bc",
+      "motivo": "O Pacote Não Chegou",
+      "transportadora": "Trilog Express",
+      "impacto": "Em Chamado Premium",
+      "valor": "Com o Comprador",
+      "reembolso": "R$ 889,90",
+      "comentario": "Não Recebi Meu Produto",
       "is_valido": true,
       "is_afetando": true
     }
