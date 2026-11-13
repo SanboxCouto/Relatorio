@@ -34,6 +34,41 @@
         "taxa_resposta_shopee": "97,56%",
         "nota_shopee": "4,87%"
       }
+    },
+    {
+      "data": "13/11/2026",
+      "valores": {
+        "reclamacoes_ml": 1.41,
+        "mediacoes_ml": 0.41,
+        "vendas_canceladas_ml": 0.37,
+        "envios_incorretos_ml": 0.36,
+        "pedidos_problema_amz": 1.62,
+        "problemas_envios_amz": 11.87,
+        "agilidade_magalu": 98.9,
+        "cancelamentos_magalu": 4.4,
+        "avaliacao_magalu": 3.7,
+        "reclamacoes_via": 3.6,
+        "cancelamentos_via": 5.6,
+        "nao_cumprimento_shopee": 8.39,
+        "taxa_resposta_shopee": 97.89,
+        "nota_shopee": 4.88
+      },
+      "raw": {
+        "reclamacoes_ml": "1,41%",
+        "mediacoes_ml": "0,41%",
+        "vendas_canceladas_ml": "0,37%",
+        "envios_incorretos_ml": "0,36%",
+        "pedidos_problema_amz": "1,62%",
+        "problemas_envios_amz": "11,87%",
+        "agilidade_magalu": "98,90%",
+        "cancelamentos_magalu": "4,40%",
+        "avaliacao_magalu": "3,70%",
+        "reclamacoes_via": "3,60%",
+        "cancelamentos_via": "5,60%",
+        "nao_cumprimento_shopee": "8,39%",
+        "taxa_resposta_shopee": "97,89%",
+        "nota_shopee": "4,88%"
+      }
     }
   ],
   "ml": [
