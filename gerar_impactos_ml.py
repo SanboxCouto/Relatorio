@@ -1,5 +1,6 @@
 import io
 import json
+import os
 import re
 import unicodedata
 import pandas as pd
@@ -185,10 +186,32 @@ def encontrar_coluna_exata(df, candidatos, excluir_substrings=None):
   return None
 
 
+def carregar_historico_notas_page(caminho_json="impactos_ml.json"):
+  if not os.path.exists(caminho_json):
+    return []
+  try:
+    with open(caminho_json, "r", encoding="utf-8") as f:
+      dados_antigos = json.load(f)
+    historico = dados_antigos.get("notas_page", [])
+    # Filtra registros antigos corrompidos que tinham porcentagem no lugar da data (ex: "0,42%")
+    historico_valido = [
+        item
+        for item in historico
+        if item.get("data")
+        and "%" not in str(item.get("data"))
+        and re.search(r"\d{2}/\d{2}/\d{4}", str(item.get("data")))
+    ]
+    return historico_valido
+  except Exception as e:
+    print("Aviso ao ler histórico anterior:", e)
+    return []
+
+
 def processar_notas_page():
+  historico = carregar_historico_notas_page("impactos_ml.json")
+
   resp = requests.get(URL_CSV_NOTAS_PAGE, timeout=30)
   resp.encoding = "utf-8"
-  # Cabeçalhos na linha 1 (header=0)
   df = pd.read_csv(io.StringIO(resp.text), header=0, dtype=str)
   df.columns = [str(c).strip() for c in df.columns]
   print("COLUNAS NOTAS_PAGE:", list(df.columns))
@@ -196,21 +219,15 @@ def processar_notas_page():
   col_data = encontrar_coluna_exata(
       df,
       [
-          "DATA",
+          "DATA_ATUALIZACAO",
           "DATA ATUALIZACAO",
+          "DATA_ATUALIZAÇÃO",
+          "DATA ATUALIZAÇÃO",
           "DATA DA ATUALIZACAO",
+          "DATA",
           "ATUALIZACAO",
-          "DIA",
-          "DT",
-          "CARIMBO DE DATA/HORA",
       ],
   )
-  # Fallback: caso a coluna de data esteja sem nome (Unnamed: 0) ou em outro formato na primeira coluna
-  if not col_data and len(df.columns) > 0:
-    primeira_col = df.columns[0]
-    amostra = df[primeira_col].dropna().astype(str).head(5).tolist()
-    if any(re.search(r"\d{1,4}[/-]\d{1,2}[/-]\d{1,4}", x) for x in amostra):
-      col_data = primeira_col
 
   mapeamento_metricas = {
       "reclamacoes_ml": ["Reclamações ML", "Reclamacoes ML"],
@@ -240,11 +257,11 @@ def processar_notas_page():
   for chave, cands in mapeamento_metricas.items():
     colunas_encontradas[chave] = encontrar_coluna_exata(df, cands)
 
-  registros = []
+  novos_registros = []
   for _, row in df.iterrows():
     data_str = normalizar_data_br(row[col_data]) if col_data else ""
     item = {"data": data_str, "valores": {}, "raw": {}}
-    tem_algum_metrica = False
+    tem_alguma_metrica = False
 
     for chave, col_nome in colunas_encontradas.items():
       raw_val = limpar_texto(row[col_nome]) if col_nome else ""
@@ -252,12 +269,38 @@ def processar_notas_page():
       item["raw"][chave] = raw_val
       item["valores"][chave] = num_val
       if raw_val != "" or num_val is not None:
-        tem_algum_metrica = True
+        tem_alguma_metrica = True
 
-    if tem_algum_metrica:
-      registros.append(item)
+    if tem_alguma_metrica:
+      novos_registros.append(item)
 
-  return registros
+  # Mescla novos registros no histórico persistente sem perder os dias anteriores
+  for novo in novos_registros:
+    data_nova = novo.get("data", "").strip()
+    if data_nova:
+      idx_existente = next(
+          (i for i, h in enumerate(historico) if h.get("data") == data_nova),
+          None,
+      )
+      if idx_existente is not None:
+        historico[idx_existente] = novo
+      else:
+        historico.append(novo)
+    else:
+      # Caso não haja data preenchida, só adiciona se os valores mudaram em relação ao último salvo
+      if not historico or historico[-1].get("valores") != novo.get("valores"):
+        historico.append(novo)
+
+  # Ordena cronologicamente por data DD/MM/YYYY
+  def chave_ordenacao_data(reg):
+    d = reg.get("data", "")
+    m = re.match(r"^(\d{2})/(\d{2})/(\d{4})$", d)
+    if m:
+      return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
+    return "0000-00-00"
+
+  historico.sort(key=chave_ordenacao_data)
+  return historico
 
 
 def processar_ml():
