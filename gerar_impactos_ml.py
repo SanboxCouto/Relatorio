@@ -85,110 +85,59 @@ def extrair_numero(val):
 def extrair_marca(produto):
   if produto:
     prod_up = remover_acentos(produto)
-    MARCAS_CADASTRADAS = [
-    "Dako",
-    "Mueller",
-    "Electrolux",
-    "Philco",
-    "Itatiaia",
-    "Mondial",
-    "Multilaser",
-    "Imbera",
-    "Midea",
-    "Atlas",
-    "Fischer",
-    "Pulse",
-    "Esmaltec",
-    "Wanker",
-    "Wanke",
-    "Ssound",
-    "Suggar",
-    "Colormaq",
-    "Venax",
-    "Newmaq",
-    "Latina",
-    "Clarice",
-    "Continental",
-    "Consul",
-    "Brastemp",
-    "LG",
-    "Samsung",
-    "Britania",
-    "Realce",
-    "Chamalux",
-    "Braslar",
-    "Metalmaq",
-    "Fricon",
-    "Gelopar",
-    "Metalfrio",
-    "EOS",
-    "Agratto",
-    "Libell",
-    "Begel",
-    "IBBL",
-    "Soft",
-    "Everest",
-    "Europa",
-    "Masterfrio",
-    "WAP",
-    "Oster",
-    "Cadence",
-    "Arno",
-    "Black+Decker",
-    "Black & Decker",
-    "Black Decker",
-    "Philips",
-    "Walita",
-    "Mallory",
-    "Ventisol",
-    "Lorenzetti",
-    "Tramontina",
-    "Stanley",
-    "DeWalt",
-    "Makita",
-    "Bosch",
-    "Vonder",
-    "Schulz",
-    "Karcher",
-    "Jacto",
-    "Intex",
-    "Mor",
-    "Nautika",
-    "Coleman",
-    "Multi",
-    "Intelbras",
-    "Positivo",
-    "Lenovo",
-    "Dell",
-    "HP",
-    "Acer",
-    "Asus",
-    "JBL",
-    "Xiaomi",
-    "Apple",
-    "Motorola",
-]
-
-
-def extrair_marca(produto, marca_planilha=""):
-  # 1. Se a planilha já tiver uma coluna MARCA preenchida, usa ela diretamente
-  m_plan = remover_acentos(marca_planilha)
-  if m_plan and m_plan not in ["NAN", "NONE", "NAT", "-", "N/A"]:
-    return m_plan
-
-  # 2. Procura o nome da marca no título do produto (normalizando ambos para MAIÚSCULAS sem acento)
-  if produto:
-    prod_up = remover_acentos(produto)
-    marcas_norm = sorted(
-        set(remover_acentos(m) for m in MARCAS_CADASTRADAS if m.strip()),
-        key=len,
-        reverse=True,
-    )
-    for m in marcas_norm:
-      if re.search(r"(?<![A-Z0-9])" + re.escape(m) + r"(?![A-Z0-9])", prod_up):
+    marcas = [
+        "WAP",
+        "MONDIAL",
+        "PHILCO",
+        "BRITANIA",
+        "OSTER",
+        "CADENCE",
+        "ELECTROLUX",
+        "ARNO",
+        "BLACK+DECKER",
+        "BLACK & DECKER",
+        "MIDEA",
+        "CONSUL",
+        "BRASTEMP",
+        "LG",
+        "SAMSUNG",
+        "PHILIPS",
+        "WALITA",
+        "MALLORY",
+        "VENTISOL",
+        "LORENZETTI",
+        "TRAMONTINA",
+        "STANLEY",
+        "DEWALT",
+        "MAKITA",
+        "BOSCH",
+        "VONDER",
+        "SCHULZ",
+        "KARCHER",
+        "JACTO",
+        "INTEX",
+        "MOR",
+        "NAUTIKA",
+        "COLEMAN",
+        "MULTILASER",
+        "MULTI",
+        "INTELBRAS",
+        "POSITIVO",
+        "LENOVO",
+        "DELL",
+        "HP",
+        "ACER",
+        "ASUS",
+        "JBL",
+        "XIAOMI",
+        "APPLE",
+        "MOTOROLA",
+    ]
+    for m in marcas:
+      if re.search(r"\b" + re.escape(m) + r"\b", prod_up):
         return m
-
-  # 3. Se não encontrar nenhuma marca cadastrada, retorna OUTROS (nunca puxa a categoria)
+    palavras = [p for p in prod_up.split() if len(p) > 2]
+    return palavras[0] if palavras else "OUTROS"
   return "OUTROS"
 
 
