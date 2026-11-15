@@ -236,11 +236,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "22/09/2026",
       "comentario": "Amassado na Lateral Direita do Fogão",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000018390530338",
@@ -461,11 +461,11 @@
       "motivo": "A data de entrega combinada não foi cumprida",
       "transportadora": "Trilog Express",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "04/10/2026",
       "comentario": "Entrega Atrasada",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000015278080601",
@@ -626,11 +626,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Em Mediação",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "15/09/2026",
       "comentario": "Arranhados na Quina",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000015040200641",
@@ -641,11 +641,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "15/09/2026",
       "comentario": "Amassado na Lateral Tampado com Papel",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000018613847008",
@@ -971,11 +971,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "14/10/2026",
       "comentario": "Diversos Amassados na Parte Inferior",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000018849083718",
@@ -1256,10 +1256,10 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "19/09/2026",
       "comentario": "Pés e Vidro do Produto Avariado",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -1271,10 +1271,10 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "17/09/2026",
       "comentario": "Pés do Produto Avariado",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -2620,7 +2620,7 @@
       "marca": "FOGAO",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Não Solicitada",
       "tempo_impacto": "Válido",
       "data_pedido": "09/11/2026",
       "comentario": "Há um Vão na Porta do Forno apenas de um Lado",
@@ -2669,6 +2669,81 @@
       "tempo_impacto": "Válido",
       "data_pedido": "12/11/2026",
       "comentario": "Acendedor Quebrado",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019360495184",
+      "n_venda": "2000019360495184",
+      "sku": "TI1708",
+      "produto": "Fogão Mueller 5 Bocas Decorato Gourmet Preto Fosco Com Timer E Tripla Chama 127/220v",
+      "marca": "FOGAO",
+      "motivo": "Item Faltante",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "14/11/2026",
+      "comentario": "Item Faltante: 1 Espalhador de Chama",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019184235958",
+      "n_venda": "2000019184235958",
+      "sku": "TI1571",
+      "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+      "marca": "FOGAO",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "13/11/2026",
+      "comentario": "Amassado na Mesa Superior do Fogão",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019265741438",
+      "n_venda": "2000019265741438",
+      "sku": "TI1529",
+      "produto": "Maquina De Lavar Mueller Energy Ciclo Rápido 8kg Bco-127v 127v Branco",
+      "marca": "MAQUINA",
+      "motivo": "Defeito no Produto",
+      "transportadora": "Alfa Transportes",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "14/11/2026",
+      "comentario": "Comprador disse que Não Lava 8Kg de Roupa\n Provável Mal Uso",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019432956654",
+      "n_venda": "2000019432956654",
+      "sku": "TI1571",
+      "produto": "Fogão Mueller Preto Fosco 5 Bocas Com Mesa Esmaltada E Acendimento Mfi5bc 127/220v",
+      "marca": "FOGAO",
+      "motivo": "Defeito no Produto",
+      "transportadora": "Alfa Transportes",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "13/11/2026",
+      "comentario": "Duas Bocas Não Funcionam",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000018665930990",
+      "n_venda": "2000018665930990",
+      "sku": "TI1604",
+      "produto": "Fogão 4 Bocas Dako Supreme Mesa De Inox A Gás Titanium Bivolt Titânio 127/220v",
+      "marca": "FOGAO",
+      "motivo": "Produto Avariado",
+      "transportadora": "Trilog Express",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "15/11/2026",
+      "comentario": "Produto Amassado na Lateral Direita",
       "is_valido": true,
       "is_afetando": true
     }
