@@ -12,6 +12,24 @@ URL_CSV_AVALIACOES_AMZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2y
 URL_CSV_VIA = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=876023604&single=true&output=csv"
 URL_CSV_NOTAS_PAGE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1342007728&single=true&output=csv"
 
+MARCAS_CADASTRADAS = [
+    "Imbera",
+    "Ssound",
+    "Philco",
+    "Dako",
+    "Multilaser",
+    "Electrolux",
+    "Pulse",
+    "Midea",
+    "Mueller",
+    "Esmaltec",
+    "Itatiaia",
+    "Wanke",
+    "Braslar",
+    "Atlas",
+    "Wanker",
+]
+
 
 def remover_acentos(texto):
   if not texto:
@@ -52,11 +70,9 @@ def normalizar_data_br(val):
   if not s:
     return ""
   parte_data = s.split(" ")[0].strip()
-  # Formato ISO: YYYY-MM-DD
   m_iso = re.match(r"^(\d{4})-(\d{1,2})-(\d{1,2})$", parte_data)
   if m_iso:
     return f"{int(m_iso.group(3)):02d}/{int(m_iso.group(2)):02d}/{m_iso.group(1)}"
-  # Formato BR: DD/MM/YYYY ou DD/MM/YY
   m_br = re.match(r"^(\d{1,2})/(\d{1,2})/(\d{2,4})$", parte_data)
   if m_br:
     ano = m_br.group(3)
@@ -82,62 +98,22 @@ def extrair_numero(val):
   return None
 
 
-def extrair_marca(produto):
+def extrair_marca(produto, marca_planilha=""):
+  m_plan = remover_acentos(marca_planilha)
+  if m_plan and m_plan not in ["NAN", "NONE", "NAT", "-", "N/A"]:
+    return m_plan
+
   if produto:
     prod_up = remover_acentos(produto)
-    marcas = [
-        "WAP",
-        "MONDIAL",
-        "PHILCO",
-        "BRITANIA",
-        "OSTER",
-        "CADENCE",
-        "ELECTROLUX",
-        "ARNO",
-        "BLACK+DECKER",
-        "BLACK & DECKER",
-        "MIDEA",
-        "CONSUL",
-        "BRASTEMP",
-        "LG",
-        "SAMSUNG",
-        "PHILIPS",
-        "WALITA",
-        "MALLORY",
-        "VENTISOL",
-        "LORENZETTI",
-        "TRAMONTINA",
-        "STANLEY",
-        "DEWALT",
-        "MAKITA",
-        "BOSCH",
-        "VONDER",
-        "SCHULZ",
-        "KARCHER",
-        "JACTO",
-        "INTEX",
-        "MOR",
-        "NAUTIKA",
-        "COLEMAN",
-        "MULTILASER",
-        "MULTI",
-        "INTELBRAS",
-        "POSITIVO",
-        "LENOVO",
-        "DELL",
-        "HP",
-        "ACER",
-        "ASUS",
-        "JBL",
-        "XIAOMI",
-        "APPLE",
-        "MOTOROLA",
-    ]
-    for m in marcas:
-      if re.search(r"\b" + re.escape(m) + r"\b", prod_up):
+    marcas_norm = sorted(
+        set(remover_acentos(m) for m in MARCAS_CADASTRADAS if m.strip()),
+        key=len,
+        reverse=True,
+    )
+    for m in marcas_norm:
+      if re.search(r"(?<![A-Z0-9])" + re.escape(m) + r"(?![A-Z0-9])", prod_up):
         return m
-    palavras = [p for p in prod_up.split() if len(p) > 2]
-    return palavras[0] if palavras else "OUTROS"
+
   return "OUTROS"
 
 
@@ -193,7 +169,6 @@ def carregar_historico_notas_page(caminho_json="impactos_ml.json"):
     with open(caminho_json, "r", encoding="utf-8") as f:
       dados_antigos = json.load(f)
     historico = dados_antigos.get("notas_page", [])
-    # Filtra registros antigos corrompidos que tinham porcentagem no lugar da data (ex: "0,42%")
     historico_valido = [
         item
         for item in historico
@@ -274,7 +249,6 @@ def processar_notas_page():
     if tem_alguma_metrica:
       novos_registros.append(item)
 
-  # Mescla novos registros no histórico persistente sem perder os dias anteriores
   for novo in novos_registros:
     data_nova = novo.get("data", "").strip()
     if data_nova:
@@ -287,11 +261,9 @@ def processar_notas_page():
       else:
         historico.append(novo)
     else:
-      # Caso não haja data preenchida, só adiciona se os valores mudaram em relação ao último salvo
       if not historico or historico[-1].get("valores") != novo.get("valores"):
         historico.append(novo)
 
-  # Ordena cronologicamente por data DD/MM/YYYY
   def chave_ordenacao_data(reg):
     d = reg.get("data", "")
     m = re.match(r"^(\d{2})/(\d{2})/(\d{4})$", d)
@@ -340,6 +312,7 @@ def processar_ml():
       df, ["TEMPO DE IMPACTO", "TEMPO IMPACTO", "VALIDACAO"]
   )
   col_produto = encontrar_coluna_exata(df, ["PRODUTO", "PRODUTO DA RECLAMACAO"])
+  col_marca = encontrar_coluna_exata(df, ["MARCA", "FABRICANTE"])
   col_motivo = encontrar_coluna_exata(
       df, ["MOTIVO DA RECLAMACAO", "MOTIVO DA RECLAMAÇÃO", "MOTIVO"]
   )
@@ -383,6 +356,7 @@ def processar_ml():
         if col_produto and pd.notna(row[col_produto])
         else ""
     )
+    marca_col_val = limpar_texto(row[col_marca]) if col_marca else ""
     coment = limpar_texto(row[col_comentario]) if col_comentario else ""
     data_ped = (
         str(row[col_data_pedido]).strip()
@@ -402,7 +376,7 @@ def processar_ml():
             else "N/A"
         ),
         "produto": prod_nome,
-        "marca": extrair_marca(prod_nome),
+        "marca": extrair_marca(prod_nome, marca_col_val),
         "motivo": (
             str(row[col_motivo]).strip()
             if col_motivo and pd.notna(row[col_motivo])
@@ -442,6 +416,7 @@ def processar_amazon():
   )
   col_sku = encontrar_coluna_exata(df, ["SKU", "ASIN"])
   col_produto = encontrar_coluna_exata(df, ["PRODUTO", "TITULO", "ITEM"])
+  col_marca = encontrar_coluna_exata(df, ["MARCA", "FABRICANTE"])
   col_motivo = encontrar_coluna_exata(
       df, ["MOTIVO", "MOTIVO DA RECLAMACAO", "MOTIVO DA REIVINDICACAO"]
   )
@@ -477,6 +452,7 @@ def processar_amazon():
         if col_produto and pd.notna(row[col_produto])
         else ""
     )
+    marca_col_val = limpar_texto(row[col_marca]) if col_marca else ""
 
     registros.append({
         "pedido": pedido_val,
@@ -495,7 +471,7 @@ def processar_amazon():
             if col_sku and pd.notna(row[col_sku])
             else "N/A"
         ),
-        "marca": extrair_marca(prod_nome),
+        "marca": extrair_marca(prod_nome, marca_col_val),
         "produto": prod_nome,
         "motivo": (
             str(row[col_motivo]).strip()
@@ -570,6 +546,7 @@ def processar_avaliacoes_amazon():
   col_produto = encontrar_coluna_exata(
       df, ["PRODUTO", "TITULO", "NOME DO PRODUTO", "ITEM"]
   )
+  col_marca = encontrar_coluna_exata(df, ["MARCA", "FABRICANTE"])
   col_transp = encontrar_coluna_exata(
       df, ["TRANSPORTADORA", "TRANSP", "ENVIO", "LOGISTICA"]
   )
@@ -590,6 +567,7 @@ def processar_avaliacoes_amazon():
     pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ""
     coment_val = limpar_texto(row[col_comentarios]) if col_comentarios else ""
     prod_nome = limpar_texto(row[col_produto]) if col_produto else ""
+    marca_col_val = limpar_texto(row[col_marca]) if col_marca else ""
 
     if not pedido_val and not coment_val and not prod_nome:
       continue
@@ -616,7 +594,7 @@ def processar_avaliacoes_amazon():
         "comentario": coment_val,
         "resposta": limpar_texto(row[col_resposta]) if col_resposta else "",
         "sku": limpar_texto(row[col_sku]) if col_sku else "N/A",
-        "marca": extrair_marca(prod_nome),
+        "marca": extrair_marca(prod_nome, marca_col_val),
         "produto": prod_nome,
         "transportadora": limpar_texto(row[col_transp]) if col_transp else "",
         "numero_chamado": (
@@ -671,6 +649,7 @@ def processar_via():
   col_produto = encontrar_coluna_exata(
       df, ["PRODUTO", "NOME DO PRODUTO", "TITULO", "ITEM"]
   )
+  col_marca = encontrar_coluna_exata(df, ["MARCA", "FABRICANTE"])
   col_comentario = encontrar_coluna_exata(
       df, ["COMENTARIO", "COMENTÁRIO", "COMENTARIOS", "OBSERVACAO", "OBS"]
   )
@@ -682,6 +661,7 @@ def processar_via():
         limpar_identificador(row[col_protocolo]) if col_protocolo else ""
     )
     prod_nome = limpar_texto(row[col_produto]) if col_produto else ""
+    marca_col_val = limpar_texto(row[col_marca]) if col_marca else ""
     coment_val = limpar_texto(row[col_comentario]) if col_comentario else ""
 
     if (
@@ -721,7 +701,7 @@ def processar_via():
         "motivo": limpar_texto(row[col_motivo]) if col_motivo else "",
         "transportadora": limpar_texto(row[col_transp]) if col_transp else "",
         "sku": limpar_texto(row[col_sku]) if col_sku else "N/A",
-        "marca": extrair_marca(prod_nome),
+        "marca": extrair_marca(prod_nome, marca_col_val),
         "produto": prod_nome,
         "comentario": coment_val,
         "is_valido": is_valido,
