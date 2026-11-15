@@ -6370,7 +6370,7 @@
       "pedido": "524541641",
       "protocolo": "261014-010008",
       "data": "14/10/2026",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "status_impacto": "Retirado",
       "motivo": "Ocorrência entregador",
       "transportadora": "Brasil Web",
@@ -6378,14 +6378,14 @@
       "marca": "FORNO",
       "produto": "Forno Elétrico de Embutir Mueller 70 Litros Espellho Função Fryer MFE70K - 220V",
       "comentario": "Sem Retorno do Comprador",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
       "pedido": "524309737",
       "protocolo": "261014-004946",
       "data": "14/10/2026",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "status_impacto": "Não Se Aplica",
       "motivo": "Peça/Acessório faltante ou com problema",
       "transportadora": "Tecmar Transportadora",
@@ -6393,14 +6393,14 @@
       "marca": "FOGAO",
       "produto": "Fogão 5 Bocas Esmaltec Ideal Super Mesa Inox Forno 84 Litros Branco-Bivolt",
       "comentario": "Defeito no Forno",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "523406693",
       "protocolo": "261014-002345",
       "data": "14/10/2026",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "status_impacto": "Retirado",
       "motivo": "Divergente vs Recebido",
       "transportadora": "Trilog Express",
@@ -6408,7 +6408,7 @@
       "marca": "EXPOSITOR",
       "produto": "Expositor Vertical Imbera VRS16 485 L Porta Vidro Full Black-Bivolt",
       "comentario": "O Produto foi Enviado Corretamente",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -7076,7 +7076,7 @@
       "protocolo": "261111-006011",
       "data": "11/11/2026",
       "tempo_impacto": "Válido",
-      "status_impacto": "Aberto",
+      "status_impacto": "Retirado",
       "motivo": "Ocorrência entregador",
       "transportadora": "Total Frenet",
       "sku": "TI1332",
@@ -7084,7 +7084,52 @@
       "produto": "Caixa de Som Pulse Storm 2 SP514 10\"pol Bleutooth Led Rádio FM TWs -1500w",
       "comentario": "Comprador enviou uma Confirmação de endereço",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
+    },
+    {
+      "pedido": "526592261",
+      "protocolo": "261113-006894",
+      "data": "14/11/2026",
+      "tempo_impacto": "Válido",
+      "status_impacto": "",
+      "motivo": "Desconhece entrega",
+      "transportadora": "Total Frenet",
+      "sku": "TI1558",
+      "marca": "FOGAO",
+      "produto": "Fogão a Gas Mueller MFV4BB 4 Bocas Mesa de Vidro Preto Fosco-Bivolt",
+      "comentario": "Não Recebi Meu Produto",
+      "is_valido": true,
+      "is_afetando": false
+    },
+    {
+      "pedido": "524833698",
+      "protocolo": "261113-003195",
+      "data": "13/11/2026",
+      "tempo_impacto": "Válido",
+      "status_impacto": "",
+      "motivo": "Ocorrência entregador",
+      "transportadora": "Total Frenet",
+      "sku": "TI1563",
+      "marca": "COOKTOP",
+      "produto": "Cooktop à Gás Mueller 5 bocas Tripla Chama Mesa de Vidro - Bivolt",
+      "comentario": "Não Recebi Meu Produto",
+      "is_valido": true,
+      "is_afetando": false
+    },
+    {
+      "pedido": "526510564",
+      "protocolo": "261113-003102",
+      "data": "13/11/2026",
+      "tempo_impacto": "Válido",
+      "status_impacto": "",
+      "motivo": "Desconhece entrega",
+      "transportadora": "Total Frenet",
+      "sku": "TI1332",
+      "marca": "CAIXA",
+      "produto": "Caixa de Som Pulse Storm 2 SP514 10\"pol Bleutooth Led Rádio FM TWs -1500w",
+      "comentario": "Não Veio o Produto que eu Queria",
+      "is_valido": true,
+      "is_afetando": false
     }
   ]
 }
