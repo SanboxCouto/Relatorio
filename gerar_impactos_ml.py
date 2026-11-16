@@ -5,7 +5,7 @@ import re
 import unicodedata
 import pandas as pd
 import requests
- 
+
 URL_CSV_ML = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1773072804&single=true&output=csv"
 URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=134048884&single=true&output=csv"
 URL_CSV_AVALIACOES_AMZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=329618718&single=true&output=csv"
@@ -190,16 +190,37 @@ def mapear_marketplace_octadesk(valor_loja):
 def processar_octadesk_devolucao():
   df = parse_csv_dinamico(
       URL_CSV_OCTADESK,
-      ["GRUPO", "ASSUNTO", "LOJA__MARKETPLACE", "DATA CRIACAO", "ULTIMA ATUALIZACAO", "TRANSPORTADORA"],
+      [
+          "GRUPO",
+          "ASSUNTO",
+          "LOJA__MARKETPLACE",
+          "DATA CRIACAO",
+          "ULTIMA ATUALIZACAO",
+          "TRANSPORTADORA",
+      ],
       default_header_idx=0,
   )
   print("COLUNAS OCTADESK:", list(df.columns))
 
+  col_numero = encontrar_coluna_exata(
+      df,
+      ["NUMERO", "NÚMERO", "ID", "TICKET"],
+      excluir_substrings=["PEDIDO", "VENDA", "RASTREIO", "TELEFONE"],
+  )
   col_grupo = encontrar_coluna_exata(df, ["GRUPO"])
   col_loja = encontrar_coluna_exata(
       df, ["LOJA__MARKETPLACE", "LOJA MARKETPLACE", "MARKETPLACE", "LOJA"]
   )
   col_assunto = encontrar_coluna_exata(df, ["ASSUNTO"])
+  col_pedido = encontrar_coluna_exata(
+      df,
+      [
+          "numero_do_pedido",
+          "NUMERO_DO_PEDIDO",
+          "NUMERO DO PEDIDO",
+          "PEDIDO",
+      ],
+  )
   col_data_criacao = encontrar_coluna_exata(
       df, ["DATA CRIACAO", "DATA DE CRIACAO"]
   )
@@ -238,16 +259,33 @@ def processar_octadesk_devolucao():
 
     loja_raw = limpar_texto(row[col_loja]) if col_loja else ""
     mp_padrao = mapear_marketplace_octadesk(loja_raw)
+    titulo_val = limpar_texto(row[col_assunto]) if col_assunto else ""
+    numero_val = limpar_identificador(row[col_numero]) if col_numero else ""
+    pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ""
 
     registros.append({
+        "numero": numero_val,
+        "pedido": pedido_val,
         "grupo": grupo_val,
         "loja_raw": loja_raw,
         "marketplace": mp_padrao,
-        "titulo": limpar_texto(row[col_assunto]) if col_assunto else "",
-        "data_criacao": limpar_texto(row[col_data_criacao]) if col_data_criacao else "",
-        "ultima_atualizacao": limpar_texto(row[col_ultima_atualizacao]) if col_ultima_atualizacao else "",
-        "data_solicitacao": limpar_texto(row[col_data_solicitacao]) if col_data_solicitacao else "",
-        "transportadora": limpar_texto(row[col_transportadora]) if col_transportadora else "",
+        "titulo": titulo_val,
+        "data_criacao": (
+            limpar_texto(row[col_data_criacao]) if col_data_criacao else ""
+        ),
+        "ultima_atualizacao": (
+            limpar_texto(row[col_ultima_atualizacao])
+            if col_ultima_atualizacao
+            else ""
+        ),
+        "data_solicitacao": (
+            limpar_texto(row[col_data_solicitacao])
+            if col_data_solicitacao
+            else ""
+        ),
+        "transportadora": (
+            limpar_texto(row[col_transportadora]) if col_transportadora else ""
+        ),
         "rastreio": limpar_texto(row[col_rastreio]) if col_rastreio else "",
     })
 
