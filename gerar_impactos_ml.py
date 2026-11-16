@@ -119,6 +119,25 @@ def extrair_marca(produto, marca_planilha=""):
   return "OUTROS"
 
 
+def extrair_nome_assunto(assunto):
+  s = limpar_texto(assunto)
+  if not s:
+    return ""
+  if "|" in s:
+    partes = [p.strip() for p in s.split("|") if p.strip()]
+    if len(partes) > 1:
+      return partes[-1]
+  if " - " in s:
+    partes = [p.strip() for p in s.split(" - ") if p.strip()]
+    if len(partes) > 1:
+      return partes[-1]
+  if "-" in s:
+    partes = [p.strip() for p in s.split("-") if p.strip()]
+    if len(partes) > 1:
+      return partes[-1]
+  return s
+
+
 def parse_csv_dinamico(url, palavras_chave_cabecalho, default_header_idx=1):
   resp = requests.get(url, timeout=30)
   resp.encoding = "utf-8"
@@ -204,7 +223,7 @@ def processar_octadesk_devolucao():
 
   col_numero = encontrar_coluna_exata(
       df,
-      ["NUMERO", "NÚMERO", "ID", "TICKET"],
+      ["NUMERO", "NÚMERO"],
       excluir_substrings=["PEDIDO", "VENDA", "RASTREIO", "TELEFONE"],
   )
   col_grupo = encontrar_coluna_exata(df, ["GRUPO"])
@@ -219,6 +238,7 @@ def processar_octadesk_devolucao():
           "NUMERO_DO_PEDIDO",
           "NUMERO DO PEDIDO",
           "PEDIDO",
+          "ID_PEDIDO",
       ],
   )
   col_data_criacao = encontrar_coluna_exata(
@@ -259,7 +279,8 @@ def processar_octadesk_devolucao():
 
     loja_raw = limpar_texto(row[col_loja]) if col_loja else ""
     mp_padrao = mapear_marketplace_octadesk(loja_raw)
-    titulo_val = limpar_texto(row[col_assunto]) if col_assunto else ""
+    assunto_raw = limpar_texto(row[col_assunto]) if col_assunto else ""
+    titulo_nome = extrair_nome_assunto(assunto_raw)
     numero_val = limpar_identificador(row[col_numero]) if col_numero else ""
     pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ""
 
@@ -269,7 +290,8 @@ def processar_octadesk_devolucao():
         "grupo": grupo_val,
         "loja_raw": loja_raw,
         "marketplace": mp_padrao,
-        "titulo": titulo_val,
+        "assunto_completo": assunto_raw,
+        "titulo": titulo_nome,
         "data_criacao": (
             limpar_texto(row[col_data_criacao]) if col_data_criacao else ""
         ),
