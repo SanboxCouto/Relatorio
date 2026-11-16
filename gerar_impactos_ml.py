@@ -190,7 +190,7 @@ def mapear_marketplace_octadesk(valor_loja):
 def processar_octadesk_devolucao():
   df = parse_csv_dinamico(
       URL_CSV_OCTADESK,
-      ["GRUPO", "LOJA__MARKETPLACE", "TICKET", "PEDIDO", "STATUS", "ASSUNTO"],
+      ["GRUPO", "ASSUNTO", "LOJA__MARKETPLACE", "DATA CRIACAO", "ULTIMA ATUALIZACAO", "TRANSPORTADORA"],
       default_header_idx=0,
   )
   print("COLUNAS OCTADESK:", list(df.columns))
@@ -199,21 +199,33 @@ def processar_octadesk_devolucao():
   col_loja = encontrar_coluna_exata(
       df, ["LOJA__MARKETPLACE", "LOJA MARKETPLACE", "MARKETPLACE", "LOJA"]
   )
-  col_ticket = encontrar_coluna_exata(
-      df, ["TICKET", "NUMERO", "ID TICKET", "CODIGO", "PROTOCOLO", "ID"]
+  col_assunto = encontrar_coluna_exata(df, ["ASSUNTO"])
+  col_data_criacao = encontrar_coluna_exata(
+      df, ["DATA CRIACAO", "DATA DE CRIACAO"]
   )
-  col_pedido = encontrar_coluna_exata(
-      df, ["PEDIDO", "NUMERO DO PEDIDO", "ID DO PEDIDO", "N PEDIDO", "VENDA"]
+  col_ultima_atualizacao = encontrar_coluna_exata(
+      df, ["ULTIMA ATUALIZACAO"]
   )
-  col_cliente = encontrar_coluna_exata(
-      df, ["CLIENTE", "SOLICITANTE", "CONSUMIDOR", "NOME"]
+  col_data_solicitacao = encontrar_coluna_exata(
+      df,
+      [
+          "data_entrada_solicita_o_devolu_o",
+          "DATA_ENTRADA_SOLICITA_O_DEVOLU_O",
+          "DATA ENTRADA SOLICITACAO DEVOLUCAO",
+          "DATA_ENTRADA_SOLICITACAO_DEVOLUCAO",
+      ],
   )
-  col_assunto = encontrar_coluna_exata(
-      df, ["ASSUNTO", "MOTIVO", "TITULO", "DESCRICAO", "TIPO"]
+  col_transportadora = encontrar_coluna_exata(
+      df, ["TRANSPORTADORA", "transportadora"]
   )
-  col_status = encontrar_coluna_exata(df, ["STATUS", "SITUACAO", "ETAPA"])
-  col_data = encontrar_coluna_exata(
-      df, ["DATA", "DATA CRIACAO", "DATA DE CRIACAO", "CRIADO EM", "ABERTURA"]
+  col_rastreio = encontrar_coluna_exata(
+      df,
+      [
+          "rastreamento_nf_dev_ou_correios",
+          "RASTREAMENTO_NF_DEV_OU_CORREIOS",
+          "RASTREAMENTO NF DEV OU CORREIOS",
+          "RASTREAMENTO",
+      ],
   )
 
   registros = []
@@ -227,23 +239,16 @@ def processar_octadesk_devolucao():
     loja_raw = limpar_texto(row[col_loja]) if col_loja else ""
     mp_padrao = mapear_marketplace_octadesk(loja_raw)
 
-    campos_extras = {}
-    for c in df.columns:
-      val_c = limpar_texto(row[c])
-      if val_c:
-        campos_extras[c] = val_c
-
     registros.append({
-        "ticket": limpar_identificador(row[col_ticket]) if col_ticket else "",
-        "pedido": limpar_identificador(row[col_pedido]) if col_pedido else "",
         "grupo": grupo_val,
         "loja_raw": loja_raw,
         "marketplace": mp_padrao,
-        "cliente": limpar_texto(row[col_cliente]) if col_cliente else "",
-        "assunto": limpar_texto(row[col_assunto]) if col_assunto else "",
-        "status": limpar_texto(row[col_status]) if col_status else "",
-        "data": limpar_texto(row[col_data]) if col_data else "",
-        "campos": campos_extras,
+        "titulo": limpar_texto(row[col_assunto]) if col_assunto else "",
+        "data_criacao": limpar_texto(row[col_data_criacao]) if col_data_criacao else "",
+        "ultima_atualizacao": limpar_texto(row[col_ultima_atualizacao]) if col_ultima_atualizacao else "",
+        "data_solicitacao": limpar_texto(row[col_data_solicitacao]) if col_data_solicitacao else "",
+        "transportadora": limpar_texto(row[col_transportadora]) if col_transportadora else "",
+        "rastreio": limpar_texto(row[col_rastreio]) if col_rastreio else "",
     })
 
   return registros
