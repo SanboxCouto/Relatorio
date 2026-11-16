@@ -11,6 +11,7 @@ URL_CSV_AMAZON = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpo
 URL_CSV_AVALIACOES_AMZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=329618718&single=true&output=csv"
 URL_CSV_VIA = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=876023604&single=true&output=csv"
 URL_CSV_NOTAS_PAGE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1342007728&single=true&output=csv"
+URL_CSV_OCTADESK = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRkQ9fL3ZJl5crZCKc_yrwkm4enTZbZD-eydm6s-NFgvzFDm0qEVAHsELLiQUwku12F39QBo-b7FCx0/pub?gid=0&single=true&output=csv"
 
 MARCAS_CADASTRADAS = [
     "Imbera",
@@ -99,17 +100,18 @@ def extrair_numero(val):
 
 
 def extrair_marca(produto, marca_planilha=""):
+  marcas_norm = sorted(
+      set(remover_acentos(m) for m in MARCAS_CADASTRADAS if m.strip()),
+      key=len,
+      reverse=True,
+  )
+
   m_plan = remover_acentos(marca_planilha)
-  if m_plan and m_plan not in ["NAN", "NONE", "NAT", "-", "N/A"]:
+  if m_plan in marcas_norm:
     return m_plan
 
   if produto:
     prod_up = remover_acentos(produto)
-    marcas_norm = sorted(
-        set(remover_acentos(m) for m in MARCAS_CADASTRADAS if m.strip()),
-        key=len,
-        reverse=True,
-    )
     for m in marcas_norm:
       if re.search(r"(?<![A-Z0-9])" + re.escape(m) + r"(?![A-Z0-9])", prod_up):
         return m
@@ -160,6 +162,91 @@ def encontrar_coluna_exata(df, candidatos, excluir_substrings=None):
         return orig
 
   return None
+
+
+def mapear_marketplace_octadesk(valor_loja):
+  norm = remover_acentos(valor_loja)
+  if not norm:
+    return "OUTROS"
+  if "MERCADO LIVRE" in norm or "MERCADOLIVRE" in norm or norm == "ML":
+    return "MERCADO LIVRE"
+  if "AMAZON" in norm or norm == "AMZ":
+    return "AMAZON"
+  if "SHOPEE" in norm or "SHOPPE" in norm:
+    return "SHOPEE"
+  if (
+      "CASAS BAHIA" in norm
+      or "VIA VAREJO" in norm
+      or "VIA" in norm
+      or "PONTO" in norm
+      or "EXTRA" in norm
+  ):
+    return "VIA"
+  if "MAGAZINE LUIZA" in norm or "MAGALU" in norm:
+    return "MAGAZINE LUIZA"
+  return "OUTROS"
+
+
+def processar_octadesk_devolucao():
+  df = parse_csv_dinamico(
+      URL_CSV_OCTADESK,
+      ["GRUPO", "LOJA__MARKETPLACE", "TICKET", "PEDIDO", "STATUS", "ASSUNTO"],
+      default_header_idx=0,
+  )
+  print("COLUNAS OCTADESK:", list(df.columns))
+
+  col_grupo = encontrar_coluna_exata(df, ["GRUPO"])
+  col_loja = encontrar_coluna_exata(
+      df, ["LOJA__MARKETPLACE", "LOJA MARKETPLACE", "MARKETPLACE", "LOJA"]
+  )
+  col_ticket = encontrar_coluna_exata(
+      df, ["TICKET", "NUMERO", "ID TICKET", "CODIGO", "PROTOCOLO", "ID"]
+  )
+  col_pedido = encontrar_coluna_exata(
+      df, ["PEDIDO", "NUMERO DO PEDIDO", "ID DO PEDIDO", "N PEDIDO", "VENDA"]
+  )
+  col_cliente = encontrar_coluna_exata(
+      df, ["CLIENTE", "SOLICITANTE", "CONSUMIDOR", "NOME"]
+  )
+  col_assunto = encontrar_coluna_exata(
+      df, ["ASSUNTO", "MOTIVO", "TITULO", "DESCRICAO", "TIPO"]
+  )
+  col_status = encontrar_coluna_exata(df, ["STATUS", "SITUACAO", "ETAPA"])
+  col_data = encontrar_coluna_exata(
+      df, ["DATA", "DATA CRIACAO", "DATA DE CRIACAO", "CRIADO EM", "ABERTURA"]
+  )
+
+  registros = []
+  for _, row in df.iterrows():
+    grupo_val = limpar_texto(row[col_grupo]) if col_grupo else ""
+    grupo_norm = remover_acentos(grupo_val)
+
+    if "SOLICITACAO DE DEVOLUCAO" not in grupo_norm:
+      continue
+
+    loja_raw = limpar_texto(row[col_loja]) if col_loja else ""
+    mp_padrao = mapear_marketplace_octadesk(loja_raw)
+
+    campos_extras = {}
+    for c in df.columns:
+      val_c = limpar_texto(row[c])
+      if val_c:
+        campos_extras[c] = val_c
+
+    registros.append({
+        "ticket": limpar_identificador(row[col_ticket]) if col_ticket else "",
+        "pedido": limpar_identificador(row[col_pedido]) if col_pedido else "",
+        "grupo": grupo_val,
+        "loja_raw": loja_raw,
+        "marketplace": mp_padrao,
+        "cliente": limpar_texto(row[col_cliente]) if col_cliente else "",
+        "assunto": limpar_texto(row[col_assunto]) if col_assunto else "",
+        "status": limpar_texto(row[col_status]) if col_status else "",
+        "data": limpar_texto(row[col_data]) if col_data else "",
+        "campos": campos_extras,
+    })
+
+  return registros
 
 
 def carregar_historico_notas_page(caminho_json="impactos_ml.json"):
@@ -717,6 +804,7 @@ if __name__ == "__main__":
   amz_data = processar_amazon()
   aval_amz_data = processar_avaliacoes_amazon()
   via_data = processar_via()
+  octadesk_dev_data = processar_octadesk_devolucao()
 
   output = {
       "notas_page": notas_page_data,
@@ -724,6 +812,7 @@ if __name__ == "__main__":
       "amazon": amz_data,
       "avaliacoes_amazon": aval_amz_data,
       "via": via_data,
+      "octadesk_devolucao": octadesk_dev_data,
   }
 
   with open("impactos_ml.json", "w", encoding="utf-8") as f:
@@ -732,5 +821,5 @@ if __name__ == "__main__":
   print(
       f"Concluído: {len(notas_page_data)} Notas_Page | {len(ml_data)} ML |"
       f" {len(amz_data)} Amazon | {len(aval_amz_data)} Avaliações Amazon |"
-      f" {len(via_data)} VIA"
+      f" {len(via_data)} VIA | {len(octadesk_dev_data)} OctaDesk Devolução"
   )
