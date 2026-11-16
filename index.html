@@ -151,6 +151,7 @@
     .order-link-box:hover { background: #eff6ff; border-color: #93c5fd; color: var(--primary); }
     .amazon-logo-img { height: 15px; width: auto; display: block; margin-top: 2px; }
     .ml-logo-img { height: 16px; width: auto; display: block; }
+    .mp-logo-img { height: 15px; max-width: 24px; object-fit: contain; display: block; }
     .sub-id-label { display: block; font-size: 0.7rem; color: #64748b; font-weight: 500; margin-top: 2px; }
 
     .ticket-title-link { color: #0f172a; font-weight: 700; text-decoration: none; transition: color 0.15s; }
@@ -1042,6 +1043,9 @@
 
     const AMAZON_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg';
     const ML_LOGO_URL = 'https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__small@2x.png';
+    const SHOPEE_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg';
+    const VIA_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Casas_Bahia_logo_2020.svg';
+    const MAGALU_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Magalu_-_novo_logo.png';
 
     let sharedNotesMap = {};
 
@@ -1462,7 +1466,7 @@
             nomeExibido,
             item.assunto_raw,
             item.numero,
-            item.pedido,
+            getPedidoId(item),
             item.data_criacao,
             item.ultima_atualizacao,
             item.data_solicitacao,
@@ -1490,7 +1494,7 @@
 
       filtered.forEach(item => {
         const numTicket = cleanVal(item.numero);
-        const pedidoId = cleanVal(item.pedido);
+        const pedidoId = getPedidoId(item);
         const tituloExibido = extractCustomerNameFromAssunto(item.assunto_raw || item.titulo) || '-';
         const tooltipAssunto = item.assunto_raw && item.assunto_raw !== tituloExibido ? ` (${item.assunto_raw})` : '';
 
@@ -1499,20 +1503,40 @@
           : `<strong title="${item.assunto_raw || tituloExibido}">${tituloExibido}</strong>`;
 
         let orderBtnHtml = '';
-        if (activeOctaDevTab === 'MERCADO LIVRE' && pedidoId) {
-          const linkML = `https://vendedores.mercadolivre.com.br/vendas/${encodeURIComponent(pedidoId)}/detalhe`;
-          orderBtnHtml = `
-            <a href="${linkML}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} no Mercado Livre">
-              <img src="${ML_LOGO_URL}" class="ml-logo-img" alt="ML">
-              <span>${pedidoId}</span>
-            </a>`;
-        } else if (activeOctaDevTab === 'AMAZON' && pedidoId) {
-          const linkAMZ = `https://sellercentral.amazon.com/orders-v3/order/${encodeURIComponent(pedidoId)}`;
-          orderBtnHtml = `
-            <a href="${linkAMZ}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} na Amazon">
-              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" alt="Amazon">
-              <span>${pedidoId}</span>
-            </a>`;
+        if (pedidoId) {
+          if (activeOctaDevTab === 'MERCADO LIVRE') {
+            const linkML = `https://vendedores.mercadolivre.com.br/vendas/${encodeURIComponent(pedidoId)}/detalhe`;
+            orderBtnHtml = `
+              <a href="${linkML}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} no Mercado Livre">
+                <img src="${ML_LOGO_URL}" class="ml-logo-img" alt="ML">
+                <span>${pedidoId}</span>
+              </a>`;
+          } else if (activeOctaDevTab === 'AMAZON') {
+            const linkAMZ = `https://sellercentral.amazon.com/orders-v3/order/${encodeURIComponent(pedidoId)}`;
+            orderBtnHtml = `
+              <a href="${linkAMZ}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} na Amazon">
+                <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" alt="Amazon">
+                <span>${pedidoId}</span>
+              </a>`;
+          } else if (activeOctaDevTab === 'SHOPEE') {
+            orderBtnHtml = `
+              <span class="order-link-box" title="Número do Pedido Shopee: ${pedidoId}">
+                <img src="${SHOPEE_LOGO_URL}" class="mp-logo-img" alt="Shopee">
+                <span>${pedidoId}</span>
+              </span>`;
+          } else if (activeOctaDevTab === 'VIA') {
+            orderBtnHtml = `
+              <span class="order-link-box" title="Número do Pedido VIA (Casas Bahia): ${pedidoId}">
+                <img src="${VIA_LOGO_URL}" class="mp-logo-img" alt="VIA">
+                <span>${pedidoId}</span>
+              </span>`;
+          } else if (activeOctaDevTab === 'MAGAZINE LUIZA') {
+            orderBtnHtml = `
+              <span class="order-link-box" title="Número do Pedido Magazine Luiza: ${pedidoId}">
+                <img src="${MAGALU_LOGO_URL}" class="mp-logo-img" alt="Magazine Luiza">
+                <span>${pedidoId}</span>
+              </span>`;
+          }
         }
 
         const ageInfo = getOctaSolicitacaoAgeInfo(item.data_solicitacao);
