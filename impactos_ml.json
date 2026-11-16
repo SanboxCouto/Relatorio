@@ -7169,6 +7169,34 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918478",
+      "pedido": "51394863201",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Casas Bahia/Via Varejo",
+      "marketplace": "VIA",
+      "assunto_completo": "Gláucia Soares Ferraz",
+      "titulo": "Gláucia Soares Ferraz",
+      "data_criacao": "16/11/2026",
+      "ultima_atualizacao": "16/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Correios",
+      "rastreio": "4783553885"
+    },
+    {
+      "numero": "99918477",
+      "pedido": "2000019312886706",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000019312886706 | Albert Luis Moreira Andrade",
+      "titulo": "Albert Luis Moreira Andrade",
+      "data_criacao": "16/11/2026",
+      "ultima_atualizacao": "16/11/2026",
+      "data_solicitacao": "13/11/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918475",
       "pedido": "702-4201109-4755437",
       "grupo": "Solicitação de Devolução",
@@ -7629,20 +7657,6 @@
       "data_solicitacao": "06/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "214668"
-    },
-    {
-      "numero": "99918315",
-      "pedido": "2000015418677915",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000015418677915 | Gabriel Alves Nunes Gomes",
-      "titulo": "Gabriel Alves Nunes Gomes",
-      "data_criacao": "03/11/2026",
-      "ultima_atualizacao": "11/11/2026",
-      "data_solicitacao": "03/11/2026",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "213949"
     },
     {
       "numero": "99918296",
