@@ -3129,7 +3129,7 @@
       "produto": "Fogão 5 Bocas Mueller Decorato Vetro Inox Bivolt com Mesa de Vidro",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Rio Express",
-      "impacto": "Em Análise",
+      "impacto": "Mantido",
       "valor": "Com o Comprador",
       "reembolso": "R$ 1.699,90",
       "comentario": "Não Recebi Meu Produto",
@@ -3273,7 +3273,7 @@
       "produto": "Fogão Mueller titânio 5 Bocas com mesa esmaltada e acendimento Mfi5bc",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Trilog Express",
-      "impacto": "Em Análise",
+      "impacto": "Mantido",
       "valor": "Com o Comprador",
       "reembolso": "R$ 993,70",
       "comentario": "Não Recebi Meu Produto",
@@ -3305,12 +3305,12 @@
       "produto": "Fogão Mueller titânio 5 Bocas com mesa esmaltada e acendimento Mfi5bc",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Trilog Express",
-      "impacto": "Em Chamado Premium",
-      "valor": "Com o Comprador",
+      "impacto": "Impacto Removido",
+      "valor": "Repasse Liberado à Sanbox",
       "reembolso": "R$ 889,90",
       "comentario": "Não Recebi Meu Produto",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     }
   ],
   "avaliacoes_amazon": [
