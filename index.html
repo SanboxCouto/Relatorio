@@ -2,503 +2,324 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Relatórios de Reputação SANBOX</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23ff9900'/%3E%3Cpath d='M0 18 Q0 0 18 0 L100 100 L18 100 Q0 100 0 82 Z' fill='%23f58200'/%3E%3Cpath d='M21 21 H79 V71 Q79 79 71 79 H29 Q21 79 21 71 Z' fill='%23ffffff'/%3E%3Crect x='39' y='33' width='22' height='12' fill='%23ff9900'/%3E%3C/svg%3E">
+  <title>Painel Operacional - Reputação & Performance</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <style>
     :root {
-      --sidebar-expanded-width: 260px;
-      --sidebar-collapsed-width: 70px;
-      --bg-color: #f1f5f9;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
       --primary: #2563eb;
-      --primary-light: #eff6ff;
-      --sanbox-orange: #ff9900;
-      --danger: #dc2626;
-      --warning: #d97706;
-      --info: #0284c7;
-      --success: #16a34a;
-      --purple: #7c3aed;
+      --bg-body: #f1f5f9;
+      --bg-sidebar: #0f172a;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --sidebar-width: 260px;
+      --sidebar-collapsed-width: 68px;
     }
 
-    * { box-sizing: border-box; }
-    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: var(--text-main); display: flex; min-height: 100vh; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background: var(--bg-body); color: var(--text-main); display: flex; min-height: 100vh; overflow-x: hidden; }
 
-    .sidebar { width: var(--sidebar-expanded-width); background-color: #ffffff; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: sticky; top: 0; height: 100vh; z-index: 100; overflow-x: hidden; flex-shrink: 0; }
+    /* SIDEBAR */
+    .sidebar { width: var(--sidebar-width); background: var(--bg-sidebar); color: #f8fafc; position: fixed; top: 0; left: 0; height: 100vh; display: flex; flex-direction: column; z-index: 100; transition: width 0.25s ease; }
     .sidebar.collapsed { width: var(--sidebar-collapsed-width); }
-    .sidebar-header { padding: 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); min-height: 70px; }
-    .sidebar-logo-icon { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .sidebar-logo-icon svg { width: 100%; height: 100%; display: block; }
-    .sidebar-logo-text { font-size: 20px; font-weight: 800; color: var(--sanbox-orange); letter-spacing: 0.5px; white-space: nowrap; opacity: 1; transition: opacity 0.2s; }
-    .sidebar.collapsed .sidebar-logo-text { opacity: 0; pointer-events: none; }
+    .sidebar-header { padding: 20px; border-bottom: 1px solid #1e293b; display: flex; align-items: center; justify-content: space-between; min-height: 75px; }
+    .sidebar.collapsed .sidebar-header { justify-content: center; padding: 20px 10px; }
+    .sidebar-title-group { overflow: hidden; white-space: nowrap; transition: opacity 0.2s; }
+    .sidebar.collapsed .sidebar-title-group { display: none; }
+    .sidebar-header h2 { font-size: 1.05rem; font-weight: 700; color: #38bdf8; }
+    .sidebar-header p { font-size: 0.72rem; color: #94a3b8; margin-top: 2px; }
+    .toggle-sidebar-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; width: 30px; height: 30px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; transition: all 0.2s; }
+    .toggle-sidebar-btn:hover { background: #334155; color: #fff; }
+    .menu-section { padding: 15px 10px; flex: 1; overflow-y: auto; }
+    .menu-category { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.8px; color: #64748b; padding: 10px 12px 6px; font-weight: 700; white-space: nowrap; overflow: hidden; }
+    .sidebar.collapsed .menu-category { text-align: center; font-size: 0.6rem; padding: 10px 2px 6px; }
+    .menu-item { display: flex; align-items: center; gap: 12px; padding: 11px 14px; color: #cbd5e1; text-decoration: none; border-radius: 8px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.15s; margin-bottom: 4px; white-space: nowrap; overflow: hidden; }
+    .sidebar.collapsed .menu-item { justify-content: center; padding: 12px 0; }
+    .menu-item-icon { font-size: 1.15rem; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 24px; }
+    .sidebar.collapsed .menu-item-text { display: none; }
+    .menu-item:hover { background: #1e293b; color: #fff; }
+    .menu-item.active { background: var(--primary); color: #fff; font-weight: 600; }
 
-    .sidebar-menu { padding: 16px 10px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-    .menu-category { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); padding: 12px 12px 4px 12px; white-space: nowrap; font-weight: 700; }
-    .sidebar.collapsed .menu-category { display: none; }
-    .menu-item { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 8px; color: #475569; text-decoration: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-    .menu-item:hover { background-color: #f1f5f9; color: var(--primary); }
-    .menu-item.active { background-color: var(--primary-light); color: var(--primary); }
-    .menu-icon { font-size: 18px; flex-shrink: 0; width: 20px; text-align: center; }
-    .menu-text { opacity: 1; transition: opacity 0.2s; }
-    .sidebar.collapsed .menu-text { opacity: 0; pointer-events: none; }
-
-    .sidebar-footer { padding: 16px; border-top: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; min-height: 60px; }
-    .toggle-btn { background: none; border: none; display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-muted); font-weight: 600; font-size: 13px; width: 100%; padding: 0; }
-    .toggle-btn:hover { color: var(--primary); }
-    .toggle-icon { font-size: 18px; flex-shrink: 0; }
-
-    .main-wrapper { flex: 1; padding: 28px 36px; overflow-y: auto; min-width: 0; }
-    .main-wrapper.no-scroll-mode { height: 100vh; overflow: hidden; padding: 12px 18px; display: flex; flex-direction: column; }
+    /* MAIN CONTENT */
+    .main-content { margin-left: var(--sidebar-width); flex: 1; padding: 24px 32px; transition: margin-left 0.25s ease; width: calc(100% - var(--sidebar-width)); }
+    .sidebar.collapsed ~ .main-content { margin-left: var(--sidebar-collapsed-width); width: calc(100% - var(--sidebar-collapsed-width)); }
+    .main-content.no-scroll-mode { height: 100vh; overflow: hidden; padding: 14px 22px; display: flex; flex-direction: column; }
 
     .page-section { display: none; }
     .page-section.active { display: block; }
     #page-reputacao-geral.active { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
 
-    /* ================= ESTILOS DA PÁGINA INICIAL: REPUTAÇÃO GERAL (5 COLUNAS SEM SCROLL) ================= */
-    .rg-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      flex-shrink: 0;
-      gap: 12px;
-      background: #ffffff;
-      padding: 8px 16px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-    }
-    .rg-title-group { display: flex; align-items: center; gap: 12px; }
-    .rg-header h1 { font-size: 19px; font-weight: 800; color: var(--text-main); margin: 0; letter-spacing: -0.2px; }
-    .rg-date-pill-hdr {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #92400e;
-      background: #fffbeb;
-      border: 1px solid #f59e0b;
-      padding: 4px 12px;
-      border-radius: 8px;
-    }
+    /* HEADER BAR */
+    .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 15px; background: var(--bg-card); padding: 18px 24px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .header-bar h1 { font-size: 1.4rem; color: #0f172a; }
+    .filter-controls-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .select-filter-hdr { padding: 7px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.85rem; color: #1e293b; background: #fff; font-weight: 600; cursor: pointer; outline: none; }
+    .filter-switch { display: flex; background: #e2e8f0; padding: 4px; border-radius: 8px; gap: 4px; }
+    .filter-btn { padding: 7px 14px; border: none; border-radius: 6px; font-size: 0.82rem; font-weight: 600; cursor: pointer; background: transparent; color: #475569; transition: all 0.2s; }
+    .filter-btn.active { background: #fff; color: var(--primary); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
-    .rg-columns-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      min-height: 0;
-    }
+    /* REPUTAÇÃO GERAL */
+    .rg-header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: var(--bg-card); padding: 10px 18px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); flex-shrink: 0; }
+    .rg-header-left { display: flex; align-items: center; gap: 12px; }
+    .rg-header-left h1 { font-size: 1.2rem; color: #0f172a; font-weight: 800; }
+    .rg-date-tag { font-size: 0.75rem; font-weight: 700; color: #92400e; background: #fef3c7; border: 1px solid #f59e0b; padding: 3px 10px; border-radius: 999px; }
 
-    .rg-mp-col {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      min-height: 0;
-      position: relative;
-    }
+    .rg-columns-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; flex: 1; min-height: 0; overflow: hidden; }
+    .rg-mp-column { background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-top-width: 5px; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04); padding: 12px 12px; display: flex; flex-direction: column; overflow: hidden; }
+    .rg-mp-column.mp-ml { border-top-color: #eab308; }
+    .rg-mp-column.mp-amz { border-top-color: #f97316; }
+    .rg-mp-column.mp-magalu { border-top-color: #0ea5e9; }
+    .rg-mp-column.mp-via { border-top-color: #1d4ed8; }
+    .rg-mp-column.mp-shopee { border-top-color: #ea580c; }
 
-    .rg-mp-top-bar { height: 6px; width: 100%; flex-shrink: 0; }
-    .bar-ml { background: linear-gradient(90deg, #ffe600, #facc15); }
-    .bar-amz { background: linear-gradient(90deg, #ff9900, #f59e0b); }
-    .bar-magalu { background: linear-gradient(90deg, #0086ff, #38bdf8); }
-    .bar-via { background: linear-gradient(90deg, #003399, #1d4ed8); }
-    .bar-shopee { background: linear-gradient(90deg, #ee4d2d, #f97316); }
+    .rg-mp-header { display: flex; align-items: center; justify-content: center; gap: 8px; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; flex-shrink: 0; }
+    .rg-mp-logo { height: 22px; max-width: 44px; object-fit: contain; display: block; flex-shrink: 0; }
+    .rg-mp-title { font-size: 0.88rem; font-weight: 800; color: #0f172a; letter-spacing: 0.3px; text-transform: uppercase; white-space: nowrap; }
 
-    .rg-mp-body {
-      flex: 1;
-      padding: 12px 12px 12px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-height: 0;
-    }
+    .rg-col-date-banner { display: flex; align-items: center; justify-content: center; gap: 5px; background: #fffbeb; border: 1px solid #f59e0b; color: #92400e; font-size: 0.72rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; margin-bottom: 8px; flex-shrink: 0; }
 
-    .rg-mp-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 4px 0 6px 0;
-      flex-shrink: 0;
-    }
-    .rg-mp-logo {
-      height: 24px;
-      max-width: 34px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-    .rg-mp-title {
-      font-size: 15px;
-      font-weight: 900;
-      color: #0f172a;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .rg-mp-date-banner {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: #fffbeb;
-      border: 1px solid #f59e0b;
-      color: #92400e;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 5px 10px;
-      border-radius: 8px;
-      flex-shrink: 0;
-    }
-
-    .rg-mp-cards-stack {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-height: 0;
-    }
-
-    .rg-metric-box {
-      flex: 1;
-      max-height: 110px;
-      border-radius: 10px;
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      border: 1px solid #e2e8f0;
-      border-left-width: 5px;
-      background: #f8fafc;
-      min-height: 0;
-      transition: transform 0.15s;
-    }
+    .rg-metrics-stack { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: flex-start; overflow: hidden; }
+    .rg-metric-box { border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; border: 1px solid #cbd5e1; transition: transform 0.15s ease; min-height: 68px; }
     .rg-metric-box:hover { transform: translateY(-1px); }
 
-    .rg-metric-box.state-melhora {
-      background: #ecfdf5;
-      border-color: #a7f3d0;
-      border-left-color: #059669;
-    }
-    .rg-metric-box.state-piora {
-      background: #fef2f2;
-      border-color: #fecaca;
-      border-left-color: #dc2626;
-    }
-    .rg-metric-box.state-estavel {
-      background: #fffbeb;
-      border-color: #fde68a;
-      border-left-color: #d97706;
-    }
-    .rg-metric-box.state-neutro {
-      background: #f8fafc;
-      border-color: #e2e8f0;
-      border-left-color: #94a3b8;
-    }
+    .rg-metric-box.state-neutro { background: #e2e8f0; border-color: #cbd5e1; color: #0f172a; }
+    .rg-metric-box.state-estavel { background: #f1f5f9; border-color: #cbd5e1; color: #0f172a; }
+    .rg-metric-box.state-melhora { background: #dcfce7; border-color: #86efac; color: #14532d; }
+    .rg-metric-box.state-piora { background: #fee2e2; border-color: #fca5a5; color: #7f1d1d; }
 
-    .rg-metric-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 3px;
-      min-width: 0;
-      flex: 1;
-    }
-    .rg-metric-name {
-      font-size: 12.5px;
-      font-weight: 800;
-      color: #1e293b;
-      line-height: 1.2;
-    }
-    .rg-metric-sub {
-      font-size: 10.5px;
-      font-weight: 700;
-      line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .state-melhora .rg-metric-sub { color: #047857; }
-    .state-piora .rg-metric-sub { color: #b91c1c; }
-    .state-estavel .rg-metric-sub { color: #b45309; }
-    .state-neutro .rg-metric-sub { color: #64748b; }
+    .rg-metric-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .rg-metric-name { font-size: 0.78rem; font-weight: 800; line-height: 1.15; }
+    .rg-metric-sub { font-size: 0.68rem; font-weight: 700; opacity: 0.88; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .rg-metric-val { font-size: 1.25rem; font-weight: 900; letter-spacing: -0.4px; white-space: nowrap; flex-shrink: 0; }
 
-    .rg-metric-val {
-      font-size: clamp(19px, 1.85vw, 26px);
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      flex-shrink: 0;
-      text-align: right;
-    }
-    .state-melhora .rg-metric-val { color: #047857; }
-    .state-piora .rg-metric-val { color: #b91c1c; }
-    .state-estavel .rg-metric-val { color: #b45309; }
-    .state-neutro .rg-metric-val { color: #0f172a; }
+    /* METRICS CARDS */
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .metric-card { background: var(--bg-card); padding: 18px 20px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+    .metric-card h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.4px; }
+    .metric-card .val { font-size: 1.75rem; font-weight: 800; }
+    .val-danger { color: #dc2626; }
+    .val-warning { color: #d97706; }
+    .val-success { color: #16a34a; }
+    .val-info { color: #0284c7; }
+    .val-dark { color: #0f172a; }
+    .val-purple { color: #7c3aed; }
 
-    /* ================= ESTILOS GERAIS DAS DEMAIS PÁGINAS ================= */
-    .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
-    .header-bar h1 { font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0; }
-    
-    .filter-controls-group { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-    .filter-switch { display: flex; background: #e2e8f0; padding: 4px; border-radius: 8px; gap: 4px; }
-    .filter-btn { border: none; background: none; padding: 8px 16px; font-weight: 600; font-size: 13px; color: var(--text-muted); cursor: pointer; border-radius: 6px; transition: all 0.2s; }
-    .filter-btn.active { background: #ffffff; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-
-    .select-filter-hdr { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 13px; background: #fff; font-weight: 600; color: var(--text-main); outline: none; cursor: pointer; }
-    .select-filter-hdr:focus { border-color: var(--primary); }
-
-    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
-    .metric-card { background: var(--card-bg); border-radius: 12px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.04); position: relative; }
-    .metric-card h3 { margin: 0 0 8px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
-    .metric-card .val { font-size: 32px; font-weight: 800; }
-    .metric-card .comp-badge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-top: 6px; display: inline-block; line-height: 1.3; }
+    .comp-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; margin-top: 6px; white-space: nowrap; }
     .comp-up { background: #fee2e2; color: #b91c1c; }
     .comp-down { background: #dcfce7; color: #15803d; }
     .comp-equal { background: #f1f5f9; color: #475569; }
 
-    .val-danger { color: var(--danger); }
-    .val-info { color: var(--info); }
-    .val-warning { color: var(--warning); }
-    .val-success { color: var(--success); }
-    .val-purple { color: var(--purple); }
-    .val-dark { color: var(--text-main); }
-
-    .nav-tabs { display: flex; gap: 8px; border-bottom: 2px solid var(--border-color); margin-bottom: 24px; flex-wrap: wrap; }
-    .tab-btn { background: none; border: none; padding: 12px 20px; font-size: 15px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
-    .tab-btn:hover { color: var(--primary); }
-    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+    /* NAV TABS */
+    .nav-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 10px; flex-wrap: wrap; }
+    .tab-btn { padding: 9px 18px; border: none; background: transparent; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; cursor: pointer; border-radius: 6px; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .tab-btn:hover { background: #e2e8f0; color: var(--text-main); }
+    .tab-btn.active { background: var(--primary); color: #fff; }
+    .tab-pill-count { background: rgba(15, 23, 42, 0.12); padding: 1px 7px; border-radius: 999px; font-size: 0.75rem; font-weight: 800; }
+    .tab-btn.active .tab-pill-count { background: rgba(255, 255, 255, 0.25); color: #fff; }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    .table-toolbar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
-    .search-box-wrapper { position: relative; min-width: 260px; flex: 1; }
-    .search-input { width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; background: #fff; transition: border-color 0.2s; }
-    .search-input:focus { border-color: var(--primary); }
-    .search-icon-inside { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--text-muted); pointer-events: none; }
-    
-    .select-filter { padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; background: #fff; font-weight: 600; color: var(--text-main); outline: none; cursor: pointer; }
-    .select-filter:focus { border-color: var(--primary); }
+    /* TOOLBAR & SEARCH */
+    .table-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 12px; flex-wrap: wrap; }
+    .search-box-wrapper { position: relative; width: 100%; max-width: 380px; }
+    .search-input { width: 100%; padding: 9px 14px 9px 36px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.85rem; color: #1e293b; background: #fff; outline: none; transition: border-color 0.2s; }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+    .search-icon-inside { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.9rem; pointer-events: none; }
+    .select-filter { padding: 8px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.85rem; color: #1e293b; background: #fff; font-weight: 600; cursor: pointer; outline: none; }
 
-    .chart-box { background: var(--card-bg); border-radius: 12px; padding: 24px; border: 1px solid var(--border-color); margin-bottom: 24px; }
-    .section-subtitle { font-size: 16px; font-weight: 700; color: #1e293b; margin: 0 0 16px 0; }
+    /* CHARTS & TABLES */
+    .chart-box { background: var(--bg-card); padding: 20px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 24px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid var(--border); table-layout: fixed; }
+    th, td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.85rem; vertical-align: middle; word-wrap: break-word; }
+    th { background: #f8fafc; font-weight: 700; color: #475569; text-transform: uppercase; font-size: 0.72rem; }
+    tr:hover { background: #f8fafc; }
 
-    table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); table-layout: fixed; margin-bottom: 24px; }
-    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: middle; word-wrap: break-word; }
-    th { background: #f1f5f9; font-weight: 600; color: #334155; }
+    .badge-count { background: #e2e8f0; color: #0f172a; padding: 3px 9px; border-radius: 12px; font-weight: 700; font-size: 0.78rem; display: inline-block; }
+    .badge-star { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; display: inline-block; white-space: nowrap; }
+    .badge-status-octa { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; padding: 3px 9px; border-radius: 6px; font-weight: 700; font-size: 0.75rem; display: inline-block; }
 
-    .order-link-box { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #0f172a; text-decoration: none; }
-    .amazon-logo-img, .ml-logo-img { width: 22px; height: 22px; object-fit: contain; cursor: pointer; transition: transform 0.15s; flex-shrink: 0; }
-    .amazon-logo-img:hover, .ml-logo-img:hover { transform: scale(1.15); }
-    .sub-id-label { display: block; font-size: 11px; color: var(--text-muted); font-weight: 500; margin-top: 2px; }
+    .order-link-box { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: #0f172a; font-weight: 700; background: #f8fafc; border: 1px solid #e2e8f0; padding: 5px 10px; border-radius: 6px; transition: all 0.15s; }
+    .order-link-box:hover { background: #eff6ff; border-color: #93c5fd; color: var(--primary); }
+    .amazon-logo-img { height: 15px; width: auto; display: block; margin-top: 2px; }
+    .ml-logo-img { height: 16px; width: auto; display: block; }
+    .sub-id-label { display: block; font-size: 0.7rem; color: #64748b; font-weight: 500; margin-top: 2px; }
 
-    .ranking-container { display: flex; flex-wrap: wrap; gap: 6px; }
-    .ranking-pill { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px; font-size: 12px; color: #334155; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s; user-select: none; }
-    .ranking-pill:hover { background: #e2e8f0; border-color: var(--primary); }
-    .ranking-pill.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
-    .ranking-pill.active strong { color: #ffffff; }
-    .ranking-pill strong { color: var(--primary); font-weight: 700; }
+    /* RANKING PILLS */
+    .ranking-container { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ranking-pill { display: inline-flex; align-items: center; gap: 4px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; padding: 3px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.15s; user-select: none; }
+    .ranking-pill:hover { background: #dbeafe; border-color: #93c5fd; }
+    .ranking-pill.active { background: #1d4ed8; color: #ffffff; border-color: #1e40af; box-shadow: 0 1px 3px rgba(29, 78, 216, 0.35); }
+    .ranking-pill strong { color: #0f172a; background: #dbeafe; padding: 1px 5px; border-radius: 4px; font-size: 0.72rem; }
+    .ranking-pill.active strong { background: #ffffff; color: #1d4ed8; }
 
-    .comments-wrapper { display: flex; flex-direction: column; gap: 4px; }
-    .comments-filter-tag { font-size: 11px; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 2px 6px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: space-between; gap: 4px; max-width: fit-content; }
-    .comments-filter-tag span { cursor: pointer; font-weight: 800; margin-left: 4px; }
-    .comments-scroll-box { max-height: 180px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px; }
-    .comment-bubble { background: #f8fafc; border-left: 3px solid var(--primary); border-radius: 4px; padding: 6px 10px; font-size: 12px; color: #475569; word-break: break-word; }
-    .badge-count { background: #e2e8f0; color: #334155; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; }
-    .badge-star { background: #fef3c7; color: #b45309; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 13px; display: inline-block; letter-spacing: 1px; }
-    .no-comments { color: #94a3b8; font-size: 12px; font-style: italic; }
+    /* COMMENTS */
+    .comments-wrapper { display: flex; flex-direction: column; gap: 6px; }
+    .comments-filter-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 700; color: #1d4ed8; background: #eff6ff; border: 1px solid #bfdbfe; padding: 2px 8px; border-radius: 4px; width: fit-content; }
+    .comments-filter-tag span { cursor: pointer; color: #ef4444; font-weight: 900; padding-left: 2px; }
+    .comments-scroll-box { max-height: 115px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; padding-right: 4px; }
+    .comment-bubble { background: #f8fafc; border-left: 3px solid #3b82f6; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #334155; line-height: 1.35; }
+    .no-comments { color: #94a3b8; font-size: 0.78rem; font-style: italic; }
 
+    /* NOTAS COMPARTILHADAS */
     .note-box-wrapper { display: flex; flex-direction: column; gap: 4px; }
-    .note-textarea { width: 100%; height: 54px; padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 12px; font-family: inherit; resize: vertical; outline: none; background: #fafafa; transition: border-color 0.2s, background 0.2s; }
-    .note-textarea:focus { border-color: var(--primary); background: #ffffff; }
-    .note-status { font-size: 11px; color: var(--text-muted); min-height: 14px; font-weight: 600; }
-    .note-status.saving { color: var(--warning); }
-    .note-status.saved { color: var(--success); }
-    .note-status.error { color: var(--danger); }
+    .note-textarea { width: 100%; min-height: 54px; padding: 7px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.8rem; color: #1e293b; resize: vertical; background: #fffbeb; transition: border-color 0.2s; }
+    .note-textarea:focus { outline: none; border-color: #f59e0b; background: #fff; }
+    .note-status { font-size: 0.7rem; font-weight: 600; min-height: 14px; }
+    .note-status.saving { color: #d97706; }
+    .note-status.saved { color: #16a34a; }
+    .note-status.error { color: #dc2626; }
   </style>
 </head>
 <body>
 
+  <!-- MENU LATERAL -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-logo-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="18" fill="#ff9900"/>
-          <path d="M0 18 Q0 0 18 0 L100 100 L18 100 Q0 100 0 82 Z" fill="#f58200"/>
-          <path d="M21 21 H79 V71 Q79 79 71 79 H29 Q21 79 21 71 Z" fill="#ffffff"/>
-          <rect x="39" y="33" width="22" height="12" fill="#ff9900"/>
-        </svg>
+      <div class="sidebar-title-group">
+        <h2>Reputação & Ops</h2>
+        <p>Monitoramento Marketplaces</p>
       </div>
-      <span class="sidebar-logo-text">SANBOX</span>
-    </div>
-
-    <div class="sidebar-menu">
-      <a class="menu-item active" data-page="page-reputacao-geral" onclick="navigatePage('page-reputacao-geral', this)">
-        <span class="menu-icon">📊</span>
-        <span class="menu-text">Reputação Geral</span>
-      </a>
-
-      <div class="menu-category">Relatórios</div>
-      <a class="menu-item" data-page="page-impactos-ml" onclick="navigatePage('page-impactos-ml', this)">
-        <span class="menu-icon">🛍️</span>
-        <span class="menu-text">Impactos ML</span>
-      </a>
-      <a class="menu-item" data-page="page-amazon" onclick="navigatePage('page-amazon', this)">
-        <span class="menu-icon">📦</span>
-        <span class="menu-text">Reivindicações A-Z Amazon</span>
-      </a>
-      <a class="menu-item" data-page="page-avaliacoes-amazon" onclick="navigatePage('page-avaliacoes-amazon', this)">
-        <span class="menu-icon">⭐</span>
-        <span class="menu-text">Avaliações com Impacto Amazon</span>
-      </a>
-      <a class="menu-item" data-page="page-via" onclick="navigatePage('page-via', this)">
-        <span class="menu-icon">🛒</span>
-        <span class="menu-text">Reclamações VIA</span>
-      </a>
-    </div>
-
-    <div class="sidebar-footer">
-      <button class="toggle-btn" onclick="toggleSidebar()">
-        <span class="toggle-icon" id="toggle-icon">◀</span>
-        <span class="menu-text">Minimizar Menu</span>
+      <button class="toggle-sidebar-btn" id="toggle-sidebar-btn" onclick="toggleSidebar()" title="Expandir / Recolher menu">
+        <span id="toggle-icon">◀</span>
       </button>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-category">Visão Geral</div>
+      <a class="menu-item active" data-page="page-reputacao-geral" onclick="navigatePage('page-reputacao-geral', this)" title="Reputação Geral">
+        <span class="menu-item-icon">📊</span>
+        <span class="menu-item-text">Reputação Geral</span>
+      </a>
+
+      <div class="menu-category">Mercado Livre</div>
+      <a class="menu-item" data-page="page-impactos-ml" onclick="navigatePage('page-impactos-ml', this)" title="Reclamações Mercado Livre">
+        <span class="menu-item-icon">⚠️</span>
+        <span class="menu-item-text">Reclamações ML</span>
+      </a>
+
+      <div class="menu-category">Amazon</div>
+      <a class="menu-item" data-page="page-amazon" onclick="navigatePage('page-amazon', this)" title="Garantia de A a Z">
+        <span class="menu-item-icon">🛡️</span>
+        <span class="menu-item-text">Garantia de A a Z</span>
+      </a>
+      <a class="menu-item" data-page="page-avaliacoes-amazon" onclick="navigatePage('page-avaliacoes-amazon', this)" title="Avaliações com Impacto">
+        <span class="menu-item-icon">⭐</span>
+        <span class="menu-item-text">Avaliações com Impacto</span>
+      </a>
+
+      <div class="menu-category">VIA (Casas Bahia)</div>
+      <a class="menu-item" data-page="page-via" onclick="navigatePage('page-via', this)" title="Reclamações VIA">
+        <span class="menu-item-icon">🏬</span>
+        <span class="menu-item-text">Reclamações VIA</span>
+      </a>
+
+      <div class="menu-category">OctaDesk</div>
+      <a class="menu-item" data-page="page-octadesk-devolucao" onclick="navigatePage('page-octadesk-devolucao', this)" title="Solicitação de Devolução">
+        <span class="menu-item-icon">📦</span>
+        <span class="menu-item-text">Solicitação de Devolução</span>
+      </a>
     </div>
   </aside>
 
-  <main class="main-wrapper no-scroll-mode" id="main-wrapper">
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="main-content no-scroll-mode" id="main-wrapper">
 
-    <!-- PÁGINA INICIAL: REPUTAÇÃO GERAL (5 COLUNAS SEM SCROLL) -->
+    <!-- PÁGINA 0: REPUTAÇÃO GERAL -->
     <section id="page-reputacao-geral" class="page-section active">
-      <div class="rg-header">
-        <div class="rg-title-group">
+      <div class="rg-header-bar">
+        <div class="rg-header-left">
           <h1>Reputação Geral</h1>
-          <span class="rg-date-pill-hdr" id="rg-current-date">⚠️ Dados de -</span>
+          <span class="rg-date-tag" id="rg-current-date">Carregando data...</span>
         </div>
         <div class="filter-controls-group">
           <select id="filter-comp-rg" class="select-filter-hdr" onchange="renderReputacaoGeral()">
             <option value="PREV">Comparar com Registro Anterior</option>
-            <option value="7">Comparar com Últimos 7 Dias</option>
-            <option value="15">Comparar com Últimos 15 Dias</option>
-            <option value="30">Comparar com Últimos 30 Dias</option>
+            <option value="7">Comparar com 7 Dias Atrás</option>
+            <option value="15">Comparar com 15 Dias Atrás</option>
+            <option value="30">Comparar com 30 Dias Atrás</option>
           </select>
         </div>
       </div>
 
       <div class="rg-columns-grid">
         <!-- COLUNA 1: MERCADO LIVRE -->
-        <div class="rg-mp-col">
-          <div class="rg-mp-top-bar bar-ml"></div>
-          <div class="rg-mp-body">
-            <div class="rg-mp-header">
-              <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__small@2x.png" class="rg-mp-logo" alt="ML">
-              <span class="rg-mp-title">Mercado Livre</span>
-            </div>
-            <div class="rg-mp-date-banner" id="rg-date-ml">⚠️ Dados de -</div>
-            <div class="rg-mp-cards-stack">
-              <div class="rg-metric-box" id="rg-card-reclamacoes_ml"></div>
-              <div class="rg-metric-box" id="rg-card-mediacoes_ml"></div>
-              <div class="rg-metric-box" id="rg-card-vendas_canceladas_ml"></div>
-              <div class="rg-metric-box" id="rg-card-envios_incorretos_ml"></div>
-            </div>
+        <div class="rg-mp-column mp-ml">
+          <div class="rg-mp-header">
+            <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__small@2x.png" class="rg-mp-logo" alt="ML">
+            <span class="rg-mp-title">Mercado Livre</span>
+          </div>
+          <div class="rg-col-date-banner" id="rg-date-ml">⚠️ Carregando...</div>
+          <div class="rg-metrics-stack">
+            <div class="rg-metric-box state-neutro" id="rg-card-reclamacoes_ml"></div>
+            <div class="rg-metric-box state-neutro" id="rg-card-mediacoes_ml"></div>
+            <div class="rg-metric-box state-neutro" id="rg-card-vendas_canceladas_ml"></div>
+            <div class="rg-metric-box state-neutro" id="rg-card-envios_incorretos_ml"></div>
           </div>
         </div>
 
         <!-- COLUNA 2: AMAZON -->
-        <div class="rg-mp-col">
-          <div class="rg-mp-top-bar bar-amz"></div>
-          <div class="rg-mp-body">
-            <div class="rg-mp-header">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="rg-mp-logo" alt="Amazon">
-              <span class="rg-mp-title">Amazon</span>
-            </div>
-            <div class="rg-mp-date-banner" id="rg-date-amz">⚠️ Dados de -</div>
-            <div class="rg-mp-cards-stack">
-              <div class="rg-metric-box" id="rg-card-pedidos_problema_amz"></div>
-              <div class="rg-metric-box" id="rg-card-problemas_envios_amz"></div>
-            </div>
+        <div class="rg-mp-column mp-amz">
+          <div class="rg-mp-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="rg-mp-logo" alt="Amazon" style="margin-top:3px;">
+            <span class="rg-mp-title">Amazon</span>
+          </div>
+          <div class="rg-col-date-banner" id="rg-date-amz">⚠️ Carregando...</div>
+          <div class="rg-metrics-stack">
+            <div class="rg-metric-box state-neutro" id="rg-card-pedidos_problema_amz"></div>
+            <div class="rg-metric-box state-neutro" id="rg-card-problemas_envios_amz"></div>
           </div>
         </div>
 
         <!-- COLUNA 3: MAGAZINE LUIZA -->
-        <div class="rg-mp-col">
-          <div class="rg-mp-top-bar bar-magalu"></div>
-          <div class="rg-mp-body">
-            <div class="rg-mp-header">
-              <svg class="rg-mp-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="10" fill="#0086ff"/>
-                <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="22">M</text>
-                <path d="M10 31 Q20 35 30 31" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-              </svg>
-              <span class="rg-mp-title">Magazine Luiza</span>
-            </div>
-            <div class="rg-mp-date-banner" id="rg-date-magalu">⚠️ Dados de -</div>
-            <div class="rg-mp-cards-stack">
-              <div class="rg-metric-box" id="rg-card-agilidade_magalu"></div>
-              <div class="rg-metric-box" id="rg-card-cancelamentos_magalu"></div>
-              <div class="rg-metric-box" id="rg-card-avaliacao_magalu"></div>
-            </div>
+        <div class="rg-mp-column mp-magalu">
+          <div class="rg-mp-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Magalu_-_novo_logo.png" class="rg-mp-logo" alt="Magalu">
+            <span class="rg-mp-title">Magazine Luiza</span>
+          </div>
+          <div class="rg-col-date-banner" id="rg-date-magalu">⚠️ Carregando...</div>
+          <div class="rg-metrics-stack">
+            <div class="rg-metric-box state-neutro" id="rg-card-agilidade_magalu"></div>
+            <div class="rg-metric-box state-neutro" id="rg-card-cancelamentos_magalu"></div>
+            <div class="rg-metric-box state-neutro" id="rg-card-avaliacao_magalu"></div>
           </div>
         </div>
 
-        <!-- COLUNA 4: CASAS BAHIA / VIA -->
-        <div class="rg-mp-col">
-          <div class="rg-mp-top-bar bar-via"></div>
-          <div class="rg-mp-body">
-            <div class="rg-mp-header">
-              <svg class="rg-mp-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="10" fill="#003399"/>
-                <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="16">CB</text>
-                <circle cx="31" cy="10" r="4" fill="#e30613"/>
-              </svg>
-              <span class="rg-mp-title">Casas Bahia</span>
-            </div>
-            <div class="rg-mp-date-banner" id="rg-date-via">⚠️ Dados de -</div>
-            <div class="rg-mp-cards-stack">
-              <div class="rg-metric-box" id="rg-card-reclamacoes_via"></div>
-              <div class="rg-metric-box" id="rg-card-cancelamentos_via"></div>
-            </div>
+        <!-- COLUNA 4: CASAS BAHIA (VIA) -->
+        <div class="rg-mp-column mp-via">
+          <div class="rg-mp-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Casas_Bahia_logo_2020.svg" class="rg-mp-logo" alt="Casas Bahia">
+            <span class="rg-mp-title">Casas Bahia</span>
+          </div>
+          <div class="rg-col-date-banner" id="rg-date-via">⚠️ Carregando...</div>
+          <div class="rg-metrics-stack">
+            <div class="rg-metric-box state-neutro" id="rg-card-reclamacoes_via"></div>
+            <div class="rg-metric-box state-neutro" id="rg-card-cancelamentos_via"></div>
           </div>
         </div>
 
         <!-- COLUNA 5: SHOPEE -->
-        <div class="rg-mp-col">
-          <div class="rg-mp-top-bar bar-shopee"></div>
-          <div class="rg-mp-body">
-            <div class="rg-mp-header">
-              <svg class="rg-mp-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="10" fill="#ee4d2d"/>
-                <path d="M14 14 C14 9, 26 9, 26 14" stroke="#ffffff" stroke-width="2.5" fill="none"/>
-                <rect x="10" y="14" width="20" height="19" rx="3" fill="#ffffff"/>
-                <text x="50%" y="25" dominant-baseline="middle" text-anchor="middle" fill="#ee4d2d" font-family="Arial, sans-serif" font-weight="900" font-size="14">S</text>
-              </svg>
-              <span class="rg-mp-title">Shopee</span>
-            </div>
-            <div class="rg-mp-date-banner" id="rg-date-shopee">⚠️ Dados de -</div>
-            <div class="rg-mp-cards-stack">
-              <div class="rg-metric-box" id="rg-card-nao_cumprimento_shopee"></div>
-              <div class="rg-metric-box" id="rg-card-taxa_resposta_shopee"></div>
-              <div class="rg-metric-box" id="rg-card-nota_shopee"></div>
-            </div>
+        <div class="rg-mp-column mp-shopee">
+          <div class="rg-mp-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg" class="rg-mp-logo" alt="Shopee">
+            <span class="rg-mp-title">Shopee</span>
+          </div>
+          <div class="rg-col-date-banner" id="rg-date-shopee">⚠️ Carregando...</div>
+          <div class="rg-metrics-stack">
+            <div class="rg-metric-box state-neutro" id="rg-card-nao_cumprimento_shopee"></div>
+            <div class="rg-metric-box state-neutro" id="rg-card-taxa_resposta_shopee"></div>
+            <div class="rg-metric-box state-neutro" id="rg-card-nota_shopee"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PÁGINA 1: IMPACTOS ML -->
+    <!-- PÁGINA 1: RECLAMAÇÕES MERCADO LIVRE -->
     <section id="page-impactos-ml" class="page-section">
       <div class="header-bar">
-        <h1>Impactos ML</h1>
+        <h1>Reclamações Mercado Livre</h1>
         <div class="filter-controls-group">
           <select id="filter-dias-ml" class="select-filter-hdr" onchange="renderML()">
             <option value="0">Todo o Período</option>
@@ -516,7 +337,7 @@
           </select>
 
           <div class="filter-switch">
-            <button id="btn-afetando-ml" class="filter-btn active" onclick="setEscopoML('afetando')">Apenas Afetando Reputação</button>
+            <button id="btn-afetando-ml" class="filter-btn active" onclick="setEscopoML('afetando')">Apenas Afetando a Reputação</button>
             <button id="btn-todas-ml" class="filter-btn" onclick="setEscopoML('todas')">Todas</button>
           </div>
         </div>
@@ -524,58 +345,35 @@
 
       <div class="metrics-grid">
         <div class="metric-card">
-          <h3>Pedidos Afetando Reputação</h3>
+          <h3>Pedidos Afetando a Reputação</h3>
           <div class="val val-danger" id="total-afetando-ml">-</div>
           <div id="comp-afetando-ml"></div>
         </div>
         <div class="metric-card">
-          <h3>Em Mediação (Válidos)</h3>
-          <div class="val val-info" id="total-mediacao-ml">-</div>
+          <h3>Em Mediação</h3>
+          <div class="val val-warning" id="total-mediacao-ml">-</div>
           <div id="comp-mediacao-ml"></div>
         </div>
         <div class="metric-card">
-          <h3>Revisão Recusada (Válidos)</h3>
-          <div class="val val-warning" id="total-recusada-ml">-</div>
+          <h3>Revisão Recusada</h3>
+          <div class="val val-info" id="total-recusada-ml">-</div>
           <div id="comp-recusada-ml"></div>
         </div>
         <div class="metric-card">
-          <h3>Impacto Removido (Válidos)</h3>
+          <h3>Impacto Removido</h3>
           <div class="val val-success" id="total-removido-ml">-</div>
           <div id="comp-removido-ml"></div>
         </div>
       </div>
 
       <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTabML('tab-skus-ml', this)">Produtos / SKUs</button>
-        <button class="tab-btn" onclick="switchTabML('tab-transp-ml', this)">Transportadoras</button>
+        <button class="tab-btn active" onclick="switchTabML('tab-transp-ml', this)">Transportadora</button>
+        <button class="tab-btn" onclick="switchTabML('tab-skus-ml', this)">SKUs / Produtos</button>
         <button class="tab-btn" onclick="switchTabML('tab-motivos-ml', this)">Motivos da Reclamação</button>
-        <button class="tab-btn" onclick="switchTabML('tab-consulta-ml', this)">Consulta de Pedidos com Impacto</button>
+        <button class="tab-btn" onclick="switchTabML('tab-consulta-ml', this)">Consulta Pedidos com Impacto</button>
       </div>
 
-      <div id="tab-skus-ml" class="tab-content active">
-        <div class="table-toolbar">
-          <select id="filter-marca-skus-ml" class="select-filter" onchange="renderTabSkusML_Current()">
-            <option value="TODAS">Todas as Marcas</option>
-          </select>
-        </div>
-
-        <div class="chart-box"><h2 class="section-subtitle">Top SKUs & Produtos</h2><div style="height: 440px;"><canvas id="chartSkusML"></canvas></div></div>
-        <table id="tabela-skus-ml">
-          <thead>
-            <tr>
-              <th style="width:14%">SKU</th>
-              <th style="width:14%">Marca</th>
-              <th style="width:24%">Produto</th>
-              <th style="width:7%">Qtd</th>
-              <th style="width:15%">Comparativo</th>
-              <th style="width:26%">Comentários & Ocorrências</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <div id="tab-transp-ml" class="tab-content">
+      <div id="tab-transp-ml" class="tab-content active">
         <div class="chart-box"><div style="height: 350px;"><canvas id="chartTranspML"></canvas></div></div>
         <table id="tabela-transp-ml">
           <thead>
@@ -585,6 +383,31 @@
               <th style="width:15%">Comparativo</th>
               <th style="width:30%">Ranking dos Motivos</th>
               <th style="width:30%">Comentários & Ocorrências</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div id="tab-skus-ml" class="tab-content">
+        <div class="table-toolbar">
+          <select id="filter-marca-skus-ml" class="select-filter" onchange="renderTabSkusML_Current()">
+            <option value="TODAS">Todas as Marcas</option>
+          </select>
+        </div>
+        <div class="chart-box">
+          <h2 class="section-subtitle">Top SKUs & Produtos</h2>
+          <div style="height: 440px;"><canvas id="chartSkusML"></canvas></div>
+        </div>
+        <table id="tabela-skus-ml">
+          <thead>
+            <tr>
+              <th style="width:14%">SKU</th>
+              <th style="width:14%">Marca</th>
+              <th style="width:24%">Produto</th>
+              <th style="width:7%">Qtd</th>
+              <th style="width:15%">Comparativo</th>
+              <th style="width:26%">Comentários & Ocorrências</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -611,7 +434,7 @@
         <div class="table-toolbar">
           <div class="search-box-wrapper">
             <span class="search-icon-inside">🔍</span>
-            <input type="text" id="search-consulta-ml" class="search-input" placeholder="Pesquisar por N° Venda ou Pedido..." oninput="renderTabConsultaML()">
+            <input type="text" id="search-consulta-ml" class="search-input" placeholder="Pesquisar por Nº da Venda ou Pedido..." oninput="renderTabConsultaML()">
           </div>
           <select id="filter-transp-consulta-ml" class="select-filter" onchange="renderTabConsultaML()">
             <option value="TODAS">Todas as Transportadoras</option>
@@ -623,9 +446,9 @@
         <table id="tabela-consulta-ml">
           <thead>
             <tr>
-              <th style="width:20%">N° Venda / Pedido</th>
+              <th style="width:18%">Nº da Venda</th>
               <th style="width:22%">Produto</th>
-              <th style="width:16%">Motivo</th>
+              <th style="width:18%">Motivo</th>
               <th style="width:16%">Transportadora</th>
               <th style="width:26%">Nota / Observação (Compartilhada)</th>
             </tr>
@@ -635,10 +458,10 @@
       </div>
     </section>
 
-    <!-- PÁGINA 2: REIVINDICAÇÕES A-Z AMAZON -->
+    <!-- PÁGINA 2: AMAZON GARANTIA DE A A Z -->
     <section id="page-amazon" class="page-section">
       <div class="header-bar">
-        <h1>Reivindicações A-Z Amazon</h1>
+        <h1>Amazon - Garantia de A a Z</h1>
         <div class="filter-controls-group">
           <select id="filter-dias-amz" class="select-filter-hdr" onchange="renderAMZ()">
             <option value="0">Todo o Período</option>
@@ -656,7 +479,7 @@
           </select>
 
           <div class="filter-switch">
-            <button id="btn-afetando-amz" class="filter-btn active" onclick="setEscopoAMZ('afetando')">Apenas Afetando Reputação</button>
+            <button id="btn-afetando-amz" class="filter-btn active" onclick="setEscopoAMZ('afetando')">Apenas Afetando a Reputação</button>
             <button id="btn-todas-amz" class="filter-btn" onclick="setEscopoAMZ('todas')">Todas</button>
           </div>
         </div>
@@ -664,51 +487,51 @@
 
       <div class="metrics-grid">
         <div class="metric-card">
-          <h3>Pedidos Afetando Reputação</h3>
+          <h3>Pedidos Afetando a Reputação</h3>
           <div class="val val-danger" id="total-afetando-amz">-</div>
           <div id="comp-afetando-amz"></div>
         </div>
         <div class="metric-card">
           <h3>Impactos Removidos</h3>
-          <div class="val val-info" id="total-removidos-amz">-</div>
+          <div class="val val-success" id="total-removidos-amz">-</div>
           <div id="comp-removidos-amz"></div>
         </div>
         <div class="metric-card">
-          <h3>Em Chamado Premium</h3>
-          <div class="val val-warning" id="total-premium-amz">-</div>
+          <h3>Chamados Premium</h3>
+          <div class="val val-info" id="total-premium-amz">-</div>
           <div id="comp-premium-amz"></div>
         </div>
         <div class="metric-card">
-          <h3>Em Análise</h3>
-          <div class="val val-success" id="total-analise-amz">-</div>
+          <h3>Em Análise Amazon</h3>
+          <div class="val val-warning" id="total-analise-amz">-</div>
           <div id="comp-analise-amz"></div>
         </div>
       </div>
 
       <div class="nav-tabs">
         <button class="tab-btn active" onclick="switchTabAMZ('tab-premium-amz', this)">Chamados Premium</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-repasses-amz', this)">Repasses</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-skus-amz', this)">Produtos / SKUs</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-transp-amz', this)">Transportadoras</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-motivos-amz', this)">Motivos da Reclamação</button>
-        <button class="tab-btn" onclick="switchTabAMZ('tab-consulta-amz', this)">Consulta de Pedidos com Impacto</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-repasses-amz', this)">Repasses & Reembolsos</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-transp-amz', this)">Transportadora</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-skus-amz', this)">SKUs / Produtos</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-motivos-amz', this)">Motivos</button>
+        <button class="tab-btn" onclick="switchTabAMZ('tab-consulta-amz', this)">Consulta Pedidos com Impacto</button>
       </div>
 
       <div id="tab-premium-amz" class="tab-content active">
         <div class="table-toolbar">
           <div class="search-box-wrapper">
             <span class="search-icon-inside">🔍</span>
-            <input type="text" id="search-premium-input" class="search-input" placeholder="Pesquisar por ID do Pedido ou Valor..." oninput="renderTabPremiumAMZ()">
+            <input type="text" id="search-premium-input" class="search-input" placeholder="Pesquisar por ID do Pedido ou Reembolso..." oninput="renderTabPremiumAMZ()">
           </div>
         </div>
         <table id="tabela-premium-amz">
           <thead>
             <tr>
-              <th style="width:22%">ID do Pedido</th>
+              <th style="width:18%">Pedido</th>
               <th style="width:14%">Data Solicitação</th>
               <th style="width:14%">Data Reivindicação</th>
-              <th style="width:14%">Valor (Reembolso)</th>
-              <th style="width:18%">Motivo</th>
+              <th style="width:16%">Reembolso / Valor</th>
+              <th style="width:20%">Motivo</th>
               <th style="width:18%">Transportadora</th>
             </tr>
           </thead>
@@ -720,46 +543,21 @@
         <div class="table-toolbar">
           <div class="search-box-wrapper">
             <span class="search-icon-inside">🔍</span>
-            <input type="text" id="search-repasses-input" class="search-input" placeholder="Pesquisar por ID do Pedido ou Valor..." oninput="renderTabRepassesAMZ()">
+            <input type="text" id="search-repasses-input" class="search-input" placeholder="Pesquisar por Pedido, Resultado ou Valor..." oninput="renderTabRepassesAMZ()">
           </div>
           <select id="filter-resultado-repasses" class="select-filter" onchange="renderTabRepassesAMZ()">
-            <option value="TODOS">Todos os Resultados (Valor)</option>
-            <option value="Com o Comprador">Com o Comprador</option>
-            <option value="Reembolsado pela Sanbox">Reembolsado pela Sanbox</option>
-            <option value="Repasse Liberado à Sanbox">Repasse Liberado à Sanbox</option>
+            <option value="TODOS">Todos os Resultados</option>
+            <option value="CONCEDIDA">Concedida</option>
+            <option value="NEGADA">Negada</option>
+            <option value="ANALISE">Em Análise</option>
           </select>
         </div>
         <table id="tabela-repasses-amz">
           <thead>
             <tr>
-              <th style="width:35%">ID do Pedido</th>
-              <th style="width:40%">Resultado (Valor)</th>
-              <th style="width:25%">Reembolso</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <div id="tab-skus-amz" class="tab-content">
-        <div class="table-toolbar">
-          <select id="filter-marca-skus-amz" class="select-filter" onchange="renderTabSkusAMZ_Current()">
-            <option value="TODAS">Todas as Marcas</option>
-          </select>
-        </div>
-        <div class="chart-box">
-          <h2 class="section-subtitle">Top SKUs & Produtos Impactados</h2>
-          <div style="height: 440px;"><canvas id="chartSkusAMZ"></canvas></div>
-        </div>
-        <table id="tabela-skus-amz">
-          <thead>
-            <tr>
-              <th style="width:14%">SKU</th>
-              <th style="width:14%">Marca</th>
-              <th style="width:24%">Produto</th>
-              <th style="width:7%">Qtd</th>
-              <th style="width:15%">Comparativo</th>
-              <th style="width:26%">Comentários & Ocorrências</th>
+              <th style="width:30%">Pedido</th>
+              <th style="width:35%">Resultado / Repasse</th>
+              <th style="width:35%">Reembolso</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -776,6 +574,31 @@
               <th style="width:15%">Comparativo</th>
               <th style="width:30%">Ranking dos Motivos</th>
               <th style="width:30%">Comentários & Ocorrências</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div id="tab-skus-amz" class="tab-content">
+        <div class="table-toolbar">
+          <select id="filter-marca-skus-amz" class="select-filter" onchange="renderTabSkusAMZ_Current()">
+            <option value="TODAS">Todas as Marcas</option>
+          </select>
+        </div>
+        <div class="chart-box">
+          <h2 class="section-subtitle">Top SKUs & Produtos Amazon</h2>
+          <div style="height: 440px;"><canvas id="chartSkusAMZ"></canvas></div>
+        </div>
+        <table id="tabela-skus-amz">
+          <thead>
+            <tr>
+              <th style="width:14%">SKU</th>
+              <th style="width:14%">Marca</th>
+              <th style="width:24%">Produto</th>
+              <th style="width:7%">Qtd</th>
+              <th style="width:15%">Comparativo</th>
+              <th style="width:26%">Comentários & Ocorrências</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -802,7 +625,7 @@
         <div class="table-toolbar">
           <div class="search-box-wrapper">
             <span class="search-icon-inside">🔍</span>
-            <input type="text" id="search-consulta-amz" class="search-input" placeholder="Pesquisar por ID do Pedido..." oninput="renderTabConsultaAMZ()">
+            <input type="text" id="search-consulta-amz" class="search-input" placeholder="Pesquisar por Nº do Pedido..." oninput="renderTabConsultaAMZ()">
           </div>
           <select id="filter-transp-consulta-amz" class="select-filter" onchange="renderTabConsultaAMZ()">
             <option value="TODAS">Todas as Transportadoras</option>
@@ -825,11 +648,10 @@
         </table>
       </div>
     </section>
-
-    <!-- PÁGINA 3: AVALIAÇÕES COM IMPACTO AMAZON -->
+    <!-- PÁGINA 3: AVALIAÇÕES AMAZON -->
     <section id="page-avaliacoes-amazon" class="page-section">
       <div class="header-bar">
-        <h1>Avaliações com Impacto Amazon</h1>
+        <h1>Amazon - Avaliações com Impacto</h1>
         <div class="filter-controls-group">
           <select id="filter-dias-aval" class="select-filter-hdr" onchange="renderAvaliacoesAMZ()">
             <option value="0">Todo o Período</option>
@@ -855,7 +677,7 @@
 
       <div class="metrics-grid">
         <div class="metric-card">
-          <h3>Avaliações Negativas</h3>
+          <h3>Total Avaliações Negativas</h3>
           <div class="val val-dark" id="total-negativas-aval">-</div>
           <div id="comp-negativas-aval"></div>
         </div>
@@ -866,12 +688,12 @@
         </div>
         <div class="metric-card">
           <h3>Chamados Abertos</h3>
-          <div class="val val-info" id="total-chamados-abertos-aval">-</div>
+          <div class="val val-warning" id="total-chamados-abertos-aval">-</div>
           <div id="comp-chamados-abertos-aval"></div>
         </div>
         <div class="metric-card">
-          <h3>Suporte Premium</h3>
-          <div class="val val-warning" id="total-premium-aval">-</div>
+          <h3>Em Chamado Premium</h3>
+          <div class="val val-info" id="total-premium-aval">-</div>
           <div id="comp-premium-aval"></div>
         </div>
         <div class="metric-card">
@@ -882,28 +704,28 @@
       </div>
 
       <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTabAval('tab-premium-aval', this)">Chamados Premium</button>
-        <button class="tab-btn" onclick="switchTabAval('tab-chamados-aval', this)">Chamados</button>
+        <button class="tab-btn active" onclick="switchTabAval('tab-premium-aval', this)">Em Chamado Premium</button>
+        <button class="tab-btn" onclick="switchTabAval('tab-chamados-aval', this)">Chamados Abertos</button>
         <button class="tab-btn" onclick="switchTabAval('tab-transp-aval', this)">Transportadora</button>
         <button class="tab-btn" onclick="switchTabAval('tab-skus-aval', this)">SKUs / Produtos</button>
-        <button class="tab-btn" onclick="switchTabAval('tab-consulta-aval', this)">Consultas de Avaliações com Impacto</button>
+        <button class="tab-btn" onclick="switchTabAval('tab-consulta-aval', this)">Consulta Avaliações</button>
       </div>
 
       <div id="tab-premium-aval" class="tab-content active">
         <div class="table-toolbar">
           <div class="search-box-wrapper">
             <span class="search-icon-inside">🔍</span>
-            <input type="text" id="search-premium-aval" class="search-input" placeholder="Pesquisar por ID do Pedido ou Avaliação..." oninput="renderTabPremiumAval()">
+            <input type="text" id="search-premium-aval" class="search-input" placeholder="Pesquisar por Pedido ou Comentário..." oninput="renderTabPremiumAval()">
           </div>
         </div>
         <table id="tabela-premium-aval">
           <thead>
             <tr>
-              <th style="width:19%">Número do Pedido</th>
-              <th style="width:12%">Data da Avaliação</th>
-              <th style="width:12%">Data do Chamado</th>
-              <th style="width:31%">Avaliação</th>
-              <th style="width:26%">Resposta</th>
+              <th style="width:18%">Pedido</th>
+              <th style="width:12%">Data Avaliação</th>
+              <th style="width:12%">Data Ação</th>
+              <th style="width:32%">Comentário</th>
+              <th style="width:26%">Resposta da Avaliação</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -914,17 +736,17 @@
         <div class="table-toolbar">
           <div class="search-box-wrapper">
             <span class="search-icon-inside">🔍</span>
-            <input type="text" id="search-chamados-aval" class="search-input" placeholder="Pesquisar por Número do Pedido, Chamado ou Avaliação..." oninput="renderTabChamadosAval()">
+            <input type="text" id="search-chamados-aval" class="search-input" placeholder="Pesquisar por Pedido, Nº Chamado ou Comentário..." oninput="renderTabChamadosAval()">
           </div>
         </div>
         <table id="tabela-chamados-aval">
           <thead>
             <tr>
-              <th style="width:19%">Número do Pedido</th>
-              <th style="width:12%">Data da Avaliação</th>
-              <th style="width:12%">Data do Chamado</th>
-              <th style="width:39%">Avaliação</th>
-              <th style="width:18%">Número do Chamado</th>
+              <th style="width:18%">Pedido</th>
+              <th style="width:12%">Data Avaliação</th>
+              <th style="width:12%">Data Ação</th>
+              <th style="width:36%">Comentário</th>
+              <th style="width:22%">Número do Chamado</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -939,8 +761,8 @@
               <th style="width:18%">Transportadora</th>
               <th style="width:7%">Qtd</th>
               <th style="width:15%">Comparativo</th>
-              <th style="width:25%">Ranking por Nota (Estrelas)</th>
-              <th style="width:35%">Comentários & Avaliações</th>
+              <th style="width:30%">Distribuição de Notas</th>
+              <th style="width:30%">Comentários & Avaliações</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -1107,6 +929,80 @@
       </div>
     </section>
 
+    <!-- PÁGINA 5: OCTADESK -> SOLICITAÇÃO DE DEVOLUÇÃO -->
+    <section id="page-octadesk-devolucao" class="page-section">
+      <div class="header-bar">
+        <h1>Solicitação de Devolução (OctaDesk)</h1>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Total Geral</h3>
+          <div class="val val-dark" id="octa-dev-total">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Mercado Livre</h3>
+          <div class="val val-warning" id="octa-dev-ml">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Amazon</h3>
+          <div class="val val-info" id="octa-dev-amz">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Shopee</h3>
+          <div class="val val-danger" id="octa-dev-shopee">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>VIA (Casas Bahia)</h3>
+          <div class="val" id="octa-dev-via" style="color: var(--primary);">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Magazine Luiza</h3>
+          <div class="val val-purple" id="octa-dev-magalu">-</div>
+        </div>
+      </div>
+
+      <div class="nav-tabs" id="octa-dev-tabs">
+        <button class="tab-btn active" onclick="switchTabOctaDev('MERCADO LIVRE', this)">
+          Mercado Livre <span class="tab-pill-count" id="count-tab-octa-ml">0</span>
+        </button>
+        <button class="tab-btn" onclick="switchTabOctaDev('AMAZON', this)">
+          Amazon <span class="tab-pill-count" id="count-tab-octa-amz">0</span>
+        </button>
+        <button class="tab-btn" onclick="switchTabOctaDev('SHOPEE', this)">
+          Shopee <span class="tab-pill-count" id="count-tab-octa-shopee">0</span>
+        </button>
+        <button class="tab-btn" onclick="switchTabOctaDev('VIA', this)">
+          VIA <span class="tab-pill-count" id="count-tab-octa-via">0</span>
+        </button>
+        <button class="tab-btn" onclick="switchTabOctaDev('MAGAZINE LUIZA', this)">
+          Magazine Luiza <span class="tab-pill-count" id="count-tab-octa-magalu">0</span>
+        </button>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-box-wrapper">
+          <span class="search-icon-inside">🔍</span>
+          <input type="text" id="search-octa-dev" class="search-input" placeholder="Pesquisar por Ticket, Pedido, Cliente, Assunto ou Status..." oninput="renderOctaDevTable()">
+        </div>
+      </div>
+
+      <table id="tabela-octa-dev">
+        <thead>
+          <tr>
+            <th style="width:14%">Ticket / ID</th>
+            <th style="width:16%">Pedido</th>
+            <th style="width:16%">Loja / Marketplace</th>
+            <th style="width:16%">Cliente</th>
+            <th style="width:18%">Assunto / Motivo</th>
+            <th style="width:10%">Status</th>
+            <th style="width:10%">Data</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
   </main>
 
   <script>
@@ -1257,7 +1153,8 @@
       }
     }
 
-    let rawNotasPage = [], rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [];
+    let rawNotasPage = [], rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [], rawDataOctadeskDev = [];
+    let activeOctaDevTab = 'MERCADO LIVRE';
     let escopoML = 'afetando', escopoAMZ = 'afetando', escopoAval = 'afetando', escopoVIA = 'afetando';
     
     let currentFilteredML = [], currentFilteredAMZ = [], currentFilteredAval = [], currentFilteredVIA = [];
@@ -1412,6 +1309,119 @@
       });
     }
 
+    // ================= RENDERIZADOR OCTADESK -> SOLICITAÇÃO DE DEVOLUÇÃO =================
+    function resolveOctaMarketplace(item) {
+      if (item.marketplace && ['MERCADO LIVRE', 'AMAZON', 'SHOPEE', 'VIA', 'MAGAZINE LUIZA'].includes(item.marketplace)) {
+        return item.marketplace;
+      }
+      const norm = normalizeText(item.loja_raw || item.marketplace || '');
+      if (norm.includes('MERCADO LIVRE') || norm.includes('MERCADOLIVRE') || norm === 'ML') return 'MERCADO LIVRE';
+      if (norm.includes('AMAZON') || norm === 'AMZ') return 'AMAZON';
+      if (norm.includes('SHOPEE') || norm.includes('SHOPPE')) return 'SHOPEE';
+      if (norm.includes('CASAS BAHIA') || norm.includes('VIA VAREJO') || norm.includes('VIA') || norm.includes('PONTO') || norm.includes('EXTRA')) return 'VIA';
+      if (norm.includes('MAGAZINE LUIZA') || norm.includes('MAGALU')) return 'MAGAZINE LUIZA';
+      return 'OUTROS';
+    }
+
+    function switchTabOctaDev(mpKey, btn) {
+      activeOctaDevTab = mpKey;
+      document.querySelectorAll('#octa-dev-tabs .tab-btn').forEach(el => el.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderOctaDevTable();
+    }
+
+    function renderOctaDev() {
+      const list = rawDataOctadeskDev || [];
+      let countML = 0, countAMZ = 0, countShopee = 0, countVIA = 0, countMagalu = 0;
+
+      list.forEach(item => {
+        const mp = resolveOctaMarketplace(item);
+        if (mp === 'MERCADO LIVRE') countML++;
+        else if (mp === 'AMAZON') countAMZ++;
+        else if (mp === 'SHOPEE') countShopee++;
+        else if (mp === 'VIA') countVIA++;
+        else if (mp === 'MAGAZINE LUIZA') countMagalu++;
+      });
+
+      document.getElementById('octa-dev-total').innerText = list.length;
+      document.getElementById('octa-dev-ml').innerText = countML;
+      document.getElementById('octa-dev-amz').innerText = countAMZ;
+      document.getElementById('octa-dev-shopee').innerText = countShopee;
+      document.getElementById('octa-dev-via').innerText = countVIA;
+      document.getElementById('octa-dev-magalu').innerText = countMagalu;
+
+      document.getElementById('count-tab-octa-ml').innerText = countML;
+      document.getElementById('count-tab-octa-amz').innerText = countAMZ;
+      document.getElementById('count-tab-octa-shopee').innerText = countShopee;
+      document.getElementById('count-tab-octa-via').innerText = countVIA;
+      document.getElementById('count-tab-octa-magalu').innerText = countMagalu;
+
+      renderOctaDevTable();
+    }
+
+    function renderOctaDevTable() {
+      const tbody = document.querySelector('#tabela-octa-dev tbody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const query = normalizeText(document.getElementById('search-octa-dev')?.value || '');
+      let filtered = (rawDataOctadeskDev || []).filter(item => resolveOctaMarketplace(item) === activeOctaDevTab);
+
+      if (query) {
+        filtered = filtered.filter(item => {
+          const allText = [
+            item.ticket,
+            item.pedido,
+            item.loja_raw,
+            item.cliente,
+            item.assunto,
+            item.status,
+            item.data,
+            item.responsavel,
+            ...(item.campos ? Object.values(item.campos) : [])
+          ].join(' ');
+          return normalizeText(allText).includes(query);
+        });
+      }
+
+      if (!filtered.length) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#94a3b8;">Nenhuma solicitação de devolução encontrada para ${activeOctaDevTab}.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const campos = item.campos || {};
+        const fallbackKeys = Object.keys(campos);
+
+        const ticketVal = item.ticket || (fallbackKeys[0] ? campos[fallbackKeys[0]] : '-');
+        const pedidoVal = item.pedido || '-';
+        const lojaVal = item.loja_raw || activeOctaDevTab;
+        const clienteVal = item.cliente || '-';
+        const assuntoVal = item.assunto || '-';
+        const statusVal = item.status ? `<span class="badge-status-octa">${item.status}</span>` : '-';
+        const dataVal = item.data || '-';
+
+        let pedidoHtml = `<strong>${pedidoVal}</strong>`;
+        if (pedidoVal !== '-' && activeOctaDevTab === 'MERCADO LIVRE') {
+          pedidoHtml = `<a href="https://vendedores.mercadolivre.com.br/vendas/${pedidoVal}/detalhe" target="_blank" class="order-link-box"><img src="${ML_LOGO_URL}" class="ml-logo-img"><span>${pedidoVal}</span></a>`;
+        } else if (pedidoVal !== '-' && activeOctaDevTab === 'AMAZON') {
+          pedidoHtml = `<a href="https://sellercentral.amazon.com/orders-v3/order/${pedidoVal}" target="_blank" class="order-link-box"><img src="${AMAZON_LOGO_URL}" class="amazon-logo-img"><span>${pedidoVal}</span></a>`;
+        }
+
+        const extraTooltip = Object.entries(campos).map(([k, v]) => `${k}: ${v}`).join(' | ');
+
+        tbody.innerHTML += `<tr title="${extraTooltip.replace(/"/g, '&quot;')}">
+          <td><strong>${ticketVal}</strong></td>
+          <td>${pedidoHtml}</td>
+          <td>${lojaVal}</td>
+          <td>${clienteVal}</td>
+          <td>${assuntoVal}</td>
+          <td>${statusVal}</td>
+          <td>${dataVal}</td>
+        </tr>`;
+      });
+    }
+
     function switchTabML(tabId, btn) {
       document.querySelectorAll('#page-impactos-ml .tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('#page-impactos-ml .tab-btn').forEach(el => el.classList.remove('active'));
@@ -1519,6 +1529,7 @@
       rawDataAMZ = data.amazon || [];
       rawDataAvalAMZ = data.avaliacoes_amazon || [];
       rawDataVIA = data.via || [];
+      rawDataOctadeskDev = data.octadesk_devolucao || [];
       
       populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
       populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
@@ -1534,6 +1545,7 @@
       renderAMZ();
       renderAvaliacoesAMZ();
       renderVIA();
+      renderOctaDev();
       
       const initialLink = document.querySelector('.menu-item[data-page="page-reputacao-geral"]');
       navigatePage('page-reputacao-geral', initialLink);
