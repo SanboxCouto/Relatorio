@@ -134,6 +134,16 @@
     th { background: #f8fafc; font-weight: 700; color: #475569; text-transform: uppercase; font-size: 0.72rem; }
     tr:hover { background: #f8fafc; }
 
+    /* STATUS DE PRAZO OCTADESK */
+    tr.row-atrasado { background-color: #fef2f2; }
+    tr.row-atrasado:hover { background-color: #fee2e2; }
+    tr.row-alarmante { background-color: #fffbeb; }
+    tr.row-alarmante:hover { background-color: #fef3c7; }
+
+    .status-prazo-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; white-space: nowrap; margin-top: 4px; }
+    .status-prazo-atrasado { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .status-prazo-alarmante { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
+
     .badge-count { background: #e2e8f0; color: #0f172a; padding: 3px 9px; border-radius: 12px; font-weight: 700; font-size: 0.78rem; display: inline-block; }
     .badge-star { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; display: inline-block; white-space: nowrap; }
 
@@ -143,10 +153,16 @@
     .ml-logo-img { height: 16px; width: auto; display: block; }
     .sub-id-label { display: block; font-size: 0.7rem; color: #64748b; font-weight: 500; margin-top: 2px; }
 
-    /* OCTADESK TITLE & ORDER CELL */
+    .ticket-title-link { color: #0f172a; font-weight: 700; text-decoration: none; transition: color 0.15s; }
+    .ticket-title-link:hover { color: var(--primary); text-decoration: underline; }
     .octa-title-cell { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .octa-ticket-link { color: #0f172a; font-weight: 700; text-decoration: none; transition: color 0.15s; line-height: 1.35; }
-    .octa-ticket-link:hover { color: var(--primary); text-decoration: underline; }
+
+    /* INDICADORES POR ABA OCTADESK */
+    .tab-indicators-grid { display: grid; grid-template-columns: 180px 180px 1fr; gap: 16px; margin-bottom: 18px; }
+    @media (max-width: 900px) { .tab-indicators-grid { grid-template-columns: 1fr; } }
+    .transp-pills-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .transp-stat-pill { background: #f1f5f9; border: 1px solid #cbd5e1; color: #0f172a; padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+    .transp-stat-pill strong { background: #2563eb; color: #fff; padding: 1px 6px; border-radius: 4px; font-size: 0.74rem; }
 
     /* RANKING PILLS */
     .ranking-container { display: flex; flex-wrap: wrap; gap: 5px; }
@@ -972,22 +988,44 @@
         <button class="tab-btn" onclick="switchTabOctaDev('MAGAZINE LUIZA', this)">Magazine Luiza (<span id="count-tab-octa-magalu">0</span>)</button>
       </div>
 
+      <!-- INDICADORES DA ABA SELECIONADA -->
+      <div class="tab-indicators-grid">
+        <div class="metric-card">
+          <h3>Atrasados (&gt; 30 dias)</h3>
+          <div class="val val-danger" id="octa-tab-atrasados">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Alarmantes (&gt; 15 dias)</h3>
+          <div class="val val-warning" id="octa-tab-alarmantes">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Quantidade por Transportadora</h3>
+          <div id="octa-tab-transp-breakdown" class="transp-pills-wrap">-</div>
+        </div>
+      </div>
+
       <div class="table-toolbar">
         <div class="search-box-wrapper">
           <span class="search-icon-inside">🔍</span>
           <input type="text" id="search-octa-dev" class="search-input" placeholder="Pesquisar por Título, Pedido, Transportadora ou Rastreio..." oninput="renderOctaDevTable()">
         </div>
+        <select id="filter-status-prazo-octa" class="select-filter" onchange="renderOctaDevTable()">
+          <option value="TODOS">Todos os Prazos</option>
+          <option value="ATRASADO">Apenas Atrasados (&gt; 30 dias)</option>
+          <option value="ALARMANTE">Apenas Alarmantes (&gt; 15 dias)</option>
+          <option value="NORMAL">Dentro do Prazo (&le; 15 dias)</option>
+        </select>
       </div>
 
       <table id="tabela-octa-dev">
         <thead>
           <tr>
-            <th style="width:32%">Título</th>
-            <th style="width:13%">Data de Criação</th>
-            <th style="width:13%">Última Atualização</th>
-            <th style="width:13%">Data da Solicitação</th>
+            <th style="width:34%">Título</th>
+            <th style="width:12%">Data de Criação</th>
+            <th style="width:12%">Última Atualização</th>
+            <th style="width:14%">Data da Solicitação</th>
             <th style="width:14%">Transportadora</th>
-            <th style="width:15%">Rastreio</th>
+            <th style="width:14%">Rastreio</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -1301,6 +1339,27 @@
     }
 
     // ================= RENDERIZADOR OCTADESK -> SOLICITAÇÃO DE DEVOLUÇÃO =================
+    function extractCustomerNameFromAssunto(assuntoStr) {
+      const s = cleanVal(assuntoStr);
+      if (!s) return '';
+      const parts = s.split(/\s*[\-|]\s*/).map(p => p.trim()).filter(Boolean);
+      return parts.length > 1 ? parts[parts.length - 1] : s;
+    }
+
+    function getOctaSolicitacaoAgeInfo(dataSolicitacaoStr) {
+      const ts = parseDateToTimestamp(dataSolicitacaoStr);
+      if (!ts) return { days: null, status: 'NORMAL', label: '' };
+      const todayTs = getTodayTimestamp();
+      const diffDays = Math.floor((todayTs - ts) / 86400000);
+      if (diffDays > 30) {
+        return { days: diffDays, status: 'ATRASADO', label: `Atrasado (${diffDays}d)` };
+      }
+      if (diffDays > 15) {
+        return { days: diffDays, status: 'ALARMANTE', label: `Alarmante (${diffDays}d)` };
+      }
+      return { days: diffDays, status: 'NORMAL', label: '' };
+    }
+
     function resolveOctaMarketplace(item) {
       if (item.marketplace && ['MERCADO LIVRE', 'AMAZON', 'SHOPEE', 'VIA', 'MAGAZINE LUIZA'].includes(item.marketplace)) {
         return item.marketplace;
@@ -1355,13 +1414,53 @@
       if (!tbody) return;
       tbody.innerHTML = '';
 
+      const tabItems = (rawDataOctadeskDev || []).filter(item => resolveOctaMarketplace(item) === activeOctaDevTab);
+
+      let countAtrasados = 0;
+      let countAlarmantes = 0;
+      const transpCounts = {};
+
+      tabItems.forEach(item => {
+        const ageInfo = getOctaSolicitacaoAgeInfo(item.data_solicitacao);
+        if (ageInfo.status === 'ATRASADO') countAtrasados++;
+        else if (ageInfo.status === 'ALARMANTE') countAlarmantes++;
+
+        const transpName = cleanVal(item.transportadora) || 'NÃO INFORMADA';
+        transpCounts[transpName] = (transpCounts[transpName] || 0) + 1;
+      });
+
+      const elAtrasados = document.getElementById('octa-tab-atrasados');
+      const elAlarmantes = document.getElementById('octa-tab-alarmantes');
+      const elTranspWrap = document.getElementById('octa-tab-transp-breakdown');
+
+      if (elAtrasados) elAtrasados.innerText = countAtrasados;
+      if (elAlarmantes) elAlarmantes.innerText = countAlarmantes;
+      if (elTranspWrap) {
+        const transpEntries = Object.entries(transpCounts).sort((a, b) => b[1] - a[1]);
+        if (transpEntries.length > 0) {
+          elTranspWrap.innerHTML = transpEntries
+            .map(([t, qtd]) => `<span class="transp-stat-pill">${t} <strong>${qtd}</strong></span>`)
+            .join('');
+        } else {
+          elTranspWrap.innerHTML = '<span class="no-comments">Sem dados nesta aba</span>';
+        }
+      }
+
       const query = normalizeText(document.getElementById('search-octa-dev')?.value || '');
-      let filtered = (rawDataOctadeskDev || []).filter(item => resolveOctaMarketplace(item) === activeOctaDevTab);
+      const statusPrazoFilter = document.getElementById('filter-status-prazo-octa')?.value || 'TODOS';
+
+      let filtered = [...tabItems];
+
+      if (statusPrazoFilter !== 'TODOS') {
+        filtered = filtered.filter(item => getOctaSolicitacaoAgeInfo(item.data_solicitacao).status === statusPrazoFilter);
+      }
 
       if (query) {
         filtered = filtered.filter(item => {
+          const nomeExibido = extractCustomerNameFromAssunto(item.assunto_raw || item.titulo);
           const allText = [
-            item.titulo,
+            nomeExibido,
+            item.assunto_raw,
             item.numero,
             item.pedido,
             item.data_criacao,
@@ -1374,53 +1473,72 @@
         });
       }
 
+      // Ordenar dos mais antigos para os mais recentes pela Data da Solicitação (mais antigos primeiro)
+      filtered.sort((a, b) => {
+        const tA = parseDateToTimestamp(a.data_solicitacao);
+        const tB = parseDateToTimestamp(b.data_solicitacao);
+        if (tA === null && tB === null) return 0;
+        if (tA === null) return 1;
+        if (tB === null) return -1;
+        return tA - tB;
+      });
+
       if (!filtered.length) {
         tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#94a3b8;">Nenhuma solicitação de devolução encontrada para ${activeOctaDevTab}.</td></tr>`;
         return;
       }
 
       filtered.forEach(item => {
-        const ticketNum = cleanVal(item.numero);
+        const numTicket = cleanVal(item.numero);
         const pedidoId = cleanVal(item.pedido);
-        const tituloText = item.titulo || '-';
+        const tituloExibido = extractCustomerNameFromAssunto(item.assunto_raw || item.titulo) || '-';
+        const tooltipAssunto = item.assunto_raw && item.assunto_raw !== tituloExibido ? ` (${item.assunto_raw})` : '';
 
-        // Link do Título para o Ticket do OctaDesk
-        const tituloHtml = ticketNum
-          ? `<a href="https://app.octadesk.com/ticket/edit/${encodeURIComponent(ticketNum)}" target="_blank" class="octa-ticket-link" title="Abrir ticket #${ticketNum} no OctaDesk">${tituloText}</a>`
-          : `<strong>${tituloText}</strong>`;
+        const titleHtml = numTicket
+          ? `<a href="https://app.octadesk.com/ticket/edit/${encodeURIComponent(numTicket)}" target="_blank" class="ticket-title-link" title="Abrir ticket #${numTicket} no OctaDesk${tooltipAssunto}">${tituloExibido}</a>`
+          : `<strong title="${item.assunto_raw || tituloExibido}">${tituloExibido}</strong>`;
 
-        // Botão do Pedido ao lado esquerdo do Título para Mercado Livre e Amazon
         let orderBtnHtml = '';
-        if (pedidoId) {
-          if (activeOctaDevTab === 'MERCADO LIVRE') {
-            const linkML = `https://vendedores.mercadolivre.com.br/vendas/${encodeURIComponent(pedidoId)}/detalhe`;
-            orderBtnHtml = `
-              <a href="${linkML}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} no Mercado Livre">
-                <img src="${ML_LOGO_URL}" class="ml-logo-img" alt="ML">
-                <span>${pedidoId}</span>
-              </a>
-            `;
-          } else if (activeOctaDevTab === 'AMAZON') {
-            const linkAMZ = `https://sellercentral.amazon.com/orders-v3/order/${encodeURIComponent(pedidoId)}`;
-            orderBtnHtml = `
-              <a href="${linkAMZ}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} na Amazon">
-                <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" alt="Amazon">
-                <span>${pedidoId}</span>
-              </a>
-            `;
-          }
+        if (activeOctaDevTab === 'MERCADO LIVRE' && pedidoId) {
+          const linkML = `https://vendedores.mercadolivre.com.br/vendas/${encodeURIComponent(pedidoId)}/detalhe`;
+          orderBtnHtml = `
+            <a href="${linkML}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} no Mercado Livre">
+              <img src="${ML_LOGO_URL}" class="ml-logo-img" alt="ML">
+              <span>${pedidoId}</span>
+            </a>`;
+        } else if (activeOctaDevTab === 'AMAZON' && pedidoId) {
+          const linkAMZ = `https://sellercentral.amazon.com/orders-v3/order/${encodeURIComponent(pedidoId)}`;
+          orderBtnHtml = `
+            <a href="${linkAMZ}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} na Amazon">
+              <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" alt="Amazon">
+              <span>${pedidoId}</span>
+            </a>`;
         }
 
-        tbody.innerHTML += `<tr>
+        const ageInfo = getOctaSolicitacaoAgeInfo(item.data_solicitacao);
+        let rowClass = '';
+        let prazoBadgeHtml = '';
+        if (ageInfo.status === 'ATRASADO') {
+          rowClass = 'row-atrasado';
+          prazoBadgeHtml = `<div><span class="status-prazo-badge status-prazo-atrasado">🔴 ${ageInfo.label}</span></div>`;
+        } else if (ageInfo.status === 'ALARMANTE') {
+          rowClass = 'row-alarmante';
+          prazoBadgeHtml = `<div><span class="status-prazo-badge status-prazo-alarmante">🟡 ${ageInfo.label}</span></div>`;
+        }
+
+        tbody.innerHTML += `<tr class="${rowClass}">
           <td>
             <div class="octa-title-cell">
               ${orderBtnHtml}
-              ${tituloHtml}
+              ${titleHtml}
             </div>
           </td>
           <td>${item.data_criacao || '-'}</td>
           <td>${item.ultima_atualizacao || '-'}</td>
-          <td>${item.data_solicitacao || '-'}</td>
+          <td>
+            <strong>${item.data_solicitacao || '-'}</strong>
+            ${prazoBadgeHtml}
+          </td>
           <td>${item.transportadora || '-'}</td>
           <td>${item.rastreio || '-'}</td>
         </tr>`;
