@@ -7169,6 +7169,8 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918474",
+      "pedido": "2611016S4BBQDA",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7180,6 +7182,8 @@
       "rastreio": "213.884"
     },
     {
+      "numero": "99918466",
+      "pedido": "701-4550693-4345001",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7191,6 +7195,8 @@
       "rastreio": "0"
     },
     {
+      "numero": "99918465",
+      "pedido": "52675999201",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Casas Bahia/Via Varejo",
       "marketplace": "VIA",
@@ -7202,6 +7208,8 @@
       "rastreio": "4.783.235.141"
     },
     {
+      "numero": "99918463",
+      "pedido": "261029TD7YWHP0",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7213,6 +7221,8 @@
       "rastreio": "213.297"
     },
     {
+      "numero": "99918460",
+      "pedido": "LU-1578870108384275",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Magalu",
       "marketplace": "MAGAZINE LUIZA",
@@ -7224,6 +7234,8 @@
       "rastreio": "217.290"
     },
     {
+      "numero": "99918458",
+      "pedido": "701-1136800-6484230",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7235,6 +7247,8 @@
       "rastreio": "217.138"
     },
     {
+      "numero": "99918457",
+      "pedido": "2,00002E+15",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7246,6 +7260,8 @@
       "rastreio": "0"
     },
     {
+      "numero": "99918453",
+      "pedido": "261105FEE3PJRV",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7257,6 +7273,8 @@
       "rastreio": "214.319"
     },
     {
+      "numero": "99918451",
+      "pedido": "701-0626639-5230631",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7268,39 +7286,47 @@
       "rastreio": "0"
     },
     {
+      "numero": "99918449",
+      "pedido": "LU-1584570110836046",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Magalu",
       "marketplace": "MAGAZINE LUIZA",
       "titulo": "LU-1584570110836046 - Daniel Marculino Guziasqui Da Silva",
       "data_criacao": "13/11/2026 11:47",
-      "ultima_atualizacao": "13/11/2026 11:47",
+      "ultima_atualizacao": "16/11/2026 14:20",
       "data_solicitacao": "",
       "transportadora": "Total Express",
       "rastreio": "214.823"
     },
     {
+      "numero": "99918448",
+      "pedido": "LU-1586170111781140",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Magalu",
       "marketplace": "MAGAZINE LUIZA",
       "titulo": "LU-1586170111781140 - MARIA ISABEL DE ALMEIDA",
       "data_criacao": "13/11/2026 11:28",
-      "ultima_atualizacao": "13/11/2026 11:28",
+      "ultima_atualizacao": "16/11/2026 14:16",
       "data_solicitacao": "13/11/2026",
       "transportadora": "Total Express",
       "rastreio": "216.580"
     },
     {
+      "numero": "99918444",
+      "pedido": "701-0075936-1084227",
       "grupo": "Solicitação de Devolução",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "titulo": "LU-1583370110297289 - Luís Eduardo Trigo",
-      "data_criacao": "13/11/2026 10:34",
-      "ultima_atualizacao": "13/11/2026 10:34",
-      "data_solicitacao": "13/11/2026",
-      "transportadora": "Total Express",
-      "rastreio": "4.781.659.744"
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "titulo": "701-0075936-1084227 - Emilly Kamille de Freitas Moreira",
+      "data_criacao": "13/11/2026 09:50",
+      "ultima_atualizacao": "16/11/2026 14:45",
+      "data_solicitacao": "",
+      "transportadora": "Trilog",
+      "rastreio": "217.639"
     },
     {
+      "numero": "99918442",
+      "pedido": "2,00002E+15",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7312,6 +7338,8 @@
       "rastreio": "0"
     },
     {
+      "numero": "99918441",
+      "pedido": "701-9039102-2607451",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7323,6 +7351,8 @@
       "rastreio": "0"
     },
     {
+      "numero": "99918440",
+      "pedido": "702-1445282-5768229",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7334,6 +7364,8 @@
       "rastreio": "216.801"
     },
     {
+      "numero": "99918435",
+      "pedido": "2000015361156513",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7345,6 +7377,8 @@
       "rastreio": "209.488"
     },
     {
+      "numero": "99918433",
+      "pedido": "702-5852585-1638661",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7356,6 +7390,8 @@
       "rastreio": "216.561"
     },
     {
+      "numero": "99918431",
+      "pedido": "702-6178885-4469067",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7367,6 +7403,8 @@
       "rastreio": "216.490"
     },
     {
+      "numero": "99918428",
+      "pedido": "2000018968105762",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7378,6 +7416,8 @@
       "rastreio": "211.261"
     },
     {
+      "numero": "99918427",
+      "pedido": "261103A3436DAC",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7389,28 +7429,8 @@
       "rastreio": "213.907"
     },
     {
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "titulo": "LU-1583370110300221-Marcelo Nogueira caetano",
-      "data_criacao": "11/11/2026 11:40",
-      "ultima_atualizacao": "12/11/2026 14:44",
-      "data_solicitacao": "11/11/2026",
-      "transportadora": "Trilog",
-      "rastreio": "0"
-    },
-    {
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "titulo": "2000019239637668 - Anderson de Oliveira",
-      "data_criacao": "11/11/2026 11:26",
-      "ultima_atualizacao": "11/11/2026 11:27",
-      "data_solicitacao": "11/11/2026",
-      "transportadora": "Total Express",
-      "rastreio": "0"
-    },
-    {
+      "numero": "99918422",
+      "pedido": "LU-1584170110622343",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Magalu",
       "marketplace": "MAGAZINE LUIZA",
@@ -7422,6 +7442,8 @@
       "rastreio": "215.917"
     },
     {
+      "numero": "99918420",
+      "pedido": "2,00002E+15",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7433,6 +7455,8 @@
       "rastreio": "215.855"
     },
     {
+      "numero": "99918395",
+      "pedido": "701-5871605-3599463",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7444,6 +7468,8 @@
       "rastreio": "215.287"
     },
     {
+      "numero": "99918377",
+      "pedido": "261027NSPYCU2E",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7455,6 +7481,8 @@
       "rastreio": "4.775.559.198"
     },
     {
+      "numero": "99918371",
+      "pedido": "261006VMRXSYN3",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7466,6 +7494,8 @@
       "rastreio": "214.696"
     },
     {
+      "numero": "99918370",
+      "pedido": "2000018703424068",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7477,6 +7507,8 @@
       "rastreio": "208.613"
     },
     {
+      "numero": "99918369",
+      "pedido": "261027QBMRQNVQ",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7488,6 +7520,8 @@
       "rastreio": "214.695"
     },
     {
+      "numero": "99918366",
+      "pedido": "701-0216369-6338641",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7499,28 +7533,34 @@
       "rastreio": "214.667"
     },
     {
+      "numero": "99918362",
+      "pedido": "1579970108736945",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Magalu",
       "marketplace": "MAGAZINE LUIZA",
       "titulo": "1579970108736945-Marcos Vinicius Lima Santos",
       "data_criacao": "05/11/2026 17:45",
-      "ultima_atualizacao": "10/11/2026 16:30",
+      "ultima_atualizacao": "16/11/2026 14:43",
       "data_solicitacao": "05/11/2026",
       "transportadora": "MMA",
       "rastreio": "214.499"
     },
     {
+      "numero": "99918351",
+      "pedido": "2000018905028942",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
       "titulo": "2000018905028942 | Roberta de Faria Marques da Silva",
       "data_criacao": "05/11/2026 10:14",
-      "ultima_atualizacao": "10/11/2026 09:42",
+      "ultima_atualizacao": "16/11/2026 14:46",
       "data_solicitacao": "05/11/2026",
       "transportadora": "Trilog",
       "rastreio": "214.420"
     },
     {
+      "numero": "99918350",
+      "pedido": "26102182PGQQ6N",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7532,6 +7572,8 @@
       "rastreio": "214.419"
     },
     {
+      "numero": "99918321",
+      "pedido": "2000019154494742",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7543,6 +7585,8 @@
       "rastreio": "214.668"
     },
     {
+      "numero": "99918315",
+      "pedido": "2000015418677915",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7554,28 +7598,34 @@
       "rastreio": "213.949"
     },
     {
+      "numero": "99918296",
+      "pedido": "2000015655122361",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
       "titulo": "2000015655122361 | Flavia da Silva Candido",
       "data_criacao": "30/10/2026 10:34",
-      "ultima_atualizacao": "10/11/2026 17:26",
+      "ultima_atualizacao": "16/11/2026 14:47",
       "data_solicitacao": "10/11/2026",
       "transportadora": "Mercado Envios",
       "rastreio": "0"
     },
     {
+      "numero": "99918262",
+      "pedido": "LU-1577270107428551",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Magalu",
       "marketplace": "MAGAZINE LUIZA",
       "titulo": "LU-1577270107428551-Allison Glauco moreira",
       "data_criacao": "28/10/2026 11:39",
-      "ultima_atualizacao": "10/11/2026 16:27",
+      "ultima_atualizacao": "16/11/2026 14:41",
       "data_solicitacao": "28/10/2026",
       "transportadora": "Tecmar",
       "rastreio": "213.955"
     },
     {
+      "numero": "99918243",
+      "pedido": "2000015324614981",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7587,6 +7637,8 @@
       "rastreio": "214.176"
     },
     {
+      "numero": "99918241",
+      "pedido": "702-5375857-2679468",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7598,6 +7650,8 @@
       "rastreio": "213.144"
     },
     {
+      "numero": "99918216",
+      "pedido": "701-2265981-3746607",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7609,17 +7663,21 @@
       "rastreio": "214.251"
     },
     {
+      "numero": "99918211",
+      "pedido": "LU-1577970107638873",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Magalu",
       "marketplace": "MAGAZINE LUIZA",
       "titulo": "LU-1577970107638873-Miriany facundo pinheiro oliveira",
       "data_criacao": "26/10/2026 11:19",
-      "ultima_atualizacao": "10/11/2026 16:39",
+      "ultima_atualizacao": "16/11/2026 14:51",
       "data_solicitacao": "26/10/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "212.981"
     },
     {
+      "numero": "99918199",
+      "pedido": "702-4774944-4556237",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7628,9 +7686,11 @@
       "ultima_atualizacao": "16/11/2026 13:38",
       "data_solicitacao": "26/10/2026",
       "transportadora": "MMA",
-      "rastreio": "212961"
+      "rastreio": "212.961"
     },
     {
+      "numero": "99918167",
+      "pedido": "1577470107466826",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Magalu",
       "marketplace": "MAGAZINE LUIZA",
@@ -7639,9 +7699,11 @@
       "ultima_atualizacao": "13/11/2026 10:18",
       "data_solicitacao": "22/10/2026",
       "transportadora": "Rio Express",
-      "rastreio": "212501"
+      "rastreio": "212.501"
     },
     {
+      "numero": "99918154",
+      "pedido": "261018113MX8TE",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7653,6 +7715,8 @@
       "rastreio": "211.956"
     },
     {
+      "numero": "99918150",
+      "pedido": "261006U6JJW099",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Shopee",
       "marketplace": "SHOPEE",
@@ -7664,6 +7728,8 @@
       "rastreio": "212.328"
     },
     {
+      "numero": "99918134",
+      "pedido": "2000018748567806",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7675,6 +7741,8 @@
       "rastreio": "212.378"
     },
     {
+      "numero": "99918117",
+      "pedido": "52514518001",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Casas Bahia/Via Varejo",
       "marketplace": "VIA",
@@ -7686,6 +7754,8 @@
       "rastreio": "211.978"
     },
     {
+      "numero": "99918073",
+      "pedido": "702-1159038-8988246",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7697,6 +7767,8 @@
       "rastreio": "211.291"
     },
     {
+      "numero": "99918051",
+      "pedido": "2000018737051554",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7708,17 +7780,21 @@
       "rastreio": "0"
     },
     {
+      "numero": "99917954",
+      "pedido": "2000015113483161",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
       "titulo": "2000015113483161 | MARIA ANTONIA",
       "data_criacao": "05/10/2026 14:47",
-      "ultima_atualizacao": "11/11/2026 17:23",
+      "ultima_atualizacao": "16/11/2026 14:37",
       "data_solicitacao": "15/10/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "211.454"
     },
     {
+      "numero": "99917926",
+      "pedido": "2000015051234883",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7730,6 +7806,8 @@
       "rastreio": "214.179"
     },
     {
+      "numero": "99917914",
+      "pedido": "702-6130310-7500220",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7738,9 +7816,11 @@
       "ultima_atualizacao": "16/11/2026 13:48",
       "data_solicitacao": "02/10/2026",
       "transportadora": "Trilog",
-      "rastreio": "210.011"
+      "rastreio": "210011"
     },
     {
+      "numero": "99917876",
+      "pedido": "2000018595677692",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7752,6 +7832,8 @@
       "rastreio": "0"
     },
     {
+      "numero": "99917839",
+      "pedido": "2000018543140112",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7760,9 +7842,11 @@
       "ultima_atualizacao": "13/11/2026 11:53",
       "data_solicitacao": "30/10/2026",
       "transportadora": "Alfa Transportes",
-      "rastreio": "213561"
+      "rastreio": "213.561"
     },
     {
+      "numero": "99917719",
+      "pedido": "701-8434502-3144233",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
@@ -7774,6 +7858,8 @@
       "rastreio": "216113(DEV) - 2168029(reenvio)"
     },
     {
+      "numero": "99917575",
+      "pedido": "2,00002E+15",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
@@ -7785,6 +7871,8 @@
       "rastreio": "205133"
     },
     {
+      "numero": "99917545",
+      "pedido": "701-4321000-4412238",
       "grupo": "Solicitação de Devolução",
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
