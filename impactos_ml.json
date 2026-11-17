@@ -7204,6 +7204,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918498",
+      "pedido": "2611111C3QQ00Y",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "2611111C3QQ00Y - Maria Patrícia da Silva",
+      "titulo": "Maria Patrícia da Silva",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "17/11/2026",
+      "transportadora": "Correios",
+      "rastreio": "4784619779"
+    },
+    {
       "numero": "99918497",
       "pedido": "LU-1584870110956367",
       "grupo": "Solicitação de Devolução",
