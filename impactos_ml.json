@@ -7204,6 +7204,34 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918495",
+      "pedido": "702-5914837-2833864",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-5914837-2833864- Fabiana Alves",
+      "titulo": "Fabiana Alves",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "17/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "217892"
+    },
+    {
+      "numero": "99918494",
+      "pedido": "701-5242122-7427406",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-5242122-7427406-Jhulia Cristina",
+      "titulo": "Jhulia Cristina",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "17/11/2026",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918493",
       "pedido": "702-8553513-8676218",
       "grupo": "Solicitação de Devolução",
@@ -7356,20 +7384,6 @@
       "data_solicitacao": "",
       "transportadora": "Correios",
       "rastreio": "4783553885"
-    },
-    {
-      "numero": "99918477",
-      "pedido": "2000019312886706",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000019312886706 | Albert Luis Moreira Andrade",
-      "titulo": "Albert Luis Moreira Andrade",
-      "data_criacao": "16/11/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "13/11/2026",
-      "transportadora": "Mercado Envios",
-      "rastreio": "0"
     },
     {
       "numero": "99918475",
@@ -7636,20 +7650,6 @@
       "data_solicitacao": "11/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "215855"
-    },
-    {
-      "numero": "99918395",
-      "pedido": "701-5871605-3599463",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "701-5871605-3599463-Patrícia de Oliveira",
-      "titulo": "Patrícia de Oliveira",
-      "data_criacao": "09/11/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "09/11/2026",
-      "transportadora": "Rio Express",
-      "rastreio": "215287"
     },
     {
       "numero": "99918377",
@@ -7944,20 +7944,6 @@
       "data_solicitacao": "14/10/2026",
       "transportadora": "Trilog",
       "rastreio": "211291"
-    },
-    {
-      "numero": "99918051",
-      "pedido": "2000018737051554",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000018737051554 | Tairik Johnny Maciel Nishimura",
-      "titulo": "Tairik Johnny Maciel Nishimura",
-      "data_criacao": "13/10/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "13/10/2026",
-      "transportadora": "Mercado Envios",
-      "rastreio": "0"
     },
     {
       "numero": "99917954",
@@ -8282,6 +8268,20 @@
       "data_solicitacao": "",
       "transportadora": "Total Express",
       "rastreio": "212995"
+    },
+    {
+      "numero": "99918139",
+      "pedido": "2000014851738403",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000014851738403 | Irisrrane Braga Do Nascimento",
+      "titulo": "Irisrrane Braga Do Nascimento",
+      "data_criacao": "20/10/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "20/10/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "0"
     },
     {
       "numero": "99917517",
