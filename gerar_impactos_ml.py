@@ -271,6 +271,7 @@ def processar_octadesk():
 
   registros_devolucao = []
   registros_sac = []
+  registros_envio = []
 
   for _, row in df.iterrows():
     grupo_val = limpar_texto(row[col_grupo]) if col_grupo else ""
@@ -278,8 +279,9 @@ def processar_octadesk():
 
     is_devolucao = "SOLICITACAO DE DEVOLUCAO" in grupo_norm
     is_sac = "ATENDIMENTO SAC" in grupo_norm
+    is_envio = "ENVIO DE PRODUTO" in grupo_norm
 
-    if not is_devolucao and not is_sac:
+    if not is_devolucao and not is_sac and not is_envio:
       continue
 
     loja_raw = limpar_texto(row[col_loja]) if col_loja else ""
@@ -320,8 +322,10 @@ def processar_octadesk():
       registros_devolucao.append(item)
     if is_sac:
       registros_sac.append(item)
+    if is_envio:
+      registros_envio.append(item)
 
-  return registros_devolucao, registros_sac
+  return registros_devolucao, registros_sac, registros_envio
 
 
 def carregar_historico_notas_page(caminho_json="impactos_ml.json"):
@@ -879,7 +883,7 @@ if __name__ == "__main__":
   amz_data = processar_amazon()
   aval_amz_data = processar_avaliacoes_amazon()
   via_data = processar_via()
-  octadesk_dev_data, octadesk_sac_data = processar_octadesk()
+  octadesk_dev_data, octadesk_sac_data, octadesk_envio_data = processar_octadesk()
 
   output = {
       "notas_page": notas_page_data,
@@ -889,6 +893,7 @@ if __name__ == "__main__":
       "via": via_data,
       "octadesk_devolucao": octadesk_dev_data,
       "octadesk_sac": octadesk_sac_data,
+      "octadesk_envio_produto": octadesk_envio_data,
   }
 
   with open("impactos_ml.json", "w", encoding="utf-8") as f:
@@ -898,5 +903,6 @@ if __name__ == "__main__":
       f"Concluído: {len(notas_page_data)} Notas_Page | {len(ml_data)} ML |"
       f" {len(amz_data)} Amazon | {len(aval_amz_data)} Avaliações Amazon |"
       f" {len(via_data)} VIA | {len(octadesk_dev_data)} OctaDesk Devolução |"
-      f" {len(octadesk_sac_data)} OctaDesk SAC"
+      f" {len(octadesk_sac_data)} OctaDesk SAC | {len(octadesk_envio_data)}"
+      " OctaDesk Envio de Produto"
   )
