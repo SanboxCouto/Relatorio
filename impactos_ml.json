@@ -7870,17 +7870,17 @@
     },
     {
       "numero": "99917954",
-      "pedido": "2000015113483161",
+      "pedido": "",
       "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
+      "loja_raw": "",
+      "marketplace": "OUTROS",
       "assunto_completo": "2000015113483161 | MARIA ANTONIA",
       "titulo": "MARIA ANTONIA",
       "data_criacao": "05/10/2026",
       "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "15/10/2026",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "211454"
+      "data_solicitacao": "",
+      "transportadora": "",
+      "rastreio": ""
     },
     {
       "numero": "99917926",
