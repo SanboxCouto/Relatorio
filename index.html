@@ -1114,12 +1114,11 @@
       <table id="tabela-octa-sac">
         <thead>
           <tr>
-            <th style="width:34%">Título</th>
-            <th style="width:12%">Data de Criação</th>
-            <th style="width:12%">Última Atualização</th>
-            <th style="width:14%">Data da Solicitação</th>
-            <th style="width:14%">Transportadora</th>
-            <th style="width:14%">Rastreio</th>
+            <th style="width:38%">Título</th>
+            <th style="width:15%">Data de Criação</th>
+            <th style="width:15%">Última Atualização</th>
+            <th style="width:16%">Transportadora</th>
+            <th style="width:16%">Rastreio</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -1199,12 +1198,11 @@
       <table id="tabela-octa-envio">
         <thead>
           <tr>
-            <th style="width:34%">Título</th>
-            <th style="width:12%">Data de Criação</th>
-            <th style="width:12%">Última Atualização</th>
-            <th style="width:14%">Data da Solicitação</th>
-            <th style="width:14%">Transportadora</th>
-            <th style="width:14%">Rastreio</th>
+            <th style="width:38%">Título</th>
+            <th style="width:15%">Data de Criação</th>
+            <th style="width:15%">Última Atualização</th>
+            <th style="width:16%">Transportadora</th>
+            <th style="width:16%">Rastreio</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -1588,6 +1586,10 @@
       if (!tbody) return;
       tbody.innerHTML = '';
 
+      const dateField = cfg.dateField || 'data_solicitacao';
+      const hideSolicitacao = Boolean(cfg.hideSolicitacao);
+      const colSpanCount = hideSolicitacao ? 5 : 6;
+
       const tabItems = (list || []).filter(item => resolveOctaMarketplace(item) === activeTab);
 
       let countAtrasados = 0;
@@ -1595,7 +1597,7 @@
       const transpCounts = {};
 
       tabItems.forEach(item => {
-        const ageInfo = getOctaSolicitacaoAgeInfo(item.data_solicitacao);
+        const ageInfo = getOctaSolicitacaoAgeInfo(item[dateField]);
         if (ageInfo.status === 'ATRASADO') countAtrasados++;
         else if (ageInfo.status === 'ALARMANTE') countAlarmantes++;
 
@@ -1626,7 +1628,7 @@
       let filtered = [...tabItems];
 
       if (statusPrazoFilter !== 'TODOS') {
-        filtered = filtered.filter(item => getOctaSolicitacaoAgeInfo(item.data_solicitacao).status === statusPrazoFilter);
+        filtered = filtered.filter(item => getOctaSolicitacaoAgeInfo(item[dateField]).status === statusPrazoFilter);
       }
 
       if (query) {
@@ -1640,7 +1642,7 @@
             getPedidoId(item),
             item.data_criacao,
             item.ultima_atualizacao,
-            item.data_solicitacao,
+            hideSolicitacao ? '' : item.data_solicitacao,
             item.transportadora,
             item.rastreio
           ].join(' ');
@@ -1648,10 +1650,10 @@
         });
       }
 
-      // Ordenar dos mais antigos para os mais recentes pela Data da Solicitação (mais antigos primeiro)
+      // Ordenar dos mais antigos para os mais recentes pela data de referência (mais antigos primeiro)
       filtered.sort((a, b) => {
-        const tA = parseDateToTimestamp(a.data_solicitacao);
-        const tB = parseDateToTimestamp(b.data_solicitacao);
+        const tA = parseDateToTimestamp(a[dateField]);
+        const tB = parseDateToTimestamp(b[dateField]);
         if (tA === null && tB === null) return 0;
         if (tA === null) return 1;
         if (tB === null) return -1;
@@ -1659,7 +1661,7 @@
       });
 
       if (!filtered.length) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#94a3b8;">${cfg.emptyMsg} para ${activeTab}.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="${colSpanCount}" style="text-align:center; color:#94a3b8;">${cfg.emptyMsg} para ${activeTab}.</td></tr>`;
         return;
       }
 
@@ -1711,7 +1713,7 @@
           }
         }
 
-        const ageInfo = getOctaSolicitacaoAgeInfo(item.data_solicitacao);
+        const ageInfo = getOctaSolicitacaoAgeInfo(item[dateField]);
         let rowClass = '';
         let prazoBadgeHtml = '';
         if (ageInfo.status === 'ATRASADO') {
@@ -1722,6 +1724,14 @@
           prazoBadgeHtml = `<div><span class="status-prazo-badge status-prazo-alarmante">🟡 ${ageInfo.label}</span></div>`;
         }
 
+        const dataCriacaoCellHtml = dateField === 'data_criacao'
+          ? `<strong>${item.data_criacao || '-'}</strong>${prazoBadgeHtml}`
+          : `${item.data_criacao || '-'}`;
+
+        const dataSolicitacaoCellHtml = hideSolicitacao
+          ? ''
+          : `<td><strong>${item.data_solicitacao || '-'}</strong>${dateField === 'data_solicitacao' ? prazoBadgeHtml : ''}</td>`;
+
         tbody.innerHTML += `<tr class="${rowClass}">
           <td>
             <div class="octa-title-cell">
@@ -1729,12 +1739,9 @@
               ${titleHtml}
             </div>
           </td>
-          <td>${item.data_criacao || '-'}</td>
+          <td>${dataCriacaoCellHtml}</td>
           <td>${item.ultima_atualizacao || '-'}</td>
-          <td>
-            <strong>${item.data_solicitacao || '-'}</strong>
-            ${prazoBadgeHtml}
-          </td>
+          ${dataSolicitacaoCellHtml}
           <td>${item.transportadora || '-'}</td>
           <td>${item.rastreio || '-'}</td>
         </tr>`;
@@ -1809,7 +1816,9 @@
         transpWrapId: 'octa-sac-tab-transp-breakdown',
         searchId: 'search-octa-sac',
         prazoFilterId: 'filter-status-prazo-octa-sac',
-        emptyMsg: 'Nenhum atendimento SAC encontrado'
+        emptyMsg: 'Nenhum atendimento SAC encontrado',
+        dateField: 'data_criacao',
+        hideSolicitacao: true
       });
     }
 
@@ -1845,7 +1854,9 @@
         transpWrapId: 'octa-envio-tab-transp-breakdown',
         searchId: 'search-octa-envio',
         prazoFilterId: 'filter-status-prazo-octa-envio',
-        emptyMsg: 'Nenhum envio de produto encontrado'
+        emptyMsg: 'Nenhum envio de produto encontrado',
+        dateField: 'data_criacao',
+        hideSolicitacao: true
       });
     }
 
