@@ -206,7 +206,7 @@ def mapear_marketplace_octadesk(valor_loja):
   return "OUTROS"
 
 
-def processar_octadesk_devolucao():
+def processar_octadesk():
   df = parse_csv_dinamico(
       URL_CSV_OCTADESK,
       [
@@ -269,12 +269,17 @@ def processar_octadesk_devolucao():
       ],
   )
 
-  registros = []
+  registros_devolucao = []
+  registros_sac = []
+
   for _, row in df.iterrows():
     grupo_val = limpar_texto(row[col_grupo]) if col_grupo else ""
     grupo_norm = remover_acentos(grupo_val)
 
-    if "SOLICITACAO DE DEVOLUCAO" not in grupo_norm:
+    is_devolucao = "SOLICITACAO DE DEVOLUCAO" in grupo_norm
+    is_sac = "ATENDIMENTO SAC" in grupo_norm
+
+    if not is_devolucao and not is_sac:
       continue
 
     loja_raw = limpar_texto(row[col_loja]) if col_loja else ""
@@ -284,7 +289,7 @@ def processar_octadesk_devolucao():
     numero_val = limpar_identificador(row[col_numero]) if col_numero else ""
     pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ""
 
-    registros.append({
+    item = {
         "numero": numero_val,
         "pedido": pedido_val,
         "grupo": grupo_val,
@@ -309,9 +314,14 @@ def processar_octadesk_devolucao():
             limpar_texto(row[col_transportadora]) if col_transportadora else ""
         ),
         "rastreio": limpar_texto(row[col_rastreio]) if col_rastreio else "",
-    })
+    }
 
-  return registros
+    if is_devolucao:
+      registros_devolucao.append(item)
+    if is_sac:
+      registros_sac.append(item)
+
+  return registros_devolucao, registros_sac
 
 
 def carregar_historico_notas_page(caminho_json="impactos_ml.json"):
@@ -869,7 +879,7 @@ if __name__ == "__main__":
   amz_data = processar_amazon()
   aval_amz_data = processar_avaliacoes_amazon()
   via_data = processar_via()
-  octadesk_dev_data = processar_octadesk_devolucao()
+  octadesk_dev_data, octadesk_sac_data = processar_octadesk()
 
   output = {
       "notas_page": notas_page_data,
@@ -878,6 +888,7 @@ if __name__ == "__main__":
       "avaliacoes_amazon": aval_amz_data,
       "via": via_data,
       "octadesk_devolucao": octadesk_dev_data,
+      "octadesk_sac": octadesk_sac_data,
   }
 
   with open("impactos_ml.json", "w", encoding="utf-8") as f:
@@ -886,5 +897,6 @@ if __name__ == "__main__":
   print(
       f"Concluído: {len(notas_page_data)} Notas_Page | {len(ml_data)} ML |"
       f" {len(amz_data)} Amazon | {len(aval_amz_data)} Avaliações Amazon |"
-      f" {len(via_data)} VIA | {len(octadesk_dev_data)} OctaDesk Devolução"
+      f" {len(via_data)} VIA | {len(octadesk_dev_data)} OctaDesk Devolução |"
+      f" {len(octadesk_sac_data)} OctaDesk SAC"
   )
