@@ -243,6 +243,10 @@
         <span class="menu-item-icon">🎧</span>
         <span class="menu-item-text">Atendimento SAC</span>
       </a>
+      <a class="menu-item" data-page="page-octadesk-envio" onclick="navigatePage('page-octadesk-envio', this)" title="Envio de Produto">
+        <span class="menu-item-icon">🚚</span>
+        <span class="menu-item-text">Envio de Produto</span>
+      </a>
     </div>
   </aside>
 
@@ -1122,6 +1126,91 @@
       </table>
     </section>
 
+    <!-- PÁGINA 7: OCTADESK -> ENVIO DE PRODUTO -->
+    <section id="page-octadesk-envio" class="page-section">
+      <div class="header-bar">
+        <h1>Envio de Produto (OctaDesk)</h1>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Total Geral</h3>
+          <div class="val val-dark" id="octa-envio-total">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Mercado Livre</h3>
+          <div class="val val-warning" id="octa-envio-ml">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Amazon</h3>
+          <div class="val val-info" id="octa-envio-amz">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Shopee</h3>
+          <div class="val val-danger" id="octa-envio-shopee">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>VIA (Casas Bahia)</h3>
+          <div class="val" id="octa-envio-via" style="color: var(--primary);">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Magazine Luiza</h3>
+          <div class="val val-success" id="octa-envio-magalu">-</div>
+        </div>
+      </div>
+
+      <div class="nav-tabs" id="octa-envio-tabs">
+        <button class="tab-btn active" onclick="switchTabOctaEnvio('MERCADO LIVRE', this)">Mercado Livre (<span id="count-tab-octa-envio-ml">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabOctaEnvio('AMAZON', this)">Amazon (<span id="count-tab-octa-envio-amz">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabOctaEnvio('SHOPEE', this)">Shopee (<span id="count-tab-octa-envio-shopee">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabOctaEnvio('VIA', this)">VIA (<span id="count-tab-octa-envio-via">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabOctaEnvio('MAGAZINE LUIZA', this)">Magazine Luiza (<span id="count-tab-octa-envio-magalu">0</span>)</button>
+      </div>
+
+      <!-- INDICADORES DA ABA SELECIONADA -->
+      <div class="tab-indicators-grid">
+        <div class="metric-card">
+          <h3>Atrasados (&gt; 30 dias)</h3>
+          <div class="val val-danger" id="octa-envio-tab-atrasados">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Alarmantes (&gt; 15 dias)</h3>
+          <div class="val val-warning" id="octa-envio-tab-alarmantes">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Quantidade por Transportadora</h3>
+          <div id="octa-envio-tab-transp-breakdown" class="transp-pills-wrap">-</div>
+        </div>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-box-wrapper">
+          <span class="search-icon-inside">🔍</span>
+          <input type="text" id="search-octa-envio" class="search-input" placeholder="Pesquisar por Título, Pedido, Transportadora ou Rastreio..." oninput="renderOctaEnvioTable()">
+        </div>
+        <select id="filter-status-prazo-octa-envio" class="select-filter" onchange="renderOctaEnvioTable()">
+          <option value="TODOS">Todos os Prazos</option>
+          <option value="ATRASADO">Apenas Atrasados (&gt; 30 dias)</option>
+          <option value="ALARMANTE">Apenas Alarmantes (&gt; 15 dias)</option>
+          <option value="NORMAL">Dentro do Prazo (&le; 15 dias)</option>
+        </select>
+      </div>
+
+      <table id="tabela-octa-envio">
+        <thead>
+          <tr>
+            <th style="width:34%">Título</th>
+            <th style="width:12%">Data de Criação</th>
+            <th style="width:12%">Última Atualização</th>
+            <th style="width:14%">Data da Solicitação</th>
+            <th style="width:14%">Transportadora</th>
+            <th style="width:14%">Rastreio</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
   </main>
 
   <script>
@@ -1275,9 +1364,10 @@
       }
     }
 
-    let rawNotasPage = [], rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [], rawDataOctadeskDev = [], rawDataOctadeskSac = [];
+    let rawNotasPage = [], rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [], rawDataOctadeskDev = [], rawDataOctadeskSac = [], rawDataOctadeskEnvio = [];
     let activeOctaDevTab = 'MERCADO LIVRE';
     let activeOctaSacTab = 'MERCADO LIVRE';
+    let activeOctaEnvioTab = 'MERCADO LIVRE';
     let escopoML = 'afetando', escopoAMZ = 'afetando', escopoAval = 'afetando', escopoVIA = 'afetando';
     
     let currentFilteredML = [], currentFilteredAMZ = [], currentFilteredAval = [], currentFilteredVIA = [];
@@ -1723,6 +1813,42 @@
       });
     }
 
+    function switchTabOctaEnvio(mpKey, btn) {
+      activeOctaEnvioTab = mpKey;
+      document.querySelectorAll('#octa-envio-tabs .tab-btn').forEach(el => el.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderOctaEnvioTable();
+    }
+
+    function renderOctaEnvio() {
+      renderOctaGroupSummary(rawDataOctadeskEnvio || [], {
+        total: 'octa-envio-total',
+        ml: 'octa-envio-ml',
+        amz: 'octa-envio-amz',
+        shopee: 'octa-envio-shopee',
+        via: 'octa-envio-via',
+        magalu: 'octa-envio-magalu',
+        tabMl: 'count-tab-octa-envio-ml',
+        tabAmz: 'count-tab-octa-envio-amz',
+        tabShopee: 'count-tab-octa-envio-shopee',
+        tabVia: 'count-tab-octa-envio-via',
+        tabMagalu: 'count-tab-octa-envio-magalu'
+      });
+      renderOctaEnvioTable();
+    }
+
+    function renderOctaEnvioTable() {
+      renderOctaGroupTable(rawDataOctadeskEnvio || [], activeOctaEnvioTab, {
+        tableId: 'tabela-octa-envio',
+        atrasadosId: 'octa-envio-tab-atrasados',
+        alarmantesId: 'octa-envio-tab-alarmantes',
+        transpWrapId: 'octa-envio-tab-transp-breakdown',
+        searchId: 'search-octa-envio',
+        prazoFilterId: 'filter-status-prazo-octa-envio',
+        emptyMsg: 'Nenhum envio de produto encontrado'
+      });
+    }
+
     function switchTabML(tabId, btn) {
       document.querySelectorAll('#page-impactos-ml .tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('#page-impactos-ml .tab-btn').forEach(el => el.classList.remove('active'));
@@ -1832,6 +1958,7 @@
       rawDataVIA = data.via || [];
       rawDataOctadeskDev = data.octadesk_devolucao || [];
       rawDataOctadeskSac = data.octadesk_sac || [];
+      rawDataOctadeskEnvio = data.octadesk_envio_produto || [];
       
       populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
       populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
@@ -1849,6 +1976,7 @@
       renderVIA();
       renderOctaDev();
       renderOctaSac();
+      renderOctaEnvio();
       
       const initialLink = document.querySelector('.menu-item[data-page="page-reputacao-geral"]');
       navigatePage('page-reputacao-geral', initialLink);
