@@ -7204,6 +7204,34 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918484",
+      "pedido": "2000019184235958",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000019184235958 | Gabriel Santos de Souza",
+      "titulo": "Gabriel Santos de Souza",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "15/11/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918483",
+      "pedido": "2000015588892133",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000015588892133 | Wagner Santos Souza Silva",
+      "titulo": "Wagner Santos Souza Silva",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "14/11/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918481",
       "pedido": "LU-1581870109336025",
       "grupo": "Solicitação de Devolução",
@@ -7510,20 +7538,6 @@
       "data_solicitacao": "12/11/2026",
       "transportadora": "Rio Express",
       "rastreio": "216490"
-    },
-    {
-      "numero": "99918428",
-      "pedido": "2000018968105762",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000015513473273 | Rozelia Vieira Silva",
-      "titulo": "Rozelia Vieira Silva",
-      "data_criacao": "11/11/2026",
-      "ultima_atualizacao": "12/11/2026",
-      "data_solicitacao": "11/11/2026",
-      "transportadora": "Tecmar",
-      "rastreio": "211261"
     },
     {
       "numero": "99918427",
