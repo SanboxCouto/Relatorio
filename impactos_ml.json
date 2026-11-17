@@ -7204,6 +7204,62 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918490",
+      "pedido": "2000015587350259",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000015587350259 | Otoniel Moura",
+      "titulo": "Otoniel Moura",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "17/11/2026",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "217858"
+    },
+    {
+      "numero": "99918489",
+      "pedido": "2000019432956654",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000019432956654 | Maria Das Gracas Goncalves de Oliveira",
+      "titulo": "Maria Das Gracas Goncalves de Oliveira",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "17/11/2026",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "217859"
+    },
+    {
+      "numero": "99918488",
+      "pedido": "2611125DY5BVR0",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "2611125DY5BVR0 - Rosimar Ferreira dos Santos",
+      "titulo": "Rosimar Ferreira dos Santos",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "17/11/2026",
+      "transportadora": "Tecmar",
+      "rastreio": "216502"
+    },
+    {
+      "numero": "99918486",
+      "pedido": "261107NS4H1PJQ",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "261107NS4H1PJQ - Samara Narciso Mariano Pontes",
+      "titulo": "Samara Narciso Mariano Pontes",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "17/11/2026",
+      "transportadora": "Total Express",
+      "rastreio": "214963"
+    },
+    {
       "numero": "99918485",
       "pedido": "702-6094069-5170631",
       "grupo": "Solicitação de Devolução",
@@ -7215,7 +7271,7 @@
       "ultima_atualizacao": "17/11/2026",
       "data_solicitacao": "17/11/2026",
       "transportadora": "Brasil Web",
-      "rastreio": "0"
+      "rastreio": "217857"
     },
     {
       "numero": "99918484",
@@ -7302,20 +7358,6 @@
       "rastreio": "0"
     },
     {
-      "numero": "99918474",
-      "pedido": "2611016S4BBQDA",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "2611016S4BBQDA - Arlindo Batista",
-      "titulo": "Arlindo Batista",
-      "data_criacao": "16/11/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "16/11/2026",
-      "transportadora": "Brasil Web",
-      "rastreio": "213884"
-    },
-    {
       "numero": "99918466",
       "pedido": "701-4550693-4345001",
       "grupo": "Solicitação de Devolução",
@@ -7398,20 +7440,6 @@
       "data_solicitacao": "13/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "217856"
-    },
-    {
-      "numero": "99918453",
-      "pedido": "261105FEE3PJRV",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "261105FEE3PJRV - Simone Lima de Castro",
-      "titulo": "Simone Lima de Castro",
-      "data_criacao": "13/11/2026",
-      "ultima_atualizacao": "13/11/2026",
-      "data_solicitacao": "13/11/2026",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "214319"
     },
     {
       "numero": "99918451",
@@ -7776,20 +7804,6 @@
       "data_solicitacao": "27/10/2026",
       "transportadora": "MMA",
       "rastreio": "213144"
-    },
-    {
-      "numero": "99918216",
-      "pedido": "701-2265981-3746607",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "701-2265981-3746607 - Elivelton Barbosa",
-      "titulo": "Elivelton Barbosa",
-      "data_criacao": "26/10/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "26/10/2026",
-      "transportadora": "Rio Express",
-      "rastreio": "214251"
     },
     {
       "numero": "99918211",
@@ -8257,6 +8271,20 @@
     }
   ],
   "octadesk_envio_produto": [
+    {
+      "numero": "99918487",
+      "pedido": "702-8407955-5008269",
+      "grupo": "Envio de Produto",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-8407955-5008269- Simone rosa",
+      "titulo": "Simone rosa",
+      "data_criacao": "17/11/2026",
+      "ultima_atualizacao": "17/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Brasil Web",
+      "rastreio": "0"
+    },
     {
       "numero": "99918468",
       "pedido": "702-6113683-9329036",
