@@ -239,6 +239,10 @@
         <span class="menu-item-icon">📦</span>
         <span class="menu-item-text">Solicitação de Devolução</span>
       </a>
+      <a class="menu-item" data-page="page-octadesk-sac" onclick="navigatePage('page-octadesk-sac', this)" title="Atendimento SAC">
+        <span class="menu-item-icon">🎧</span>
+        <span class="menu-item-text">Atendimento SAC</span>
+      </a>
     </div>
   </aside>
 
@@ -1033,6 +1037,91 @@
       </table>
     </section>
 
+    <!-- PÁGINA 6: OCTADESK -> ATENDIMENTO SAC -->
+    <section id="page-octadesk-sac" class="page-section">
+      <div class="header-bar">
+        <h1>Atendimento SAC (OctaDesk)</h1>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Total Geral</h3>
+          <div class="val val-dark" id="octa-sac-total">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Mercado Livre</h3>
+          <div class="val val-warning" id="octa-sac-ml">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Amazon</h3>
+          <div class="val val-info" id="octa-sac-amz">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Shopee</h3>
+          <div class="val val-danger" id="octa-sac-shopee">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>VIA (Casas Bahia)</h3>
+          <div class="val" id="octa-sac-via" style="color: var(--primary);">-</div>
+        </div>
+        <div class="metric-card">
+          <h3>Magazine Luiza</h3>
+          <div class="val val-success" id="octa-sac-magalu">-</div>
+        </div>
+      </div>
+
+      <div class="nav-tabs" id="octa-sac-tabs">
+        <button class="tab-btn active" onclick="switchTabOctaSac('MERCADO LIVRE', this)">Mercado Livre (<span id="count-tab-octa-sac-ml">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabOctaSac('AMAZON', this)">Amazon (<span id="count-tab-octa-sac-amz">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabOctaSac('SHOPEE', this)">Shopee (<span id="count-tab-octa-sac-shopee">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabOctaSac('VIA', this)">VIA (<span id="count-tab-octa-sac-via">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabOctaSac('MAGAZINE LUIZA', this)">Magazine Luiza (<span id="count-tab-octa-sac-magalu">0</span>)</button>
+      </div>
+
+      <!-- INDICADORES DA ABA SELECIONADA -->
+      <div class="tab-indicators-grid">
+        <div class="metric-card">
+          <h3>Atrasados (&gt; 30 dias)</h3>
+          <div class="val val-danger" id="octa-sac-tab-atrasados">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Alarmantes (&gt; 15 dias)</h3>
+          <div class="val val-warning" id="octa-sac-tab-alarmantes">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Quantidade por Transportadora</h3>
+          <div id="octa-sac-tab-transp-breakdown" class="transp-pills-wrap">-</div>
+        </div>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-box-wrapper">
+          <span class="search-icon-inside">🔍</span>
+          <input type="text" id="search-octa-sac" class="search-input" placeholder="Pesquisar por Título, Pedido, Transportadora ou Rastreio..." oninput="renderOctaSacTable()">
+        </div>
+        <select id="filter-status-prazo-octa-sac" class="select-filter" onchange="renderOctaSacTable()">
+          <option value="TODOS">Todos os Prazos</option>
+          <option value="ATRASADO">Apenas Atrasados (&gt; 30 dias)</option>
+          <option value="ALARMANTE">Apenas Alarmantes (&gt; 15 dias)</option>
+          <option value="NORMAL">Dentro do Prazo (&le; 15 dias)</option>
+        </select>
+      </div>
+
+      <table id="tabela-octa-sac">
+        <thead>
+          <tr>
+            <th style="width:34%">Título</th>
+            <th style="width:12%">Data de Criação</th>
+            <th style="width:12%">Última Atualização</th>
+            <th style="width:14%">Data da Solicitação</th>
+            <th style="width:14%">Transportadora</th>
+            <th style="width:14%">Rastreio</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
   </main>
 
   <script>
@@ -1186,8 +1275,9 @@
       }
     }
 
-    let rawNotasPage = [], rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [], rawDataOctadeskDev = [];
+    let rawNotasPage = [], rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [], rawDataOctadeskDev = [], rawDataOctadeskSac = [];
     let activeOctaDevTab = 'MERCADO LIVRE';
+    let activeOctaSacTab = 'MERCADO LIVRE';
     let escopoML = 'afetando', escopoAMZ = 'afetando', escopoAval = 'afetando', escopoVIA = 'afetando';
     
     let currentFilteredML = [], currentFilteredAMZ = [], currentFilteredAval = [], currentFilteredVIA = [];
@@ -1342,7 +1432,7 @@
       });
     }
 
-    // ================= RENDERIZADOR OCTADESK -> SOLICITAÇÃO DE DEVOLUÇÃO =================
+    // ================= RENDERIZADOR OCTADESK (DEVOLUÇÃO & ATENDIMENTO SAC) =================
     function extractCustomerNameFromAssunto(assuntoStr) {
       const s = cleanVal(assuntoStr);
       if (!s) return '';
@@ -1377,15 +1467,7 @@
       return 'OUTROS';
     }
 
-    function switchTabOctaDev(mpKey, btn) {
-      activeOctaDevTab = mpKey;
-      document.querySelectorAll('#octa-dev-tabs .tab-btn').forEach(el => el.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderOctaDevTable();
-    }
-
-    function renderOctaDev() {
-      const list = rawDataOctadeskDev || [];
+    function renderOctaGroupSummary(list, ids) {
       let countML = 0, countAMZ = 0, countShopee = 0, countVIA = 0, countMagalu = 0;
 
       list.forEach(item => {
@@ -1397,28 +1479,26 @@
         else if (mp === 'MAGAZINE LUIZA') countMagalu++;
       });
 
-      document.getElementById('octa-dev-total').innerText = list.length;
-      document.getElementById('octa-dev-ml').innerText = countML;
-      document.getElementById('octa-dev-amz').innerText = countAMZ;
-      document.getElementById('octa-dev-shopee').innerText = countShopee;
-      document.getElementById('octa-dev-via').innerText = countVIA;
-      document.getElementById('octa-dev-magalu').innerText = countMagalu;
+      document.getElementById(ids.total).innerText = list.length;
+      document.getElementById(ids.ml).innerText = countML;
+      document.getElementById(ids.amz).innerText = countAMZ;
+      document.getElementById(ids.shopee).innerText = countShopee;
+      document.getElementById(ids.via).innerText = countVIA;
+      document.getElementById(ids.magalu).innerText = countMagalu;
 
-      document.getElementById('count-tab-octa-ml').innerText = countML;
-      document.getElementById('count-tab-octa-amz').innerText = countAMZ;
-      document.getElementById('count-tab-octa-shopee').innerText = countShopee;
-      document.getElementById('count-tab-octa-via').innerText = countVIA;
-      document.getElementById('count-tab-octa-magalu').innerText = countMagalu;
-
-      renderOctaDevTable();
+      document.getElementById(ids.tabMl).innerText = countML;
+      document.getElementById(ids.tabAmz).innerText = countAMZ;
+      document.getElementById(ids.tabShopee).innerText = countShopee;
+      document.getElementById(ids.tabVia).innerText = countVIA;
+      document.getElementById(ids.tabMagalu).innerText = countMagalu;
     }
 
-    function renderOctaDevTable() {
-      const tbody = document.querySelector('#tabela-octa-dev tbody');
+    function renderOctaGroupTable(list, activeTab, cfg) {
+      const tbody = document.querySelector(`#${cfg.tableId} tbody`);
       if (!tbody) return;
       tbody.innerHTML = '';
 
-      const tabItems = (rawDataOctadeskDev || []).filter(item => resolveOctaMarketplace(item) === activeOctaDevTab);
+      const tabItems = (list || []).filter(item => resolveOctaMarketplace(item) === activeTab);
 
       let countAtrasados = 0;
       let countAlarmantes = 0;
@@ -1433,9 +1513,9 @@
         transpCounts[transpName] = (transpCounts[transpName] || 0) + 1;
       });
 
-      const elAtrasados = document.getElementById('octa-tab-atrasados');
-      const elAlarmantes = document.getElementById('octa-tab-alarmantes');
-      const elTranspWrap = document.getElementById('octa-tab-transp-breakdown');
+      const elAtrasados = document.getElementById(cfg.atrasadosId);
+      const elAlarmantes = document.getElementById(cfg.alarmantesId);
+      const elTranspWrap = document.getElementById(cfg.transpWrapId);
 
       if (elAtrasados) elAtrasados.innerText = countAtrasados;
       if (elAlarmantes) elAlarmantes.innerText = countAlarmantes;
@@ -1450,8 +1530,8 @@
         }
       }
 
-      const query = normalizeText(document.getElementById('search-octa-dev')?.value || '');
-      const statusPrazoFilter = document.getElementById('filter-status-prazo-octa')?.value || 'TODOS';
+      const query = normalizeText(document.getElementById(cfg.searchId)?.value || '');
+      const statusPrazoFilter = document.getElementById(cfg.prazoFilterId)?.value || 'TODOS';
 
       let filtered = [...tabItems];
 
@@ -1461,10 +1541,11 @@
 
       if (query) {
         filtered = filtered.filter(item => {
-          const nomeExibido = extractCustomerNameFromAssunto(item.assunto_raw || item.titulo);
+          const nomeExibido = extractCustomerNameFromAssunto(item.assunto_raw || item.assunto_completo || item.titulo);
           const allText = [
             nomeExibido,
             item.assunto_raw,
+            item.assunto_completo,
             item.numero,
             getPedidoId(item),
             item.data_criacao,
@@ -1488,49 +1569,50 @@
       });
 
       if (!filtered.length) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#94a3b8;">Nenhuma solicitação de devolução encontrada para ${activeOctaDevTab}.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#94a3b8;">${cfg.emptyMsg} para ${activeTab}.</td></tr>`;
         return;
       }
 
       filtered.forEach(item => {
         const numTicket = cleanVal(item.numero);
         const pedidoId = getPedidoId(item);
-        const tituloExibido = extractCustomerNameFromAssunto(item.assunto_raw || item.titulo) || '-';
-        const tooltipAssunto = item.assunto_raw && item.assunto_raw !== tituloExibido ? ` (${item.assunto_raw})` : '';
+        const assuntoOrig = item.assunto_raw || item.assunto_completo || '';
+        const tituloExibido = extractCustomerNameFromAssunto(assuntoOrig || item.titulo) || '-';
+        const tooltipAssunto = assuntoOrig && assuntoOrig !== tituloExibido ? ` (${assuntoOrig})` : '';
 
         const titleHtml = numTicket
           ? `<a href="https://app.octadesk.com/ticket/edit/${encodeURIComponent(numTicket)}" target="_blank" class="ticket-title-link" title="Abrir ticket #${numTicket} no OctaDesk${tooltipAssunto}">${tituloExibido}</a>`
-          : `<strong title="${item.assunto_raw || tituloExibido}">${tituloExibido}</strong>`;
+          : `<strong title="${assuntoOrig || tituloExibido}">${tituloExibido}</strong>`;
 
         let orderBtnHtml = '';
         if (pedidoId) {
-          if (activeOctaDevTab === 'MERCADO LIVRE') {
+          if (activeTab === 'MERCADO LIVRE') {
             const linkML = `https://vendedores.mercadolivre.com.br/vendas/${encodeURIComponent(pedidoId)}/detalhe`;
             orderBtnHtml = `
               <a href="${linkML}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} no Mercado Livre">
                 <img src="${ML_LOGO_URL}" class="ml-logo-img" alt="ML">
                 <span>${pedidoId}</span>
               </a>`;
-          } else if (activeOctaDevTab === 'AMAZON') {
+          } else if (activeTab === 'AMAZON') {
             const linkAMZ = `https://sellercentral.amazon.com/orders-v3/order/${encodeURIComponent(pedidoId)}`;
             orderBtnHtml = `
               <a href="${linkAMZ}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} na Amazon">
                 <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" alt="Amazon">
                 <span>${pedidoId}</span>
               </a>`;
-          } else if (activeOctaDevTab === 'SHOPEE') {
+          } else if (activeTab === 'SHOPEE') {
             orderBtnHtml = `
               <span class="order-link-box" title="Número do Pedido Shopee: ${pedidoId}">
                 <img src="${SHOPEE_LOGO_URL}" class="mp-logo-img" alt="Shopee">
                 <span>${pedidoId}</span>
               </span>`;
-          } else if (activeOctaDevTab === 'VIA') {
+          } else if (activeTab === 'VIA') {
             orderBtnHtml = `
               <span class="order-link-box" title="Número do Pedido VIA (Casas Bahia): ${pedidoId}">
                 <img src="${VIA_LOGO_URL}" class="mp-logo-img" alt="VIA">
                 <span>${pedidoId}</span>
               </span>`;
-          } else if (activeOctaDevTab === 'MAGAZINE LUIZA') {
+          } else if (activeTab === 'MAGAZINE LUIZA') {
             orderBtnHtml = `
               <span class="order-link-box" title="Número do Pedido Magazine Luiza: ${pedidoId}">
                 <img src="${MAGALU_LOGO_URL}" class="mp-logo-img" alt="Magazine Luiza">
@@ -1566,6 +1648,78 @@
           <td>${item.transportadora || '-'}</td>
           <td>${item.rastreio || '-'}</td>
         </tr>`;
+      });
+    }
+
+    function switchTabOctaDev(mpKey, btn) {
+      activeOctaDevTab = mpKey;
+      document.querySelectorAll('#octa-dev-tabs .tab-btn').forEach(el => el.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderOctaDevTable();
+    }
+
+    function renderOctaDev() {
+      renderOctaGroupSummary(rawDataOctadeskDev || [], {
+        total: 'octa-dev-total',
+        ml: 'octa-dev-ml',
+        amz: 'octa-dev-amz',
+        shopee: 'octa-dev-shopee',
+        via: 'octa-dev-via',
+        magalu: 'octa-dev-magalu',
+        tabMl: 'count-tab-octa-ml',
+        tabAmz: 'count-tab-octa-amz',
+        tabShopee: 'count-tab-octa-shopee',
+        tabVia: 'count-tab-octa-via',
+        tabMagalu: 'count-tab-octa-magalu'
+      });
+      renderOctaDevTable();
+    }
+
+    function renderOctaDevTable() {
+      renderOctaGroupTable(rawDataOctadeskDev || [], activeOctaDevTab, {
+        tableId: 'tabela-octa-dev',
+        atrasadosId: 'octa-tab-atrasados',
+        alarmantesId: 'octa-tab-alarmantes',
+        transpWrapId: 'octa-tab-transp-breakdown',
+        searchId: 'search-octa-dev',
+        prazoFilterId: 'filter-status-prazo-octa',
+        emptyMsg: 'Nenhuma solicitação de devolução encontrada'
+      });
+    }
+
+    function switchTabOctaSac(mpKey, btn) {
+      activeOctaSacTab = mpKey;
+      document.querySelectorAll('#octa-sac-tabs .tab-btn').forEach(el => el.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderOctaSacTable();
+    }
+
+    function renderOctaSac() {
+      renderOctaGroupSummary(rawDataOctadeskSac || [], {
+        total: 'octa-sac-total',
+        ml: 'octa-sac-ml',
+        amz: 'octa-sac-amz',
+        shopee: 'octa-sac-shopee',
+        via: 'octa-sac-via',
+        magalu: 'octa-sac-magalu',
+        tabMl: 'count-tab-octa-sac-ml',
+        tabAmz: 'count-tab-octa-sac-amz',
+        tabShopee: 'count-tab-octa-sac-shopee',
+        tabVia: 'count-tab-octa-sac-via',
+        tabMagalu: 'count-tab-octa-sac-magalu'
+      });
+      renderOctaSacTable();
+    }
+
+    function renderOctaSacTable() {
+      renderOctaGroupTable(rawDataOctadeskSac || [], activeOctaSacTab, {
+        tableId: 'tabela-octa-sac',
+        atrasadosId: 'octa-sac-tab-atrasados',
+        alarmantesId: 'octa-sac-tab-alarmantes',
+        transpWrapId: 'octa-sac-tab-transp-breakdown',
+        searchId: 'search-octa-sac',
+        prazoFilterId: 'filter-status-prazo-octa-sac',
+        emptyMsg: 'Nenhum atendimento SAC encontrado'
       });
     }
 
@@ -1677,6 +1831,7 @@
       rawDataAvalAMZ = data.avaliacoes_amazon || [];
       rawDataVIA = data.via || [];
       rawDataOctadeskDev = data.octadesk_devolucao || [];
+      rawDataOctadeskSac = data.octadesk_sac || [];
       
       populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
       populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
@@ -1693,6 +1848,7 @@
       renderAvaliacoesAMZ();
       renderVIA();
       renderOctaDev();
+      renderOctaSac();
       
       const initialLink = document.querySelector('.menu-item[data-page="page-reputacao-geral"]');
       navigatePage('page-reputacao-geral', initialLink);
