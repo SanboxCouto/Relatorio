@@ -8084,6 +8084,20 @@
       "rastreio": "212501"
     },
     {
+      "numero": "99918160",
+      "pedido": "2000018902229158",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000018902229158 | Lucas Lopes Colevati",
+      "titulo": "Lucas Lopes Colevati",
+      "data_criacao": "21/10/2026",
+      "ultima_atualizacao": "18/11/2026",
+      "data_solicitacao": "21/10/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918154",
       "pedido": "261018113MX8TE",
       "grupo": "Solicitação de Devolução",
