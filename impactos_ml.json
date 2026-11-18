@@ -371,11 +371,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "23/09/2026",
       "comentario": "Riscos, Arranhões e Amassados no Fogão",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000015138272485",
@@ -416,10 +416,10 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "27/09/2026",
       "comentario": "Barra Amassada",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -476,10 +476,10 @@
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "30/09/2026",
       "comentario": "Botão de Acendimento Automático Ñ Funciona",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -730,7 +730,7 @@
       "marca": "IMBERA",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Expirado",
       "data_pedido": "15/09/2026",
       "comentario": "Arranhados na Quina",
@@ -970,12 +970,12 @@
       "marca": "ESMALTEC",
       "motivo": "A embalagem estava danificada\n E Produto Não Funciona",
       "transportadora": "MMA Cargas",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "13/10/2026",
       "comentario": "Forno Não Funciona",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000015197144687",
@@ -1000,7 +1000,7 @@
       "marca": "DAKO",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Não Solicitada",
+      "status": "Revisão Recusada",
       "tempo_impacto": "Válido",
       "data_pedido": "13/10/2026",
       "comentario": "Mesa do Fogão Amassada e Estalo na Porta do Forno",
@@ -1135,12 +1135,12 @@
       "marca": "IMBERA",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "15/10/2026",
       "comentario": "Refrigerador Não está Gelando e Contém Algumas Avarias",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000018838353618",
@@ -1808,7 +1808,7 @@
       "sku": "TI1850",
       "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Branco 127v",
       "marca": "MUELLER",
-      "motivo": "Produto Avariado",
+      "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Não Solicitada",
       "tempo_impacto": "Expirado",
@@ -1823,7 +1823,7 @@
       "sku": "TI1853",
       "produto": "Tanquinho De Lavar Roupa Mueller 20kg Aquatec Não Transborda Preto 220v",
       "marca": "MUELLER",
-      "motivo": "Produto Avariado",
+      "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Não Solicitada",
       "tempo_impacto": "Expirado",
@@ -1838,7 +1838,7 @@
       "sku": "TI1090",
       "produto": "Forno Elétrico De Mesa Philco Pfe60i 60l Cor Prateado 127v",
       "marca": "PHILCO",
-      "motivo": "Produto Avariado",
+      "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Não Solicitada",
       "tempo_impacto": "Expirado",
@@ -1871,11 +1871,11 @@
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Não Solicitada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "21/09/2026",
       "comentario": "Faz Zumbido no Motor e Não Funciona",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000014394929229",
@@ -2006,10 +2006,10 @@
       "motivo": "A data de entrega combinada não foi cumprida",
       "transportadora": "Trilog Express",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "22/09/2026",
       "comentario": "Atraso na Entrega | Falta de Contato",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -2021,10 +2021,10 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "24/09/2026",
       "comentario": "Amassados na Lateral Direita",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -2051,11 +2051,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Brasil Web",
       "status": "Não Solicitada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "24/09/2026",
       "comentario": "Porta do Fogão com Várias Avarias",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000015606199953",
@@ -2096,10 +2096,10 @@
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "28/09/2026",
       "comentario": "Vazamento de Óleo",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -2320,7 +2320,7 @@
       "marca": "MUELLER",
       "motivo": "Item Faltante",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Revisão Recusada",
       "tempo_impacto": "Válido",
       "data_pedido": "28/10/2026",
       "comentario": "Item Faltante: Trempe Trempe Central",
@@ -2335,7 +2335,7 @@
       "marca": "MUELLER",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Não Solicitada",
       "tempo_impacto": "Válido",
       "data_pedido": "28/10/2026",
       "comentario": "Sinais de Uso",
@@ -2470,12 +2470,12 @@
       "marca": "DAKO",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Não Solicitada",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "03/11/2026",
       "comentario": "Pés de Apoio Tortos",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000019232947528",
@@ -2530,12 +2530,12 @@
       "marca": "IMBERA",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "04/11/2026",
       "comentario": "Vidro da Porta Completamente Quebrado",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000019220323374",
@@ -2770,7 +2770,7 @@
       "marca": "DAKO",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Não Solicitada",
+      "status": "Revisão Recusada",
       "tempo_impacto": "Válido",
       "data_pedido": "12/11/2026",
       "comentario": "Acendedor Quebrado",
@@ -2849,6 +2849,81 @@
       "tempo_impacto": "Válido",
       "data_pedido": "15/11/2026",
       "comentario": "Produto Amassado na Lateral Direita",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000015866431309",
+      "n_venda": "2000019342403742",
+      "sku": "TI1090",
+      "produto": "Forno Elétrico Bancada Pfe60i 60litros 1600w 127v - Philco 127v Prateado",
+      "marca": "PHILCO",
+      "motivo": "Produto Avariado",
+      "transportadora": "Total Frenet",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "15/11/2026",
+      "comentario": "Amassado na Parte Superior",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019373434128",
+      "n_venda": "2000019373434128",
+      "sku": "TI1455",
+      "produto": "Cervejeira Expositora Imbera Ccv315 485l Preta Com Porta De Vidro E Led Preto 220v",
+      "marca": "IMBERA",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Revisão Recusada",
+      "tempo_impacto": "Válido",
+      "data_pedido": "16/11/2026",
+      "comentario": "Diversos Arranhados e Um Trincado",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019428241246",
+      "n_venda": "2000019428241246",
+      "sku": "TI1686",
+      "produto": "Fogão Mueller 5 Bocas Decorato Vetro Preto Fosco Com Mesa De Vidro E Timer Digital 127/220v",
+      "marca": "MUELLER",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "17/11/2026",
+      "comentario": "Puxador Quebrado",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019490444174",
+      "n_venda": "2000019490444174",
+      "sku": "TI1660",
+      "produto": "Fogão Itatiaia Electra Glass Plus De 5 Bocas Branco Com Mesa De Vidro E Bivolt 127/220v",
+      "marca": "ITATIAIA",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "17/11/2026",
+      "comentario": "Tampa de Vidro Toda Quebrada",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019283748650",
+      "n_venda": "2000019283748650",
+      "sku": "TI1688",
+      "produto": "Cervejeira Imbera 244 Litros Ccv144s Inverter Full Black 127/220v",
+      "marca": "IMBERA",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "17/11/2026",
+      "comentario": "Diversas avarias diferentes",
       "is_valido": true,
       "is_afetando": true
     }
@@ -7239,6 +7314,34 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918513",
+      "pedido": "2000019265741438",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000019265741438 | Marcio Alves Do Prado",
+      "titulo": "Marcio Alves Do Prado",
+      "data_criacao": "18/11/2026",
+      "ultima_atualizacao": "18/11/2026",
+      "data_solicitacao": "18/11/2026",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "218200"
+    },
+    {
+      "numero": "99918511",
+      "pedido": "701-7201893-7765066",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-7201893-7765066- IARA MARIA GOMES MACHADO",
+      "titulo": "IARA MARIA GOMES MACHADO",
+      "data_criacao": "18/11/2026",
+      "ultima_atualizacao": "18/11/2026",
+      "data_solicitacao": "18/11/2026",
+      "transportadora": "Rio Express",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918510",
       "pedido": "261104D8YKG1AW",
       "grupo": "Solicitação de Devolução",
@@ -7316,20 +7419,6 @@
       "marketplace": "MERCADO LIVRE",
       "assunto_completo": "2000019291270114 | ASSOCIACAO DAS TESTEMUNHAS CRISTAS DE JEOVA",
       "titulo": "ASSOCIACAO DAS TESTEMUNHAS CRISTAS DE JEOVA",
-      "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "18/11/2026",
-      "transportadora": "Mercado Envios",
-      "rastreio": "0"
-    },
-    {
-      "numero": "99918503",
-      "pedido": "2000019428241246",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000019428241246 | Daniela Beazim Silva",
-      "titulo": "Daniela Beazim Silva",
       "data_criacao": "18/11/2026",
       "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "18/11/2026",
@@ -7555,7 +7644,7 @@
       "assunto_completo": "LU-1581870109336025-Micheli Oenning",
       "titulo": "Micheli Oenning",
       "data_criacao": "16/11/2026",
-      "ultima_atualizacao": "16/11/2026",
+      "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "16/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "217641"
@@ -7639,7 +7728,7 @@
       "assunto_completo": "LU-1578870108384275-SANCLEY GAMBETA",
       "titulo": "SANCLEY GAMBETA",
       "data_criacao": "16/11/2026",
-      "ultima_atualizacao": "16/11/2026",
+      "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "16/11/2026",
       "transportadora": "Trilog",
       "rastreio": "217290"
@@ -7685,20 +7774,6 @@
       "data_solicitacao": "13/11/2026",
       "transportadora": "Total Express",
       "rastreio": "0"
-    },
-    {
-      "numero": "99918449",
-      "pedido": "LU-1584570110836046",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "assunto_completo": "LU-1584570110836046 - Daniel Marculino Guziasqui Da Silva",
-      "titulo": "Daniel Marculino Guziasqui Da Silva",
-      "data_criacao": "13/11/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Total Express",
-      "rastreio": "214823"
     },
     {
       "numero": "99918442",
@@ -7807,7 +7882,7 @@
       "assunto_completo": "LU-1584170110622343-Patricia Jascoski",
       "titulo": "Patricia Jascoski",
       "data_criacao": "11/11/2026",
-      "ultima_atualizacao": "16/11/2026",
+      "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "11/11/2026",
       "transportadora": "Brasil Web",
       "rastreio": "215917"
@@ -7905,24 +7980,10 @@
       "assunto_completo": "701-0216369-6338641-Rodrigo",
       "titulo": "Rodrigo",
       "data_criacao": "06/11/2026",
-      "ultima_atualizacao": "16/11/2026",
+      "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "06/11/2026",
       "transportadora": "Trilog",
       "rastreio": "214667"
-    },
-    {
-      "numero": "99918362",
-      "pedido": "1579970108736945",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "assunto_completo": "1579970108736945-Marcos Vinicius Lima Santos",
-      "titulo": "Marcos Vinicius Lima Santos",
-      "data_criacao": "05/11/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "05/11/2026",
-      "transportadora": "MMA",
-      "rastreio": "214499"
     },
     {
       "numero": "99918351",
@@ -7989,7 +8050,7 @@
       "assunto_completo": "LU-1577270107428551-Allison Glauco moreira",
       "titulo": "Allison Glauco moreira",
       "data_criacao": "28/10/2026",
-      "ultima_atualizacao": "16/11/2026",
+      "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "28/10/2026",
       "transportadora": "Tecmar",
       "rastreio": "213955"
@@ -8091,6 +8152,20 @@
       "data_solicitacao": "21/10/2026",
       "transportadora": "Tecmar",
       "rastreio": "212328"
+    },
+    {
+      "numero": "99918139",
+      "pedido": "2000014851738403",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000014851738403 | Irisrrane Braga Do Nascimento",
+      "titulo": "Irisrrane Braga Do Nascimento",
+      "data_criacao": "20/10/2026",
+      "ultima_atualizacao": "18/11/2026",
+      "data_solicitacao": "20/10/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "0"
     },
     {
       "numero": "99918134",
@@ -8248,6 +8323,20 @@
     }
   ],
   "octadesk_sac": [
+    {
+      "numero": "99918512",
+      "pedido": "26111137Q3RP3R",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "26111137Q3RP3R - Rogerio Amorim",
+      "titulo": "Rogerio Amorim",
+      "data_criacao": "18/11/2026",
+      "ultima_atualizacao": "18/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Total Express",
+      "rastreio": ""
+    },
     {
       "numero": "99918506",
       "pedido": "261107N2H3K5Q7",
@@ -8425,7 +8514,7 @@
       "assunto_completo": "702-9742822-0569859- Sthefani Cristina das Graças",
       "titulo": "Sthefani Cristina das Graças",
       "data_criacao": "09/11/2026",
-      "ultima_atualizacao": "17/11/2026",
+      "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "",
       "transportadora": "Brasil Web",
       "rastreio": "0"
@@ -8499,20 +8588,6 @@
       "data_solicitacao": "21/10/2026",
       "transportadora": "Brasil Web",
       "rastreio": "212380"
-    },
-    {
-      "numero": "99918139",
-      "pedido": "2000014851738403",
-      "grupo": "Atendimento SAC",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000014851738403 | Irisrrane Braga Do Nascimento",
-      "titulo": "Irisrrane Braga Do Nascimento",
-      "data_criacao": "20/10/2026",
-      "ultima_atualizacao": "17/11/2026",
-      "data_solicitacao": "20/10/2026",
-      "transportadora": "Mercado Envios",
-      "rastreio": "0"
     },
     {
       "numero": "99917690",
@@ -8721,7 +8796,7 @@
       "assunto_completo": "LU-1579770108655000 - Paulo da cruz",
       "titulo": "Paulo da cruz",
       "data_criacao": "29/10/2026",
-      "ultima_atualizacao": "16/11/2026",
+      "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "",
       "transportadora": "Alfa Transportes",
       "rastreio": "214236 - TROCA"
@@ -8753,20 +8828,6 @@
       "data_solicitacao": "",
       "transportadora": "Correios",
       "rastreio": "AP702317183BR"
-    },
-    {
-      "numero": "99918209",
-      "pedido": "LU-1576070106839019",
-      "grupo": "Envio de Produto",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "assunto_completo": "LU-1576070106839019 -Stefany da Silva Alves",
-      "titulo": "Stefany da Silva Alves",
-      "data_criacao": "26/10/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "09/11/2026",
-      "transportadora": "Rio Express",
-      "rastreio": "AP727199522BR"
     },
     {
       "numero": "99917548",
