@@ -174,6 +174,41 @@
         "taxa_resposta_shopee": "99,09%",
         "nota_shopee": "4,88%"
       }
+    },
+    {
+      "data": "18/11/2026",
+      "valores": {
+        "reclamacoes_ml": 1.37,
+        "mediacoes_ml": 0.41,
+        "vendas_canceladas_ml": 0.41,
+        "envios_incorretos_ml": 0.21,
+        "pedidos_problema_amz": 1.44,
+        "problemas_envios_amz": 0.16,
+        "agilidade_magalu": 99.0,
+        "cancelamentos_magalu": 4.3,
+        "avaliacao_magalu": 4.1,
+        "reclamacoes_via": 1.5,
+        "cancelamentos_via": 3.8,
+        "nao_cumprimento_shopee": 2.44,
+        "taxa_resposta_shopee": 99.1,
+        "nota_shopee": 4.88
+      },
+      "raw": {
+        "reclamacoes_ml": "1,37%",
+        "mediacoes_ml": "0,41%",
+        "vendas_canceladas_ml": "0,41%",
+        "envios_incorretos_ml": "0,21%",
+        "pedidos_problema_amz": "1,44%",
+        "problemas_envios_amz": "0,16%",
+        "agilidade_magalu": "99,00%",
+        "cancelamentos_magalu": "4,30%",
+        "avaliacao_magalu": "4,10%",
+        "reclamacoes_via": "1,50%",
+        "cancelamentos_via": "3,80%",
+        "nao_cumprimento_shopee": "2,44%",
+        "taxa_resposta_shopee": "99,10%",
+        "nota_shopee": "4,88%"
+      }
     }
   ],
   "ml": [
@@ -7203,6 +7238,20 @@
     }
   ],
   "octadesk_devolucao": [
+    {
+      "numero": "99918501",
+      "pedido": "701-9568103-4881820",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-9568103-4881820-Tatyane Stefani",
+      "titulo": "Tatyane Stefani",
+      "data_criacao": "18/11/2026",
+      "ultima_atualizacao": "18/11/2026",
+      "data_solicitacao": "18/11/2026",
+      "transportadora": "Trilog",
+      "rastreio": "218176"
+    },
     {
       "numero": "99918499",
       "pedido": "LU-1585670111312432",
