@@ -7331,6 +7331,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918526",
+      "pedido": "2000015866431309",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000015866431309 | Felipe Moreira de Oliveira",
+      "titulo": "Felipe Moreira de Oliveira",
+      "data_criacao": "18/11/2026",
+      "ultima_atualizacao": "18/11/2026",
+      "data_solicitacao": "18/11/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918525",
       "pedido": "701-8609588-8613809",
       "grupo": "Solicitação de Devolução",
@@ -8651,6 +8665,20 @@
   ],
   "octadesk_envio_produto": [
     {
+      "numero": "99918515",
+      "pedido": "LU-1582070109893013",
+      "grupo": "Envio de Produto",
+      "loja_raw": "Magalu",
+      "marketplace": "MAGAZINE LUIZA",
+      "assunto_completo": "LU-1582070109893013-Railda Morais Sampaio",
+      "titulo": "Railda Morais Sampaio",
+      "data_criacao": "18/11/2026",
+      "ultima_atualizacao": "18/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Tecmar",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918468",
       "pedido": "702-6113683-9329036",
       "grupo": "Envio de Produto",
@@ -8715,7 +8743,7 @@
       "assunto_completo": "2000018992148110 | Roginey Barbosa da Cunha",
       "titulo": "Roginey Barbosa da Cunha",
       "data_criacao": "13/11/2026",
-      "ultima_atualizacao": "16/11/2026",
+      "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "",
       "transportadora": "Mercado Envios",
       "rastreio": "217638"
@@ -8813,7 +8841,7 @@
       "assunto_completo": "2000019069958586 | Sergio Dos Santos Victor",
       "titulo": "Sergio Dos Santos Victor",
       "data_criacao": "03/11/2026",
-      "ultima_atualizacao": "16/11/2026",
+      "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "",
       "transportadora": "Correios",
       "rastreio": "AP702317356BR"
