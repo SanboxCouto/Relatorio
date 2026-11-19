@@ -436,11 +436,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "26/09/2026",
       "comentario": "Quina Superior Esquerda do Fogão Amassada",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000015070179993",
@@ -570,7 +570,7 @@
       "marca": "MUELLER",
       "motivo": "Outro motivo",
       "transportadora": "Brasil Web",
-      "status": "Não Solicitada",
+      "status": "Revisão Recusada",
       "tempo_impacto": "Válido",
       "data_pedido": "02/10/2026",
       "comentario": "Preço Errado",
@@ -795,12 +795,12 @@
       "marca": "ATLAS",
       "motivo": "Não posso esperar a entrega",
       "transportadora": "Brasil Web",
-      "status": "Não Solicitada",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "23/09/2026",
       "comentario": "Cliente deseja Cancelar o Pedido",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000015382026649",
@@ -915,12 +915,12 @@
       "marca": "ESMALTEC",
       "motivo": "Não posso esperar a entrega",
       "transportadora": "Tecmar Transportadora",
-      "status": "Não Solicitada",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "10/10/2026",
       "comentario": "Envio Atrasado | Pedido Cancelado",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000015388669025",
@@ -1155,7 +1155,7 @@
       "marca": "PHILCO",
       "motivo": "Não é da cor, tamanho ou modelo que escolhi",
       "transportadora": "Mercado Envios",
-      "status": "Não Solicitada",
+      "status": "Revisão Recusada",
       "tempo_impacto": "Válido",
       "data_pedido": "15/10/2026",
       "comentario": "Produto Enviado de Cor Errada",
@@ -2100,12 +2100,12 @@
       "marca": "MUELLER",
       "motivo": "Ocorrência de Entrega",
       "transportadora": "MMA Cargas",
-      "status": "Não Solicitada",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "23/10/2026",
       "comentario": "Comprador reclamou da demora para Entrega",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000018090697252",
@@ -2385,7 +2385,7 @@
       "marca": "ATLAS",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Não Solicitada",
       "tempo_impacto": "Válido",
       "data_pedido": "28/10/2026",
       "comentario": "Amassado na Lateral Direita do Fogão",
@@ -2595,12 +2595,12 @@
       "marca": "MUELLER",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "06/11/2026",
       "comentario": "Vazamento de Óleo",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000019180093530",
@@ -2625,12 +2625,12 @@
       "marca": "MUELLER",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "07/11/2026",
       "comentario": "Vazamento de Óleo",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000019237821802",
@@ -2655,12 +2655,12 @@
       "marca": "DAKO",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "07/11/2026",
       "comentario": "Vidro do Forno Completamente Quebrado",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000019280038402",
@@ -2790,7 +2790,7 @@
       "marca": "MUELLER",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Revisão Recusada",
       "tempo_impacto": "Válido",
       "data_pedido": "12/11/2026",
       "comentario": "Quina Superior Esquerda Amassada",
@@ -2959,6 +2959,36 @@
       "tempo_impacto": "Válido",
       "data_pedido": "17/11/2026",
       "comentario": "Diversas avarias diferentes",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019291270114",
+      "n_venda": "2000019291270114",
+      "sku": "TI1759",
+      "produto": "Freezer Vertical Imbera Evz21 Max 597l Preto 220v",
+      "marca": "IMBERA",
+      "motivo": "Defeito no Produto",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "18/11/2026",
+      "comentario": "Gelo Excessivo e Problema de Vedação",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000015807523871",
+      "n_venda": "2000019279465590",
+      "sku": "TI1486",
+      "produto": "Geladeira Expositora Vertical Imbera 485l Preto Modelo Vrs16 Full Black 127/220v",
+      "marca": "IMBERA",
+      "motivo": "Defeito no Produto",
+      "transportadora": "Alfa Transportes",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "18/11/2026",
+      "comentario": "Não Está Gelando",
       "is_valido": true,
       "is_afetando": true
     }
@@ -8474,20 +8504,6 @@
       "ultima_atualizacao": "18/11/2026",
       "data_solicitacao": "17/11/2026",
       "transportadora": "Alfa Transportes",
-      "rastreio": "0"
-    },
-    {
-      "numero": "99918496",
-      "pedido": "52232815101",
-      "grupo": "Atendimento SAC",
-      "loja_raw": "Casas Bahia/Via Varejo",
-      "marketplace": "VIA",
-      "assunto_completo": "52232815101 - Márcia Emanuela Gomes dos Santos",
-      "titulo": "Márcia Emanuela Gomes dos Santos",
-      "data_criacao": "17/11/2026",
-      "ultima_atualizacao": "19/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Tecmar",
       "rastreio": "0"
     },
     {
