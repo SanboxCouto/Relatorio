@@ -7383,6 +7383,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918528",
+      "pedido": "702-7293085-1278637",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-7293085-1278637-José Ailton",
+      "titulo": "José Ailton",
+      "data_criacao": "19/11/2026",
+      "ultima_atualizacao": "19/11/2026",
+      "data_solicitacao": "19/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918527",
       "pedido": "701-2711758-6709010",
       "grupo": "Solicitação de Devolução",
@@ -8069,20 +8083,6 @@
       "rastreio": "214696"
     },
     {
-      "numero": "99918370",
-      "pedido": "2000018703424068",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000018703424068 | ALINE M",
-      "titulo": "ALINE M",
-      "data_criacao": "06/11/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "06/11/2026",
-      "transportadora": "Tecmar",
-      "rastreio": "208613"
-    },
-    {
       "numero": "99918369",
       "pedido": "261027QBMRQNVQ",
       "grupo": "Solicitação de Devolução",
@@ -8329,7 +8329,7 @@
       "assunto_completo": "2000015051234883 |  Marcos Vicente",
       "titulo": "Marcos Vicente",
       "data_criacao": "02/10/2026",
-      "ultima_atualizacao": "12/11/2026",
+      "ultima_atualizacao": "19/11/2026",
       "data_solicitacao": "23/10/2026",
       "transportadora": "Recolí",
       "rastreio": "214179"
@@ -8489,20 +8489,6 @@
       "data_solicitacao": "",
       "transportadora": "Tecmar",
       "rastreio": "0"
-    },
-    {
-      "numero": "99918480",
-      "pedido": "261107NUQG2VMD",
-      "grupo": "Atendimento SAC",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "261107NUQG2VMD - Rosemere Conceição de Andrade",
-      "titulo": "Rosemere Conceição de Andrade",
-      "data_criacao": "16/11/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Total Express",
-      "rastreio": "214964"
     },
     {
       "numero": "99918475",
