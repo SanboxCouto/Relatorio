@@ -7366,6 +7366,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918527",
+      "pedido": "701-2711758-6709010",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-2711758-6709010-Augusto",
+      "titulo": "Augusto",
+      "data_criacao": "19/11/2026",
+      "ultima_atualizacao": "19/11/2026",
+      "data_solicitacao": "19/11/2026",
+      "transportadora": "Trilog",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918526",
       "pedido": "2000015866431309",
       "grupo": "Solicitação de Devolução",
@@ -8699,20 +8713,6 @@
     }
   ],
   "octadesk_envio_produto": [
-    {
-      "numero": "99918515",
-      "pedido": "LU-1582070109893013",
-      "grupo": "Envio de Produto",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "assunto_completo": "LU-1582070109893013-Railda Morais Sampaio",
-      "titulo": "Railda Morais Sampaio",
-      "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Tecmar",
-      "rastreio": "0"
-    },
     {
       "numero": "99918468",
       "pedido": "702-6113683-9329036",
