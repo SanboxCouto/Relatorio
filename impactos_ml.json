@@ -7413,6 +7413,48 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918534",
+      "pedido": "701-8141678-7152236",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-8141678-7152236/Rodrigo Donato de Aquino",
+      "titulo": "7152236/Rodrigo Donato de Aquino",
+      "data_criacao": "19/11/2026",
+      "ultima_atualizacao": "19/11/2026",
+      "data_solicitacao": "19/11/2026",
+      "transportadora": "Rio Express",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918533",
+      "pedido": "702-0372191-9741805",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-0372191-9741805/Allana aguiar",
+      "titulo": "9741805/Allana aguiar",
+      "data_criacao": "19/11/2026",
+      "ultima_atualizacao": "19/11/2026",
+      "data_solicitacao": "19/11/2026",
+      "transportadora": "Rio Express",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918532",
+      "pedido": "702-9517310-9433048",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-9517310-9433048/Carlos Eduardo de Almeida Santos",
+      "titulo": "9433048/Carlos Eduardo de Almeida Santos",
+      "data_criacao": "19/11/2026",
+      "ultima_atualizacao": "19/11/2026",
+      "data_solicitacao": "19/11/2026",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918529",
       "pedido": "701-7357994-4012263",
       "grupo": "Solicitação de Devolução",
@@ -7981,7 +8023,7 @@
       "assunto_completo": "2000019285976080 | Nadia Adriana Jacomassi Acciarini",
       "titulo": "Nadia Adriana Jacomassi Acciarini",
       "data_criacao": "13/11/2026",
-      "ultima_atualizacao": "13/11/2026",
+      "ultima_atualizacao": "19/11/2026",
       "data_solicitacao": "13/11/2026",
       "transportadora": "Mercado Envios",
       "rastreio": "0"
@@ -8141,20 +8183,6 @@
       "rastreio": "214667"
     },
     {
-      "numero": "99918351",
-      "pedido": "2000018905028942",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000018905028942 | Roberta de Faria Marques da Silva",
-      "titulo": "Roberta de Faria Marques da Silva",
-      "data_criacao": "05/11/2026",
-      "ultima_atualizacao": "16/11/2026",
-      "data_solicitacao": "05/11/2026",
-      "transportadora": "Trilog",
-      "rastreio": "214420"
-    },
-    {
       "numero": "99918350",
       "pedido": "26102182PGQQ6N",
       "grupo": "Solicitação de Devolução",
@@ -8177,7 +8205,7 @@
       "assunto_completo": "2000019154494742 | RR BEBIDAS ZONA SUL LTDA",
       "titulo": "RR BEBIDAS ZONA SUL LTDA",
       "data_criacao": "03/11/2026",
-      "ultima_atualizacao": "12/11/2026",
+      "ultima_atualizacao": "19/11/2026",
       "data_solicitacao": "06/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "214668"
@@ -8265,20 +8293,6 @@
       "data_solicitacao": "22/10/2026",
       "transportadora": "Rio Express",
       "rastreio": "212501"
-    },
-    {
-      "numero": "99918160",
-      "pedido": "2000018902229158",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000018902229158 | Lucas Lopes Colevati",
-      "titulo": "Lucas Lopes Colevati",
-      "data_criacao": "21/10/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "21/10/2026",
-      "transportadora": "Mercado Envios",
-      "rastreio": "0"
     },
     {
       "numero": "99918154",
@@ -8387,7 +8401,7 @@
       "assunto_completo": "2000018595677692 | Walyson Bispo Paixao",
       "titulo": "Walyson Bispo Paixao",
       "data_criacao": "29/09/2026",
-      "ultima_atualizacao": "12/11/2026",
+      "ultima_atualizacao": "19/11/2026",
       "data_solicitacao": "29/09/2026",
       "transportadora": "Mercado Envios",
       "rastreio": "0"
@@ -8719,6 +8733,20 @@
   ],
   "octadesk_envio_produto": [
     {
+      "numero": "99918531",
+      "pedido": "2611016S4BBQDA",
+      "grupo": "Envio de Produto",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "2611016S4BBQDA - Arlindo Batista",
+      "titulo": "Arlindo Batista",
+      "data_criacao": "19/11/2026",
+      "ultima_atualizacao": "19/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Correios",
+      "rastreio": ""
+    },
+    {
       "numero": "99918468",
       "pedido": "702-6113683-9329036",
       "grupo": "Envio de Produto",
@@ -8797,7 +8825,7 @@
       "assunto_completo": "2000019308490000 | Vagner Guisso Dos Santos",
       "titulo": "Vagner Guisso Dos Santos",
       "data_criacao": "12/11/2026",
-      "ultima_atualizacao": "17/11/2026",
+      "ultima_atualizacao": "19/11/2026",
       "data_solicitacao": "",
       "transportadora": "Correios",
       "rastreio": "AP742909516BR"
@@ -8811,7 +8839,7 @@
       "assunto_completo": "2000015719846461 | Marco Aurelio Freire Fonseca",
       "titulo": "Marco Aurelio Freire Fonseca",
       "data_criacao": "12/11/2026",
-      "ultima_atualizacao": "17/11/2026",
+      "ultima_atualizacao": "19/11/2026",
       "data_solicitacao": "",
       "transportadora": "Correios",
       "rastreio": "AP742909405BR"
@@ -8845,20 +8873,6 @@
       "rastreio": "AP742909649BR"
     },
     {
-      "numero": "99918400",
-      "pedido": "52620150101",
-      "grupo": "Envio de Produto",
-      "loja_raw": "Casas Bahia/Via Varejo",
-      "marketplace": "VIA",
-      "assunto_completo": "52620150101 - Cleverson Honorio Gouvea",
-      "titulo": "Cleverson Honorio Gouvea",
-      "data_criacao": "09/11/2026",
-      "ultima_atualizacao": "12/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Total Express",
-      "rastreio": "216560"
-    },
-    {
       "numero": "99918343",
       "pedido": "2000018904298690",
       "grupo": "Envio de Produto",
@@ -8867,7 +8881,7 @@
       "assunto_completo": "2000018904298690 | Emanuele Melchiotti",
       "titulo": "Emanuele Melchiotti",
       "data_criacao": "04/11/2026",
-      "ultima_atualizacao": "17/11/2026",
+      "ultima_atualizacao": "19/11/2026",
       "data_solicitacao": "",
       "transportadora": "Correios",
       "rastreio": "AP706099206BR"
