@@ -3278,12 +3278,12 @@
       "produto": "Fogão Mueller 5 bocas Decorato Vetro Inox com timer",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Trilog Express",
-      "impacto": "Em Chamado Premium",
-      "valor": "Com o Comprador",
+      "impacto": "Impacto Removido",
+      "valor": "Repasse Liberado à Sanbox",
       "reembolso": "R$ 1.799,87",
       "comentario": "Sem Comentário",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "702-4476052-4493803",
@@ -3351,19 +3351,19 @@
     },
     {
       "pedido": "701-8518615-7668209",
-      "data_solicitacao": "10/11/2026",
+      "data_solicitacao": "16/11/2026",
       "data_reivindicacao": "09/11/2026",
       "sku": "TI1524",
       "marca": "OUTROS",
       "produto": "Tanquinho Plus 4,5 Kg - Branco - 110 V",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Trilog Express",
-      "impacto": "Impacto Removido",
+      "impacto": "Em Chamado Premium",
       "valor": "Com o Comprador",
       "reembolso": "R$ 822,90",
       "comentario": "Sem Comentário",
       "is_valido": true,
-      "is_afetando": false
+      "is_afetando": true
     },
     {
       "pedido": "701-4397768-2206666",
@@ -3431,14 +3431,14 @@
     },
     {
       "pedido": "702-7190553-6287463",
-      "data_solicitacao": "10/11/2026",
+      "data_solicitacao": "16/11/2026",
       "data_reivindicacao": "09/11/2026",
       "sku": "TI1667",
       "marca": "MUELLER",
       "produto": "Fogão Mueller titânio 5 Bocas com mesa esmaltada e acendimento Mfi5bc",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Brasil Web",
-      "impacto": "Mantido",
+      "impacto": "Em Chamado Premium",
       "valor": "Com o Comprador",
       "reembolso": "R$ 747,35",
       "comentario": "Não Recebi Meu Produto",
@@ -3447,14 +3447,14 @@
     },
     {
       "pedido": "702-9742822-0569859",
-      "data_solicitacao": "10/11/2026",
+      "data_solicitacao": "16/11/2026",
       "data_reivindicacao": "09/11/2026",
       "sku": "TI1667",
       "marca": "MUELLER",
       "produto": "Fogão Mueller titânio 5 Bocas com mesa esmaltada e acendimento Mfi5bc",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Brasil Web",
-      "impacto": "Mantido",
+      "impacto": "Em Chamado Premium",
       "valor": "Com o Comprador",
       "reembolso": "R$ 747,35",
       "comentario": "Não Recebi Meu Produto",
@@ -7672,20 +7672,6 @@
       "rastreio": "0"
     },
     {
-      "numero": "99918510",
-      "pedido": "261104D8YKG1AW",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "261104D8YKG1AW | Leonardo Ribeiro Miranda",
-      "titulo": "Leonardo Ribeiro Miranda",
-      "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "18/11/2026",
-      "transportadora": "Total Express",
-      "rastreio": "0"
-    },
-    {
       "numero": "99918509",
       "pedido": "52696570601",
       "grupo": "Solicitação de Devolução",
@@ -8499,6 +8485,20 @@
     }
   ],
   "octadesk_sac": [
+    {
+      "numero": "99918537",
+      "pedido": "",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "",
+      "marketplace": "OUTROS",
+      "assunto_completo": "🔔 Reclamações não respondidas! Veja seu extrato semanal",
+      "titulo": "🔔 Reclamações não respondidas! Veja seu extrato semanal",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "",
+      "rastreio": ""
+    },
     {
       "numero": "99918506",
       "pedido": "261107N2H3K5Q7",
