@@ -1,6 +1,41 @@
 {
   "notas_page": [
     {
+      "data": "03/11/2026",
+      "valores": {
+        "reclamacoes_ml": 1.46,
+        "mediacoes_ml": 0.46,
+        "vendas_canceladas_ml": 0.39,
+        "envios_incorretos_ml": 0.5,
+        "pedidos_problema_amz": 1.3,
+        "problemas_envios_amz": 0.0,
+        "agilidade_magalu": 98.8,
+        "cancelamentos_magalu": 6.5,
+        "avaliacao_magalu": 3.4,
+        "reclamacoes_via": 3.3,
+        "cancelamentos_via": 6.9,
+        "nao_cumprimento_shopee": 4.72,
+        "taxa_resposta_shopee": 83.69,
+        "nota_shopee": 4.87
+      },
+      "raw": {
+        "reclamacoes_ml": "1,46%",
+        "mediacoes_ml": "0,46%",
+        "vendas_canceladas_ml": "0,39%",
+        "envios_incorretos_ml": "0,50%",
+        "pedidos_problema_amz": "1,30%",
+        "problemas_envios_amz": "0,00%",
+        "agilidade_magalu": "98,80%",
+        "cancelamentos_magalu": "6,50%",
+        "avaliacao_magalu": "3,4",
+        "reclamacoes_via": "3,30%",
+        "cancelamentos_via": "6,90%",
+        "nao_cumprimento_shopee": "4,72%",
+        "taxa_resposta_shopee": "83,69%",
+        "nota_shopee": "4,87%"
+      }
+    },
+    {
       "data": "12/11/2026",
       "valores": {
         "reclamacoes_ml": 1.47,
@@ -7572,6 +7607,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918563",
+      "pedido": "261110V44VWVRF",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "261110V44VWVRF - Rosileia da Silva Evangelista",
+      "titulo": "Rosileia da Silva Evangelista",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "23/11/2026",
+      "transportadora": "Total Express",
+      "rastreio": "215384"
+    },
+    {
       "numero": "99918556",
       "pedido": "52742418401",
       "grupo": "Solicitação de Devolução",
@@ -7860,7 +7909,7 @@
       "assunto_completo": "2000019333291252 | jose paiva de souza paiva",
       "titulo": "jose paiva de souza paiva",
       "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "18/11/2026",
+      "ultima_atualizacao": "23/11/2026",
       "data_solicitacao": "18/11/2026",
       "transportadora": "Mercado Envios",
       "rastreio": "0"
@@ -8868,20 +8917,6 @@
       "loja_raw": "Amazon",
       "marketplace": "AMAZON",
       "assunto_completo": "702-7190553-6287463-Sthefani Cristina das Graças",
-      "titulo": "Sthefani Cristina das Graças",
-      "data_criacao": "09/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Brasil Web",
-      "rastreio": "0"
-    },
-    {
-      "numero": "99918403",
-      "pedido": "702-9742822-0569859",
-      "grupo": "Atendimento SAC",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "702-9742822-0569859- Sthefani Cristina das Graças",
       "titulo": "Sthefani Cristina das Graças",
       "data_criacao": "09/11/2026",
       "ultima_atualizacao": "18/11/2026",
