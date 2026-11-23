@@ -456,11 +456,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "24/09/2026",
       "comentario": "Amassado na Parte Superior do Forno",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000018543140112",
@@ -516,11 +516,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "28/09/2026",
       "comentario": "Amassado na Lateral Esquerda",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000018271843530",
@@ -561,11 +561,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "30/09/2026",
       "comentario": "Pequenas Avarias na Mesa do Fogão",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000015212959065",
@@ -606,11 +606,11 @@
       "motivo": "Outro motivo",
       "transportadora": "Brasil Web",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "02/10/2026",
       "comentario": "Preço Errado",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000018670949706",
@@ -696,10 +696,10 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "26/09/2026",
       "comentario": "Amassado parte Traseira | Entregue s/Caixa",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -726,10 +726,10 @@
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "06/10/2026",
       "comentario": "Problema no LED",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -831,10 +831,10 @@
       "motivo": "Não posso esperar a entrega",
       "transportadora": "Brasil Web",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "23/09/2026",
       "comentario": "Cliente deseja Cancelar o Pedido",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -951,10 +951,10 @@
       "motivo": "Não posso esperar a entrega",
       "transportadora": "Tecmar Transportadora",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "10/10/2026",
       "comentario": "Envio Atrasado | Pedido Cancelado",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -2435,12 +2435,12 @@
       "marca": "MUELLER",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "28/10/2026",
       "comentario": "Pés Quebrado | Será Enviado Novamente",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000015701534469",
@@ -2855,12 +2855,12 @@
       "marca": "MUELLER",
       "motivo": "Item Faltante",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "14/11/2026",
       "comentario": "Item Faltante: 1 Espalhador de Chama",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000019184235958",
@@ -2915,7 +2915,7 @@
       "marca": "DAKO",
       "motivo": "Produto Avariado",
       "transportadora": "Trilog Express",
-      "status": "Em Mediação",
+      "status": "Não Solicitada",
       "tempo_impacto": "Válido",
       "data_pedido": "15/11/2026",
       "comentario": "Produto Amassado na Lateral Direita",
@@ -2990,12 +2990,12 @@
       "marca": "IMBERA",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Atualizando",
       "tempo_impacto": "Válido",
       "data_pedido": "17/11/2026",
       "comentario": "Diversas avarias diferentes",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000019291270114",
@@ -3024,6 +3024,96 @@
       "tempo_impacto": "Válido",
       "data_pedido": "18/11/2026",
       "comentario": "Não Está Gelando",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019518559590",
+      "n_venda": "2000019518559590",
+      "sku": "TI1633",
+      "produto": "Fogão Mueller Decorato 5 Bocas Automático Forno 98 Litros Cor Inox Cinza 127/220v",
+      "marca": "MUELLER",
+      "motivo": "Descumpre as características do anúncio",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "21/11/2026",
+      "comentario": "Envio Incorreto",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019577158846",
+      "n_venda": "2000019577158846",
+      "sku": "TI1718",
+      "produto": "Fogão Fischer Gran Cheff 26988 Com Porta Com Visor - Prateado 127v",
+      "marca": "OUTROS",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Não Solicitada",
+      "tempo_impacto": "Válido",
+      "data_pedido": "21/11/2026",
+      "comentario": "Amassado na Lateral",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019384615578",
+      "n_venda": "2000019384615578",
+      "sku": "TI1680",
+      "produto": "Forno Elétrico De Bancada Mueller Mfb50f 50 Litros Bco-220v 220v Branco",
+      "marca": "MUELLER",
+      "motivo": "Produto Avariado",
+      "transportadora": "Total Frenet",
+      "status": "Não Solicitada",
+      "tempo_impacto": "Válido",
+      "data_pedido": "19/11/2026",
+      "comentario": "Pequeno Amassado na Parte Superior",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000016086026897",
+      "n_venda": "2000019586817914",
+      "sku": "TI1121",
+      "produto": "Alto Falante Torre Double Pulse Sp508 Bluetooth 2300w-1 Mic Preto",
+      "marca": "PULSE",
+      "motivo": "Defeito no Produto",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "21/11/2026",
+      "comentario": "Produto Não Liga",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019614508164",
+      "n_venda": "2000019614508164",
+      "sku": "SS002",
+      "produto": "Mini System Ssound Ss-002 330w Cd/mp3/cd Rádio - Bivolt Preto 127/220v 330 W",
+      "marca": "SSOUND",
+      "motivo": "Defeito no Produto",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "23/11/2026",
+      "comentario": "SEM ACESSO A RECLAMAÇÃO",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019484045720",
+      "n_venda": "2000019484045720",
+      "sku": "TI1667",
+      "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+      "marca": "MUELLER",
+      "motivo": "Defeito no Produto",
+      "transportadora": "Brasil Web",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "19/11/2026",
+      "comentario": "Forno Não Funciona",
       "is_valido": true,
       "is_afetando": true
     }
@@ -3932,6 +4022,40 @@
       "numero_chamado": "",
       "is_valido": true,
       "is_afetando": true
+    },
+    {
+      "pedido": "701-3929183-4353866",
+      "data": "20/11/2026",
+      "data_acao": "23/11/2026",
+      "tempo_impacto": "Válido",
+      "situacao": "Respondida",
+      "estrelas": "★☆☆☆☆",
+      "comentario": "Produto não foi entregue no local combinado",
+      "resposta": "Olá! Sentimos muito que houve problema com o atendimento de nossa transportadora contratada 🤧. Este não é o padrão de atendimento que prezamos. Peço-te que envie o ocorrido com a entrega de seu pedido no chat de Pós Vendas para analisarmos e entendermos o que houve. Agradecemos sua manifestação. Att. Equipe Sanbox 🧡",
+      "sku": "TI1562",
+      "marca": "MUELLER",
+      "produto": "Fogão á Gás Mueller 5 bocas Decorato Vetro Inox Sem Timer - Bivolt",
+      "transportadora": "Rio Express",
+      "numero_chamado": "",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "701-7201893-7765066",
+      "data": "19/11/2026",
+      "data_acao": "",
+      "tempo_impacto": "Válido",
+      "situacao": "Em Análise",
+      "estrelas": "★☆☆☆☆",
+      "comentario": "Meu pedido é jm fogão Dako 5 bocas, entrega atrasada, e não consigo rastrear o pedido. E Agora? A transportadora não responde, é a UPS.",
+      "resposta": "",
+      "sku": "TI1603",
+      "marca": "DAKO",
+      "produto": "Fogão a Gás Dako Magister Inox Style 5 Bocas Mesa Inox - Bivolt",
+      "transportadora": "Rio Express",
+      "numero_chamado": "",
+      "is_valido": true,
+      "is_afetando": false
     }
   ],
   "via": [
@@ -7448,6 +7572,34 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918552",
+      "pedido": "701-4355702-0612269",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-4355702-0612269-Jarbas Santos-",
+      "titulo": "Jarbas Santos",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "23/11/2026",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918550",
+      "pedido": "2611111WSCDYE1",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "2611111WSCDYE1 - Letissandra Orsso Tluszc",
+      "titulo": "Letissandra Orsso Tluszc",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "23/11/2026",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "219517"
+    },
+    {
       "numero": "99918548",
       "pedido": "701-7012310-7493024",
       "grupo": "Solicitação de Devolução",
@@ -7866,20 +8018,6 @@
       "data_solicitacao": "18/11/2026",
       "transportadora": "Trilog",
       "rastreio": "218176"
-    },
-    {
-      "numero": "99918499",
-      "pedido": "LU-1585670111312432",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "assunto_completo": "LU-1585670111312432 - Joyce Duraes Godinho",
-      "titulo": "Joyce Duraes Godinho",
-      "data_criacao": "17/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "217942"
     },
     {
       "numero": "99918498",
@@ -8851,6 +8989,20 @@
     }
   ],
   "octadesk_envio_produto": [
+    {
+      "numero": "99918549",
+      "pedido": "LU-1583770110471399",
+      "grupo": "Envio de Produto",
+      "loja_raw": "Magalu",
+      "marketplace": "MAGAZINE LUIZA",
+      "assunto_completo": "LU-1583770110471399 - Willian Dias Da Silva",
+      "titulo": "Willian Dias Da Silva",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "0"
+    },
     {
       "numero": "99918538",
       "pedido": "702-4996392-6874618",
