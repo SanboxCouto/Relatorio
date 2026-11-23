@@ -7572,6 +7572,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918556",
+      "pedido": "52742418401",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Casas Bahia/Via Varejo",
+      "marketplace": "VIA",
+      "assunto_completo": "52742418401 - Edinaldo Bispo",
+      "titulo": "Edinaldo Bispo",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "23/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "219548"
+    },
+    {
       "numero": "99918554",
       "pedido": "2000019636164880",
       "grupo": "Solicitação de Devolução",
@@ -7810,20 +7824,6 @@
       "rastreio": "218601"
     },
     {
-      "numero": "99918528",
-      "pedido": "702-7293085-1278637",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "702-7293085-1278637-José Ailton",
-      "titulo": "José Ailton",
-      "data_criacao": "19/11/2026",
-      "ultima_atualizacao": "19/11/2026",
-      "data_solicitacao": "19/11/2026",
-      "transportadora": "Brasil Web",
-      "rastreio": "0"
-    },
-    {
       "numero": "99918525",
       "pedido": "701-8609588-8613809",
       "grupo": "Solicitação de Devolução",
@@ -7944,7 +7944,7 @@
       "assunto_completo": "701-7201893-7765066- IARA MARIA GOMES MACHADO",
       "titulo": "IARA MARIA GOMES MACHADO",
       "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "18/11/2026",
+      "ultima_atualizacao": "23/11/2026",
       "data_solicitacao": "18/11/2026",
       "transportadora": "Rio Express",
       "rastreio": "0"
@@ -8060,20 +8060,6 @@
       "data_solicitacao": "17/11/2026",
       "transportadora": "Brasil Web",
       "rastreio": "217943"
-    },
-    {
-      "numero": "99918495",
-      "pedido": "702-5914837-2833864",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "702-5914837-2833864- Fabiana Alves",
-      "titulo": "Fabiana Alves",
-      "data_criacao": "17/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "17/11/2026",
-      "transportadora": "Brasil Web",
-      "rastreio": "217892"
     },
     {
       "numero": "99918494",
@@ -8490,7 +8476,7 @@
       "assunto_completo": "2000015324614981 | Taina C",
       "titulo": "Taina C",
       "data_criacao": "27/10/2026",
-      "ultima_atualizacao": "17/11/2026",
+      "ultima_atualizacao": "23/11/2026",
       "data_solicitacao": "26/10/2026",
       "transportadora": "Tecmar",
       "rastreio": "214176"
@@ -8693,6 +8679,20 @@
     }
   ],
   "octadesk_sac": [
+    {
+      "numero": "99918558",
+      "pedido": "52551372601",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Casas Bahia/Via Varejo",
+      "marketplace": "VIA",
+      "assunto_completo": "52551372601 - Emerson Pereira Oliveira",
+      "titulo": "Emerson Pereira Oliveira",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Total Express",
+      "rastreio": ""
+    },
     {
       "numero": "99918544",
       "pedido": "701-1366256-4675415",
