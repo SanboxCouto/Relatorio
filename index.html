@@ -261,12 +261,26 @@
           <span class="rg-date-tag" id="rg-current-date">Carregando data...</span>
         </div>
         <div class="filter-controls-group">
-          <select id="filter-comp-rg" class="select-filter-hdr" onchange="renderReputacaoGeral()">
+          <select id="filter-comp-rg" class="select-filter-hdr" onchange="onChangeRgMode()">
             <option value="PREV">Comparar com Registro Anterior</option>
             <option value="7">Comparar com 7 Dias Atrás</option>
             <option value="15">Comparar com 15 Dias Atrás</option>
             <option value="30">Comparar com 30 Dias Atrás</option>
+            <option value="SINGLE_DATE">Data Específica (vs Mais Recente)</option>
+            <option value="DATE_RANGE">Intervalo de Datas (vs N Mais Recentes)</option>
           </select>
+
+          <div id="rg-single-date-wrap" style="display:none; align-items:center; gap:6px;">
+            <span style="font-size:0.78rem; font-weight:700; color:#475569;">Data base:</span>
+            <select id="rg-single-date" class="select-filter-hdr" onchange="renderReputacaoGeral()"></select>
+          </div>
+
+          <div id="rg-range-date-wrap" style="display:none; align-items:center; gap:6px;">
+            <span style="font-size:0.78rem; font-weight:700; color:#475569;">De:</span>
+            <select id="rg-range-start" class="select-filter-hdr" onchange="renderReputacaoGeral()"></select>
+            <span style="font-size:0.78rem; font-weight:700; color:#475569;">Até:</span>
+            <select id="rg-range-end" class="select-filter-hdr" onchange="renderReputacaoGeral()"></select>
+          </div>
         </div>
       </div>
 
@@ -1404,12 +1418,134 @@
       { key: 'nota_shopee', label: 'Nota da Loja Shopee', shortLabel: 'Nota da Loja', higherIsBetter: true }
     ];
 
+    function getSortedNotasPage() {
+      if (!rawNotasPage || rawNotasPage.length === 0) return [];
+      let sorted = [...rawNotasPage];
+      const hasDates = sorted.some(r => parseDateToTimestamp(r.data) !== null);
+      if (hasDates) {
+        sorted.sort((a, b) => (parseDateToTimestamp(a.data) || 0) - (parseDateToTimestamp(b.data) || 0));
+      }
+      return sorted;
+    }
+
+    function populateRgDateSelectors() {
+      const sorted = getSortedNotasPage();
+      const singleSel = document.getElementById('rg-single-date');
+      const startSel = document.getElementById('rg-range-start');
+      const endSel = document.getElementById('rg-range-end');
+      if (!singleSel || !startSel || !endSel) return;
+
+      const prevSingle = singleSel.value;
+      const prevStart = startSel.value;
+      const prevEnd = endSel.value;
+
+      const validItems = sorted
+        .map((rec, idx) => ({
+          idx,
+          data: formatDisplayDate(rec.data) || `Registro #${idx + 1}`,
+          ts: parseDateToTimestamp(rec.data)
+        }))
+        .filter(item => item.data);
+
+      if (validItems.length === 0) {
+        singleSel.innerHTML = '<option value="">Sem datas</option>';
+        startSel.innerHTML = '<option value="">Sem datas</option>';
+        endSel.innerHTML = '<option value="">Sem datas</option>';
+        return;
+      }
+
+      // Opções em ordem decrescente (mais recentes no topo para facilitar escolha)
+      const descItems = [...validItems].reverse();
+      const optionsHtml = descItems.map(item => `<option value="${item.data}">${item.data}</option>`).join('');
+
+      singleSel.innerHTML = optionsHtml;
+      startSel.innerHTML = optionsHtml;
+      endSel.innerHTML = optionsHtml;
+
+      if (prevSingle && descItems.some(i => i.data === prevSingle)) {
+        singleSel.value = prevSingle;
+      } else if (descItems.length >= 2) {
+        singleSel.value = descItems[1].data;
+      } else {
+        singleSel.value = descItems[0].data;
+      }
+
+      if (prevStart && descItems.some(i => i.data === prevStart)) {
+        startSel.value = prevStart;
+      } else {
+        startSel.value = descItems[Math.min(2, descItems.length - 1)].data;
+      }
+
+      if (prevEnd && descItems.some(i => i.data === prevEnd)) {
+        endSel.value = prevEnd;
+      } else {
+        endSel.value = descItems[0].data;
+      }
+    }
+
+    function onChangeRgMode() {
+      const mode = document.getElementById('filter-comp-rg')?.value || 'PREV';
+      const singleWrap = document.getElementById('rg-single-date-wrap');
+      const rangeWrap = document.getElementById('rg-range-date-wrap');
+      if (singleWrap) singleWrap.style.display = mode === 'SINGLE_DATE' ? 'flex' : 'none';
+      if (rangeWrap) rangeWrap.style.display = mode === 'DATE_RANGE' ? 'flex' : 'none';
+      populateRgDateSelectors();
+      renderReputacaoGeral();
+    }
+
+    function computeAverageMetrics(records) {
+      const result = { valores: {}, raw: {} };
+      METRICAS_CONFIG.forEach(m => {
+        const nums = [];
+        let hasPercent = false;
+        let decimals = 0;
+
+        records.forEach(rec => {
+          const val = rec.valores ? rec.valores[m.key] : null;
+          const rawStr = rec.raw && rec.raw[m.key] ? String(rec.raw[m.key]) : '';
+          if (rawStr.includes('%')) hasPercent = true;
+          const cleanRaw = rawStr.replace('%', '').trim();
+          if (cleanRaw.includes(',')) {
+            decimals = Math.max(decimals, cleanRaw.split(',')[1].length);
+          } else if (cleanRaw.includes('.')) {
+            decimals = Math.max(decimals, cleanRaw.split('.')[1].length);
+          }
+          if (val !== null && val !== undefined && !isNaN(val)) {
+            nums.push(Number(val));
+          }
+        });
+
+        if (nums.length > 0) {
+          const avg = nums.reduce((acc, v) => acc + v, 0) / nums.length;
+          const useDec = decimals > 0 ? decimals : 2;
+          const rounded = Number(avg.toFixed(useDec));
+          result.valores[m.key] = rounded;
+          const formatted = rounded.toLocaleString('pt-BR', {
+            minimumFractionDigits: decimals > 0 ? decimals : (Number.isInteger(rounded) ? 0 : 2),
+            maximumFractionDigits: useDec
+          });
+          result.raw[m.key] = hasPercent ? `${formatted}%` : formatted;
+        } else {
+          result.valores[m.key] = null;
+          result.raw[m.key] = '-';
+        }
+      });
+      return result;
+    }
+
     function renderReputacaoGeral() {
       const mode = document.getElementById('filter-comp-rg')?.value || 'PREV';
+      const singleWrap = document.getElementById('rg-single-date-wrap');
+      const rangeWrap = document.getElementById('rg-range-date-wrap');
+      if (singleWrap) singleWrap.style.display = mode === 'SINGLE_DATE' ? 'flex' : 'none';
+      if (rangeWrap) rangeWrap.style.display = mode === 'DATE_RANGE' ? 'flex' : 'none';
+
       const dateTagEl = document.getElementById('rg-current-date');
       const dateBanners = ['rg-date-ml', 'rg-date-amz', 'rg-date-magalu', 'rg-date-via', 'rg-date-shopee'];
 
-      if (!rawNotasPage || rawNotasPage.length === 0) {
+      const sorted = getSortedNotasPage();
+
+      if (sorted.length === 0) {
         if (dateTagEl) dateTagEl.innerText = '⚠️ Sem dados na Notas_Page';
         dateBanners.forEach(id => {
           const el = document.getElementById(id);
@@ -1425,22 +1561,11 @@
         return;
       }
 
-      let sorted = [...rawNotasPage];
-      const hasDates = sorted.some(r => parseDateToTimestamp(r.data) !== null);
-      if (hasDates) {
-        sorted.sort((a, b) => (parseDateToTimestamp(a.data) || 0) - (parseDateToTimestamp(b.data) || 0));
-      }
-
       const latest = sorted[sorted.length - 1];
       const latestDateFormatted = formatDisplayDate(latest.data);
-      const displayDateText = latestDateFormatted ? `⚠️ Dados de ${latestDateFormatted}` : `⚠️ Registro #${sorted.length}`;
+      let displayDateText = latestDateFormatted ? `⚠️ Dados de ${latestDateFormatted}` : `⚠️ Registro #${sorted.length}`;
 
-      if (dateTagEl) dateTagEl.innerText = displayDateText;
-      dateBanners.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.innerText = displayDateText;
-      });
-
+      let currentDataObj = latest;
       let compRecord = null;
       let compLabel = '';
 
@@ -1449,6 +1574,49 @@
           compRecord = sorted[sorted.length - 2];
           const prevDateFmt = formatDisplayDate(compRecord.data);
           compLabel = prevDateFmt ? prevDateFmt : 'anterior';
+        }
+      } else if (mode === 'SINGLE_DATE') {
+        const selectedDate = document.getElementById('rg-single-date')?.value || '';
+        const found = sorted.find(r => formatDisplayDate(r.data) === selectedDate);
+        if (found) {
+          compRecord = found;
+          compLabel = selectedDate;
+        }
+      } else if (mode === 'DATE_RANGE') {
+        const startStr = document.getElementById('rg-range-start')?.value || '';
+        const endStr = document.getElementById('rg-range-end')?.value || '';
+        let startTs = parseDateToTimestamp(startStr);
+        let endTs = parseDateToTimestamp(endStr);
+
+        if (startTs !== null && endTs !== null) {
+          if (startTs > endTs) {
+            const tmp = startTs;
+            startTs = endTs;
+            endTs = tmp;
+          }
+          const rangeRecords = sorted.filter(r => {
+            const ts = parseDateToTimestamp(r.data);
+            return ts !== null && ts >= startTs && ts <= endTs;
+          });
+
+          const nCount = rangeRecords.length;
+          if (nCount > 0) {
+            const recentRecords = sorted.slice(-nCount);
+            currentDataObj = computeAverageMetrics(recentRecords);
+            compRecord = computeAverageMetrics(rangeRecords);
+
+            const firstRecentFmt = formatDisplayDate(recentRecords[0].data);
+            const lastRecentFmt = formatDisplayDate(recentRecords[recentRecords.length - 1].data);
+            const firstRangeFmt = formatDisplayDate(rangeRecords[0].data);
+            const lastRangeFmt = formatDisplayDate(rangeRecords[rangeRecords.length - 1].data);
+
+            displayDateText = nCount === 1
+              ? `⚠️ Dados de ${lastRecentFmt}`
+              : `⚠️ Média ${nCount} mais recentes (${firstRecentFmt} a ${lastRecentFmt})`;
+            compLabel = nCount === 1
+              ? `${firstRangeFmt}`
+              : `média ${firstRangeFmt} a ${lastRangeFmt}`;
+          }
         }
       } else {
         const daysAgo = parseInt(mode);
@@ -1477,17 +1645,23 @@
         }
       }
 
+      if (dateTagEl) dateTagEl.innerText = displayDateText;
+      dateBanners.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = displayDateText;
+      });
+
       METRICAS_CONFIG.forEach(m => {
         const cardEl = document.getElementById(`rg-card-${m.key}`);
         if (!cardEl) return;
 
-        const currNum = latest.valores ? latest.valores[m.key] : null;
-        const currRaw = latest.raw && latest.raw[m.key] ? latest.raw[m.key] : (currNum !== null && currNum !== undefined ? String(currNum) : '-');
+        const currNum = currentDataObj.valores ? currentDataObj.valores[m.key] : null;
+        const currRaw = currentDataObj.raw && currentDataObj.raw[m.key] ? currentDataObj.raw[m.key] : (currNum !== null && currNum !== undefined ? String(currNum) : '-');
         const prevNum = (compRecord && compRecord.valores) ? compRecord.valores[m.key] : null;
         const prevRaw = (compRecord && compRecord.raw && compRecord.raw[m.key]) ? compRecord.raw[m.key] : (prevNum !== null && prevNum !== undefined ? String(prevNum) : '-');
 
         let boxState = 'state-neutro';
-        let subText = 'Sem histórico anterior';
+        let subText = mode === 'DATE_RANGE' ? 'Sem registros no intervalo' : 'Sem histórico anterior';
 
         if (currNum !== null && currNum !== undefined && prevNum !== null && prevNum !== undefined) {
           const diff = Number((currNum - prevNum).toFixed(2));
@@ -1509,7 +1683,7 @@
         }
 
         cardEl.className = `rg-metric-box ${boxState}`;
-        cardEl.title = `${m.label}: ${currRaw}${prevRaw !== '-' ? ` | Anterior (${compLabel}): ${prevRaw}` : ''}`;
+        cardEl.title = `${m.label}: ${currRaw}${prevRaw !== '-' ? ` | Base (${compLabel}): ${prevRaw}` : ''}`;
         cardEl.innerHTML = `
           <div class="rg-metric-info">
             <span class="rg-metric-name">${m.shortLabel}</span>
