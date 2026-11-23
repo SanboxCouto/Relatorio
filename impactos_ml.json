@@ -7448,6 +7448,48 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918548",
+      "pedido": "701-7012310-7493024",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-7012310-7493024 | Julia Rosa Duarte Bernardo (COLETA PAUSADA)",
+      "titulo": "Julia Rosa Duarte Bernardo (COLETA PAUSADA)",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Rio Express",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918547",
+      "pedido": "2000019627545896",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000019627545896 | Leocir Dalla Valle",
+      "titulo": "Leocir Dalla Valle",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "23/11/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918546",
+      "pedido": "João Batista dos Santos junior",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Magalu",
+      "marketplace": "MAGAZINE LUIZA",
+      "assunto_completo": "LU-1585570111224376 - João Batista dos Santos junior",
+      "titulo": "João Batista dos Santos junior",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "23/11/2026",
+      "data_solicitacao": "23/11/2026",
+      "transportadora": "Correios",
+      "rastreio": "4790109652"
+    },
+    {
       "numero": "99918543",
       "pedido": "702-2560474-0059465",
       "grupo": "Solicitação de Devolução",
@@ -8062,20 +8104,6 @@
       "data_solicitacao": "13/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "217856"
-    },
-    {
-      "numero": "99918451",
-      "pedido": "701-0626639-5230631",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "701-0626639-5230631 - Patrícia Alves da Silva",
-      "titulo": "Patrícia Alves da Silva",
-      "data_criacao": "13/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "13/11/2026",
-      "transportadora": "Total Express",
-      "rastreio": "0"
     },
     {
       "numero": "99918442",
