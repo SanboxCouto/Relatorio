@@ -7773,6 +7773,118 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918578",
+      "pedido": "52745039901",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Casas Bahia/Via Varejo",
+      "marketplace": "VIA",
+      "assunto_completo": "52745039901 - Valter Luiz Corte",
+      "titulo": "Valter Luiz Corte",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "218615"
+    },
+    {
+      "numero": "99918576",
+      "pedido": "701-6057455-2587415",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-6057455-2587415-Karen Ribeiro",
+      "titulo": "Karen Ribeiro",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "219822"
+    },
+    {
+      "numero": "99918575",
+      "pedido": "2611112WTNN3GU",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "2611112WTNN3GU - Cibele Melo",
+      "titulo": "Cibele Melo",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Correios",
+      "rastreio": "4791337128"
+    },
+    {
+      "numero": "99918573",
+      "pedido": "702-6860848-6063462",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-6860848-6063462 | Thiago Morais (COLETA PAUSADA)",
+      "titulo": "Thiago Morais (COLETA PAUSADA)",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Rio Express",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918572",
+      "pedido": "701-4434964-1654608",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-4434964-1654608-Thaís Veloso",
+      "titulo": "Thaís Veloso",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Trilog",
+      "rastreio": "219820"
+    },
+    {
+      "numero": "99918571",
+      "pedido": "701-4116406-6341815",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-4116406-6341815-Ana Cristina ( solicitar a coleta Após a Black Friday)",
+      "titulo": "Ana Cristina ( solicitar a coleta Após a Black Friday)",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Rio Express",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918570",
+      "pedido": "2000019484045720",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000019484045720 | Gabriela Cristina Franca de Paula",
+      "titulo": "Gabriela Cristina Franca de Paula",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "219817"
+    },
+    {
+      "numero": "99918569",
+      "pedido": "52704614101",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Casas Bahia/Via Varejo",
+      "marketplace": "VIA",
+      "assunto_completo": "527046141 - Caroline Cristielly de Souza Araujo",
+      "titulo": "Caroline Cristielly de Souza Araujo",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "219819"
+    },
+    {
       "numero": "99918568",
       "pedido": "701-4632984-3198646",
       "grupo": "Solicitação de Devolução",
@@ -8383,7 +8495,7 @@
       "assunto_completo": "2611125DY5BVR0 - Rosimar Ferreira dos Santos",
       "titulo": "Rosimar Ferreira dos Santos",
       "data_criacao": "17/11/2026",
-      "ultima_atualizacao": "19/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "17/11/2026",
       "transportadora": "Tecmar",
       "rastreio": "216502"
@@ -8473,20 +8585,6 @@
       "rastreio": "217290"
     },
     {
-      "numero": "99918457",
-      "pedido": "2000019285385950",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000019285385950 | Maria Luiza Valcazara Rodrigues",
-      "titulo": "Maria Luiza Valcazara Rodrigues",
-      "data_criacao": "13/11/2026",
-      "ultima_atualizacao": "17/11/2026",
-      "data_solicitacao": "13/11/2026",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "217856"
-    },
-    {
       "numero": "99918442",
       "pedido": "2000019285976080",
       "grupo": "Solicitação de Devolução",
@@ -8557,20 +8655,6 @@
       "rastreio": "216490"
     },
     {
-      "numero": "99918427",
-      "pedido": "261103A3436DAC",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "261103A3436DAC - Ana Carla Florindo da Silva",
-      "titulo": "Ana Carla Florindo da Silva",
-      "data_criacao": "11/11/2026",
-      "ultima_atualizacao": "19/11/2026",
-      "data_solicitacao": "11/11/2026",
-      "transportadora": "Total Express",
-      "rastreio": "213907"
-    },
-    {
       "numero": "99918422",
       "pedido": "LU-1584170110622343",
       "grupo": "Solicitação de Devolução",
@@ -8635,7 +8719,7 @@
       "assunto_completo": "261027QBMRQNVQ - Natália Chagas de Souza",
       "titulo": "Natália Chagas de Souza",
       "data_criacao": "06/11/2026",
-      "ultima_atualizacao": "19/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "06/11/2026",
       "transportadora": "Rio Express",
       "rastreio": "214695"
@@ -8691,7 +8775,7 @@
       "assunto_completo": "2000015514010969 | Diogo Ribeiro Rangel",
       "titulo": "Diogo Ribeiro Rangel",
       "data_criacao": "29/10/2026",
-      "ultima_atualizacao": "18/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "16/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "218280"
@@ -8817,7 +8901,7 @@
       "assunto_completo": "52514518001 - Gilmara Santos",
       "titulo": "Gilmara Santos",
       "data_criacao": "19/10/2026",
-      "ultima_atualizacao": "17/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "19/10/2026",
       "transportadora": "Rio Express",
       "rastreio": "211978"
@@ -8893,20 +8977,6 @@
       "rastreio": "205133"
     },
     {
-      "numero": "99917548",
-      "pedido": "260829JGWSMJG8 / 261028R5H6YDX5",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "260829JGWSMJG8 - Juliana de Melo Barbosa",
-      "titulo": "Juliana de Melo Barbosa",
-      "data_criacao": "08/09/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "19/11/2026",
-      "transportadora": "Rio Express",
-      "rastreio": "218606"
-    },
-    {
       "numero": "99917545",
       "pedido": "701-4321000-4412238",
       "grupo": "Solicitação de Devolução",
@@ -8922,6 +8992,34 @@
     }
   ],
   "octadesk_sac": [
+    {
+      "numero": "99918577",
+      "pedido": "702-0044166-8672269",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-0044166-8672269 - Raquel de Jesus da silva",
+      "titulo": "Raquel de Jesus da silva",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Atual",
+      "rastreio": "218747"
+    },
+    {
+      "numero": "99918574",
+      "pedido": "2000019448334416",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000019448334416 - Márcio Reginaldo da Silva Reginaldo da Silva",
+      "titulo": "Márcio Reginaldo da Silva Reginaldo da Silva",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Atual",
+      "rastreio": "215428"
+    },
     {
       "numero": "99918558",
       "pedido": "52551372601",
