@@ -8271,7 +8271,7 @@
       "assunto_completo": "LU-1580670109002376- Vivian Bastos de Vasconcellos Rosa",
       "titulo": "Vivian Bastos de Vasconcellos Rosa",
       "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "18/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "18/11/2026",
       "transportadora": "Trilog",
       "rastreio": "0"
@@ -8593,7 +8593,7 @@
       "assunto_completo": "LU-1578870108384275-SANCLEY GAMBETA",
       "titulo": "SANCLEY GAMBETA",
       "data_criacao": "16/11/2026",
-      "ultima_atualizacao": "18/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "16/11/2026",
       "transportadora": "Trilog",
       "rastreio": "217290"
@@ -8809,20 +8809,6 @@
       "rastreio": "214176"
     },
     {
-      "numero": "99918211",
-      "pedido": "LU-1577970107638873",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "assunto_completo": "LU-1577970107638873-Miriany facundo pinheiro oliveira",
-      "titulo": "Miriany facundo pinheiro oliveira",
-      "data_criacao": "26/10/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "26/10/2026",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "212981"
-    },
-    {
       "numero": "99918199",
       "pedido": "702-4774944-4556237",
       "grupo": "Solicitação de Devolução",
@@ -8845,7 +8831,7 @@
       "assunto_completo": "1577470107466826-Sonia Vieira de Melo",
       "titulo": "Sonia Vieira de Melo",
       "data_criacao": "22/10/2026",
-      "ultima_atualizacao": "18/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "22/10/2026",
       "transportadora": "Rio Express",
       "rastreio": "212501"
@@ -8992,6 +8978,20 @@
     }
   ],
   "octadesk_sac": [
+    {
+      "numero": "99918585",
+      "pedido": "701-2073720-1505810",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-2073720-1505810 - João victor sampaio",
+      "titulo": "João victor sampaio",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Brasil Web",
+      "rastreio": "218091"
+    },
     {
       "numero": "99918583",
       "pedido": "701-2024479-3678609",
