@@ -7815,20 +7815,6 @@
       "rastreio": "218615"
     },
     {
-      "numero": "99918576",
-      "pedido": "701-6057455-2587415",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "701-6057455-2587415-Karen Ribeiro",
-      "titulo": "Karen Ribeiro",
-      "data_criacao": "24/11/2026",
-      "ultima_atualizacao": "24/11/2026",
-      "data_solicitacao": "24/11/2026",
-      "transportadora": "Brasil Web",
-      "rastreio": "219822"
-    },
-    {
       "numero": "99918575",
       "pedido": "2611112WTNN3GU",
       "grupo": "Solicitação de Devolução",
@@ -8093,20 +8079,6 @@
       "data_solicitacao": "23/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "219355"
-    },
-    {
-      "numero": "99918540",
-      "pedido": "2000019509799158",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000019509799158 | Lucas Cheque Araujo",
-      "titulo": "Lucas Cheque Araujo",
-      "data_criacao": "23/11/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "23/11/2026",
-      "transportadora": "Mercado Envios",
-      "rastreio": "0"
     },
     {
       "numero": "99918539",
@@ -8401,20 +8373,6 @@
       "data_solicitacao": "18/11/2026",
       "transportadora": "Trilog",
       "rastreio": "218176"
-    },
-    {
-      "numero": "99918498",
-      "pedido": "2611111C3QQ00Y",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "2611111C3QQ00Y - Maria Patrícia da Silva",
-      "titulo": "Maria Patrícia da Silva",
-      "data_criacao": "17/11/2026",
-      "ultima_atualizacao": "17/11/2026",
-      "data_solicitacao": "17/11/2026",
-      "transportadora": "Correios",
-      "rastreio": "4784619779"
     },
     {
       "numero": "99918497",
@@ -8929,7 +8887,7 @@
       "assunto_completo": "2000018543140112 | Valdeci Francisco de Oliveira",
       "titulo": "Valdeci Francisco de Oliveira",
       "data_criacao": "28/09/2026",
-      "ultima_atualizacao": "19/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "30/10/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "213561"
@@ -9260,6 +9218,20 @@
     }
   ],
   "octadesk_envio_produto": [
+    {
+      "numero": "99918576",
+      "pedido": "701-6057455-2587415",
+      "grupo": "Envio de Produto",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-6057455-2587415-Karen Ribeiro",
+      "titulo": "Karen Ribeiro",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "219822"
+    },
     {
       "numero": "99918531",
       "pedido": "2611016S4BBQDA",
