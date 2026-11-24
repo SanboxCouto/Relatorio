@@ -7773,6 +7773,34 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918584",
+      "pedido": "26111135V6CYWA",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "26111135V6CYWA - Sarah Pereira",
+      "titulo": "Sarah Pereira",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Correios",
+      "rastreio": "4791434137"
+    },
+    {
+      "numero": "99918582",
+      "pedido": "1584970110967568",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Magalu",
+      "marketplace": "MAGAZINE LUIZA",
+      "assunto_completo": "1584970110967568 | Giovanna Satie Yugue de Lima",
+      "titulo": "Giovanna Satie Yugue de Lima",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "24/11/2026",
+      "transportadora": "Total Express",
+      "rastreio": "214828"
+    },
+    {
       "numero": "99918578",
       "pedido": "52745039901",
       "grupo": "Solicitação de Devolução",
@@ -8023,20 +8051,6 @@
       "data_solicitacao": "",
       "transportadora": "Rio Express",
       "rastreio": "0"
-    },
-    {
-      "numero": "99918546",
-      "pedido": "João Batista dos Santos junior",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "assunto_completo": "LU-1585570111224376 - João Batista dos Santos junior",
-      "titulo": "João Batista dos Santos junior",
-      "data_criacao": "23/11/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "23/11/2026",
-      "transportadora": "Correios",
-      "rastreio": "4790109652"
     },
     {
       "numero": "99918543",
@@ -8425,7 +8439,7 @@
       "assunto_completo": "701-5242122-7427406-Jhulia Cristina",
       "titulo": "Jhulia Cristina",
       "data_criacao": "17/11/2026",
-      "ultima_atualizacao": "18/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "17/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "0"
@@ -8781,20 +8795,6 @@
       "rastreio": "218280"
     },
     {
-      "numero": "99918262",
-      "pedido": "LU-1577270107428551",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "assunto_completo": "LU-1577270107428551-Allison Glauco moreira",
-      "titulo": "Allison Glauco moreira",
-      "data_criacao": "28/10/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "28/10/2026",
-      "transportadora": "Tecmar",
-      "rastreio": "213955"
-    },
-    {
       "numero": "99918243",
       "pedido": "2000015324614981",
       "grupo": "Solicitação de Devolução",
@@ -8992,6 +8992,62 @@
     }
   ],
   "octadesk_sac": [
+    {
+      "numero": "99918583",
+      "pedido": "701-2024479-3678609",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-2024479-3678609 - NAYARA TEIXEIRA DOS SANTOS",
+      "titulo": "NAYARA TEIXEIRA DOS SANTOS",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "219457"
+    },
+    {
+      "numero": "99918581",
+      "pedido": "701-6172683-9131401",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-6172683-9131401 - Miguel Ribeiro dos Santos Filho",
+      "titulo": "Miguel Ribeiro dos Santos Filho",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Rio Express",
+      "rastreio": "218811"
+    },
+    {
+      "numero": "99918580",
+      "pedido": "702-8064145-2690623",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-8064145-2690623 - Marilza hase da cruz",
+      "titulo": "Marilza hase da cruz",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Brasil Web",
+      "rastreio": "218657"
+    },
+    {
+      "numero": "99918579",
+      "pedido": "701-3508634-0601842",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-3508634-0601842 - BRUNA",
+      "titulo": "BRUNA",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "218741"
+    },
     {
       "numero": "99918577",
       "pedido": "702-0044166-8672269",
@@ -9311,7 +9367,7 @@
       "assunto_completo": "2000015719846461 | Marco Aurelio Freire Fonseca",
       "titulo": "Marco Aurelio Freire Fonseca",
       "data_criacao": "12/11/2026",
-      "ultima_atualizacao": "19/11/2026",
+      "ultima_atualizacao": "24/11/2026",
       "data_solicitacao": "",
       "transportadora": "Correios",
       "rastreio": "AP742909405BR"
