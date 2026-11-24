@@ -1136,10 +1136,10 @@
       "motivo": "Defeito no Produto",
       "transportadora": "Alfa Transportes",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "12/10/2026",
       "comentario": "Barulho nas Válvulas ao Ligar",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -1196,11 +1196,11 @@
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Não Solicitada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "13/10/2026",
       "comentario": "Vazamento de Óleo, Barulho no Motor e Defeito no Time",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000018766114014",
@@ -1256,11 +1256,11 @@
       "motivo": "A data de entrega combinada não foi cumprida",
       "transportadora": "Trilog Express",
       "status": "Não Solicitada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "13/10/2026",
       "comentario": "Atraso na Entrega",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000018647459598",
@@ -1376,11 +1376,11 @@
       "motivo": "Produto Avariado",
       "transportadora": "Tecmar Transportadora",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "16/10/2026",
       "comentario": "Amassado na Quina Direita Superior",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000014941759281",
@@ -2246,10 +2246,10 @@
       "motivo": "Não posso receber a compra no endereço informado",
       "transportadora": "Trilog Express",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "24/09/2026",
       "comentario": "Cliente Não Pode receber no Endereço",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -2351,10 +2351,10 @@
       "motivo": "Não Recebi o Produto",
       "transportadora": "Rio Express",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "24/09/2026",
       "comentario": "Cliente queria Cancelar Pedido",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -2426,10 +2426,10 @@
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "30/09/2026",
       "comentario": "Peça da Mesa e Puxador Quebrada",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -2560,7 +2560,7 @@
       "marca": "ATLAS",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Não Solicitada",
+      "status": "Revisão Recusada",
       "tempo_impacto": "Válido",
       "data_pedido": "28/10/2026",
       "comentario": "Amassado na Lateral Direita do Fogão",
@@ -2620,7 +2620,7 @@
       "marca": "MIDEA",
       "motivo": "Não é da cor, tamanho ou modelo que escolhi",
       "transportadora": "Trilog Express",
-      "status": "Em Mediação",
+      "status": "Não Solicitada",
       "tempo_impacto": "Válido",
       "data_pedido": "30/10/2026",
       "comentario": "Produto Enviado de Modelo Diferente",
@@ -2755,7 +2755,7 @@
       "marca": "MUELLER",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Revisão Recusada",
       "tempo_impacto": "Válido",
       "data_pedido": "05/11/2026",
       "comentario": "Vazamento de Óleo",
@@ -2815,7 +2815,7 @@
       "marca": "WANKE",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Não Solicitada",
       "tempo_impacto": "Válido",
       "data_pedido": "07/11/2026",
       "comentario": "Vazamento de Água na parte Inferior",
@@ -3190,7 +3190,7 @@
       "marca": "OUTROS",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Não Solicitada",
+      "status": "Revisão Recusada",
       "tempo_impacto": "Válido",
       "data_pedido": "21/11/2026",
       "comentario": "Amassado na Lateral",
@@ -3220,12 +3220,12 @@
       "marca": "PULSE",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "21/11/2026",
       "comentario": "Produto Não Liga",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000019614508164",
@@ -3254,6 +3254,51 @@
       "tempo_impacto": "Válido",
       "data_pedido": "19/11/2026",
       "comentario": "Forno Não Funciona",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019727053770",
+      "n_venda": "2000019727053770",
+      "sku": "TI1602",
+      "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+      "marca": "DAKO",
+      "motivo": "Outro motivo",
+      "transportadora": "Alfa Transportes",
+      "status": "Impacto Removido",
+      "tempo_impacto": "Válido",
+      "data_pedido": "23/11/2026",
+      "comentario": "Comprador Não Viu que o Produto é Bivolt",
+      "is_valido": true,
+      "is_afetando": false
+    },
+    {
+      "pedido": "2000016195778611",
+      "n_venda": "2000019706693436",
+      "sku": "TI1667",
+      "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+      "marca": "MUELLER",
+      "motivo": "Outro motivo",
+      "transportadora": "Alfa Transportes",
+      "status": "Impacto Removido",
+      "tempo_impacto": "Válido",
+      "data_pedido": "23/11/2026",
+      "comentario": "Sem Relato do Comprador",
+      "is_valido": true,
+      "is_afetando": false
+    },
+    {
+      "pedido": "2000019543310114",
+      "n_venda": "2000019543310114",
+      "sku": "TI1529",
+      "produto": "Mueller Lavadora De Roupas Energy 8kg Lavadora De Roupas Branca 127v Branco",
+      "marca": "MUELLER",
+      "motivo": "Item Faltante",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "23/11/2026",
+      "comentario": "Item Faltante: Gaveta de Sabão em Pó e Amaciante",
       "is_valido": true,
       "is_afetando": true
     }
@@ -3684,12 +3729,12 @@
       "produto": "Fogão Mueller titânio 5 Bocas com mesa esmaltada e acendimento Mfi5bc",
       "motivo": "O Pacote Não Chegou",
       "transportadora": "Brasil Web",
-      "impacto": "Em Chamado Premium",
-      "valor": "Com o Comprador",
+      "impacto": "Impacto Removido",
+      "valor": "Repasse Liberado à Sanbox",
       "reembolso": "R$ 747,35",
       "comentario": "Não Recebi Meu Produto",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "702-9472558-5516266",
@@ -3786,6 +3831,22 @@
       "comentario": "Não Recebi Meu Produto",
       "is_valido": true,
       "is_afetando": false
+    },
+    {
+      "pedido": "701-7201893-7765066",
+      "data_solicitacao": "23/11/2026",
+      "data_reivindicacao": "23/11/2026",
+      "sku": "TI1603",
+      "marca": "DAKO",
+      "produto": "Fogão 5 Bocas Espelhado com Mesa Inox Dako Magister Inox Style Bivolt",
+      "motivo": "O Pacote Não Chegou",
+      "transportadora": "Rio Express",
+      "impacto": "Em Análise",
+      "valor": "Com o Comprador",
+      "reembolso": "R$ 1.555,40",
+      "comentario": "Não Recebi Meu Produto",
+      "is_valido": true,
+      "is_afetando": true
     }
   ],
   "avaliacoes_amazon": [
@@ -7852,20 +7913,6 @@
       "rastreio": "0"
     },
     {
-      "numero": "99918547",
-      "pedido": "2000019627545896",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000019627545896 | Leocir Dalla Valle",
-      "titulo": "Leocir Dalla Valle",
-      "data_criacao": "23/11/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "23/11/2026",
-      "transportadora": "Mercado Envios",
-      "rastreio": "0"
-    },
-    {
       "numero": "99918546",
       "pedido": "João Batista dos Santos junior",
       "grupo": "Solicitação de Devolução",
@@ -9059,34 +9106,6 @@
     }
   ],
   "octadesk_envio_produto": [
-    {
-      "numero": "99918549",
-      "pedido": "LU-1583770110471399",
-      "grupo": "Envio de Produto",
-      "loja_raw": "Magalu",
-      "marketplace": "MAGAZINE LUIZA",
-      "assunto_completo": "LU-1583770110471399 - Willian Dias Da Silva",
-      "titulo": "Willian Dias Da Silva",
-      "data_criacao": "23/11/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "0"
-    },
-    {
-      "numero": "99918538",
-      "pedido": "702-4996392-6874618",
-      "grupo": "Envio de Produto",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "702-4996392-6874618-Alexandre- Avaria no transporte",
-      "titulo": "Avaria no transporte",
-      "data_criacao": "23/11/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "0"
-    },
     {
       "numero": "99918531",
       "pedido": "2611016S4BBQDA",
