@@ -189,6 +189,36 @@
     .note-status.saving { color: #d97706; }
     .note-status.saved { color: #16a34a; }
     .note-status.error { color: #dc2626; }
+
+    /* TRATATIVAS CLIENTES - BOTÕES DE AÇÃO E CÓPIA DE NF */
+    .nf-copy-badge { cursor: pointer; transition: all 0.15s; border: 1px solid #cbd5e1; background: #f8fafc; }
+    .nf-copy-badge:hover { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; transform: scale(1.03); }
+    .nf-copy-badge.copied { background: #dcfce7; border-color: #86efac; color: #15803d; }
+
+    .trat-actions-group { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .trat-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .trat-action-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 2px 5px rgba(15, 23, 42, 0.12); }
+    .trat-action-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .trat-action-btn.btn-sac:hover:not(:disabled) { background: #e0f2fe; border-color: #38bdf8; }
+    .trat-action-btn.btn-transp:hover:not(:disabled) { background: #fef3c7; border-color: #f59e0b; }
+    .trat-action-btn.btn-finalizar:hover:not(:disabled) { background: #dcfce7; border-color: #22c55e; color: #15803d; font-weight: 800; }
+    .trat-action-status { font-size: 0.72rem; font-weight: 700; display: block; margin-top: 4px; color: #64748b; }
+    .trat-action-status.saving { color: #d97706; }
+    .trat-action-status.saved { color: #16a34a; }
+    .trat-action-status.error { color: #dc2626; }
+    .trat-data-mudanca { display: block; font-size: 0.69rem; color: #64748b; margin-top: 3px; }
   </style>
 </head>
 <body>
@@ -1298,11 +1328,12 @@
       <table id="tabela-trat-ml">
         <thead>
           <tr>
-            <th style="width:16%">Pedido</th>
-            <th style="width:20%">Comprador</th>
-            <th style="width:16%">Transportadora</th>
-            <th style="width:12%">Nota Fiscal</th>
-            <th style="width:36%">Problema</th>
+            <th style="width:15%">Pedido</th>
+            <th style="width:17%">Comprador</th>
+            <th style="width:15%">Transportadora</th>
+            <th style="width:11%">Nota Fiscal</th>
+            <th style="width:27%">Problema</th>
+            <th style="width:15%">Ação Rápida</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -1361,11 +1392,12 @@
       <table id="tabela-trat-amz">
         <thead>
           <tr>
-            <th style="width:16%">Pedido</th>
-            <th style="width:20%">Comprador</th>
-            <th style="width:16%">Transportadora</th>
-            <th style="width:12%">Nota Fiscal</th>
-            <th style="width:36%">Problema</th>
+            <th style="width:15%">Pedido</th>
+            <th style="width:17%">Comprador</th>
+            <th style="width:15%">Transportadora</th>
+            <th style="width:11%">Nota Fiscal</th>
+            <th style="width:27%">Problema</th>
+            <th style="width:15%">Ação Rápida</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -1424,11 +1456,12 @@
       <table id="tabela-trat-via">
         <thead>
           <tr>
-            <th style="width:16%">Pedido</th>
-            <th style="width:20%">Comprador</th>
-            <th style="width:16%">Transportadora</th>
-            <th style="width:12%">Nota Fiscal</th>
-            <th style="width:36%">Problema</th>
+            <th style="width:15%">Pedido</th>
+            <th style="width:17%">Comprador</th>
+            <th style="width:15%">Transportadora</th>
+            <th style="width:11%">Nota Fiscal</th>
+            <th style="width:27%">Problema</th>
+            <th style="width:15%">Ação Rápida</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -1487,11 +1520,12 @@
       <table id="tabela-trat-shopee">
         <thead>
           <tr>
-            <th style="width:16%">Pedido</th>
-            <th style="width:20%">Comprador</th>
-            <th style="width:16%">Transportadora</th>
-            <th style="width:12%">Nota Fiscal</th>
-            <th style="width:36%">Problema</th>
+            <th style="width:15%">Pedido</th>
+            <th style="width:17%">Comprador</th>
+            <th style="width:15%">Transportadora</th>
+            <th style="width:11%">Nota Fiscal</th>
+            <th style="width:27%">Problema</th>
+            <th style="width:15%">Ação Rápida</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -1550,11 +1584,12 @@
       <table id="tabela-trat-magalu">
         <thead>
           <tr>
-            <th style="width:16%">Pedido</th>
-            <th style="width:20%">Comprador</th>
-            <th style="width:16%">Transportadora</th>
-            <th style="width:12%">Nota Fiscal</th>
-            <th style="width:36%">Problema</th>
+            <th style="width:15%">Pedido</th>
+            <th style="width:17%">Comprador</th>
+            <th style="width:15%">Transportadora</th>
+            <th style="width:11%">Nota Fiscal</th>
+            <th style="width:27%">Problema</th>
+            <th style="width:15%">Ação Rápida</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -1567,6 +1602,7 @@
     Chart.register(ChartDataLabels);
 
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbweCxSjRp2L2Vgx8fWCkmMs5GptsHmEU8-3LGRr1GrY-zSOPDpj7xxiVaJN2mQtVAC3/exec";
+    const TRATATIVAS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxqGjoPZQUYQhb_r2OyLqMwcnw_vws7L6HUOZ9pRrgn3hn64QNxsJRvPKoyS-5N8ZIm/exec";
     const NOTAS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1103009754&single=true&output=csv";
 
     const AMAZON_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg';
@@ -1807,7 +1843,6 @@
         return;
       }
 
-      // Opções em ordem decrescente (mais recentes no topo para facilitar escolha)
       const descItems = [...validItems].reverse();
       const optionsHtml = descItems.map(item => `<option value="${item.data}">${item.data}</option>`).join('');
 
@@ -2177,7 +2212,6 @@
         });
       }
 
-      // Ordenar dos mais antigos para os mais recentes pela data de referência (mais antigos primeiro)
       filtered.sort((a, b) => {
         const tA = parseDateToTimestamp(a[dateField]);
         const tB = parseDateToTimestamp(b[dateField]);
@@ -3977,6 +4011,7 @@
       });
     }
 
+    // ================= RENDERIZADOR TRATATIVAS CLIENTES =================
     function normalizeMarketplaceTratativa(mpRaw) {
       const norm = normalizeText(mpRaw);
       if (!norm) return 'OUTROS';
@@ -4082,6 +4117,99 @@
       renderTratativasTable(mpKey);
     }
 
+    function copyNFToClipboard(nfValue, badgeElem) {
+      if (!nfValue || nfValue === '-') return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(nfValue).then(() => {
+          const originalText = badgeElem.innerText;
+          badgeElem.classList.add('copied');
+          badgeElem.innerText = `✓ ${nfValue}`;
+          setTimeout(() => {
+            badgeElem.classList.remove('copied');
+            badgeElem.innerText = originalText;
+          }, 1500);
+        });
+      }
+    }
+
+    function getFormattedNowBrazil() {
+      const now = new Date();
+      const dd = String(now.getDate()).padStart(2, '0');
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const yyyy = now.getFullYear();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const min = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+      return `${dd}/${mm}/${yyyy} ${hh}:${min}:${ss}`;
+    }
+
+    async function updateAcaoTratativa(mpKey, pedidoId, novaAcao, statusElemId, rowIndex) {
+      if (!pedidoId || pedidoId === '-') return;
+
+      const statusEl = document.getElementById(statusElemId);
+      const rowEl = document.getElementById(`trat-row-${mpKey}-${rowIndex}`);
+      if (rowEl) {
+        rowEl.querySelectorAll('button').forEach(b => b.disabled = true);
+      }
+
+      if (statusEl) {
+        statusEl.className = 'trat-action-status saving';
+        statusEl.innerText = 'Atualizando na planilha...';
+      }
+
+      const dataMudanca = getFormattedNowBrazil();
+
+      try {
+        await fetch(TRATATIVAS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            pedido: pedidoId,
+            acao: novaAcao,
+            data_mudanca: dataMudanca
+          })
+        });
+
+        // Atualiza localmente para mover o pedido de aba imediatamente
+        const targetNorm = normalizeText(pedidoId);
+        rawDataTratativas.forEach(item => {
+          if (normalizeText(cleanVal(item.pedido)) === targetNorm) {
+            item.acao = novaAcao;
+            item.acao_raw = novaAcao;
+            item.data_mudanca = dataMudanca;
+          }
+        });
+
+        if (statusEl) {
+          statusEl.className = 'trat-action-status saved';
+          statusEl.innerText = '✓ Atualizado!';
+        }
+
+        setTimeout(() => {
+          renderTratativasPage(mpKey);
+        }, 450);
+
+      } catch (err) {
+        if (rowEl) {
+          rowEl.querySelectorAll('button').forEach(b => b.disabled = false);
+        }
+        if (statusEl) {
+          statusEl.className = 'trat-action-status error';
+          statusEl.innerText = 'Erro ao atualizar.';
+        }
+      }
+    }
+
+    function escapeHtmlAttr(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
     function renderTratativasTable(mpKey) {
       const tbody = document.querySelector(`#tabela-trat-${mpKey} tbody`);
       if (!tbody) return;
@@ -4117,23 +4245,44 @@
       }
 
       if (!list.length) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum pedido encontrado nesta aba com os filtros aplicados.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#94a3b8;">Nenhum pedido encontrado nesta aba com os filtros aplicados.</td></tr>';
         return;
       }
 
-      list.forEach(r => {
+      list.forEach((r, idx) => {
         const pedido = cleanVal(r.pedido) || '-';
         const comprador = cleanVal(r.comprador) || '-';
         const transportadora = cleanVal(r.transportadora) || '-';
         const nf = cleanVal(r.nf) || '-';
         const problema = cleanVal(r.descricao) || '-';
+        const dataMudanca = cleanVal(r.data_mudanca);
+        const statusElemId = `trat-status-${mpKey}-${idx}`;
+        const safePedidoAttr = escapeHtmlAttr(pedido);
+        const safeNfAttr = escapeHtmlAttr(nf);
 
-        tbody.innerHTML += `<tr>
+        const nfHtml = nf !== '-'
+          ? `<span class="badge-count nf-copy-badge" title="Clique para copiar a NF ${safeNfAttr}" onclick="copyNFToClipboard('${safeNfAttr}', this)">${nf}</span>`
+          : '-';
+
+        const dataMudancaHtml = dataMudanca
+          ? `<span class="trat-data-mudanca">🕒 ${dataMudanca}</span>`
+          : '';
+
+        tbody.innerHTML += `<tr id="trat-row-${mpKey}-${idx}">
           <td><strong>${pedido}</strong></td>
           <td>${comprador}</td>
           <td>${transportadora}</td>
-          <td><span class="badge-count">${nf}</span></td>
+          <td>${nfHtml}</td>
           <td>${problema}</td>
+          <td>
+            <div class="trat-actions-group">
+              <button type="button" class="trat-action-btn btn-sac" title="Marcar como: Contato Feito Pelo SAC" onclick="updateAcaoTratativa('${mpKey}', '${safePedidoAttr}', 'Contato Feito Pelo SAC', '${statusElemId}', ${idx})">✉️</button>
+              <button type="button" class="trat-action-btn btn-transp" title="Marcar como: Dados Enviados para a Transportadora" onclick="updateAcaoTratativa('${mpKey}', '${safePedidoAttr}', 'Dados Enviados para a Transportadora', '${statusElemId}', ${idx})">🚚</button>
+              <button type="button" class="trat-action-btn btn-finalizar" title="Marcar como: Finalizado" onclick="updateAcaoTratativa('${mpKey}', '${safePedidoAttr}', 'Finalizado', '${statusElemId}', ${idx})">✓</button>
+            </div>
+            ${dataMudancaHtml}
+            <span id="${statusElemId}" class="trat-action-status"></span>
+          </td>
         </tr>`;
       });
     }
