@@ -9191,6 +9191,20 @@
       "rastreio": "219822"
     },
     {
+      "numero": "99918538",
+      "pedido": "702-4996392-6874618",
+      "grupo": "Envio de Produto",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-4996392-6874618-Alexandre- Avaria no transporte",
+      "titulo": "Avaria no transporte",
+      "data_criacao": "23/11/2026",
+      "ultima_atualizacao": "24/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Alfa Transportes",
+      "rastreio": "219815 troca"
+    },
+    {
       "numero": "99918531",
       "pedido": "2611016S4BBQDA",
       "grupo": "Envio de Produto",
