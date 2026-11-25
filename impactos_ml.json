@@ -7913,6 +7913,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918608",
+      "pedido": "702-6373751-7138660",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-6373751-7138660-Ana Carolina Machado",
+      "titulo": "Ana Carolina Machado",
+      "data_criacao": "25/11/2026",
+      "ultima_atualizacao": "25/11/2026",
+      "data_solicitacao": "25/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "0"
+    },
+    {
       "numero": "99918607",
       "pedido": "701-2133087-9852207",
       "grupo": "Solicitação de Devolução",
@@ -8641,20 +8655,6 @@
       "rastreio": "0"
     },
     {
-      "numero": "99918493",
-      "pedido": "702-8553513-8676218",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "702-8553513-8676218-Camila",
-      "titulo": "Camila",
-      "data_criacao": "17/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "17/11/2026",
-      "transportadora": "Brasil Web",
-      "rastreio": "217891"
-    },
-    {
       "numero": "99918492",
       "pedido": "2000019490444174",
       "grupo": "Solicitação de Devolução",
@@ -8915,7 +8915,7 @@
       "assunto_completo": "261018113MX8TE - Martiniano de Jesus Santos",
       "titulo": "Martiniano de Jesus Santos",
       "data_criacao": "21/10/2026",
-      "ultima_atualizacao": "17/11/2026",
+      "ultima_atualizacao": "25/11/2026",
       "data_solicitacao": "21/10/2026",
       "transportadora": "Total Express",
       "rastreio": "211956"
@@ -9075,20 +9075,6 @@
       "data_solicitacao": "",
       "transportadora": "Brasil Web",
       "rastreio": ""
-    },
-    {
-      "numero": "99918585",
-      "pedido": "701-2073720-1505810",
-      "grupo": "Atendimento SAC",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "701-2073720-1505810 - João victor sampaio",
-      "titulo": "João victor sampaio",
-      "data_criacao": "24/11/2026",
-      "ultima_atualizacao": "24/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Brasil Web",
-      "rastreio": "218091"
     },
     {
       "numero": "99918583",
