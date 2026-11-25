@@ -878,8 +878,6 @@ def processar_via():
   return registros
 
 
-
-
 def mapear_marketplace_tratativas(valor_mp):
   norm = remover_acentos(valor_mp)
   if not norm:
@@ -979,6 +977,17 @@ def processar_tratativas_clientes():
   col_marketplace = encontrar_coluna_exata(
       df, ["MARKETPLACE", "LOJA", "CANAL", "LOJA__MARKETPLACE"]
   )
+  col_data_mudanca = encontrar_coluna_exata(
+      df,
+      [
+          "DATA DE MUDANCA",
+          "DATA DE MUDANÇA",
+          "DATA MUDANCA",
+          "DATA MUDANÇA",
+          "ULTIMA ATUALIZACAO",
+          "DATA ATUALIZACAO",
+      ],
+  )
 
   registros = []
   for _, row in df.iterrows():
@@ -991,6 +1000,9 @@ def processar_tratativas_clientes():
     descricao_val = limpar_texto(row[col_descricao]) if col_descricao else ""
     acao_raw = limpar_texto(row[col_acao]) if col_acao else ""
     mp_raw = limpar_texto(row[col_marketplace]) if col_marketplace else ""
+    data_mudanca_val = (
+        limpar_texto(row[col_data_mudanca]) if col_data_mudanca else ""
+    )
 
     if not pedido_val and not comprador_val and not descricao_val:
       continue
@@ -1008,6 +1020,7 @@ def processar_tratativas_clientes():
         "acao": acao_padrao,
         "marketplace_raw": mp_raw,
         "marketplace": mp_padrao,
+        "data_mudanca": data_mudanca_val,
     })
 
   return registros
