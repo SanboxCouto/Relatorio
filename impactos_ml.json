@@ -9063,20 +9063,6 @@
       "rastreio": "219349"
     },
     {
-      "numero": "99918592",
-      "pedido": "52639071601",
-      "grupo": "Atendimento SAC",
-      "loja_raw": "Casas Bahia/Via Varejo",
-      "marketplace": "VIA",
-      "assunto_completo": "52639071601 - Osvaldo Pereira De Andrade Junior",
-      "titulo": "Osvaldo Pereira De Andrade Junior",
-      "data_criacao": "24/11/2026",
-      "ultima_atualizacao": "24/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Brasil Web",
-      "rastreio": ""
-    },
-    {
       "numero": "99918583",
       "pedido": "701-2024479-3678609",
       "grupo": "Atendimento SAC",
@@ -9522,7 +9508,7 @@
       "acao": "CONTATO FEITO PELO SAC",
       "marketplace_raw": "Amazon",
       "marketplace": "AMAZON",
-      "data_mudanca": "25/11/2026 11:02:43"
+      "data_mudanca": "25/11/2026 14:52:07"
     },
     {
       "pedido": "702-1323147-0532252",
