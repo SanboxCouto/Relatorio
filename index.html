@@ -247,6 +247,28 @@
         <span class="menu-item-icon">🚚</span>
         <span class="menu-item-text">Envio de Produto</span>
       </a>
+
+      <div class="menu-category">Tratativas Clientes</div>
+      <a class="menu-item" data-page="page-tratativas-ml" onclick="navigatePage('page-tratativas-ml', this)" title="Mercado Livre - Tratativas Clientes">
+        <span class="menu-item-icon"><img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__small@2x.png" class="mp-logo-img" alt="ML"></span>
+        <span class="menu-item-text">Mercado Livre</span>
+      </a>
+      <a class="menu-item" data-page="page-tratativas-amz" onclick="navigatePage('page-tratativas-amz', this)" title="Amazon - Tratativas Clientes">
+        <span class="menu-item-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="mp-logo-img" alt="Amazon"></span>
+        <span class="menu-item-text">Amazon</span>
+      </a>
+      <a class="menu-item" data-page="page-tratativas-via" onclick="navigatePage('page-tratativas-via', this)" title="VIA - Tratativas Clientes">
+        <span class="menu-item-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Casas_Bahia_logo_2020.svg" class="mp-logo-img" alt="VIA"></span>
+        <span class="menu-item-text">VIA</span>
+      </a>
+      <a class="menu-item" data-page="page-tratativas-shopee" onclick="navigatePage('page-tratativas-shopee', this)" title="Shopee - Tratativas Clientes">
+        <span class="menu-item-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg" class="mp-logo-img" alt="Shopee"></span>
+        <span class="menu-item-text">Shopee</span>
+      </a>
+      <a class="menu-item" data-page="page-tratativas-magalu" onclick="navigatePage('page-tratativas-magalu', this)" title="Magazine Luiza - Tratativas Clientes">
+        <span class="menu-item-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Magalu_-_novo_logo.png" class="mp-logo-img" alt="Magalu"></span>
+        <span class="menu-item-text">Magazine Luiza</span>
+      </a>
     </div>
   </aside>
 
@@ -1223,6 +1245,322 @@
       </table>
     </section>
 
+
+    <!-- PÁGINA TRATATIVAS CLIENTES: MERCADO LIVRE -->
+    <section id="page-tratativas-ml" class="page-section">
+      <div class="header-bar">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__small@2x.png" alt="Mercado Livre" style="height:26px; max-width:52px; object-fit:contain;">
+          <h1>Tratativas Clientes &mdash; Mercado Livre</h1>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Total (Mercado Livre)</h3>
+          <div class="val val-dark" id="trat-ml-total">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Primeiro Contato</h3>
+          <div class="val val-warning" id="trat-ml-primeiro">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Contato SAC</h3>
+          <div class="val val-info" id="trat-ml-sac">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Enviado Transportadora</h3>
+          <div class="val" id="trat-ml-transp" style="color: var(--primary);">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Finalizados</h3>
+          <div class="val val-success" id="trat-ml-finalizados">0</div>
+        </div>
+      </div>
+
+      <div class="nav-tabs" id="trat-ml-tabs">
+        <button class="tab-btn active" onclick="switchTabTratativas('ml', 'PRIMEIRO CONTATO', this)">Primeiro Contato (<span id="count-tab-trat-ml-primeiro">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('ml', 'CONTATO FEITO PELO SAC', this)">Contato SAC (<span id="count-tab-trat-ml-sac">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('ml', 'DADOS ENVIADOS PARA A TRANSPORTADORA', this)">Enviado Transportadora (<span id="count-tab-trat-ml-transp">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('ml', 'FINALIZADO', this)">Finalizados (<span id="count-tab-trat-ml-finalizados">0</span>)</button>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-box-wrapper">
+          <span class="search-icon-inside">🔍</span>
+          <input type="text" id="search-trat-ml" class="search-input" placeholder="Pesquisar por Pedido, Comprador, Transportadora, NF ou Problema..." oninput="renderTratativasTable('ml')">
+        </div>
+        <select id="filter-transp-trat-ml" class="select-filter" onchange="renderTratativasTable('ml')">
+          <option value="TODAS">Todas as Transportadoras</option>
+        </select>
+      </div>
+
+      <table id="tabela-trat-ml">
+        <thead>
+          <tr>
+            <th style="width:16%">Pedido</th>
+            <th style="width:20%">Comprador</th>
+            <th style="width:16%">Transportadora</th>
+            <th style="width:12%">Nota Fiscal</th>
+            <th style="width:36%">Problema</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- PÁGINA TRATATIVAS CLIENTES: AMAZON -->
+    <section id="page-tratativas-amz" class="page-section">
+      <div class="header-bar">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style="height:26px; max-width:52px; object-fit:contain;">
+          <h1>Tratativas Clientes &mdash; Amazon</h1>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Total (Amazon)</h3>
+          <div class="val val-dark" id="trat-amz-total">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Primeiro Contato</h3>
+          <div class="val val-warning" id="trat-amz-primeiro">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Contato SAC</h3>
+          <div class="val val-info" id="trat-amz-sac">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Enviado Transportadora</h3>
+          <div class="val" id="trat-amz-transp" style="color: var(--primary);">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Finalizados</h3>
+          <div class="val val-success" id="trat-amz-finalizados">0</div>
+        </div>
+      </div>
+
+      <div class="nav-tabs" id="trat-amz-tabs">
+        <button class="tab-btn active" onclick="switchTabTratativas('amz', 'PRIMEIRO CONTATO', this)">Primeiro Contato (<span id="count-tab-trat-amz-primeiro">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('amz', 'CONTATO FEITO PELO SAC', this)">Contato SAC (<span id="count-tab-trat-amz-sac">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('amz', 'DADOS ENVIADOS PARA A TRANSPORTADORA', this)">Enviado Transportadora (<span id="count-tab-trat-amz-transp">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('amz', 'FINALIZADO', this)">Finalizados (<span id="count-tab-trat-amz-finalizados">0</span>)</button>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-box-wrapper">
+          <span class="search-icon-inside">🔍</span>
+          <input type="text" id="search-trat-amz" class="search-input" placeholder="Pesquisar por Pedido, Comprador, Transportadora, NF ou Problema..." oninput="renderTratativasTable('amz')">
+        </div>
+        <select id="filter-transp-trat-amz" class="select-filter" onchange="renderTratativasTable('amz')">
+          <option value="TODAS">Todas as Transportadoras</option>
+        </select>
+      </div>
+
+      <table id="tabela-trat-amz">
+        <thead>
+          <tr>
+            <th style="width:16%">Pedido</th>
+            <th style="width:20%">Comprador</th>
+            <th style="width:16%">Transportadora</th>
+            <th style="width:12%">Nota Fiscal</th>
+            <th style="width:36%">Problema</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- PÁGINA TRATATIVAS CLIENTES: VIA -->
+    <section id="page-tratativas-via" class="page-section">
+      <div class="header-bar">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Casas_Bahia_logo_2020.svg" alt="VIA (Casas Bahia / Ponto)" style="height:26px; max-width:52px; object-fit:contain;">
+          <h1>Tratativas Clientes &mdash; VIA (Casas Bahia / Ponto)</h1>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Total (VIA (Casas Bahia / Ponto))</h3>
+          <div class="val val-dark" id="trat-via-total">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Primeiro Contato</h3>
+          <div class="val val-warning" id="trat-via-primeiro">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Contato SAC</h3>
+          <div class="val val-info" id="trat-via-sac">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Enviado Transportadora</h3>
+          <div class="val" id="trat-via-transp" style="color: var(--primary);">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Finalizados</h3>
+          <div class="val val-success" id="trat-via-finalizados">0</div>
+        </div>
+      </div>
+
+      <div class="nav-tabs" id="trat-via-tabs">
+        <button class="tab-btn active" onclick="switchTabTratativas('via', 'PRIMEIRO CONTATO', this)">Primeiro Contato (<span id="count-tab-trat-via-primeiro">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('via', 'CONTATO FEITO PELO SAC', this)">Contato SAC (<span id="count-tab-trat-via-sac">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('via', 'DADOS ENVIADOS PARA A TRANSPORTADORA', this)">Enviado Transportadora (<span id="count-tab-trat-via-transp">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('via', 'FINALIZADO', this)">Finalizados (<span id="count-tab-trat-via-finalizados">0</span>)</button>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-box-wrapper">
+          <span class="search-icon-inside">🔍</span>
+          <input type="text" id="search-trat-via" class="search-input" placeholder="Pesquisar por Pedido, Comprador, Transportadora, NF ou Problema..." oninput="renderTratativasTable('via')">
+        </div>
+        <select id="filter-transp-trat-via" class="select-filter" onchange="renderTratativasTable('via')">
+          <option value="TODAS">Todas as Transportadoras</option>
+        </select>
+      </div>
+
+      <table id="tabela-trat-via">
+        <thead>
+          <tr>
+            <th style="width:16%">Pedido</th>
+            <th style="width:20%">Comprador</th>
+            <th style="width:16%">Transportadora</th>
+            <th style="width:12%">Nota Fiscal</th>
+            <th style="width:36%">Problema</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- PÁGINA TRATATIVAS CLIENTES: SHOPEE -->
+    <section id="page-tratativas-shopee" class="page-section">
+      <div class="header-bar">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg" alt="Shopee" style="height:26px; max-width:52px; object-fit:contain;">
+          <h1>Tratativas Clientes &mdash; Shopee</h1>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Total (Shopee)</h3>
+          <div class="val val-dark" id="trat-shopee-total">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Primeiro Contato</h3>
+          <div class="val val-warning" id="trat-shopee-primeiro">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Contato SAC</h3>
+          <div class="val val-info" id="trat-shopee-sac">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Enviado Transportadora</h3>
+          <div class="val" id="trat-shopee-transp" style="color: var(--primary);">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Finalizados</h3>
+          <div class="val val-success" id="trat-shopee-finalizados">0</div>
+        </div>
+      </div>
+
+      <div class="nav-tabs" id="trat-shopee-tabs">
+        <button class="tab-btn active" onclick="switchTabTratativas('shopee', 'PRIMEIRO CONTATO', this)">Primeiro Contato (<span id="count-tab-trat-shopee-primeiro">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('shopee', 'CONTATO FEITO PELO SAC', this)">Contato SAC (<span id="count-tab-trat-shopee-sac">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('shopee', 'DADOS ENVIADOS PARA A TRANSPORTADORA', this)">Enviado Transportadora (<span id="count-tab-trat-shopee-transp">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('shopee', 'FINALIZADO', this)">Finalizados (<span id="count-tab-trat-shopee-finalizados">0</span>)</button>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-box-wrapper">
+          <span class="search-icon-inside">🔍</span>
+          <input type="text" id="search-trat-shopee" class="search-input" placeholder="Pesquisar por Pedido, Comprador, Transportadora, NF ou Problema..." oninput="renderTratativasTable('shopee')">
+        </div>
+        <select id="filter-transp-trat-shopee" class="select-filter" onchange="renderTratativasTable('shopee')">
+          <option value="TODAS">Todas as Transportadoras</option>
+        </select>
+      </div>
+
+      <table id="tabela-trat-shopee">
+        <thead>
+          <tr>
+            <th style="width:16%">Pedido</th>
+            <th style="width:20%">Comprador</th>
+            <th style="width:16%">Transportadora</th>
+            <th style="width:12%">Nota Fiscal</th>
+            <th style="width:36%">Problema</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- PÁGINA TRATATIVAS CLIENTES: MAGAZINE LUIZA -->
+    <section id="page-tratativas-magalu" class="page-section">
+      <div class="header-bar">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Magalu_-_novo_logo.png" alt="Magazine Luiza" style="height:26px; max-width:52px; object-fit:contain;">
+          <h1>Tratativas Clientes &mdash; Magazine Luiza</h1>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Total (Magazine Luiza)</h3>
+          <div class="val val-dark" id="trat-magalu-total">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Primeiro Contato</h3>
+          <div class="val val-warning" id="trat-magalu-primeiro">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Contato SAC</h3>
+          <div class="val val-info" id="trat-magalu-sac">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Enviado Transportadora</h3>
+          <div class="val" id="trat-magalu-transp" style="color: var(--primary);">0</div>
+        </div>
+        <div class="metric-card">
+          <h3>Finalizados</h3>
+          <div class="val val-success" id="trat-magalu-finalizados">0</div>
+        </div>
+      </div>
+
+      <div class="nav-tabs" id="trat-magalu-tabs">
+        <button class="tab-btn active" onclick="switchTabTratativas('magalu', 'PRIMEIRO CONTATO', this)">Primeiro Contato (<span id="count-tab-trat-magalu-primeiro">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('magalu', 'CONTATO FEITO PELO SAC', this)">Contato SAC (<span id="count-tab-trat-magalu-sac">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('magalu', 'DADOS ENVIADOS PARA A TRANSPORTADORA', this)">Enviado Transportadora (<span id="count-tab-trat-magalu-transp">0</span>)</button>
+        <button class="tab-btn" onclick="switchTabTratativas('magalu', 'FINALIZADO', this)">Finalizados (<span id="count-tab-trat-magalu-finalizados">0</span>)</button>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-box-wrapper">
+          <span class="search-icon-inside">🔍</span>
+          <input type="text" id="search-trat-magalu" class="search-input" placeholder="Pesquisar por Pedido, Comprador, Transportadora, NF ou Problema..." oninput="renderTratativasTable('magalu')">
+        </div>
+        <select id="filter-transp-trat-magalu" class="select-filter" onchange="renderTratativasTable('magalu')">
+          <option value="TODAS">Todas as Transportadoras</option>
+        </select>
+      </div>
+
+      <table id="tabela-trat-magalu">
+        <thead>
+          <tr>
+            <th style="width:16%">Pedido</th>
+            <th style="width:20%">Comprador</th>
+            <th style="width:16%">Transportadora</th>
+            <th style="width:12%">Nota Fiscal</th>
+            <th style="width:36%">Problema</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
   </main>
 
   <script>
@@ -1377,6 +1715,21 @@
     }
 
     let rawNotasPage = [], rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [], rawDataOctadeskDev = [], rawDataOctadeskSac = [], rawDataOctadeskEnvio = [];
+    let rawDataTratativas = [];
+    const activeTratativasTabs = {
+      ml: 'PRIMEIRO CONTATO',
+      amz: 'PRIMEIRO CONTATO',
+      via: 'PRIMEIRO CONTATO',
+      shopee: 'PRIMEIRO CONTATO',
+      magalu: 'PRIMEIRO CONTATO'
+    };
+    const TRATATIVAS_MP_MAP = {
+      ml: 'MERCADO LIVRE',
+      amz: 'AMAZON',
+      via: 'VIA',
+      shopee: 'SHOPEE',
+      magalu: 'MAGAZINE LUIZA'
+    };
     let activeOctaDevTab = 'MERCADO LIVRE';
     let activeOctaSacTab = 'MERCADO LIVRE';
     let activeOctaEnvioTab = 'MERCADO LIVRE';
@@ -2144,6 +2497,7 @@
       rawDataOctadeskDev = data.octadesk_devolucao || [];
       rawDataOctadeskSac = data.octadesk_sac || [];
       rawDataOctadeskEnvio = data.octadesk_envio_produto || [];
+      rawDataTratativas = data.tratativas_clientes || [];
       
       populateMarcaFilterOptions('filter-marca-skus-ml', rawDataML);
       populateMarcaFilterOptions('filter-marca-skus-amz', rawDataAMZ);
@@ -2162,6 +2516,7 @@
       renderOctaDev();
       renderOctaSac();
       renderOctaEnvio();
+      renderAllTratativasClientes();
       
       const initialLink = document.querySelector('.menu-item[data-page="page-reputacao-geral"]');
       navigatePage('page-reputacao-geral', initialLink);
@@ -3621,6 +3976,168 @@
         </tr>`;
       });
     }
+
+    function normalizeMarketplaceTratativa(mpRaw) {
+      const norm = normalizeText(mpRaw);
+      if (!norm) return 'OUTROS';
+      if (norm.includes('MERCADO LIVRE') || norm.includes('MERCADOLIVRE') || norm === 'ML') return 'MERCADO LIVRE';
+      if (norm.includes('AMAZON') || norm === 'AMZ') return 'AMAZON';
+      if (norm.includes('SHOPEE') || norm.includes('SHOPPE')) return 'SHOPEE';
+      if (
+        norm.includes('CASAS BAHIA') ||
+        norm.includes('PONTO FRIO') ||
+        norm.includes('PONTO') ||
+        norm.includes('VIA VAREJO') ||
+        norm.includes('VAREJO') ||
+        norm === 'VIA' ||
+        norm.includes('VIA')
+      ) {
+        return 'VIA';
+      }
+      if (norm.includes('MAGAZINE LUIZA') || norm.includes('MAGALU')) return 'MAGAZINE LUIZA';
+      return 'OUTROS';
+    }
+
+    function normalizeAcaoTratativa(acaoRaw) {
+      const norm = normalizeText(acaoRaw);
+      if (!norm) return 'OUTROS';
+      if (norm.includes('PRIMEIRO CONTATO')) return 'PRIMEIRO CONTATO';
+      if (norm.includes('CONTATO FEITO PELO SAC') || norm.includes('CONTATO SAC')) return 'CONTATO FEITO PELO SAC';
+      if (
+        norm.includes('DADOS ENVIADOS PARA A TRANSPORTADORA') ||
+        norm.includes('DADOS ENVIADOS PARA TRANSPORTADORA') ||
+        norm.includes('ENVIADO TRANSPORTADORA')
+      ) {
+        return 'DADOS ENVIADOS PARA A TRANSPORTADORA';
+      }
+      if (norm.includes('FINALIZADO')) return 'FINALIZADO';
+      return norm;
+    }
+
+    function getTratativasByMarketplaceKey(mpKey) {
+      const targetMp = TRATATIVAS_MP_MAP[mpKey];
+      return rawDataTratativas.filter(r => {
+        const mp = normalizeMarketplaceTratativa(r.marketplace || r.marketplace_raw || '');
+        return mp === targetMp;
+      });
+    }
+
+    function renderAllTratativasClientes() {
+      ['ml', 'amz', 'via', 'shopee', 'magalu'].forEach(mpKey => {
+        renderTratativasPage(mpKey);
+      });
+    }
+
+    function renderTratativasPage(mpKey) {
+      const mpList = getTratativasByMarketplaceKey(mpKey);
+
+      const listPrimeiro = mpList.filter(r => normalizeAcaoTratativa(r.acao || r.acao_raw) === 'PRIMEIRO CONTATO');
+      const listSac = mpList.filter(r => normalizeAcaoTratativa(r.acao || r.acao_raw) === 'CONTATO FEITO PELO SAC');
+      const listTransp = mpList.filter(r => normalizeAcaoTratativa(r.acao || r.acao_raw) === 'DADOS ENVIADOS PARA A TRANSPORTADORA');
+      const listFinalizados = mpList.filter(r => normalizeAcaoTratativa(r.acao || r.acao_raw) === 'FINALIZADO');
+
+      const setTxt = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = val;
+      };
+
+      setTxt(`trat-${mpKey}-total`, mpList.length);
+      setTxt(`trat-${mpKey}-primeiro`, listPrimeiro.length);
+      setTxt(`trat-${mpKey}-sac`, listSac.length);
+      setTxt(`trat-${mpKey}-transp`, listTransp.length);
+      setTxt(`trat-${mpKey}-finalizados`, listFinalizados.length);
+
+      setTxt(`count-tab-trat-${mpKey}-primeiro`, listPrimeiro.length);
+      setTxt(`count-tab-trat-${mpKey}-sac`, listSac.length);
+      setTxt(`count-tab-trat-${mpKey}-transp`, listTransp.length);
+      setTxt(`count-tab-trat-${mpKey}-finalizados`, listFinalizados.length);
+
+      const transpSelect = document.getElementById(`filter-transp-trat-${mpKey}`);
+      if (transpSelect) {
+        const currentVal = transpSelect.value || 'TODAS';
+        const transpSet = new Set();
+        mpList.forEach(r => {
+          const t = cleanVal(r.transportadora);
+          if (t) transpSet.add(t);
+        });
+        transpSelect.innerHTML = '<option value="TODAS">Todas as Transportadoras</option>';
+        Array.from(transpSet).sort().forEach(t => {
+          transpSelect.innerHTML += `<option value="${t}">${t}</option>`;
+        });
+        if (Array.from(transpSet).includes(currentVal)) {
+          transpSelect.value = currentVal;
+        }
+      }
+
+      renderTratativasTable(mpKey);
+    }
+
+    function switchTabTratativas(mpKey, acaoTab, btnElem) {
+      activeTratativasTabs[mpKey] = acaoTab;
+      const tabsContainer = document.getElementById(`trat-${mpKey}-tabs`);
+      if (tabsContainer) {
+        tabsContainer.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      }
+      if (btnElem) btnElem.classList.add('active');
+      renderTratativasTable(mpKey);
+    }
+
+    function renderTratativasTable(mpKey) {
+      const tbody = document.querySelector(`#tabela-trat-${mpKey} tbody`);
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const activeAcao = activeTratativasTabs[mpKey] || 'PRIMEIRO CONTATO';
+      const searchVal = normalizeText(document.getElementById(`search-trat-${mpKey}`)?.value || '');
+      const transpFilter = document.getElementById(`filter-transp-trat-${mpKey}`)?.value || 'TODAS';
+
+      let list = getTratativasByMarketplaceKey(mpKey).filter(
+        r => normalizeAcaoTratativa(r.acao || r.acao_raw) === activeAcao
+      );
+
+      if (transpFilter !== 'TODAS') {
+        list = list.filter(r => cleanVal(r.transportadora) === transpFilter);
+      }
+
+      if (searchVal) {
+        list = list.filter(r => {
+          const pedido = normalizeText(r.pedido);
+          const comprador = normalizeText(r.comprador);
+          const transp = normalizeText(r.transportadora);
+          const nf = normalizeText(r.nf);
+          const desc = normalizeText(r.descricao);
+          return (
+            pedido.includes(searchVal) ||
+            comprador.includes(searchVal) ||
+            transp.includes(searchVal) ||
+            nf.includes(searchVal) ||
+            desc.includes(searchVal)
+          );
+        });
+      }
+
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">Nenhum pedido encontrado nesta aba com os filtros aplicados.</td></tr>';
+        return;
+      }
+
+      list.forEach(r => {
+        const pedido = cleanVal(r.pedido) || '-';
+        const comprador = cleanVal(r.comprador) || '-';
+        const transportadora = cleanVal(r.transportadora) || '-';
+        const nf = cleanVal(r.nf) || '-';
+        const problema = cleanVal(r.descricao) || '-';
+
+        tbody.innerHTML += `<tr>
+          <td><strong>${pedido}</strong></td>
+          <td>${comprador}</td>
+          <td>${transportadora}</td>
+          <td><span class="badge-count">${nf}</span></td>
+          <td>${problema}</td>
+        </tr>`;
+      });
+    }
+
   </script>
 </body>
 </html>
