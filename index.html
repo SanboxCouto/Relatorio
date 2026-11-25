@@ -4268,8 +4268,19 @@
           ? `<span class="trat-data-mudanca">🕒 ${dataMudanca}</span>`
           : '';
 
+        let pedidoCellHtml = `<strong>${pedido}</strong>`;
+        if (pedido !== '-') {
+          if (mpKey === 'amz') {
+            const linkAmzMsg = `https://sellercentral.amazon.com/messaging/inbox-v3?cc=d5f03dcf-3c2f-4573-9361-dac86ca7920c&fi=search&ss=${encodeURIComponent(pedido)}`;
+            pedidoCellHtml = `<a href="${linkAmzMsg}" target="_blank" class="order-link-box" title="Abrir mensagens do pedido ${safePedidoAttr} na Amazon"><img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" alt="Amazon"><span>${pedido}</span></a>`;
+          } else if (mpKey === 'ml') {
+            const linkMlMsg = `https://vendedores.mercadolivre.com.br/vendas/novo/mensagens/${encodeURIComponent(pedido)}?source=ml&callbackWording=Vendas&callbackUrl=https%3A%2F%2Fwww.mercadolivre.com.br%2Fvendas%2Fomni%2Flista`;
+            pedidoCellHtml = `<a href="${linkMlMsg}" target="_blank" class="order-link-box" title="Abrir mensagens do pedido ${safePedidoAttr} no Mercado Livre"><img src="${ML_LOGO_URL}" class="ml-logo-img" alt="ML"><span>${pedido}</span></a>`;
+          }
+        }
+
         tbody.innerHTML += `<tr id="trat-row-${mpKey}-${idx}">
-          <td><strong>${pedido}</strong></td>
+          <td>${pedidoCellHtml}</td>
           <td>${comprador}</td>
           <td>${transportadora}</td>
           <td>${nfHtml}</td>
