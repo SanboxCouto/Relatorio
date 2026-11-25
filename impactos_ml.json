@@ -8067,6 +8067,20 @@
       "rastreio": "0"
     },
     {
+      "numero": "99918588",
+      "pedido": "702-0124148-6632224",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-0124148-6632224-Aline Araújo Alves",
+      "titulo": "Aline Araújo Alves",
+      "data_criacao": "24/11/2026",
+      "ultima_atualizacao": "25/11/2026",
+      "data_solicitacao": "25/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "AP798579736BR /dev: 220262"
+    },
+    {
       "numero": "99918586",
       "pedido": "701-0862302-7569064",
       "grupo": "Solicitação de Devolução",
@@ -8663,7 +8677,7 @@
       "assunto_completo": "2000019490444174 | Gabriel Santos de Andrade",
       "titulo": "Gabriel Santos de Andrade",
       "data_criacao": "17/11/2026",
-      "ultima_atualizacao": "23/11/2026",
+      "ultima_atualizacao": "25/11/2026",
       "data_solicitacao": "17/11/2026",
       "transportadora": "Mercado Envios",
       "rastreio": "0"
@@ -8921,20 +8935,6 @@
       "rastreio": "211956"
     },
     {
-      "numero": "99918150",
-      "pedido": "261006U6JJW099",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "261006U6JJW099 - Ronaldo José da Silva",
-      "titulo": "Ronaldo José da Silva",
-      "data_criacao": "21/10/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "21/10/2026",
-      "transportadora": "Tecmar",
-      "rastreio": "212328"
-    },
-    {
       "numero": "99918134",
       "pedido": "2000018748567806",
       "grupo": "Solicitação de Devolução",
@@ -8989,20 +8989,6 @@
       "data_solicitacao": "02/10/2026",
       "transportadora": "Trilog",
       "rastreio": "210011"
-    },
-    {
-      "numero": "99917839",
-      "pedido": "2000018543140112",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Mercado Livre",
-      "marketplace": "MERCADO LIVRE",
-      "assunto_completo": "2000018543140112 | Valdeci Francisco de Oliveira",
-      "titulo": "Valdeci Francisco de Oliveira",
-      "data_criacao": "28/09/2026",
-      "ultima_atualizacao": "24/11/2026",
-      "data_solicitacao": "30/10/2026",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "213561"
     },
     {
       "numero": "99917719",
@@ -9343,20 +9329,6 @@
       "data_solicitacao": "",
       "transportadora": "Rio Express",
       "rastreio": "AP798579890BR"
-    },
-    {
-      "numero": "99918588",
-      "pedido": "702-0124148-6632224",
-      "grupo": "Envio de Produto",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "702-0124148-6632224-Aline Araújo Alves",
-      "titulo": "Aline Araújo Alves",
-      "data_criacao": "24/11/2026",
-      "ultima_atualizacao": "25/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Brasil Web",
-      "rastreio": "AP798579736BR"
     },
     {
       "numero": "99918587",
