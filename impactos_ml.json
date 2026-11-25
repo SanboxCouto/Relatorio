@@ -419,6 +419,41 @@
         "taxa_resposta_shopee": "98,09%",
         "nota_shopee": "4,88%"
       }
+    },
+    {
+      "data": "25/11/2026",
+      "valores": {
+        "reclamacoes_ml": 1.26,
+        "mediacoes_ml": 0.33,
+        "vendas_canceladas_ml": 0.41,
+        "envios_incorretos_ml": 0.21,
+        "pedidos_problema_amz": 0.99,
+        "problemas_envios_amz": 0.0,
+        "agilidade_magalu": 98.8,
+        "cancelamentos_magalu": 4.0,
+        "avaliacao_magalu": 4.1,
+        "reclamacoes_via": 3.4,
+        "cancelamentos_via": 3.1,
+        "nao_cumprimento_shopee": 0.83,
+        "taxa_resposta_shopee": 98.14,
+        "nota_shopee": 4.88
+      },
+      "raw": {
+        "reclamacoes_ml": "1,26%",
+        "mediacoes_ml": "0,33%",
+        "vendas_canceladas_ml": "0,41%",
+        "envios_incorretos_ml": "0,21%",
+        "pedidos_problema_amz": "0,99%",
+        "problemas_envios_amz": "0,00%",
+        "agilidade_magalu": "98,80%",
+        "cancelamentos_magalu": "4,00%",
+        "avaliacao_magalu": "4,1",
+        "reclamacoes_via": "3,40%",
+        "cancelamentos_via": "3,10%",
+        "nao_cumprimento_shopee": "0,83%",
+        "taxa_resposta_shopee": "98,14%",
+        "nota_shopee": "4,88%"
+      }
     }
   ],
   "ml": [
@@ -641,10 +676,10 @@
       "motivo": "Item Faltante",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "28/09/2026",
       "comentario": "Item Faltante: 1 Trempe Central",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -716,10 +751,10 @@
       "motivo": "Não é da cor, tamanho ou modelo que escolhi",
       "transportadora": "Mercado Envios",
       "status": "Impacto Removido",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "01/10/2026",
       "comentario": "Cliente Alegou ter Comprado Errado",
-      "is_valido": true,
+      "is_valido": false,
       "is_afetando": false
     },
     {
@@ -1271,11 +1306,11 @@
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
       "status": "Revisão Recusada",
-      "tempo_impacto": "Válido",
+      "tempo_impacto": "Expirado",
       "data_pedido": "14/10/2026",
       "comentario": "Vazamento de Óleo",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000015051234879",
@@ -2650,12 +2685,12 @@
       "marca": "MUELLER",
       "motivo": "Produto Avariado",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
-      "tempo_impacto": "Válido",
+      "status": "Não Solicitada",
+      "tempo_impacto": "Expirado",
       "data_pedido": "03/11/2026",
       "comentario": "Controles da Máquina Quebraram",
-      "is_valido": true,
-      "is_afetando": true
+      "is_valido": false,
+      "is_afetando": false
     },
     {
       "pedido": "2000015545813865",
@@ -3175,12 +3210,12 @@
       "marca": "MUELLER",
       "motivo": "Descumpre as características do anúncio",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Impacto Removido",
       "tempo_impacto": "Válido",
       "data_pedido": "21/11/2026",
       "comentario": "Envio Incorreto",
       "is_valido": true,
-      "is_afetando": true
+      "is_afetando": false
     },
     {
       "pedido": "2000019577158846",
@@ -3235,7 +3270,7 @@
       "marca": "SSOUND",
       "motivo": "Defeito no Produto",
       "transportadora": "Mercado Envios",
-      "status": "Em Mediação",
+      "status": "Não Solicitada",
       "tempo_impacto": "Válido",
       "data_pedido": "23/11/2026",
       "comentario": "SEM ACESSO A RECLAMAÇÃO",
@@ -3299,6 +3334,111 @@
       "tempo_impacto": "Válido",
       "data_pedido": "23/11/2026",
       "comentario": "Item Faltante: Gaveta de Sabão em Pó e Amaciante",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019133584574",
+      "n_venda": "2000019133584574",
+      "sku": "TI1524",
+      "produto": "Tanquinho De Lavar Roupa Mueller Plus 45kg 40l - Branco 127v Branco",
+      "marca": "MUELLER",
+      "motivo": "Defeito no Produto",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "24/11/2026",
+      "comentario": "Tanquinho está Torto e RASGA as Roupas",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019583424304",
+      "n_venda": "2000019583424304",
+      "sku": "TI1708",
+      "produto": "Fogão Mueller 5 Bocas Decorato Gourmet Preto Fosco Com Timer E Tripla Chama 127/220v",
+      "marca": "MUELLER",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "24/11/2026",
+      "comentario": "Amassado na Parte Inferior Frontal",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019622573318",
+      "n_venda": "2000019622573318",
+      "sku": "TI1602",
+      "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+      "marca": "DAKO",
+      "motivo": "Produto Avariado",
+      "transportadora": "Mercado Envios",
+      "status": "Não Solicitada",
+      "tempo_impacto": "Válido",
+      "data_pedido": "24/11/2026",
+      "comentario": "Amassados na Lateral",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019517817300",
+      "n_venda": "2000019517817300",
+      "sku": "TI1667",
+      "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+      "marca": "MUELLER",
+      "motivo": "Produto Avariado",
+      "transportadora": "Brasil Web",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "24/11/2026",
+      "comentario": "Amassado na Mesa",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019586938522",
+      "n_venda": "2000019586938522",
+      "sku": "TI1602",
+      "produto": "Fogão 4 Bocas Dako Magister Style Mesa Inox Espelhado Cor Preto 127/220v",
+      "marca": "DAKO",
+      "motivo": "Produto Avariado",
+      "transportadora": "Alfa Transportes",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "24/11/2026",
+      "comentario": "Amassado na Parte Lateral Direita Inferior",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019425279790",
+      "n_venda": "2000019425279790",
+      "sku": "TI1562",
+      "produto": "Fogão Á Gás Mueller 5 Bocas Decorato Vetro-bivolt Inox 127/220v",
+      "marca": "MUELLER",
+      "motivo": "Produto Avariado",
+      "transportadora": "Rio Express",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "24/11/2026",
+      "comentario": "Arranhados e Amassados",
+      "is_valido": true,
+      "is_afetando": true
+    },
+    {
+      "pedido": "2000019595395114",
+      "n_venda": "2000019595395114",
+      "sku": "TI1667",
+      "produto": "Fogão Mueller Titânio 5b Com Mesa Esmaltada Mfi5bc",
+      "marca": "MUELLER",
+      "motivo": "Produto Avariado",
+      "transportadora": "Alfa Transportes",
+      "status": "Em Mediação",
+      "tempo_impacto": "Válido",
+      "data_pedido": "24/11/2026",
+      "comentario": "Amassado na Mesa",
       "is_valido": true,
       "is_afetando": true
     }
