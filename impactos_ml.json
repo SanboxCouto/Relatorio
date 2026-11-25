@@ -7977,7 +7977,7 @@
       "assunto_completo": "701-0862302-7569064 | Ana maria mesquita paiva (COLETA PAUSADA)",
       "titulo": "Ana maria mesquita paiva (COLETA PAUSADA)",
       "data_criacao": "24/11/2026",
-      "ultima_atualizacao": "24/11/2026",
+      "ultima_atualizacao": "25/11/2026",
       "data_solicitacao": "",
       "transportadora": "Rio Express",
       "rastreio": "0"
@@ -8229,7 +8229,7 @@
       "assunto_completo": "2611111WSCDYE1 - Letissandra Orsso Tluszc",
       "titulo": "Letissandra Orsso Tluszc",
       "data_criacao": "23/11/2026",
-      "ultima_atualizacao": "23/11/2026",
+      "ultima_atualizacao": "25/11/2026",
       "data_solicitacao": "23/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "219517"
@@ -8509,7 +8509,7 @@
       "assunto_completo": "701-7460651-5635461-Gislaine da costa souza",
       "titulo": "Gislaine da costa souza",
       "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "24/11/2026",
+      "ultima_atualizacao": "25/11/2026",
       "data_solicitacao": "18/11/2026",
       "transportadora": "Brasil Web",
       "rastreio": "0"
@@ -9483,6 +9483,228 @@
       "data_solicitacao": "",
       "transportadora": "Correios",
       "rastreio": "AP706099206BR"
+    }
+  ],
+  "tratativas_clientes": [
+    {
+      "pedido": "1584970110967568",
+      "comprador": "Giovanna Satie Yugue de Lima",
+      "transportadora": "Total Express",
+      "nf": "214828",
+      "descricao": "Cancelado pelo destinatário",
+      "acao_raw": "Primeiro Contato",
+      "acao": "PRIMEIRO CONTATO",
+      "marketplace_raw": "Magalu",
+      "marketplace": "MAGAZINE LUIZA"
+    },
+    {
+      "pedido": "702-9949823-4642618",
+      "comprador": "Nicoly Cristina",
+      "transportadora": "Rio Express",
+      "nf": "215086",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "702-1323147-0532252",
+      "comprador": "Romulo Nogueira",
+      "transportadora": "Rio Express",
+      "nf": "216430",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "1585670111317115",
+      "comprador": "Marcia Campos",
+      "transportadora": "Total Express",
+      "nf": "215642",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Magalu",
+      "marketplace": "MAGAZINE LUIZA"
+    },
+    {
+      "pedido": "702-4847002-6139400",
+      "comprador": "Janete Aparecida Botelho",
+      "transportadora": "Rio Express",
+      "nf": "215077",
+      "descricao": "Atraso - Prazo da Transportadora",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "LU-1584570110812741",
+      "comprador": "Joelma Ramos bispo",
+      "transportadora": "Tecmar Standard",
+      "nf": "214856",
+      "descricao": "Endereço não localizado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Magalu",
+      "marketplace": "MAGAZINE LUIZA"
+    },
+    {
+      "pedido": "702-1844864-7032238",
+      "comprador": "GRACIELLE MORAIS",
+      "transportadora": "Brasil Web",
+      "nf": "214617",
+      "descricao": "Endereço não localizado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "52675804301",
+      "comprador": "Rejane Silva Batista",
+      "transportadora": "Brasil Web",
+      "nf": "215263",
+      "descricao": "Endereço não localizado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Casas Bahia",
+      "marketplace": "VIA"
+    },
+    {
+      "pedido": "702-5214948-7856233",
+      "comprador": "Estevao Domingues",
+      "transportadora": "Rio Express",
+      "nf": "216738",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "701-2697125-0844267",
+      "comprador": "Samira Zampier",
+      "transportadora": "Trilog Express",
+      "nf": "214691",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "702-4232533-0045044",
+      "comprador": "Dhiego Pardini",
+      "transportadora": "Alfa Transportes",
+      "nf": "216242",
+      "descricao": "Destinatário não localizado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "702-2964506-2002606",
+      "comprador": "Renan Foltran simon",
+      "transportadora": "Alfa Transportes",
+      "nf": "216519",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "2000019452994148",
+      "comprador": "Katherine Joyce Wigolorchew Miller",
+      "transportadora": "Atual Cargas",
+      "nf": "215577",
+      "descricao": "Endereço não localizado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE"
+    },
+    {
+      "pedido": "701-0810168-7629020",
+      "comprador": "Larry Gaspar",
+      "transportadora": "Brasil Web",
+      "nf": "216859",
+      "descricao": "Destinatário não localizado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "2000016022120787",
+      "comprador": "Ana Luiza Nicolosi da Rocha",
+      "transportadora": "Atual Cargas",
+      "nf": "216682",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE"
+    },
+    {
+      "pedido": "702-2841420-2941068",
+      "comprador": "Nilzete Ferreira Lira",
+      "transportadora": "Brasil Web",
+      "nf": "217734",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "701-1378209-0394635",
+      "comprador": "Maria Filomena",
+      "transportadora": "Alfa Transportes",
+      "nf": "215203",
+      "descricao": "Atraso - Prazo da Transportadora",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "LU-1585970111696023",
+      "comprador": "Oscar da Costa Macedo",
+      "transportadora": "Total Express",
+      "nf": "216320",
+      "descricao": "Recusado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Magalu",
+      "marketplace": "MAGAZINE LUIZA"
+    },
+    {
+      "pedido": "701-8320481-8900262",
+      "comprador": "Elissandra de Moura Rolim",
+      "transportadora": "Trilog Express",
+      "nf": "215610",
+      "descricao": "Destinatário não localizado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON"
+    },
+    {
+      "pedido": "2611112QMFS8MS",
+      "comprador": "Eutalia Alves Manso",
+      "transportadora": "Total Express",
+      "nf": "215893",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "",
+      "acao": "OUTROS",
+      "marketplace_raw": "Shopee",
+      "marketplace": "SHOPEE"
     }
   ]
 }
