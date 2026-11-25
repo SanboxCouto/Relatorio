@@ -12,6 +12,7 @@ URL_CSV_AVALIACOES_AMZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2y
 URL_CSV_VIA = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=876023604&single=true&output=csv"
 URL_CSV_NOTAS_PAGE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1342007728&single=true&output=csv"
 URL_CSV_OCTADESK = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRkQ9fL3ZJl5crZCKc_yrwkm4enTZbZD-eydm6s-NFgvzFDm0qEVAHsELLiQUwku12F39QBo-b7FCx0/pub?gid=0&single=true&output=csv"
+URL_CSV_TRATATIVAS_CLIENTES = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWr2yKLLA3zpokmqfZAeHeqUCgK_rtKYX7Fceb0FBI0YqNqYWHOcVklVccOiVvQAYU39T6glLbgK7D/pub?gid=1225893524&single=true&output=csv"
 
 MARCAS_CADASTRADAS = [
     "Imbera",
@@ -877,6 +878,141 @@ def processar_via():
   return registros
 
 
+
+
+def mapear_marketplace_tratativas(valor_mp):
+  norm = remover_acentos(valor_mp)
+  if not norm:
+    return "OUTROS"
+  if "MERCADO LIVRE" in norm or "MERCADOLIVRE" in norm or norm == "ML":
+    return "MERCADO LIVRE"
+  if "AMAZON" in norm or norm == "AMZ":
+    return "AMAZON"
+  if "SHOPEE" in norm or "SHOPPE" in norm:
+    return "SHOPEE"
+  if (
+      "CASAS BAHIA" in norm
+      or "PONTO FRIO" in norm
+      or "PONTO" in norm
+      or "VIA VAREJO" in norm
+      or "VAREJO" in norm
+      or norm == "VIA"
+      or "VIA" in norm
+  ):
+    return "VIA"
+  if "MAGAZINE LUIZA" in norm or "MAGALU" in norm:
+    return "MAGAZINE LUIZA"
+  return "OUTROS"
+
+
+def mapear_acao_tratativas(valor_acao):
+  norm = remover_acentos(valor_acao)
+  if not norm:
+    return "OUTROS"
+  if "PRIMEIRO CONTATO" in norm:
+    return "PRIMEIRO CONTATO"
+  if "CONTATO FEITO PELO SAC" in norm or "CONTATO SAC" in norm:
+    return "CONTATO FEITO PELO SAC"
+  if (
+      "DADOS ENVIADOS PARA A TRANSPORTADORA" in norm
+      or "DADOS ENVIADOS PARA TRANSPORTADORA" in norm
+      or "ENVIADO TRANSPORTADORA" in norm
+  ):
+    return "DADOS ENVIADOS PARA A TRANSPORTADORA"
+  if "FINALIZADO" in norm:
+    return "FINALIZADO"
+  return valor_acao.strip()
+
+
+def processar_tratativas_clientes():
+  df = parse_csv_dinamico(
+      URL_CSV_TRATATIVAS_CLIENTES,
+      ["PEDIDO", "COMPRADOR", "TRANSPORTADORA", "ACAO", "MARKETPLACE"],
+      default_header_idx=0,
+  )
+  print("COLUNAS TRATATIVAS CLIENTES:", list(df.columns))
+
+  col_pedido = encontrar_coluna_exata(
+      df,
+      [
+          "N° PEDIDO",
+          "Nº PEDIDO",
+          "NO PEDIDO",
+          "N PEDIDO",
+          "NUMERO DO PEDIDO",
+          "ID DO PEDIDO",
+          "PEDIDO",
+      ],
+  )
+  col_comprador = encontrar_coluna_exata(
+      df, ["COMPRADOR", "CLIENTE", "NOME DO COMPRADOR", "NOME DO CLIENTE"]
+  )
+  col_transportadora = encontrar_coluna_exata(
+      df, ["TRANSPORTADORA", "TRANSP", "LOGISTICA", "ENVIO"]
+  )
+  col_nf = encontrar_coluna_exata(
+      df,
+      [
+          "NF",
+          "NOTA FISCAL",
+          "N° NF",
+          "Nº NF",
+          "NUMERO NF",
+          "NUMERO DA NF",
+      ],
+  )
+  col_descricao = encontrar_coluna_exata(
+      df,
+      [
+          "DESCRICAO",
+          "DESCRIÇÃO",
+          "PROBLEMA",
+          "OCORRENCIA",
+          "OCORRÊNCIA",
+          "OBSERVACAO",
+          "OBSERVAÇÃO",
+      ],
+  )
+  col_acao = encontrar_coluna_exata(
+      df, ["ACAO", "AÇÃO", "STATUS", "ETAPA", "SITUACAO", "SITUAÇÃO"]
+  )
+  col_marketplace = encontrar_coluna_exata(
+      df, ["MARKETPLACE", "LOJA", "CANAL", "LOJA__MARKETPLACE"]
+  )
+
+  registros = []
+  for _, row in df.iterrows():
+    pedido_val = limpar_identificador(row[col_pedido]) if col_pedido else ""
+    comprador_val = limpar_texto(row[col_comprador]) if col_comprador else ""
+    transp_val = (
+        limpar_texto(row[col_transportadora]) if col_transportadora else ""
+    )
+    nf_val = limpar_identificador(row[col_nf]) if col_nf else ""
+    descricao_val = limpar_texto(row[col_descricao]) if col_descricao else ""
+    acao_raw = limpar_texto(row[col_acao]) if col_acao else ""
+    mp_raw = limpar_texto(row[col_marketplace]) if col_marketplace else ""
+
+    if not pedido_val and not comprador_val and not descricao_val:
+      continue
+
+    mp_padrao = mapear_marketplace_tratativas(mp_raw)
+    acao_padrao = mapear_acao_tratativas(acao_raw)
+
+    registros.append({
+        "pedido": pedido_val,
+        "comprador": comprador_val,
+        "transportadora": transp_val,
+        "nf": nf_val,
+        "descricao": descricao_val,
+        "acao_raw": acao_raw,
+        "acao": acao_padrao,
+        "marketplace_raw": mp_raw,
+        "marketplace": mp_padrao,
+    })
+
+  return registros
+
+
 if __name__ == "__main__":
   notas_page_data = processar_notas_page()
   ml_data = processar_ml()
@@ -884,6 +1020,7 @@ if __name__ == "__main__":
   aval_amz_data = processar_avaliacoes_amazon()
   via_data = processar_via()
   octadesk_dev_data, octadesk_sac_data, octadesk_envio_data = processar_octadesk()
+  tratativas_clientes_data = processar_tratativas_clientes()
 
   output = {
       "notas_page": notas_page_data,
@@ -894,6 +1031,7 @@ if __name__ == "__main__":
       "octadesk_devolucao": octadesk_dev_data,
       "octadesk_sac": octadesk_sac_data,
       "octadesk_envio_produto": octadesk_envio_data,
+      "tratativas_clientes": tratativas_clientes_data,
   }
 
   with open("impactos_ml.json", "w", encoding="utf-8") as f:
@@ -904,5 +1042,6 @@ if __name__ == "__main__":
       f" {len(amz_data)} Amazon | {len(aval_amz_data)} Avaliações Amazon |"
       f" {len(via_data)} VIA | {len(octadesk_dev_data)} OctaDesk Devolução |"
       f" {len(octadesk_sac_data)} OctaDesk SAC | {len(octadesk_envio_data)}"
-      " OctaDesk Envio de Produto"
+      " OctaDesk Envio de Produto |"
+      f" {len(tratativas_clientes_data)} Tratativas Clientes"
   )
