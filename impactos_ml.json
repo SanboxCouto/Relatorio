@@ -7948,6 +7948,48 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918628",
+      "pedido": "2000015980110653",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000015980110653 | Tatiane Cristina Porto da Silva",
+      "titulo": "Tatiane Cristina Porto da Silva",
+      "data_criacao": "26/11/2026",
+      "ultima_atualizacao": "26/11/2026",
+      "data_solicitacao": "26/11/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918627",
+      "pedido": "702-4847002-6139400",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-4847002-6139400- Janete Aparecida Botelho",
+      "titulo": "Janete Aparecida Botelho",
+      "data_criacao": "26/11/2026",
+      "ultima_atualizacao": "26/11/2026",
+      "data_solicitacao": "26/11/2026",
+      "transportadora": "Rio Express",
+      "rastreio": "0"
+    },
+    {
+      "numero": "99918626",
+      "pedido": "2000019517201336",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000019517201336 | Lilian Gonçalves",
+      "titulo": "Lilian Gonçalves",
+      "data_criacao": "26/11/2026",
+      "ultima_atualizacao": "26/11/2026",
+      "data_solicitacao": "26/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "220593"
+    },
+    {
       "numero": "99918623",
       "pedido": "2000016079058489",
       "grupo": "Solicitação de Devolução",
@@ -7960,20 +8002,6 @@
       "data_solicitacao": "26/11/2026",
       "transportadora": "Mercado Envios",
       "rastreio": "220587"
-    },
-    {
-      "numero": "99918622",
-      "pedido": "261118MBVFVC2T",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "261118MBVFVC2T - Carlos José",
-      "titulo": "Carlos José",
-      "data_criacao": "26/11/2026",
-      "ultima_atualizacao": "26/11/2026",
-      "data_solicitacao": "26/11/2026",
-      "transportadora": "Correios",
-      "rastreio": "4795832455"
     },
     {
       "numero": "99918621",
@@ -8578,20 +8606,6 @@
       "rastreio": "214439"
     },
     {
-      "numero": "99918532",
-      "pedido": "702-9517310-9433048",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "702-9517310-9433048/Carlos Eduardo de Almeida Santos",
-      "titulo": "9433048/Carlos Eduardo de Almeida Santos",
-      "data_criacao": "19/11/2026",
-      "ultima_atualizacao": "24/11/2026",
-      "data_solicitacao": "19/11/2026",
-      "transportadora": "Alfa Transportes",
-      "rastreio": "0"
-    },
-    {
       "numero": "99918529",
       "pedido": "701-7357994-4012263",
       "grupo": "Solicitação de Devolução",
@@ -9076,8 +9090,8 @@
       "assunto_completo": "701-8434502-3144233 - Lisandro Ribeiro",
       "titulo": "Lisandro Ribeiro",
       "data_criacao": "18/09/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "",
+      "ultima_atualizacao": "26/11/2026",
+      "data_solicitacao": "11/11/2026",
       "transportadora": "Trilog",
       "rastreio": "216113(DEV) - 2168029(reenvio)"
     },
@@ -9134,7 +9148,7 @@
       "assunto_completo": "701-3942171-8647405 - Valeska",
       "titulo": "Valeska",
       "data_criacao": "25/11/2026",
-      "ultima_atualizacao": "25/11/2026",
+      "ultima_atualizacao": "26/11/2026",
       "data_solicitacao": "",
       "transportadora": "Alfa Transportes",
       "rastreio": "219349"
