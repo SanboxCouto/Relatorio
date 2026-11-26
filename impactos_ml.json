@@ -8894,7 +8894,7 @@
       "assunto_completo": "701-4550693-4345001- MARCIA LISTIK",
       "titulo": "MARCIA LISTIK",
       "data_criacao": "16/11/2026",
-      "ultima_atualizacao": "23/11/2026",
+      "ultima_atualizacao": "26/11/2026",
       "data_solicitacao": "16/11/2026",
       "transportadora": "MMA",
       "rastreio": "217347"
@@ -9336,20 +9336,6 @@
       "rastreio": "212995"
     },
     {
-      "numero": "99918264",
-      "pedido": "52551372601",
-      "grupo": "Atendimento SAC",
-      "loja_raw": "Casas Bahia/Via Varejo",
-      "marketplace": "VIA",
-      "assunto_completo": "52551372601 - Emerson Pereira Oliveira",
-      "titulo": "Emerson Pereira Oliveira",
-      "data_criacao": "28/10/2026",
-      "ultima_atualizacao": "26/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Total Express",
-      "rastreio": "211394"
-    },
-    {
       "numero": "99916336",
       "pedido": "51202087601",
       "grupo": "Atendimento SAC",
@@ -9767,11 +9753,11 @@
       "transportadora": "Alfa Transportes",
       "nf": "216823",
       "descricao": "Atraso - Prazo da Transportadora",
-      "acao_raw": "Primeiro Contato",
-      "acao": "PRIMEIRO CONTATO",
+      "acao_raw": "Dados Enviados para a Transportadora",
+      "acao": "DADOS ENVIADOS PARA A TRANSPORTADORA",
       "marketplace_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
-      "data_mudanca": ""
+      "data_mudanca": "26/11/2026 15:59:29"
     },
     {
       "pedido": "702-2639021-1708206",
@@ -9839,11 +9825,11 @@
       "transportadora": "Alfa Transportes",
       "nf": "217120",
       "descricao": "Atraso - Prazo da Transportadora",
-      "acao_raw": "Primeiro Contato",
-      "acao": "PRIMEIRO CONTATO",
+      "acao_raw": "Dados Enviados para a Transportadora",
+      "acao": "DADOS ENVIADOS PARA A TRANSPORTADORA",
       "marketplace_raw": "Mercado Livre",
       "marketplace": "MERCADO LIVRE",
-      "data_mudanca": ""
+      "data_mudanca": "26/11/2026 16:00:04"
     }
   ]
 }
