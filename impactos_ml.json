@@ -7948,6 +7948,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918623",
+      "pedido": "2000016079058489",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "assunto_completo": "2000016079058489 | Milene Christianne Rampim da Rosa",
+      "titulo": "Milene Christianne Rampim da Rosa",
+      "data_criacao": "26/11/2026",
+      "ultima_atualizacao": "26/11/2026",
+      "data_solicitacao": "26/11/2026",
+      "transportadora": "Mercado Envios",
+      "rastreio": "220587"
+    },
+    {
       "numero": "99918622",
       "pedido": "261118MBVFVC2T",
       "grupo": "Solicitação de Devolução",
@@ -8634,20 +8648,6 @@
       "rastreio": "218283"
     },
     {
-      "numero": "99918518",
-      "pedido": "261108RGXVFV78",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "261108RGXVFV78 - Patricia Ferreira",
-      "titulo": "Patricia Ferreira",
-      "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "18/11/2026",
-      "transportadora": "Rio Express",
-      "rastreio": "214949"
-    },
-    {
       "numero": "99918517",
       "pedido": "LU-1580670109002376",
       "grupo": "Solicitação de Devolução",
@@ -8674,20 +8674,6 @@
       "data_solicitacao": "18/11/2026",
       "transportadora": "Rio Express",
       "rastreio": "0"
-    },
-    {
-      "numero": "99918509",
-      "pedido": "52696570601",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Casas Bahia/Via Varejo",
-      "marketplace": "VIA",
-      "assunto_completo": "52696570601 - Milena Gomes De Melo",
-      "titulo": "Milena Gomes De Melo",
-      "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "18/11/2026",
-      "data_solicitacao": "18/11/2026",
-      "transportadora": "Brasil Web",
-      "rastreio": "216495"
     },
     {
       "numero": "99918508",
@@ -9238,20 +9224,6 @@
       "rastreio": "215428"
     },
     {
-      "numero": "99918558",
-      "pedido": "52551372601",
-      "grupo": "Atendimento SAC",
-      "loja_raw": "Casas Bahia/Via Varejo",
-      "marketplace": "VIA",
-      "assunto_completo": "52551372601 - Emerson Pereira Oliveira",
-      "titulo": "Emerson Pereira Oliveira",
-      "data_criacao": "23/11/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Total Express",
-      "rastreio": ""
-    },
-    {
       "numero": "99918537",
       "pedido": "",
       "grupo": "Atendimento SAC",
@@ -9362,6 +9334,20 @@
       "data_solicitacao": "",
       "transportadora": "Total Express",
       "rastreio": "212995"
+    },
+    {
+      "numero": "99918264",
+      "pedido": "52551372601",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Casas Bahia/Via Varejo",
+      "marketplace": "VIA",
+      "assunto_completo": "52551372601 - Emerson Pereira Oliveira",
+      "titulo": "Emerson Pereira Oliveira",
+      "data_criacao": "28/10/2026",
+      "ultima_atualizacao": "26/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Total Express",
+      "rastreio": "211394"
     },
     {
       "numero": "99916336",
