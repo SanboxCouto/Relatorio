@@ -190,6 +190,138 @@
     .note-status.saved { color: #16a34a; }
     .note-status.error { color: #dc2626; }
 
+
+    /* AGENTES & BOTÃO DISCRETO OCTADESK */
+    .send-agent-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #64748b;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .send-agent-btn:hover {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: #1d4ed8;
+    }
+    .send-agent-btn.sent {
+      background: #f0fdf4;
+      border-color: #86efac;
+      color: #15803d;
+    }
+
+    .agent-lock-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 68vh;
+      padding: 20px;
+    }
+    .agent-lock-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .agent-lock-icon {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .agent-lock-card h2 {
+      font-size: 1.2rem;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .agent-lock-card p {
+      font-size: 0.83rem;
+      color: #64748b;
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+    .agent-lock-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .agent-lock-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    .agent-lock-btn {
+      width: 100%;
+      padding: 10px 16px;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 4px;
+    }
+    .agent-lock-btn:hover {
+      background: #1d4ed8;
+    }
+    .agent-lock-error {
+      color: #dc2626;
+      font-size: 0.78rem;
+      font-weight: 600;
+      min-height: 18px;
+      margin-top: 8px;
+    }
+
+    .btn-resolvido-agente {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 6px 11px;
+      border-radius: 7px;
+      border: 1px solid #86efac;
+      background: #f0fdf4;
+      color: #15803d;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-resolvido-agente:hover {
+      background: #16a34a;
+      border-color: #15803d;
+      color: #ffffff;
+      box-shadow: 0 2px 5px rgba(22, 163, 74, 0.25);
+    }
+    .grupo-pill-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
     /* TRATATIVAS CLIENTES - BOTÕES DE AÇÃO E CÓPIA DE NF */
     .nf-copy-badge { cursor: pointer; transition: all 0.15s; border: 1px solid #cbd5e1; background: #f8fafc; }
     .nf-copy-badge:hover { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; transform: scale(1.03); }
@@ -276,6 +408,12 @@
       <a class="menu-item" data-page="page-octadesk-envio" onclick="navigatePage('page-octadesk-envio', this)" title="Envio de Produto">
         <span class="menu-item-icon">🚚</span>
         <span class="menu-item-text">Envio de Produto</span>
+      </a>
+
+      <div class="menu-category">Agentes</div>
+      <a class="menu-item" data-page="page-agente-wendell" onclick="navigatePage('page-agente-wendell', this)" title="Wendell Couto">
+        <span class="menu-item-icon">👤</span>
+        <span class="menu-item-text">Wendell Couto</span>
       </a>
 
       <div class="menu-category">Tratativas Clientes</div>
@@ -1276,6 +1414,107 @@
     </section>
 
 
+    <!-- PÁGINA AGENTES: WENDELL COUTO -->
+    <section id="page-agente-wendell" class="page-section">
+      <!-- TELA DE SENHA (PRIMEIRO ACESSO / DESBLOQUEIO) -->
+      <div id="wendell-lock-screen" class="agent-lock-wrapper" style="display:none;"></div>
+
+      <!-- CONTEÚDO PROTEGIDO WENDELL COUTO -->
+      <div id="wendell-protected-content" style="display:none;">
+        <div class="header-bar">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <h1>Agentes &mdash; Wendell Couto</h1>
+          </div>
+          <div class="filter-controls-group">
+            <button type="button" class="filter-btn" style="background:#f1f5f9; border:1px solid #cbd5e1;" onclick="lockAgenteWendell()" title="Bloquear acesso com senha">🔒 Bloquear</button>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <h3>Total Atribuído</h3>
+            <div class="val val-dark" id="wendell-total">0</div>
+          </div>
+          <div class="metric-card">
+            <h3>Mercado Livre</h3>
+            <div class="val val-warning" id="wendell-ml">0</div>
+          </div>
+          <div class="metric-card">
+            <h3>Amazon</h3>
+            <div class="val val-info" id="wendell-amz">0</div>
+          </div>
+          <div class="metric-card">
+            <h3>Shopee</h3>
+            <div class="val val-danger" id="wendell-shopee">0</div>
+          </div>
+          <div class="metric-card">
+            <h3>VIA (Casas Bahia)</h3>
+            <div class="val" id="wendell-via" style="color: var(--primary);">0</div>
+          </div>
+          <div class="metric-card">
+            <h3>Magazine Luiza</h3>
+            <div class="val val-success" id="wendell-magalu">0</div>
+          </div>
+        </div>
+
+        <div class="nav-tabs" id="wendell-tabs">
+          <button class="tab-btn active" onclick="switchTabWendell('MERCADO LIVRE', this)">Mercado Livre (<span id="count-tab-wendell-ml">0</span>)</button>
+          <button class="tab-btn" onclick="switchTabWendell('AMAZON', this)">Amazon (<span id="count-tab-wendell-amz">0</span>)</button>
+          <button class="tab-btn" onclick="switchTabWendell('SHOPEE', this)">Shopee (<span id="count-tab-wendell-shopee">0</span>)</button>
+          <button class="tab-btn" onclick="switchTabWendell('VIA', this)">VIA (<span id="count-tab-wendell-via">0</span>)</button>
+          <button class="tab-btn" onclick="switchTabWendell('MAGAZINE LUIZA', this)">Magazine Luiza (<span id="count-tab-wendell-magalu">0</span>)</button>
+        </div>
+
+        <div class="tab-indicators-grid">
+          <div class="metric-card">
+            <h3>Atrasados (&gt; 30 dias)</h3>
+            <div class="val val-danger" id="wendell-tab-atrasados">0</div>
+          </div>
+          <div class="metric-card">
+            <h3>Alarmantes (&gt; 15 dias)</h3>
+            <div class="val val-warning" id="wendell-tab-alarmantes">0</div>
+          </div>
+          <div class="metric-card">
+            <h3>Quantidade por Transportadora</h3>
+            <div id="wendell-tab-transp-breakdown" class="transp-pills-wrap">-</div>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="search-box-wrapper">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="search-wendell" class="search-input" placeholder="Pesquisar por Título, Pedido, Grupo, Transportadora, Rastreio ou Nota..." oninput="renderWendellTable()">
+          </div>
+          <select id="filter-grupo-wendell" class="select-filter" onchange="renderWendellTable()">
+            <option value="TODOS">Todos os Grupos</option>
+          </select>
+          <select id="filter-status-prazo-wendell" class="select-filter" onchange="renderWendellTable()">
+            <option value="TODOS">Todos os Prazos</option>
+            <option value="ATRASADO">Apenas Atrasados (&gt; 30 dias)</option>
+            <option value="ALARMANTE">Apenas Alarmantes (&gt; 15 dias)</option>
+            <option value="NORMAL">Dentro do Prazo (&le; 15 dias)</option>
+          </select>
+        </div>
+
+        <table id="tabela-wendell">
+          <thead>
+            <tr>
+              <th style="width:22%">Título</th>
+              <th style="width:11%">Grupo</th>
+              <th style="width:9%">Criação</th>
+              <th style="width:9%">Atualização</th>
+              <th style="width:9%">Solicitação</th>
+              <th style="width:10%">Transportadora</th>
+              <th style="width:9%">Rastreio</th>
+              <th style="width:13%">Nota (Wendell)</th>
+              <th style="width:8%">Ação</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
     <!-- PÁGINA TRATATIVAS CLIENTES: MERCADO LIVRE -->
     <section id="page-tratativas-ml" class="page-section">
       <div class="header-bar">
@@ -1748,6 +1987,10 @@
       } else {
         mainWrapper.classList.remove('no-scroll-mode');
       }
+
+      if (pageId === 'page-agente-wendell') {
+        checkAndRenderAgenteWendell();
+      }
     }
 
     let rawNotasPage = [], rawDataML = [], rawDataAMZ = [], rawDataAvalAMZ = [], rawDataVIA = [], rawDataOctadeskDev = [], rawDataOctadeskSac = [], rawDataOctadeskEnvio = [];
@@ -1767,6 +2010,13 @@
       magalu: 'MAGAZINE LUIZA'
     };
     let activeOctaDevTab = 'MERCADO LIVRE';
+    let activeWendellTab = 'MERCADO LIVRE';
+    let wendellAssignedKeys = new Set();
+    const WENDELL_PWD_STORAGE_KEY = 'agentes_wendell_password_v1';
+    const WENDELL_SESSION_UNLOCK_KEY = 'agentes_wendell_unlocked_v1';
+    const WENDELL_LOCAL_TICKETS_KEY = 'agentes_wendell_tickets_v1';
+    const WENDELL_SHARED_TICKETS_NOTE_ID = '__WENDELL_COUTO_TICKETS__';
+    const WENDELL_SHARED_PWD_NOTE_ID = '__AGENTE_SENHA_WENDELL__';
     let activeOctaSacTab = 'MERCADO LIVRE';
     let activeOctaEnvioTab = 'MERCADO LIVRE';
     let escopoML = 'afetando', escopoAMZ = 'afetando', escopoAval = 'afetando', escopoVIA = 'afetando';
@@ -2293,11 +2543,19 @@
           ? ''
           : `<td><strong>${item.data_solicitacao || '-'}</strong>${dateField === 'data_solicitacao' ? prazoBadgeHtml : ''}</td>`;
 
+        const ticketUniqueKey = getOctaTicketUniqueKey(item);
+        const safeTicketKeyAttr = escapeHtmlAttr(ticketUniqueKey);
+        const isAlreadySent = wendellAssignedKeys.has(ticketUniqueKey);
+        const sendAgentBtnHtml = ticketUniqueKey
+          ? `<button type="button" class="send-agent-btn ${isAlreadySent ? 'sent' : ''}" title="${isAlreadySent ? 'Já enviado para Wendell Couto' : 'Enviar para Wendell Couto'}" onclick="sendTicketToWendell('${safeTicketKeyAttr}', this)">${isAlreadySent ? '👤✓' : '👤+'}</button>`
+          : '';
+
         tbody.innerHTML += `<tr class="${rowClass}">
           <td>
             <div class="octa-title-cell">
               ${orderBtnHtml}
               ${titleHtml}
+              ${sendAgentBtnHtml}
             </div>
           </td>
           <td>${dataCriacaoCellHtml}</td>
@@ -2547,9 +2805,11 @@
       renderAMZ();
       renderAvaliacoesAMZ();
       renderVIA();
+      loadWendellStateFromStorageAndNotes();
       renderOctaDev();
       renderOctaSac();
       renderOctaEnvio();
+      renderAgenteWendellDashboard();
       renderAllTratativasClientes();
       
       const initialLink = document.querySelector('.menu-item[data-page="page-reputacao-geral"]');
@@ -4293,6 +4553,466 @@
             </div>
             ${dataMudancaHtml}
             <span id="${statusElemId}" class="trat-action-status"></span>
+          </td>
+        </tr>`;
+      });
+    }
+
+
+    // ================= AGENTES -> WENDELL COUTO =================
+    function getOctaTicketUniqueKey(item) {
+      if (!item) return '';
+      const num = cleanVal(item.numero);
+      if (num) return `NUM_${num}`;
+      const ped = getPedidoId(item);
+      const grp = normalizeText(item.grupo);
+      if (ped) return `PED_${ped}_${grp}`;
+      return '';
+    }
+
+    function getAllOctadeskItems() {
+      return [
+        ...(rawDataOctadeskDev || []),
+        ...(rawDataOctadeskSac || []),
+        ...(rawDataOctadeskEnvio || [])
+      ];
+    }
+
+    function loadWendellStateFromStorageAndNotes() {
+      const merged = new Set();
+      try {
+        const localRaw = localStorage.getItem(WENDELL_LOCAL_TICKETS_KEY);
+        if (localRaw) {
+          const arr = JSON.parse(localRaw);
+          if (Array.isArray(arr)) arr.forEach(k => { if (k) merged.add(String(k)); });
+        }
+      } catch (e) {}
+
+      if (sharedNotesMap && sharedNotesMap[WENDELL_SHARED_TICKETS_NOTE_ID]) {
+        try {
+          const remoteArr = JSON.parse(sharedNotesMap[WENDELL_SHARED_TICKETS_NOTE_ID]);
+          if (Array.isArray(remoteArr)) {
+            remoteArr.forEach(k => { if (k) merged.add(String(k)); });
+          }
+        } catch (e) {}
+      }
+
+      wendellAssignedKeys = merged;
+      try {
+        localStorage.setItem(WENDELL_LOCAL_TICKETS_KEY, JSON.stringify(Array.from(wendellAssignedKeys)));
+      } catch (e) {}
+
+      if (sharedNotesMap && sharedNotesMap[WENDELL_SHARED_PWD_NOTE_ID]) {
+        const remotePwd = String(sharedNotesMap[WENDELL_SHARED_PWD_NOTE_ID]).trim();
+        if (remotePwd && !localStorage.getItem(WENDELL_PWD_STORAGE_KEY)) {
+          try { localStorage.setItem(WENDELL_PWD_STORAGE_KEY, remotePwd); } catch (e) {}
+        }
+      }
+    }
+
+    async function persistWendellTicketsList() {
+      const arr = Array.from(wendellAssignedKeys);
+      const serialized = JSON.stringify(arr);
+      try {
+        localStorage.setItem(WENDELL_LOCAL_TICKETS_KEY, serialized);
+      } catch (e) {}
+      sharedNotesMap[WENDELL_SHARED_TICKETS_NOTE_ID] = serialized;
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ pedido: WENDELL_SHARED_TICKETS_NOTE_ID, nota: serialized })
+        });
+      } catch (e) {}
+    }
+
+    function sendTicketToWendell(ticketKey, btnElem) {
+      if (!ticketKey) return;
+      if (!wendellAssignedKeys.has(ticketKey)) {
+        wendellAssignedKeys.add(ticketKey);
+        persistWendellTicketsList();
+      }
+      if (btnElem) {
+        btnElem.classList.add('sent');
+        btnElem.title = 'Enviado para Wendell Couto';
+        btnElem.innerText = '👤✓';
+      }
+      renderAgenteWendellDashboard();
+    }
+
+    function resolveTicketWendell(ticketKey) {
+      if (!ticketKey) return;
+      wendellAssignedKeys.delete(ticketKey);
+      persistWendellTicketsList();
+      renderAgenteWendellDashboard();
+      renderOctaDevTable();
+      renderOctaSacTable();
+      renderOctaEnvioTable();
+    }
+
+    function getConfiguredWendellPassword() {
+      const localPwd = localStorage.getItem(WENDELL_PWD_STORAGE_KEY);
+      if (localPwd && localPwd.trim() !== '') return localPwd.trim();
+      const remotePwd = sharedNotesMap[WENDELL_SHARED_PWD_NOTE_ID];
+      if (remotePwd && String(remotePwd).trim() !== '') return String(remotePwd).trim();
+      return '';
+    }
+
+    function checkAndRenderAgenteWendell() {
+      const lockScreen = document.getElementById('wendell-lock-screen');
+      const contentDiv = document.getElementById('wendell-protected-content');
+      if (!lockScreen || !contentDiv) return;
+
+      const configuredPwd = getConfiguredWendellPassword();
+      const isUnlocked = sessionStorage.getItem(WENDELL_SESSION_UNLOCK_KEY) === 'true';
+
+      if (configuredPwd && isUnlocked) {
+        lockScreen.style.display = 'none';
+        contentDiv.style.display = 'block';
+        renderAgenteWendellDashboard();
+        return;
+      }
+
+      contentDiv.style.display = 'none';
+      lockScreen.style.display = 'flex';
+
+      if (!configuredPwd) {
+        lockScreen.innerHTML = `
+          <div class="agent-lock-card">
+            <div class="agent-lock-icon">🔐</div>
+            <h2>Configurar Senha &mdash; Wendell Couto</h2>
+            <p>Primeiro acesso na SubPage <strong>Agentes</strong>. Defina uma senha para proteger e liberar o acesso.</p>
+            <input type="password" id="wendell-new-pwd" class="agent-lock-input" placeholder="Criar nova senha" onkeydown="if(event.key==='Enter') setupWendellPassword()">
+            <input type="password" id="wendell-confirm-pwd" class="agent-lock-input" placeholder="Confirmar senha" onkeydown="if(event.key==='Enter') setupWendellPassword()">
+            <button type="button" class="agent-lock-btn" onclick="setupWendellPassword()">Salvar Senha e Acessar</button>
+            <div id="wendell-lock-error" class="agent-lock-error"></div>
+          </div>
+        `;
+      } else {
+        lockScreen.innerHTML = `
+          <div class="agent-lock-card">
+            <div class="agent-lock-icon">🔒</div>
+            <h2>Acesso Restrito &mdash; Wendell Couto</h2>
+            <p>Informe a senha cadastrada na SubPage <strong>Agentes</strong> para visualizar os pedidos atribuídos.</p>
+            <input type="password" id="wendell-login-pwd" class="agent-lock-input" placeholder="Digite sua senha" onkeydown="if(event.key==='Enter') verifyWendellPassword()">
+            <button type="button" class="agent-lock-btn" onclick="verifyWendellPassword()">Acessar</button>
+            <div id="wendell-lock-error" class="agent-lock-error"></div>
+          </div>
+        `;
+      }
+    }
+
+    async function setupWendellPassword() {
+      const p1 = (document.getElementById('wendell-new-pwd')?.value || '').trim();
+      const p2 = (document.getElementById('wendell-confirm-pwd')?.value || '').trim();
+      const errEl = document.getElementById('wendell-lock-error');
+
+      if (!p1) {
+        if (errEl) errEl.innerText = 'Informe uma senha válida.';
+        return;
+      }
+      if (p1 !== p2) {
+        if (errEl) errEl.innerText = 'As senhas não coincidem.';
+        return;
+      }
+
+      try {
+        localStorage.setItem(WENDELL_PWD_STORAGE_KEY, p1);
+        sessionStorage.setItem(WENDELL_SESSION_UNLOCK_KEY, 'true');
+      } catch (e) {}
+
+      sharedNotesMap[WENDELL_SHARED_PWD_NOTE_ID] = p1;
+      try {
+        fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ pedido: WENDELL_SHARED_PWD_NOTE_ID, nota: p1 })
+        });
+      } catch (e) {}
+
+      checkAndRenderAgenteWendell();
+    }
+
+    function verifyWendellPassword() {
+      const typed = (document.getElementById('wendell-login-pwd')?.value || '').trim();
+      const configuredPwd = getConfiguredWendellPassword();
+      const errEl = document.getElementById('wendell-lock-error');
+
+      if (typed && typed === configuredPwd) {
+        try {
+          sessionStorage.setItem(WENDELL_SESSION_UNLOCK_KEY, 'true');
+        } catch (e) {}
+        checkAndRenderAgenteWendell();
+      } else {
+        if (errEl) errEl.innerText = 'Senha incorreta. Tente novamente.';
+      }
+    }
+
+    function lockAgenteWendell() {
+      try {
+        sessionStorage.removeItem(WENDELL_SESSION_UNLOCK_KEY);
+      } catch (e) {}
+      checkAndRenderAgenteWendell();
+    }
+
+    function switchTabWendell(mpKey, btn) {
+      activeWendellTab = mpKey;
+      document.querySelectorAll('#wendell-tabs .tab-btn').forEach(el => el.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderWendellTable();
+    }
+
+    function getWendellAssignedItems() {
+      const all = getAllOctadeskItems();
+      const seen = new Set();
+      const result = [];
+      all.forEach(item => {
+        const key = getOctaTicketUniqueKey(item);
+        if (key && wendellAssignedKeys.has(key) && !seen.has(key)) {
+          seen.add(key);
+          result.push(item);
+        }
+      });
+      return result;
+    }
+
+    function renderAgenteWendellDashboard() {
+      const assignedList = getWendellAssignedItems();
+
+      renderOctaGroupSummary(assignedList, {
+        total: 'wendell-total',
+        ml: 'wendell-ml',
+        amz: 'wendell-amz',
+        shopee: 'wendell-shopee',
+        via: 'wendell-via',
+        magalu: 'wendell-magalu',
+        tabMl: 'count-tab-wendell-ml',
+        tabAmz: 'count-tab-wendell-amz',
+        tabShopee: 'count-tab-wendell-shopee',
+        tabVia: 'count-tab-wendell-via',
+        tabMagalu: 'count-tab-wendell-magalu'
+      });
+
+      const grupoSelect = document.getElementById('filter-grupo-wendell');
+      if (grupoSelect) {
+        const prevVal = grupoSelect.value || 'TODOS';
+        const gruposSet = new Set();
+        assignedList.forEach(item => {
+          const g = cleanVal(item.grupo);
+          if (g) gruposSet.add(g);
+        });
+        grupoSelect.innerHTML = '<option value="TODOS">Todos os Grupos</option>';
+        Array.from(gruposSet).sort().forEach(g => {
+          grupoSelect.innerHTML += `<option value="${escapeHtmlAttr(g)}">${g}</option>`;
+        });
+        if (Array.from(gruposSet).includes(prevVal)) {
+          grupoSelect.value = prevVal;
+        }
+      }
+
+      renderWendellTable();
+    }
+
+    function getWendellItemDateField(item) {
+      const grpNorm = normalizeText(item.grupo);
+      if (grpNorm.includes('SOLICITACAO DE DEVOLUCAO') && cleanVal(item.data_solicitacao)) {
+        return 'data_solicitacao';
+      }
+      return 'data_criacao';
+    }
+
+    function renderWendellTable() {
+      const tbody = document.querySelector('#tabela-wendell tbody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const assignedList = getWendellAssignedItems();
+      const tabItems = assignedList.filter(item => resolveOctaMarketplace(item) === activeWendellTab);
+
+      let countAtrasados = 0;
+      let countAlarmantes = 0;
+      const transpCounts = {};
+
+      tabItems.forEach(item => {
+        const dField = getWendellItemDateField(item);
+        const ageInfo = getOctaSolicitacaoAgeInfo(item[dField]);
+        if (ageInfo.status === 'ATRASADO') countAtrasados++;
+        else if (ageInfo.status === 'ALARMANTE') countAlarmantes++;
+
+        const transpName = cleanVal(item.transportadora) || 'NÃO INFORMADA';
+        transpCounts[transpName] = (transpCounts[transpName] || 0) + 1;
+      });
+
+      const elAtrasados = document.getElementById('wendell-tab-atrasados');
+      const elAlarmantes = document.getElementById('wendell-tab-alarmantes');
+      const elTranspWrap = document.getElementById('wendell-tab-transp-breakdown');
+
+      if (elAtrasados) elAtrasados.innerText = countAtrasados;
+      if (elAlarmantes) elAlarmantes.innerText = countAlarmantes;
+      if (elTranspWrap) {
+        const transpEntries = Object.entries(transpCounts).sort((a, b) => b[1] - a[1]);
+        if (transpEntries.length > 0) {
+          elTranspWrap.innerHTML = transpEntries
+            .map(([t, qtd]) => `<span class="transp-stat-pill">${t} <strong>${qtd}</strong></span>`)
+            .join('');
+        } else {
+          elTranspWrap.innerHTML = '<span class="no-comments">Sem dados nesta aba</span>';
+        }
+      }
+
+      const query = normalizeText(document.getElementById('search-wendell')?.value || '');
+      const statusPrazoFilter = document.getElementById('filter-status-prazo-wendell')?.value || 'TODOS';
+      const grupoFilter = document.getElementById('filter-grupo-wendell')?.value || 'TODOS';
+
+      let filtered = [...tabItems];
+
+      if (grupoFilter !== 'TODOS') {
+        filtered = filtered.filter(item => cleanVal(item.grupo) === grupoFilter);
+      }
+
+      if (statusPrazoFilter !== 'TODOS') {
+        filtered = filtered.filter(item => {
+          const dField = getWendellItemDateField(item);
+          return getOctaSolicitacaoAgeInfo(item[dField]).status === statusPrazoFilter;
+        });
+      }
+
+      if (query) {
+        filtered = filtered.filter(item => {
+          const ticketKey = getOctaTicketUniqueKey(item);
+          const notaSalva = getOrderNote(`WENDELL_NOTA_${ticketKey}`);
+          const nomeExibido = extractCustomerNameFromAssunto(item.assunto_raw || item.assunto_completo || item.titulo);
+          const allText = [
+            nomeExibido,
+            item.assunto_raw,
+            item.assunto_completo,
+            item.numero,
+            getPedidoId(item),
+            item.grupo,
+            item.data_criacao,
+            item.ultima_atualizacao,
+            item.data_solicitacao,
+            item.transportadora,
+            item.rastreio,
+            notaSalva
+          ].join(' ');
+          return normalizeText(allText).includes(query);
+        });
+      }
+
+      filtered.sort((a, b) => {
+        const tA = parseDateToTimestamp(a[getWendellItemDateField(a)]);
+        const tB = parseDateToTimestamp(b[getWendellItemDateField(b)]);
+        if (tA === null && tB === null) return 0;
+        if (tA === null) return 1;
+        if (tB === null) return -1;
+        return tA - tB;
+      });
+
+      if (!filtered.length) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color:#94a3b8;">Nenhum pedido atribuído a Wendell Couto para ${activeWendellTab}.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach((item, idx) => {
+        const numTicket = cleanVal(item.numero);
+        const pedidoId = getPedidoId(item);
+        const assuntoOrig = item.assunto_raw || item.assunto_completo || '';
+        const tituloExibido = extractCustomerNameFromAssunto(assuntoOrig || item.titulo) || '-';
+        const tooltipAssunto = assuntoOrig && assuntoOrig !== tituloExibido ? ` (${assuntoOrig})` : '';
+        const ticketKey = getOctaTicketUniqueKey(item);
+        const safeTicketKeyAttr = escapeHtmlAttr(ticketKey);
+
+        const titleHtml = numTicket
+          ? `<a href="https://app.octadesk.com/ticket/edit/${encodeURIComponent(numTicket)}" target="_blank" class="ticket-title-link" title="Abrir ticket #${numTicket} no OctaDesk${tooltipAssunto}">${tituloExibido}</a>`
+          : `<strong title="${assuntoOrig || tituloExibido}">${tituloExibido}</strong>`;
+
+        let orderBtnHtml = '';
+        if (pedidoId) {
+          if (activeWendellTab === 'MERCADO LIVRE') {
+            const linkML = `https://vendedores.mercadolivre.com.br/vendas/${encodeURIComponent(pedidoId)}/detalhe`;
+            orderBtnHtml = `
+              <a href="${linkML}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} no Mercado Livre">
+                <img src="${ML_LOGO_URL}" class="ml-logo-img" alt="ML">
+                <span>${pedidoId}</span>
+              </a>`;
+          } else if (activeWendellTab === 'AMAZON') {
+            const linkAMZ = `https://sellercentral.amazon.com/orders-v3/order/${encodeURIComponent(pedidoId)}`;
+            orderBtnHtml = `
+              <a href="${linkAMZ}" target="_blank" class="order-link-box" title="Abrir pedido ${pedidoId} na Amazon">
+                <img src="${AMAZON_LOGO_URL}" class="amazon-logo-img" alt="Amazon">
+                <span>${pedidoId}</span>
+              </a>`;
+          } else if (activeWendellTab === 'SHOPEE') {
+            orderBtnHtml = `
+              <span class="order-link-box" title="Número do Pedido Shopee: ${pedidoId}">
+                <img src="${SHOPEE_LOGO_URL}" class="mp-logo-img" alt="Shopee">
+                <span>${pedidoId}</span>
+              </span>`;
+          } else if (activeWendellTab === 'VIA') {
+            orderBtnHtml = `
+              <span class="order-link-box" title="Número do Pedido VIA (Casas Bahia): ${pedidoId}">
+                <img src="${VIA_LOGO_URL}" class="mp-logo-img" alt="VIA">
+                <span>${pedidoId}</span>
+              </span>`;
+          } else if (activeWendellTab === 'MAGAZINE LUIZA') {
+            orderBtnHtml = `
+              <span class="order-link-box" title="Número do Pedido Magazine Luiza: ${pedidoId}">
+                <img src="${MAGALU_LOGO_URL}" class="mp-logo-img" alt="Magazine Luiza">
+                <span>${pedidoId}</span>
+              </span>`;
+          }
+        }
+
+        const dField = getWendellItemDateField(item);
+        const ageInfo = getOctaSolicitacaoAgeInfo(item[dField]);
+        let rowClass = '';
+        let prazoBadgeHtml = '';
+        if (ageInfo.status === 'ATRASADO') {
+          rowClass = 'row-atrasado';
+          prazoBadgeHtml = `<div><span class="status-prazo-badge status-prazo-atrasado">🔴 ${ageInfo.label}</span></div>`;
+        } else if (ageInfo.status === 'ALARMANTE') {
+          rowClass = 'row-alarmante';
+          prazoBadgeHtml = `<div><span class="status-prazo-badge status-prazo-alarmante">🟡 ${ageInfo.label}</span></div>`;
+        }
+
+        const dataCriacaoCellHtml = dField === 'data_criacao'
+          ? `<strong>${item.data_criacao || '-'}</strong>${prazoBadgeHtml}`
+          : `${item.data_criacao || '-'}`;
+
+        const dataSolicitacaoCellHtml = dField === 'data_solicitacao'
+          ? `<strong>${item.data_solicitacao || '-'}</strong>${prazoBadgeHtml}`
+          : `${item.data_solicitacao || '-'}`;
+
+        const grupoVal = cleanVal(item.grupo) || '-';
+        const noteStorageId = `WENDELL_NOTA_${ticketKey}`;
+        const savedNote = getOrderNote(noteStorageId);
+        const noteStatusId = `note-status-wendell-${idx}`;
+
+        tbody.innerHTML += `<tr class="${rowClass}">
+          <td>
+            <div class="octa-title-cell">
+              ${orderBtnHtml}
+              ${titleHtml}
+            </div>
+          </td>
+          <td><span class="grupo-pill-badge">${grupoVal}</span></td>
+          <td>${dataCriacaoCellHtml}</td>
+          <td>${item.ultima_atualizacao || '-'}</td>
+          <td>${dataSolicitacaoCellHtml}</td>
+          <td>${item.transportadora || '-'}</td>
+          <td>${item.rastreio || '-'}</td>
+          <td>
+            <div class="note-box-wrapper">
+              <textarea class="note-textarea" placeholder="Nota exclusiva Wendell..." onchange="saveOrderNote('${escapeHtmlAttr(noteStorageId)}', this.value, '${noteStatusId}')">${savedNote}</textarea>
+              <span id="${noteStatusId}" class="note-status"></span>
+            </div>
+          </td>
+          <td>
+            <button type="button" class="btn-resolvido-agente" title="Marcar como resolvido e remover desta página" onclick="resolveTicketWendell('${safeTicketKeyAttr}')">✓ Resolvido</button>
           </td>
         </tr>`;
       });
