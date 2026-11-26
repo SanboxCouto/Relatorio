@@ -8082,7 +8082,7 @@
       "assunto_completo": "2610109X1RFEVM - Timothy Ferreira da Silva",
       "titulo": "Timothy Ferreira da Silva",
       "data_criacao": "25/11/2026",
-      "ultima_atualizacao": "25/11/2026",
+      "ultima_atualizacao": "26/11/2026",
       "data_solicitacao": "25/11/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "220263"
@@ -9104,7 +9104,7 @@
       "assunto_completo": "701-4321000-4412238 /Felipe Pedroso",
       "titulo": "4412238 /Felipe Pedroso",
       "data_criacao": "08/09/2026",
-      "ultima_atualizacao": "18/11/2026",
+      "ultima_atualizacao": "26/11/2026",
       "data_solicitacao": "08/09/2026",
       "transportadora": "Alfa Transportes",
       "rastreio": "204771"
@@ -9250,20 +9250,6 @@
       "data_solicitacao": "",
       "transportadora": "Total Express",
       "rastreio": ""
-    },
-    {
-      "numero": "99918544",
-      "pedido": "701-1366256-4675415",
-      "grupo": "Atendimento SAC",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "701-1366256-4675415 - Rebeca Abreu",
-      "titulo": "Rebeca Abreu",
-      "data_criacao": "23/11/2026",
-      "ultima_atualizacao": "23/11/2026",
-      "data_solicitacao": "",
-      "transportadora": "Rio Express",
-      "rastreio": "215838"
     },
     {
       "numero": "99918537",
