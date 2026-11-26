@@ -7948,6 +7948,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918622",
+      "pedido": "261118MBVFVC2T",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Shopee",
+      "marketplace": "SHOPEE",
+      "assunto_completo": "261118MBVFVC2T - Carlos José",
+      "titulo": "Carlos José",
+      "data_criacao": "26/11/2026",
+      "ultima_atualizacao": "26/11/2026",
+      "data_solicitacao": "26/11/2026",
+      "transportadora": "Correios",
+      "rastreio": "4795832455"
+    },
+    {
       "numero": "99918621",
       "pedido": "702-3771766-3188218",
       "grupo": "Solicitação de Devolução",
@@ -8478,20 +8492,6 @@
       "data_solicitacao": "23/11/2026",
       "transportadora": "Tecmar",
       "rastreio": "218195"
-    },
-    {
-      "numero": "99918553",
-      "pedido": "52624598901",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Casas Bahia/Via Varejo",
-      "marketplace": "VIA",
-      "assunto_completo": "52624598901 - Julia Lourenço Nazaré",
-      "titulo": "Julia Lourenço Nazaré",
-      "data_criacao": "23/11/2026",
-      "ultima_atualizacao": "26/11/2026",
-      "data_solicitacao": "23/11/2026",
-      "transportadora": "Rio Express",
-      "rastreio": "213374"
     },
     {
       "numero": "99918552",
@@ -9557,7 +9557,7 @@
       "acao": "CONTATO FEITO PELO SAC",
       "marketplace_raw": "Amazon",
       "marketplace": "AMAZON",
-      "data_mudanca": "25/11/2026 14:52:07"
+      "data_mudanca": "25/11/2026 14:52:00"
     },
     {
       "pedido": "702-1323147-0532252",
@@ -9569,7 +9569,7 @@
       "acao": "CONTATO FEITO PELO SAC",
       "marketplace_raw": "Amazon",
       "marketplace": "AMAZON",
-      "data_mudanca": "25/11/2026 10:52:22"
+      "data_mudanca": "25/11/2026 10:52:00"
     },
     {
       "pedido": "1585670111317115",
@@ -9593,7 +9593,7 @@
       "acao": "CONTATO FEITO PELO SAC",
       "marketplace_raw": "Amazon",
       "marketplace": "AMAZON",
-      "data_mudanca": "25/11/2026 13:45:17"
+      "data_mudanca": "25/11/2026 13:45:00"
     },
     {
       "pedido": "LU-1584570110812741",
@@ -9773,6 +9773,90 @@
       "acao": "PRIMEIRO CONTATO",
       "marketplace_raw": "Shopee",
       "marketplace": "SHOPEE",
+      "data_mudanca": ""
+    },
+    {
+      "pedido": "2000019523898038",
+      "comprador": "Cristiani Regina Consoni Bomfim",
+      "transportadora": "Alfa Transportes",
+      "nf": "216823",
+      "descricao": "Atraso - Prazo da Transportadora",
+      "acao_raw": "Primeiro Contato",
+      "acao": "PRIMEIRO CONTATO",
+      "marketplace_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "data_mudanca": ""
+    },
+    {
+      "pedido": "702-2639021-1708206",
+      "comprador": "Mateus felipe bastos",
+      "transportadora": "Alfa Transportes",
+      "nf": "216458",
+      "descricao": "Atraso - Prazo da Transportadora",
+      "acao_raw": "Primeiro Contato",
+      "acao": "PRIMEIRO CONTATO",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "data_mudanca": ""
+    },
+    {
+      "pedido": "2000019680516358",
+      "comprador": "Marcos Henrique da Silva Lopes",
+      "transportadora": "MMA Cargas",
+      "nf": "218642",
+      "descricao": "Endereço não localizado",
+      "acao_raw": "Primeiro Contato",
+      "acao": "PRIMEIRO CONTATO",
+      "marketplace_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
+      "data_mudanca": ""
+    },
+    {
+      "pedido": "702-2527025-2686625",
+      "comprador": "Sueli Sueiro",
+      "transportadora": "Brasil Web",
+      "nf": "217407",
+      "descricao": "Destinatário ausente / Local fechado",
+      "acao_raw": "Primeiro Contato",
+      "acao": "PRIMEIRO CONTATO",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "data_mudanca": ""
+    },
+    {
+      "pedido": "701-9210435-1377805",
+      "comprador": "rachel clemente carvalho",
+      "transportadora": "Alfa Transportes",
+      "nf": "217318",
+      "descricao": "Atraso - Prazo da Transportadora",
+      "acao_raw": "Primeiro Contato",
+      "acao": "PRIMEIRO CONTATO",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "data_mudanca": ""
+    },
+    {
+      "pedido": "701-7661255-0173861",
+      "comprador": "Ricardo Ribeiro",
+      "transportadora": "Alfa Transportes",
+      "nf": "217752",
+      "descricao": "Atraso - Prazo da Transportadora",
+      "acao_raw": "Primeiro Contato",
+      "acao": "PRIMEIRO CONTATO",
+      "marketplace_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "data_mudanca": ""
+    },
+    {
+      "pedido": "2000016052035177",
+      "comprador": "Edna Agostinho da Silva",
+      "transportadora": "Alfa Transportes",
+      "nf": "217120",
+      "descricao": "Atraso - Prazo da Transportadora",
+      "acao_raw": "Primeiro Contato",
+      "acao": "PRIMEIRO CONTATO",
+      "marketplace_raw": "Mercado Livre",
+      "marketplace": "MERCADO LIVRE",
       "data_mudanca": ""
     }
   ]
