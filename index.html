@@ -218,28 +218,6 @@
       border-color: #86efac;
       color: #15803d;
     }
-    .resumir-ticket-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      padding: 2px 7px;
-      border-radius: 5px;
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
-      color: #334155;
-      font-size: 0.70rem;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .resumir-ticket-btn:hover {
-      background: #fef3c7;
-      border-color: #f59e0b;
-      color: #92400e;
-    }
 
     .agent-lock-wrapper {
       display: flex;
@@ -2658,9 +2636,6 @@
         const ticketUniqueKey = getOctaTicketUniqueKey(item);
         const safeTicketKeyAttr = escapeHtmlAttr(ticketUniqueKey);
         const isAlreadySent = wendellAssignedKeys.has(ticketUniqueKey);
-        const resumirBtnHtml = numTicket
-          ? `<a href="https://app.octadesk.com/ticket/edit/${encodeURIComponent(numTicket)}?resumir=1" target="_blank" class="resumir-ticket-btn" title="Abrir ticket #${numTicket} e gerar resumo automático (Tampermonkey)">📋 Resumir</a>`
-          : '';
         const sendAgentBtnHtml = ticketUniqueKey
           ? `<button type="button" class="send-agent-btn ${isAlreadySent ? 'sent' : ''}" title="${isAlreadySent ? 'Já enviado para Wendell Couto' : 'Enviar para Wendell Couto'}" onclick="sendTicketToWendell('${safeTicketKeyAttr}', this)">${isAlreadySent ? '👤✓' : '👤+'}</button>`
           : '';
@@ -2670,7 +2645,6 @@
             <div class="octa-title-cell">
               ${orderBtnHtml}
               ${titleHtml}
-              ${resumirBtnHtml}
               ${sendAgentBtnHtml}
             </div>
           </td>
@@ -5118,9 +5092,6 @@
         const newBadgeId = `wendell-new-badge-${idx}`;
 
         const newBadgeHtml = `<span id="${newBadgeId}" class="wendell-new-badge" style="${hasWendellNote ? 'display:none;' : ''}" title="Novo pedido enviado para Wendell (sem nota)">NEW</span>`;
-        const resumirWendellHtml = numTicket
-          ? `<a href="https://app.octadesk.com/ticket/edit/${encodeURIComponent(numTicket)}?resumir=1" target="_blank" class="resumir-ticket-btn" title="Abrir ticket #${numTicket} e gerar resumo automático (Tampermonkey)">📋 Resumir</a>`
-          : '';
 
         const rastreioVal = cleanVal(item.rastreio) || '-';
         const safeRastreioAttr = escapeHtmlAttr(rastreioVal);
@@ -5134,7 +5105,6 @@
               <div class="wendell-title-top">
                 ${orderBtnHtml}
                 ${newBadgeHtml}
-                ${resumirWendellHtml}
               </div>
               <div>${titleHtml}</div>
             </div>
