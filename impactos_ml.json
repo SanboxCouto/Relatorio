@@ -9126,6 +9126,20 @@
   ],
   "octadesk_sac": [
     {
+      "numero": "99918633",
+      "pedido": "702-8567703-4324217",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-8567703-4324217 - Eliane Nascimento",
+      "titulo": "Eliane Nascimento",
+      "data_criacao": "26/11/2026",
+      "ultima_atualizacao": "26/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Total Express",
+      "rastreio": "214471 /  AE148987682BR / TXAQ622215259tx"
+    },
+    {
       "numero": "99918620",
       "pedido": "261108PYQTUGKX",
       "grupo": "Atendimento SAC",
