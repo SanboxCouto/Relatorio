@@ -7983,6 +7983,20 @@
   ],
   "octadesk_devolucao": [
     {
+      "numero": "99918649",
+      "pedido": "702-9234136-7981007",
+      "grupo": "Solicitação de Devolução",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-9234136-7981007 - Allan Silva Santa Rosa",
+      "titulo": "Allan Silva Santa Rosa",
+      "data_criacao": "27/11/2026",
+      "ultima_atualizacao": "27/11/2026",
+      "data_solicitacao": "27/11/2026",
+      "transportadora": "Brasil Web",
+      "rastreio": "218094"
+    },
+    {
       "numero": "99918647",
       "pedido": "702-3698767-5008220",
       "grupo": "Solicitação de Devolução",
@@ -8823,20 +8837,6 @@
       "rastreio": "218601"
     },
     {
-      "numero": "99918525",
-      "pedido": "701-8609588-8613809",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "701-8609588-8613809- Jonas Eduardo Feliciano",
-      "titulo": "Jonas Eduardo Feliciano",
-      "data_criacao": "18/11/2026",
-      "ultima_atualizacao": "25/11/2026",
-      "data_solicitacao": "18/11/2026",
-      "transportadora": "Brasil Web",
-      "rastreio": "0"
-    },
-    {
       "numero": "99918524",
       "pedido": "701-5837750-2360218",
       "grupo": "Solicitação de Devolução",
@@ -9213,20 +9213,6 @@
       "data_solicitacao": "26/10/2026",
       "transportadora": "Tecmar",
       "rastreio": "214176"
-    },
-    {
-      "numero": "99918154",
-      "pedido": "261018113MX8TE",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "261018113MX8TE - Martiniano de Jesus Santos",
-      "titulo": "Martiniano de Jesus Santos",
-      "data_criacao": "21/10/2026",
-      "ultima_atualizacao": "26/11/2026",
-      "data_solicitacao": "21/10/2026",
-      "transportadora": "Total Express",
-      "rastreio": "211956"
     },
     {
       "numero": "99918150",
