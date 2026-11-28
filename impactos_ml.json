@@ -8319,20 +8319,6 @@
       "rastreio": "0"
     },
     {
-      "numero": "99918615",
-      "pedido": "2611123F80C7GW",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Shopee",
-      "marketplace": "SHOPEE",
-      "assunto_completo": "2611123F80C7GW - Wilson L. C Teixeira",
-      "titulo": "Wilson L. C Teixeira",
-      "data_criacao": "26/11/2026",
-      "ultima_atualizacao": "28/11/2026",
-      "data_solicitacao": "26/11/2026",
-      "transportadora": "Correios",
-      "rastreio": "4795580805"
-    },
-    {
       "numero": "99918613",
       "pedido": "701-5030769-7081056",
       "grupo": "Solicitação de Devolução",
@@ -9554,6 +9540,20 @@
     }
   ],
   "octadesk_envio_produto": [
+    {
+      "numero": "99918648",
+      "pedido": "LU-1583770110458191",
+      "grupo": "Envio de Produto",
+      "loja_raw": "Magalu",
+      "marketplace": "MAGAZINE LUIZA",
+      "assunto_completo": "LU-1583770110458191 - Rozeli dos Santos",
+      "titulo": "Rozeli dos Santos",
+      "data_criacao": "27/11/2026",
+      "ultima_atualizacao": "28/11/2026",
+      "data_solicitacao": "",
+      "transportadora": "Trilog",
+      "rastreio": ""
+    },
     {
       "numero": "99918639",
       "pedido": "2000019713509550",
