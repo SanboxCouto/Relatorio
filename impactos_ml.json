@@ -8081,20 +8081,6 @@
       "rastreio": "221006"
     },
     {
-      "numero": "99918644",
-      "pedido": "701-7232411-3918623",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "701-7232411-3918623 | Carlos Eduardo Miranda do Nascimento",
-      "titulo": "Carlos Eduardo Miranda do Nascimento",
-      "data_criacao": "27/11/2026",
-      "ultima_atualizacao": "27/11/2026",
-      "data_solicitacao": "27/11/2026",
-      "transportadora": "Rio Express",
-      "rastreio": "219856"
-    },
-    {
       "numero": "99918643",
       "pedido": "701-4189054-8120258",
       "grupo": "Solicitação de Devolução",
@@ -8246,20 +8232,6 @@
       "ultima_atualizacao": "26/11/2026",
       "data_solicitacao": "26/11/2026",
       "transportadora": "Mercado Envios",
-      "rastreio": "0"
-    },
-    {
-      "numero": "99918627",
-      "pedido": "702-4847002-6139400",
-      "grupo": "Solicitação de Devolução",
-      "loja_raw": "Amazon",
-      "marketplace": "AMAZON",
-      "assunto_completo": "702-4847002-6139400- Janete Aparecida Botelho",
-      "titulo": "Janete Aparecida Botelho",
-      "data_criacao": "26/11/2026",
-      "ultima_atualizacao": "26/11/2026",
-      "data_solicitacao": "26/11/2026",
-      "transportadora": "Rio Express",
       "rastreio": "0"
     },
     {
@@ -9315,6 +9287,20 @@
       "rastreio": "218691"
     },
     {
+      "numero": "99918644",
+      "pedido": "701-7232411-3918623",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "701-7232411-3918623 | Carlos Eduardo Miranda do Nascimento",
+      "titulo": "Carlos Eduardo Miranda do Nascimento",
+      "data_criacao": "27/11/2026",
+      "ultima_atualizacao": "28/11/2026",
+      "data_solicitacao": "27/11/2026",
+      "transportadora": "Rio Express",
+      "rastreio": "219856"
+    },
+    {
       "numero": "99918633",
       "pedido": "702-8567703-4324217",
       "grupo": "Atendimento SAC",
@@ -9327,6 +9313,20 @@
       "data_solicitacao": "",
       "transportadora": "Total Express",
       "rastreio": "214471 /  AE148987682BR / TXAQ622215259tx"
+    },
+    {
+      "numero": "99918627",
+      "pedido": "702-4847002-6139400",
+      "grupo": "Atendimento SAC",
+      "loja_raw": "Amazon",
+      "marketplace": "AMAZON",
+      "assunto_completo": "702-4847002-6139400- Janete Aparecida Botelho",
+      "titulo": "Janete Aparecida Botelho",
+      "data_criacao": "26/11/2026",
+      "ultima_atualizacao": "28/11/2026",
+      "data_solicitacao": "26/11/2026",
+      "transportadora": "Rio Express",
+      "rastreio": "0"
     },
     {
       "numero": "99918620",
